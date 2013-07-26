@@ -164,6 +164,37 @@
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_3.png"
                 qualifiers=""
                 type="drawable" />
+            <file
+                name="fire_4"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_4.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="fire_6"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_6.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="fire_5"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_5.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="cell_image_view"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\layout\cell_image_view.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="anim1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\anim1.gif"
+                qualifiers=""
+                type="drawable" />
+            <file
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values\colors.xml"
+                qualifiers="" >
+                <color name="light_green" >#5bae28
+                </color>
+            </file>
         </source>
         <source path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\rs\debug" />
     </dataSet>

@@ -8,19 +8,19 @@ import java.util.List;
 /**
  * Created by Leonid on 18.07.13.
  */
-public class GameResultInfo {
+public class GameInfo {
     private final GameResult gameResult;
     private final List<Matrix.Position> cellsOnFire;
 
-    public static GameResultInfo unknownResultInfo() {
-        return new GameResultInfo(GameResult.UNKNOWN, new ArrayList<Matrix.Position>());
+    public static GameInfo unknownResultInfo() {
+        return new GameInfo(GameResult.UNKNOWN, new ArrayList<Matrix.Position>());
     }
 
-    public static GameResultInfo drawResultInfo() {
-        return new GameResultInfo(GameResult.DRAW, new ArrayList<Matrix.Position>());
+    public static GameInfo drawResultInfo() {
+        return new GameInfo(GameResult.DRAW, new ArrayList<Matrix.Position>());
     }
 
-    public GameResultInfo(GameResult gameResult, List<Matrix.Position> cellsOnFire) {
+    public GameInfo(GameResult gameResult, List<Matrix.Position> cellsOnFire) {
         this.gameResult = gameResult;
         this.cellsOnFire = cellsOnFire;
     }

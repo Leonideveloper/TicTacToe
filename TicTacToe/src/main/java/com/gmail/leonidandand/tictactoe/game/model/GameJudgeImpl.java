@@ -18,24 +18,24 @@ public class GameJudgeImpl implements GameJudge {
     }
 
     @Override
-    public GameResultInfo gameResultInfo() {
+    public GameInfo gameResultInfo() {
         for (int i = 0; i < gameBoardDimension; ++i) {
-            GameResultInfo resultInfo = rowColumnResultInfo(i);
+            GameInfo resultInfo = rowColumnResultInfo(i);
             if (resultInfo.resultIsKnown()) {
                 return resultInfo;
             }
         }
-        GameResultInfo resultInfo = diagonalsResultInfo();
+        GameInfo resultInfo = diagonalsResultInfo();
         if (resultInfo.resultIsKnown()) {
             return resultInfo;
         }
         return gameBoardContainsEmptyCell()
-                ? GameResultInfo.unknownResultInfo()
-                : GameResultInfo.drawResultInfo();
+                ? GameInfo.unknownResultInfo()
+                : GameInfo.drawResultInfo();
     }
 
-    private GameResultInfo rowColumnResultInfo(int index) {
-        GameResultInfo rowResultInfo = rowResultInfo(index);
+    private GameInfo rowColumnResultInfo(int index) {
+        GameInfo rowResultInfo = rowResultInfo(index);
         if (rowResultInfo.resultIsKnown()) {
             return rowResultInfo;
         } else {
@@ -43,7 +43,7 @@ public class GameJudgeImpl implements GameJudge {
         }
     }
 
-    private GameResultInfo rowResultInfo(int row) {
+    private GameInfo rowResultInfo(int row) {
         List<Matrix.Position> rowCellsPositions = rowCellsPositions(row);
         return resultInfoByCellsPositions(rowCellsPositions);
     }
@@ -56,20 +56,20 @@ public class GameJudgeImpl implements GameJudge {
         return cells;
     }
 
-    private GameResultInfo resultInfoByCellsPositions(List<Matrix.Position> cellsPositions) {
+    private GameInfo resultInfoByCellsPositions(List<Matrix.Position> cellsPositions) {
         Matrix.Position firstCellOnLinePosition = cellsPositions.get(0);
         Cell firstCellOnLine = gameBoard.get(firstCellOnLinePosition);
         if (firstCellOnLine == Cell.EMPTY) {
-            return GameResultInfo.unknownResultInfo();
+            return GameInfo.unknownResultInfo();
         }
         for (int i = 1; i < gameBoardDimension; ++i) {
             Matrix.Position currentPosition = cellsPositions.get(i);
             Cell currentCell = gameBoard.get(currentPosition);
             if (firstCellOnLine != currentCell) {
-                return GameResultInfo.unknownResultInfo();
+                return GameInfo.unknownResultInfo();
             }
         }
-        return new GameResultInfo(cellToResult(firstCellOnLine), cellsPositions);
+        return new GameInfo(cellToResult(firstCellOnLine), cellsPositions);
     }
 
     private GameResult cellToResult(Cell cell) {
@@ -81,7 +81,7 @@ public class GameJudgeImpl implements GameJudge {
         throw new IllegalArgumentException("Input cell must be not empty!");
     }
 
-    private GameResultInfo columnResultInfo(int column) {
+    private GameInfo columnResultInfo(int column) {
         List<Matrix.Position> columnCellsPositions = columnCellsPositions(column);
         return resultInfoByCellsPositions(columnCellsPositions);
     }
@@ -94,8 +94,8 @@ public class GameJudgeImpl implements GameJudge {
         return cells;
     }
 
-    private GameResultInfo diagonalsResultInfo() {
-        GameResultInfo leftUpperDiagonalResultInfo = leftUpperDiagonalResultInfo();
+    private GameInfo diagonalsResultInfo() {
+        GameInfo leftUpperDiagonalResultInfo = leftUpperDiagonalResultInfo();
         if (leftUpperDiagonalResultInfo.resultIsKnown()) {
             return leftUpperDiagonalResultInfo;
         } else {
@@ -103,7 +103,7 @@ public class GameJudgeImpl implements GameJudge {
         }
     }
 
-    private GameResultInfo leftUpperDiagonalResultInfo() {
+    private GameInfo leftUpperDiagonalResultInfo() {
         return resultInfoByCellsPositions(leftUpperDiagonalPositions());
     }
 
@@ -115,7 +115,7 @@ public class GameJudgeImpl implements GameJudge {
         return positions;
     }
 
-    private GameResultInfo rightUpperDiagonalResultInfo() {
+    private GameInfo rightUpperDiagonalResultInfo() {
         return resultInfoByCellsPositions(rightUpperDiagonalPositions());
     }
 

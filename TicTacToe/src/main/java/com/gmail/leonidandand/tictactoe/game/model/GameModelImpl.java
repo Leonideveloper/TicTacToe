@@ -17,17 +17,17 @@ public class GameModelImpl implements GameModel {
     private final List<OnOpponentMoveListener> onOpponentMoveListeners;
     private final Matrix<Cell> gameBoard;
     private final Opponent opponent;
-    private GameResultInfo lastGameResultInfo;
+    private boolean opponentMovesFirst;
 
     public GameModelImpl(Dimension gameBoardDimension) {
         dimension = gameBoardDimension;
-        onOpponentMoveListeners = new ArrayList<OnOpponentMoveListener>();
-        onGameFinishedListeners = new ArrayList<OnGameFinishedListener>();
         gameBoard = new Matrix<Cell>(gameBoardDimension);
         initGameBoardByEmpty();
-        opponent = new StupidAIOpponent(gameBoard);
         gameJudge = new GameJudgeImpl(gameBoard);
-        lastGameResultInfo = GameResultInfo.unknownResultInfo();
+        onOpponentMoveListeners = new ArrayList<OnOpponentMoveListener>();
+        onGameFinishedListeners = new ArrayList<OnGameFinishedListener>();
+        opponent = new StupidAIOpponent(gameBoard);
+        opponentMovesFirst = false;
     }
 
     private void initGameBoardByEmpty() {
@@ -45,10 +45,18 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
-    public void onViewIsReadyToStartGame() {
-        if (lastGameResultInfo.gameResult() == GameResult.OPPONENT_WINS) {
-            opponentMove();
-        }
+    public Dimension getDimension() {
+        return dimension;
+    }
+
+    @Override
+    public void addOnGameFinishedListener(OnGameFinishedListener listener) {
+        onGameFinishedListeners.add(listener);
+    }
+
+    @Override
+    public void addOnOpponentMoveListener(OnOpponentMoveListener listener) {
+        onOpponentMoveListeners.add(listener);
     }
 
     @Override
@@ -57,9 +65,9 @@ public class GameModelImpl implements GameModel {
         if (gameNotFinished()) {
             opponentMove();
         }
-        GameResultInfo gameResultInfo = gameJudge.gameResultInfo();
-        if (gameResultInfo.resultIsKnown()) {
-            onGameFinished(gameResultInfo);
+        GameInfo gameInfo = gameJudge.gameResultInfo();
+        if (gameInfo.resultIsKnown()) {
+            onGameFinished(gameInfo);
         }
     }
 
@@ -73,36 +81,33 @@ public class GameModelImpl implements GameModel {
         notifyOnOpponentMoveListeners(opponentMovePos);
     }
 
-    private void onGameFinished(GameResultInfo gameResultInfo) {
-        lastGameResultInfo = gameResultInfo;
-        notifyOnGameFinishedListeners(gameResultInfo);
-        initGameBoardByEmpty();
-    }
-
-    @Override
-    public void addOnOpponentMoveListener(OnOpponentMoveListener listener) {
-        onOpponentMoveListeners.add(listener);
-    }
-
     private void notifyOnOpponentMoveListeners(Matrix.Position opponentMovePos) {
         for (OnOpponentMoveListener each : onOpponentMoveListeners) {
             each.onOpponentMove(opponentMovePos);
         }
     }
 
-    @Override
-    public void addOnGameFinishedListener(OnGameFinishedListener listener) {
-        onGameFinishedListeners.add(listener);
+    private void onGameFinished(GameInfo gameInfo) {
+        opponentMovesFirst = defineOpponentMovesFirst(gameInfo.gameResult());
+        notifyOnGameFinishedListeners(gameInfo);
+        initGameBoardByEmpty();
     }
 
-    private void notifyOnGameFinishedListeners(GameResultInfo gameResultInfo) {
+    private boolean defineOpponentMovesFirst(GameResult gameResult) {
+        return (gameResult == GameResult.OPPONENT_WINS) ||
+               (opponentMovesFirst && gameResult == GameResult.DRAW);
+    }
+
+    private void notifyOnGameFinishedListeners(GameInfo gameInfo) {
         for (OnGameFinishedListener each : onGameFinishedListeners) {
-            each.onGameFinished(gameResultInfo);
+            each.onGameFinished(gameInfo);
         }
     }
 
     @Override
-    public Dimension getDimension() {
-        return dimension;
+    public void onViewIsReadyToStartGame() {
+        if (opponentMovesFirst) {
+            opponentMove();
+        }
     }
 }

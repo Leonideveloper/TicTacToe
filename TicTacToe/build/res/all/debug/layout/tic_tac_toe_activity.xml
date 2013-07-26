@@ -8,129 +8,21 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".TicTacToeActivity">
 
-    <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:weightSum="3"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/textView"
-            android:layout_above="@+id/adTextView">
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:weightSum="3"
-                android:layout_gravity="center">
-
-                <ImageView
-                        android:id="@+id/cell_1_1"
-                        android:scaleType="fitXY"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" >
-                </ImageView>
-
-                <ImageView
-                        android:id="@+id/cell_1_2"
-                        android:scaleType="fitXY"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" >
-                </ImageView>
-
-                <ImageView
-                        android:id="@+id/cell_1_3"
-                        android:scaleType="fitXY"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" >
-                </ImageView>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:weightSum="3"
-                android:layout_gravity="center">
-
-            <ImageView
-                    android:id="@+id/cell_2_1"
-                    android:scaleType="fitXY"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" >
-            </ImageView>
-
-            <ImageView
-                    android:id="@+id/cell_2_2"
-                    android:scaleType="fitXY"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" >
-            </ImageView>
-
-            <ImageView
-                    android:id="@+id/cell_2_3"
-                    android:scaleType="fitXY"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" >
-            </ImageView>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:weightSum="3"
-                android:layout_gravity="center">
-
-            <ImageView
-                    android:id="@+id/cell_3_1"
-                    android:scaleType="fitXY"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" >
-            </ImageView>
-
-            <ImageView
-                    android:id="@+id/cell_3_2"
-                    android:scaleType="fitXY"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" >
-            </ImageView>
-
-            <ImageView
-                    android:id="@+id/cell_3_3"
-                    android:scaleType="fitXY"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" >
-            </ImageView>
-
-        </LinearLayout>
-    </LinearLayout>
-
     <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Game Score:"
+            android:gravity="center"
+            android:text="Game Score"
             android:id="@+id/textView"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:textSize="34sp"/>
+            android:textSize="64sp"/>
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/gameScoreTextView"
-            android:textSize="54sp"
+            android:textSize="64sp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"/>
 
@@ -141,5 +33,16 @@
             android:id="@+id/adTextView"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:textSize="56sp"/>
+            android:textSize="74sp"/>
+
+    <FrameLayout
+            android:id="@+id/gameBoardFrameLayout"
+            android:background="@color/light_green"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/textView"
+            android:layout_above="@+id/adTextView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true">
+    </FrameLayout>
 </RelativeLayout>
