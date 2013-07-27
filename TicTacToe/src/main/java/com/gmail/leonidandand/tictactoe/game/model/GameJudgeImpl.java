@@ -18,34 +18,34 @@ public class GameJudgeImpl implements GameJudge {
     }
 
     @Override
-    public GameInfo gameResultInfo() {
+    public GameInfo gameInfo() {
         for (int i = 0; i < gameBoardDimension; ++i) {
-            GameInfo resultInfo = rowColumnResultInfo(i);
-            if (resultInfo.resultIsKnown()) {
-                return resultInfo;
+            GameInfo gameInfo = rowColumnGameInfo(i);
+            if (gameInfo.resultIsKnown()) {
+                return gameInfo;
             }
         }
-        GameInfo resultInfo = diagonalsResultInfo();
-        if (resultInfo.resultIsKnown()) {
-            return resultInfo;
+        GameInfo gameInfo = diagonalsGameInfo();
+        if (gameInfo.resultIsKnown()) {
+            return gameInfo;
         }
         return gameBoardContainsEmptyCell()
-                ? GameInfo.unknownResultInfo()
-                : GameInfo.drawResultInfo();
+                ? GameInfo.unknownResult()
+                : GameInfo.drawResult();
     }
 
-    private GameInfo rowColumnResultInfo(int index) {
-        GameInfo rowResultInfo = rowResultInfo(index);
-        if (rowResultInfo.resultIsKnown()) {
-            return rowResultInfo;
+    private GameInfo rowColumnGameInfo(int index) {
+        GameInfo rowGameInfo = rowGameInfo(index);
+        if (rowGameInfo.resultIsKnown()) {
+            return rowGameInfo;
         } else {
-            return columnResultInfo(index);
+            return columnGameInfo(index);
         }
     }
 
-    private GameInfo rowResultInfo(int row) {
+    private GameInfo rowGameInfo(int row) {
         List<Matrix.Position> rowCellsPositions = rowCellsPositions(row);
-        return resultInfoByCellsPositions(rowCellsPositions);
+        return gameInfoByCellsPositions(rowCellsPositions);
     }
 
     private List<Matrix.Position> rowCellsPositions(int row) {
@@ -56,17 +56,17 @@ public class GameJudgeImpl implements GameJudge {
         return cells;
     }
 
-    private GameInfo resultInfoByCellsPositions(List<Matrix.Position> cellsPositions) {
+    private GameInfo gameInfoByCellsPositions(List<Matrix.Position> cellsPositions) {
         Matrix.Position firstCellOnLinePosition = cellsPositions.get(0);
         Cell firstCellOnLine = gameBoard.get(firstCellOnLinePosition);
         if (firstCellOnLine == Cell.EMPTY) {
-            return GameInfo.unknownResultInfo();
+            return GameInfo.unknownResult();
         }
         for (int i = 1; i < gameBoardDimension; ++i) {
             Matrix.Position currentPosition = cellsPositions.get(i);
             Cell currentCell = gameBoard.get(currentPosition);
             if (firstCellOnLine != currentCell) {
-                return GameInfo.unknownResultInfo();
+                return GameInfo.unknownResult();
             }
         }
         return new GameInfo(cellToResult(firstCellOnLine), cellsPositions);
@@ -81,9 +81,9 @@ public class GameJudgeImpl implements GameJudge {
         throw new IllegalArgumentException("Input cell must be not empty!");
     }
 
-    private GameInfo columnResultInfo(int column) {
+    private GameInfo columnGameInfo(int column) {
         List<Matrix.Position> columnCellsPositions = columnCellsPositions(column);
-        return resultInfoByCellsPositions(columnCellsPositions);
+        return gameInfoByCellsPositions(columnCellsPositions);
     }
 
     private List<Matrix.Position> columnCellsPositions(int column) {
@@ -94,17 +94,17 @@ public class GameJudgeImpl implements GameJudge {
         return cells;
     }
 
-    private GameInfo diagonalsResultInfo() {
-        GameInfo leftUpperDiagonalResultInfo = leftUpperDiagonalResultInfo();
-        if (leftUpperDiagonalResultInfo.resultIsKnown()) {
-            return leftUpperDiagonalResultInfo;
+    private GameInfo diagonalsGameInfo() {
+        GameInfo leftUpperDiagonalGameInfo = leftUpperDiagonalGameInfo();
+        if (leftUpperDiagonalGameInfo.resultIsKnown()) {
+            return leftUpperDiagonalGameInfo;
         } else {
-            return rightUpperDiagonalResultInfo();
+            return rightUpperDiagonalGameInfo();
         }
     }
 
-    private GameInfo leftUpperDiagonalResultInfo() {
-        return resultInfoByCellsPositions(leftUpperDiagonalPositions());
+    private GameInfo leftUpperDiagonalGameInfo() {
+        return gameInfoByCellsPositions(leftUpperDiagonalPositions());
     }
 
     private List<Matrix.Position> leftUpperDiagonalPositions() {
@@ -115,8 +115,8 @@ public class GameJudgeImpl implements GameJudge {
         return positions;
     }
 
-    private GameInfo rightUpperDiagonalResultInfo() {
-        return resultInfoByCellsPositions(rightUpperDiagonalPositions());
+    private GameInfo rightUpperDiagonalGameInfo() {
+        return gameInfoByCellsPositions(rightUpperDiagonalPositions());
     }
 
     private List<Matrix.Position> rightUpperDiagonalPositions() {

@@ -25,7 +25,7 @@ abstract class GameControllerImpl implements GameController {
     @Override
     public void onPlayerMove(Matrix.Position movePos) {
         getGameView().blockMoves();
-        model.onPlayerTurn(movePos);
+        model.onPlayerMove(movePos);
         getGameView().unblockMoves();
     }
 }

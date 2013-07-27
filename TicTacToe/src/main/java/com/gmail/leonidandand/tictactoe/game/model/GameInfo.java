@@ -12,11 +12,11 @@ public class GameInfo {
     private final GameResult gameResult;
     private final List<Matrix.Position> cellsOnFire;
 
-    public static GameInfo unknownResultInfo() {
+    public static GameInfo unknownResult() {
         return new GameInfo(GameResult.UNKNOWN, new ArrayList<Matrix.Position>());
     }
 
-    public static GameInfo drawResultInfo() {
+    public static GameInfo drawResult() {
         return new GameInfo(GameResult.DRAW, new ArrayList<Matrix.Position>());
     }
 

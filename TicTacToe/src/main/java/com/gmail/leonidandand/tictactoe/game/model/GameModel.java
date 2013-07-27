@@ -11,6 +11,6 @@ public interface GameModel {
     Dimension getDimension();
     void addOnOpponentMoveListener(OnOpponentMoveListener listener);
     void addOnGameFinishedListener(OnGameFinishedListener listener);
-    void onPlayerTurn(Matrix.Position turnPosition);
+    void onPlayerMove(Matrix.Position movePosition);
     void onViewIsReadyToStartGame();
 }

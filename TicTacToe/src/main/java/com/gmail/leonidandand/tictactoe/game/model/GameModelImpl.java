@@ -60,19 +60,19 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
-    public void onPlayerTurn(Matrix.Position turnPosition) {
-        gameBoard.set(turnPosition, Cell.PLAYER);
+    public void onPlayerMove(Matrix.Position movePosition) {
+        gameBoard.set(movePosition, Cell.PLAYER);
         if (gameNotFinished()) {
             opponentMove();
         }
-        GameInfo gameInfo = gameJudge.gameResultInfo();
+        GameInfo gameInfo = gameJudge.gameInfo();
         if (gameInfo.resultIsKnown()) {
             onGameFinished(gameInfo);
         }
     }
 
     private boolean gameNotFinished() {
-        return !gameJudge.gameResultInfo().resultIsKnown();
+        return !gameJudge.gameInfo().resultIsKnown();
     }
 
     private void opponentMove() {
