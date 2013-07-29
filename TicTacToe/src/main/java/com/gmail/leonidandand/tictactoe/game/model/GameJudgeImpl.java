@@ -29,9 +29,10 @@ public class GameJudgeImpl implements GameJudge {
         if (gameInfo.resultIsKnown()) {
             return gameInfo;
         }
-        return gameBoardContainsEmptyCell()
-                ? GameInfo.unknownResult()
-                : GameInfo.drawResult();
+        if (gameBoardContainsEmptyCell()) {
+            return GameInfo.unknownResult();
+        }
+        return GameInfo.drawResult();
     }
 
     private GameInfo rowColumnGameInfo(int index) {

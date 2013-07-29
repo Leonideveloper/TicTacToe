@@ -45,7 +45,6 @@ public class GameBoardCreatorAndroidImpl implements GameBoardCreator {
             setVerticalMargins(rowLayout, row, dim.rows);
             verticalLayout.addView(rowLayout);
         }
-        activity.setContentView(R.layout.tic_tac_toe_activity);
         FrameLayout gameBoardFrameLayout =
                 (FrameLayout) activity.findViewById(R.id.gameBoardFrameLayout);
         gameBoardFrameLayout.addView(verticalLayout);

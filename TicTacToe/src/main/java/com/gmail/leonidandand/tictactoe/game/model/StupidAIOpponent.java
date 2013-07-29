@@ -7,9 +7,10 @@ import com.gmail.leonidandand.tictactoe.utils.Matrix;
  */
 public class StupidAIOpponent implements Opponent {
 
-    private final Matrix<Cell> gameBoard;
+    private Matrix<Cell> gameBoard;
 
-    public StupidAIOpponent(Matrix<Cell> gameBoard) {
+    @Override
+    public void setGameBoard(Matrix<Cell> gameBoard) {
         this.gameBoard = gameBoard;
     }
 

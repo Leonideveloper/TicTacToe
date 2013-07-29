@@ -9,14 +9,14 @@
     tools:context=".TicTacToeActivity">
 
     <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="margin"
-            android:id="@+id/textView"
+            android:text="Player"
+            android:id="@+id/playerScore"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:textSize="64sp"/>
+            android:textSize="35sp"
+            android:textColor="@color/player_score_color"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -40,9 +40,31 @@
             android:background="@color/light_green"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/textView"
+            android:layout_below="@+id/playerScore"
             android:layout_above="@+id/adTextView"
             android:layout_alignParentRight="true"
             android:layout_alignParentLeft="true">
+
     </FrameLayout>
+
+    <ProgressBar
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="invisible"
+            android:id="@+id/progressBar"
+            android:layout_gravity="center"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Opponent"
+            android:id="@+id/opponentScore"
+            android:textSize="35sp"
+            android:gravity="right"
+            android:textColor="@color/opponent_score_color"
+            android:layout_alignRight="@+id/gameScoreTextView"
+            android:layout_alignTop="@+id/gameScoreTextView"/>
 </RelativeLayout>

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="light_green">#5bae28</color>
+    <color name="player_score_color">#ff52b72e</color>
+    <color name="opponent_score_color">#ff2c2e</color>
 </resources>

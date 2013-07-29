@@ -13,11 +13,13 @@ public class GameModelImpl implements GameModel {
 
     private final Dimension dimension;
     private final GameJudge gameJudge;
-    private final List<OnGameFinishedListener> onGameFinishedListeners;
     private final List<OnOpponentMoveListener> onOpponentMoveListeners;
+    private final List<OnGameFinishedListener> onGameFinishedListeners;
+    private final List<OnScoreChangedListener> onScoreChangedListeners;
     private final Matrix<Cell> gameBoard;
-    private final Opponent opponent;
+    private final Score score;
     private boolean opponentMovesFirst;
+    private Opponent opponent;
 
     public GameModelImpl(Dimension gameBoardDimension) {
         dimension = gameBoardDimension;
@@ -26,8 +28,10 @@ public class GameModelImpl implements GameModel {
         gameJudge = new GameJudgeImpl(gameBoard);
         onOpponentMoveListeners = new ArrayList<OnOpponentMoveListener>();
         onGameFinishedListeners = new ArrayList<OnGameFinishedListener>();
-        opponent = new StupidAIOpponent(gameBoard);
+        onScoreChangedListeners = new ArrayList<OnScoreChangedListener>();
+        score = new Score();
         opponentMovesFirst = false;
+        setOpponent(OpponentFactory.createDefault());
     }
 
     private void initGameBoardByEmpty() {
@@ -37,6 +41,12 @@ public class GameModelImpl implements GameModel {
                 gameBoard.set(pos, Cell.EMPTY);
             }
         });
+    }
+
+    @Override
+    public void setOpponent(Opponent opponent) {
+        opponent.setGameBoard(gameBoard);
+        this.opponent = opponent;
     }
 
     @Override
@@ -50,8 +60,8 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
-    public void addOnGameFinishedListener(OnGameFinishedListener listener) {
-        onGameFinishedListeners.add(listener);
+    public Score getScore() {
+        return score;
     }
 
     @Override
@@ -60,19 +70,26 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
+    public void addOnGameFinishedListener(OnGameFinishedListener listener) {
+        onGameFinishedListeners.add(listener);
+    }
+
+    @Override
+    public void addOnScoreChangedListener(OnScoreChangedListener listener) {
+        onScoreChangedListeners.add(listener);
+    }
+
+    @Override
     public void onPlayerMove(Matrix.Position movePosition) {
         gameBoard.set(movePosition, Cell.PLAYER);
-        if (gameNotFinished()) {
-            opponentMove();
-        }
         GameInfo gameInfo = gameJudge.gameInfo();
+        if (!gameInfo.resultIsKnown()) {
+            opponentMove();
+            gameInfo = gameJudge.gameInfo();
+        }
         if (gameInfo.resultIsKnown()) {
             onGameFinished(gameInfo);
         }
-    }
-
-    private boolean gameNotFinished() {
-        return !gameJudge.gameInfo().resultIsKnown();
     }
 
     private void opponentMove() {
@@ -88,19 +105,38 @@ public class GameModelImpl implements GameModel {
     }
 
     private void onGameFinished(GameInfo gameInfo) {
-        opponentMovesFirst = defineOpponentMovesFirst(gameInfo.gameResult());
+        GameResult gameResult = gameInfo.gameResult();
+        opponentMovesFirst = defineOpponentMovesFirst(gameResult);
         notifyOnGameFinishedListeners(gameInfo);
+        if (gameResult != GameResult.DRAW) {
+            changeScore(gameResult);
+            notifyOnScoreChangedListeners();
+        }
         initGameBoardByEmpty();
     }
 
     private boolean defineOpponentMovesFirst(GameResult gameResult) {
         return (gameResult == GameResult.OPPONENT_WINS) ||
-               (opponentMovesFirst && gameResult == GameResult.DRAW);
+               (opponentMovesFirst && (gameResult == GameResult.DRAW));
     }
 
     private void notifyOnGameFinishedListeners(GameInfo gameInfo) {
         for (OnGameFinishedListener each : onGameFinishedListeners) {
             each.onGameFinished(gameInfo);
+        }
+    }
+
+    private void changeScore(GameResult gameResult) {
+        if (gameResult == GameResult.PLAYER_WINS) {
+            score.increasePlayerScore();
+        } else if (gameResult == GameResult.OPPONENT_WINS) {
+            score.increaseOpponentScore();
+        }
+    }
+
+    private void notifyOnScoreChangedListeners() {
+        for (OnScoreChangedListener each : onScoreChangedListeners) {
+            each.onScoreChanged();
         }
     }
 

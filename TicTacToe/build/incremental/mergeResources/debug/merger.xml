@@ -194,6 +194,10 @@
                 qualifiers="" >
                 <color name="light_green" >#5bae28
                 </color>
+                <color name="opponent_score_color" >#ff2c2e
+                </color>
+                <color name="player_score_color" >#ff52b72e
+                </color>
             </file>
         </source>
         <source path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\rs\debug" />

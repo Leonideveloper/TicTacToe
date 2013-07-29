@@ -5,13 +5,15 @@ import com.gmail.leonidandand.tictactoe.game.model.GameInfo;
 import com.gmail.leonidandand.tictactoe.game.model.GameModel;
 import com.gmail.leonidandand.tictactoe.game.model.OnGameFinishedListener;
 import com.gmail.leonidandand.tictactoe.game.model.OnOpponentMoveListener;
+import com.gmail.leonidandand.tictactoe.game.model.OnScoreChangedListener;
+import com.gmail.leonidandand.tictactoe.game.model.Score;
 import com.gmail.leonidandand.tictactoe.utils.Matrix;
 
 /**
  * Created by Leonid on 26.07.13.
  */
 public abstract class GameViewImpl implements GameView, OnCellClickListener,
-                        OnOpponentMoveListener, OnGameFinishedListener {
+                        OnOpponentMoveListener, OnGameFinishedListener, OnScoreChangedListener {
 
     private final GameController controller;
     private final GameModel model;
@@ -23,7 +25,7 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
         this.model = model;
         model.addOnOpponentMoveListener(this);
         model.addOnGameFinishedListener(this);
-
+        model.addOnScoreChangedListener(this);
         gameFinished = false;
         movesBlocked = false;
     }
@@ -31,10 +33,6 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
     protected abstract GameBoard gameBoard();
 
     protected abstract GameResultDisplay gameResultDisplay();
-
-    protected OnCellClickListener getOnCellClickListener() {
-        return this;
-    }
 
     @Override
     public void blockMoves() {
@@ -74,4 +72,11 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
         gameBoard().showFireLine(gameInfo.cellsOnFire());
         gameResultDisplay().show(gameInfo.gameResult());
     }
+
+    @Override
+    public void onScoreChanged() {
+        showScore(model.getScore());
+    }
+
+    protected abstract void showScore(Score score);
 }
