@@ -1,6 +1,7 @@
 # incremental data. DO NOT EDIT.
 # format is <lastModified> <length> <SHA-1> <path>
 # Encoding is UTF-8
+1375704307036 6492 a5132570537e1c3a64cc1d8d0110130113633843 C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\all\debug\drawable\give_up.jpg
 1374183468477 54651 c33cd704e91be9de1cc0f808eb7167792ccee536 C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\all\debug\drawable\cross_1.png
 1374433574495 43174 b8fe273e83effee90b796931009781ee4dd55a99 C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\all\debug\drawable\fire_6.png
 1374433574495 37298 eec692207c20f5cadd7a97358656a0882a9aa831 C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\all\debug\drawable\fire_3.png
@@ -19,7 +20,7 @@
 1374433574496 44359 9a32a14fb089c2218357f0dd928fcdbb5f03bae0 C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\all\debug\drawable\fire_5.png
 1374183468481 42041 1359b181ae6056e4a1ddc3d9c8e8695455e7bc8d C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\all\debug\drawable\cross_3.png
 1374103920078 14383 82acdd75e3fcc36026109406625edc69d4d7212d C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\all\debug\drawable-xhdpi\ic_launcher.png
-1375109532764 2807 70adef4ad0f41294c1864c85dd01deff7243211b C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\all\debug\layout\tic_tac_toe_activity.xml
+1375704307035 3170 7d93923c6dc6eb3d0506a91b460b103381a6689c C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\all\debug\layout\tic_tac_toe_activity.xml
 1374103920069 224 3bee0d9a6f0efbaf11495ad45fdeb8f71aee62e8 C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\all\debug\values-v14\values.xml
 1375109707750 968 4a8b5f6671c59ef961a1ecc0f7b64e0e9f876b0e C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\all\debug\values\values.xml
 1374103920105 9397 4a5a9affbb731f195fc18fea78d51be7db7536a2 C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\all\debug\drawable-hdpi\ic_launcher.png

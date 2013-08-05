@@ -1,6 +1,9 @@
 package com.gmail.leonidandand.tictactoe.game.model;
 
-import com.gmail.leonidandand.tictactoe.game.view.GameViewImpl;
+import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
+import com.gmail.leonidandand.tictactoe.game.model.listeners.OnOpponentMoveListener;
+import com.gmail.leonidandand.tictactoe.game.model.listeners.OnScoreChangedListener;
+import com.gmail.leonidandand.tictactoe.game.model.opponent.Opponent;
 import com.gmail.leonidandand.tictactoe.utils.Dimension;
 import com.gmail.leonidandand.tictactoe.utils.Matrix;
 

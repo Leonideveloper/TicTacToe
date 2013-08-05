@@ -199,6 +199,11 @@
                 <color name="player_score_color" >#ff52b72e
                 </color>
             </file>
+            <file
+                name="give_up"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\give_up.jpg"
+                qualifiers=""
+                type="drawable" />
         </source>
         <source path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\rs\debug" />
     </dataSet>

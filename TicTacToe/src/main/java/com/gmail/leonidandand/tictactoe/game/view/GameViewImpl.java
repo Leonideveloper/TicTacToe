@@ -1,11 +1,11 @@
 package com.gmail.leonidandand.tictactoe.game.view;
 
 import com.gmail.leonidandand.tictactoe.game.controller.GameController;
-import com.gmail.leonidandand.tictactoe.game.model.GameInfo;
+import com.gmail.leonidandand.tictactoe.game.model.TicTacToeResult;
 import com.gmail.leonidandand.tictactoe.game.model.GameModel;
-import com.gmail.leonidandand.tictactoe.game.model.OnGameFinishedListener;
-import com.gmail.leonidandand.tictactoe.game.model.OnOpponentMoveListener;
-import com.gmail.leonidandand.tictactoe.game.model.OnScoreChangedListener;
+import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
+import com.gmail.leonidandand.tictactoe.game.model.listeners.OnOpponentMoveListener;
+import com.gmail.leonidandand.tictactoe.game.model.listeners.OnScoreChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model.Score;
 import com.gmail.leonidandand.tictactoe.utils.Matrix;
 
@@ -17,6 +17,7 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
 
     private final GameController controller;
     private final GameModel model;
+
     private boolean movesBlocked;
     private boolean gameFinished;
 
@@ -30,17 +31,17 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
         movesBlocked = false;
     }
 
-    protected abstract GameBoard gameBoard();
-
-    protected abstract GameResultDisplay gameResultDisplay();
-
     @Override
     public void blockMoves() {
         movesBlocked = true;
+        opponentMoveProgressBar().show();
     }
+
+    protected abstract OpponentMoveProgressBar opponentMoveProgressBar();
 
     @Override
     public void unblockMoves() {
+        opponentMoveProgressBar().hide();
         movesBlocked = false;
     }
 
@@ -61,22 +62,28 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
         }
     }
 
+    protected abstract GameBoard gameBoard();
+
     @Override
     public void onOpponentMove(Matrix.Position movePos) {
         gameBoard().showMove(movePos);
     }
 
     @Override
-    public void onGameFinished(GameInfo gameInfo) {
+    public void onGameFinished(TicTacToeResult result) {
         gameFinished = true;
-        gameBoard().showFireLine(gameInfo.cellsOnFire());
-        gameResultDisplay().show(gameInfo.gameResult());
+        gameBoard().showFireLine(result.cellsOnFire());
+        gameResultDisplay().show(result.gameState());
     }
+
+    protected abstract GameResultDisplay gameResultDisplay();
 
     @Override
     public void onScoreChanged() {
-        showScore(model.getScore());
+        Score newScore = model.getScore();
+        gameScoreDisplay().showScore(newScore);
     }
 
-    protected abstract void showScore(Score score);
+    protected abstract GameScoreDisplay gameScoreDisplay();
+
 }

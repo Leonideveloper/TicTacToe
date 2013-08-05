@@ -10,17 +10,24 @@ import com.gmail.leonidandand.tictactoe.utils.Matrix;
 /**
  * Created by Leonid on 18.07.13.
  */
-public class GameControllerAndroidImpl extends GameControllerImpl {
-
+public class GameControllerAndroidImpl implements GameController {
+    private final GameModel model;
     private final GameView gameView;
 
     public GameControllerAndroidImpl(GameModel model, Activity activity) {
-        super(model);
+        this.model = model;
         gameView = new GameViewAndroidImpl(this, model, activity);
     }
 
     @Override
-    protected GameView getGameView() {
-        return gameView;
+    public void onViewIsReadyToStartGame() {
+        model.onViewIsReadyToStartGame();
+    }
+
+    @Override
+    public void onPlayerMove(Matrix.Position movePos) {
+        gameView.blockMoves();
+        model.onPlayerMove(movePos);
+        gameView.unblockMoves();
     }
 }

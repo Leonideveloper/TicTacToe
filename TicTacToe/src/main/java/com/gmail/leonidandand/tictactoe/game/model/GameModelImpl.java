@@ -1,5 +1,12 @@
 package com.gmail.leonidandand.tictactoe.game.model;
 
+import com.gmail.leonidandand.tictactoe.game.model.game_judge.GameJudge;
+import com.gmail.leonidandand.tictactoe.game.model.game_judge.GameJudgeImpl;
+import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
+import com.gmail.leonidandand.tictactoe.game.model.listeners.OnOpponentMoveListener;
+import com.gmail.leonidandand.tictactoe.game.model.listeners.OnScoreChangedListener;
+import com.gmail.leonidandand.tictactoe.game.model.opponent.Opponent;
+import com.gmail.leonidandand.tictactoe.game.model.opponent.OpponentFactory;
 import com.gmail.leonidandand.tictactoe.utils.Dimension;
 import com.gmail.leonidandand.tictactoe.utils.Matrix;
 
@@ -18,13 +25,14 @@ public class GameModelImpl implements GameModel {
     private final List<OnScoreChangedListener> onScoreChangedListeners;
     private final Matrix<Cell> gameBoard;
     private final Score score;
+
     private boolean opponentMovesFirst;
     private Opponent opponent;
 
     public GameModelImpl(Dimension gameBoardDimension) {
         dimension = gameBoardDimension;
         gameBoard = new Matrix<Cell>(gameBoardDimension);
-        initGameBoardByEmpty();
+        initByEmpty(gameBoard);
         gameJudge = new GameJudgeImpl(gameBoard);
         onOpponentMoveListeners = new ArrayList<OnOpponentMoveListener>();
         onGameFinishedListeners = new ArrayList<OnGameFinishedListener>();
@@ -34,7 +42,7 @@ public class GameModelImpl implements GameModel {
         setOpponent(OpponentFactory.createDefault());
     }
 
-    private void initGameBoardByEmpty() {
+    private void initByEmpty(final Matrix<Cell> gameBoard) {
         gameBoard.forEach(new Matrix.OnEachHandler<Cell>() {
             @Override
             public void handle(Matrix<Cell> matrix, Matrix.Position pos) {
@@ -82,13 +90,13 @@ public class GameModelImpl implements GameModel {
     @Override
     public void onPlayerMove(Matrix.Position movePosition) {
         gameBoard.set(movePosition, Cell.PLAYER);
-        GameInfo gameInfo = gameJudge.gameInfo();
-        if (!gameInfo.resultIsKnown()) {
+        TicTacToeResult result = gameJudge.getResult();
+        if (!result.isKnown()) {
             opponentMove();
-            gameInfo = gameJudge.gameInfo();
+            result = gameJudge.getResult();
         }
-        if (gameInfo.resultIsKnown()) {
-            onGameFinished(gameInfo);
+        if (result.isKnown()) {
+            onGameFinished(result);
         }
     }
 
@@ -104,32 +112,32 @@ public class GameModelImpl implements GameModel {
         }
     }
 
-    private void onGameFinished(GameInfo gameInfo) {
-        GameResult gameResult = gameInfo.gameResult();
-        opponentMovesFirst = defineOpponentMovesFirst(gameResult);
-        notifyOnGameFinishedListeners(gameInfo);
-        if (gameResult != GameResult.DRAW) {
-            changeScore(gameResult);
+    private void onGameFinished(TicTacToeResult result) {
+        GameState gameState = result.gameState();
+        opponentMovesFirst = defineOpponentMovesFirst(gameState);
+        notifyOnGameFinishedListeners(result);
+        if (gameState != GameState.DRAW) {
+            changeScore(gameState);
             notifyOnScoreChangedListeners();
         }
-        initGameBoardByEmpty();
+        initByEmpty(gameBoard);
     }
 
-    private boolean defineOpponentMovesFirst(GameResult gameResult) {
-        return (gameResult == GameResult.OPPONENT_WINS) ||
-               (opponentMovesFirst && (gameResult == GameResult.DRAW));
+    private boolean defineOpponentMovesFirst(GameState gameState) {
+        return (gameState == GameState.OPPONENT_WINS) ||
+               (opponentMovesFirst && (gameState == GameState.DRAW));
     }
 
-    private void notifyOnGameFinishedListeners(GameInfo gameInfo) {
+    private void notifyOnGameFinishedListeners(TicTacToeResult result) {
         for (OnGameFinishedListener each : onGameFinishedListeners) {
-            each.onGameFinished(gameInfo);
+            each.onGameFinished(result);
         }
     }
 
-    private void changeScore(GameResult gameResult) {
-        if (gameResult == GameResult.PLAYER_WINS) {
+    private void changeScore(GameState gameState) {
+        if (gameState == GameState.PLAYER_WINS) {
             score.increasePlayerScore();
-        } else if (gameResult == GameResult.OPPONENT_WINS) {
+        } else if (gameState == GameState.OPPONENT_WINS) {
             score.increaseOpponentScore();
         }
     }

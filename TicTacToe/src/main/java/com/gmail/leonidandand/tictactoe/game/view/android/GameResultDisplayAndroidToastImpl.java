@@ -3,7 +3,7 @@ package com.gmail.leonidandand.tictactoe.game.view.android;
 import android.app.Activity;
 import android.widget.Toast;
 
-import com.gmail.leonidandand.tictactoe.game.model.GameResult;
+import com.gmail.leonidandand.tictactoe.game.model.GameState;
 import com.gmail.leonidandand.tictactoe.game.view.GameResultDisplay;
 
 /**
@@ -18,7 +18,7 @@ public class GameResultDisplayAndroidToastImpl implements GameResultDisplay {
     }
 
     @Override
-    public void show(GameResult gameResult) {
-        Toast.makeText(activity, gameResult.name(), Toast.LENGTH_LONG).show();
+    public void show(GameState gameState) {
+        Toast.makeText(activity, gameState.name(), Toast.LENGTH_LONG).show();
     }
 }

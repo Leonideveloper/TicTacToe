@@ -2,6 +2,7 @@ package com.gmail.leonidandand.tictactoe.game.view;
 
 import com.gmail.leonidandand.tictactoe.utils.Matrix;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -10,6 +11,6 @@ import java.util.List;
 public interface GameBoard {
     void setOnCellClickListener(OnCellClickListener onCellClickListener);
     void showMove(Matrix.Position pos);
-    void showFireLine(List<Matrix.Position> positions);
+    void showFireLine(Collection<Matrix.Position> positions);
     void clear();
 }

@@ -1,8 +1,10 @@
 package com.gmail.leonidandand.tictactoe.utils;
 
+import com.gmail.leonidandand.tictactoe.game.model.Cell;
+
 public class Matrix<T> {
 
-	public interface OnEachHandler<T> {
+    public interface OnEachHandler<T> {
 		void handle(Matrix<T> matrix, Position pos);
 	}
 
@@ -132,4 +134,21 @@ public class Matrix<T> {
 			}
 		}
 	}
+
+    public boolean contains(T elem) {
+        for (int row = 0; row < this.rows; ++row) {
+            for (int column = 0; column < this.columns; ++column) {
+                if (elementsEqual(elem, get(row, column))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean elementsEqual(T e1, T e2) {
+        return (e1 == e2) ||
+               ((e1 != null) && (e1.equals(e2))) ||
+               ((e2 != null) && (e2.equals(e1)));
+    }
 }
