@@ -1,12 +1,12 @@
 package com.gmail.leonidandand.tictactoe.game.model.game_judge;
 
+import com.gmail.leonidandand.matrix.Matrix;
+import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model.Cell;
 import com.gmail.leonidandand.tictactoe.game.model.TicTacToeResult;
 import com.gmail.leonidandand.tictactoe.game.model.GameState;
-import com.gmail.leonidandand.tictactoe.utils.Matrix;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class GameJudgeImpl implements GameJudge {
 
     public GameJudgeImpl(Matrix<Cell> gameBoard) {
         this.gameBoard = gameBoard;
-        this.gameBoardDimension = gameBoard.rows;
+        this.gameBoardDimension = gameBoard.getDimension().rows;
     }
 
     @Override
@@ -38,13 +38,15 @@ public class GameJudgeImpl implements GameJudge {
 
     private TicTacToeResult checkBoard() {
         TicTacToeResult result = combineFireLines(checkRows(), checkColumns(), checkDiagonals());
-        // 3 Fire Lines (need to combine):
-        // -------------
-        //   X O O O X
-        //   O X O O X
-        //   O O X O X
-        //   O O O X X
-        //   X X X X X
+        // max number of fire-lines: 4 Fire Lines (need to combine):
+        // -----------------
+        //   X O O X O O X
+        //   O X O X O X O
+        //   O O X X X O O
+        //   X X X X X X X
+        //   O O X X X O O
+        //   O X O X O X O
+        //   X O O X O O X
         return result;
     }
 
@@ -55,7 +57,7 @@ public class GameJudgeImpl implements GameJudge {
             return TicTacToeResult.unknownResult();
         } else {
             GameState state = results.get(0).gameState();
-            Set<Matrix.Position> totalCellsOnFire = new HashSet<Matrix.Position>();
+            Set<Position> totalCellsOnFire = new HashSet<Position>();
             for (TicTacToeResult each : results) {
                 totalCellsOnFire.addAll(each.cellsOnFire());
             }
@@ -92,22 +94,22 @@ public class GameJudgeImpl implements GameJudge {
         return resultByCellsPositions(cellsPositionsOnRow(row));
     }
 
-    private List<Matrix.Position> cellsPositionsOnRow(int row) {
-        List<Matrix.Position> cells = new ArrayList<Matrix.Position>(gameBoardDimension);
+    private List<Position> cellsPositionsOnRow(int row) {
+        List<Position> cells = new ArrayList<Position>(gameBoardDimension);
         for (int column = 0; column < gameBoardDimension; ++column) {
-            cells.add(new Matrix.Position(row, column));
+            cells.add(new Position(row, column));
         }
         return cells;
     }
 
-    private TicTacToeResult resultByCellsPositions(List<Matrix.Position> cellsPositions) {
-        Matrix.Position firstCellOnLinePosition = cellsPositions.get(0);
+    private TicTacToeResult resultByCellsPositions(List<Position> cellsPositions) {
+        Position firstCellOnLinePosition = cellsPositions.get(0);
         Cell firstCellOnLine = gameBoard.get(firstCellOnLinePosition);
         if (firstCellOnLine == Cell.EMPTY) {
             return TicTacToeResult.unknownResult();
         }
         for (int i = 1; i < gameBoardDimension; ++i) {
-            Matrix.Position currentPosition = cellsPositions.get(i);
+            Position currentPosition = cellsPositions.get(i);
             Cell currentCell = gameBoard.get(currentPosition);
             if (firstCellOnLine != currentCell) {
                 return TicTacToeResult.unknownResult();
@@ -139,10 +141,10 @@ public class GameJudgeImpl implements GameJudge {
         return resultByCellsPositions(cellsPositionsOnColumn(column));
     }
 
-    private List<Matrix.Position> cellsPositionsOnColumn(int column) {
-        List<Matrix.Position> cells = new ArrayList<Matrix.Position>(gameBoardDimension);
+    private List<Position> cellsPositionsOnColumn(int column) {
+        List<Position> cells = new ArrayList<Position>(gameBoardDimension);
         for (int row = 0; row < gameBoardDimension; ++row) {
-            cells.add(new Matrix.Position(row, column));
+            cells.add(new Position(row, column));
         }
         return cells;
     }
@@ -160,10 +162,10 @@ public class GameJudgeImpl implements GameJudge {
         return resultByCellsPositions(cellsPositionsOnLeftUpperDiagonal());
     }
 
-    private List<Matrix.Position> cellsPositionsOnLeftUpperDiagonal() {
-        List<Matrix.Position> positions = new ArrayList<Matrix.Position>(gameBoardDimension);
+    private List<Position> cellsPositionsOnLeftUpperDiagonal() {
+        List<Position> positions = new ArrayList<Position>(gameBoardDimension);
         for (int i = 0; i < gameBoardDimension; ++i) {
-            positions.add(new Matrix.Position(i, i));
+            positions.add(new Position(i, i));
         }
         return positions;
     }
@@ -172,10 +174,10 @@ public class GameJudgeImpl implements GameJudge {
         return resultByCellsPositions(cellsPositionsOnRightUpperDiagonal());
     }
 
-    private List<Matrix.Position> cellsPositionsOnRightUpperDiagonal() {
-        List<Matrix.Position> positions = new ArrayList<Matrix.Position>(gameBoardDimension);
+    private List<Position> cellsPositionsOnRightUpperDiagonal() {
+        List<Position> positions = new ArrayList<Position>(gameBoardDimension);
         for (int i = 0; i < gameBoardDimension; ++i) {
-            positions.add(new Matrix.Position(i, gameBoardDimension - i - 1));
+            positions.add(new Position(i, gameBoardDimension - i - 1));
         }
         return positions;
     }

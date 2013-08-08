@@ -1,27 +1,26 @@
 package com.gmail.leonidandand.tictactoe.game.model;
 
-import com.gmail.leonidandand.tictactoe.utils.Matrix;
+import com.gmail.leonidandand.matrix.Position;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Created by Leonid on 18.07.13.
  */
 public class TicTacToeResult {
     private final GameState gameState;
-    private final Collection<Matrix.Position> cellsOnFire;
+    private final Collection<Position> cellsOnFire;
 
     public static TicTacToeResult unknownResult() {
-        return new TicTacToeResult(GameState.UNKNOWN, new ArrayList<Matrix.Position>());
+        return new TicTacToeResult(GameState.UNKNOWN, new ArrayList<Position>());
     }
 
     public static TicTacToeResult drawResult() {
-        return new TicTacToeResult(GameState.DRAW, new ArrayList<Matrix.Position>());
+        return new TicTacToeResult(GameState.DRAW, new ArrayList<Position>());
     }
 
-    public TicTacToeResult(GameState gameState, Collection<Matrix.Position> cellsOnFire) {
+    public TicTacToeResult(GameState gameState, Collection<Position> cellsOnFire) {
         this.gameState = gameState;
         this.cellsOnFire = cellsOnFire;
     }
@@ -30,7 +29,7 @@ public class TicTacToeResult {
         return gameState;
     }
 
-    public Collection<Matrix.Position> cellsOnFire() {
+    public Collection<Position> cellsOnFire() {
         return cellsOnFire;
     }
 

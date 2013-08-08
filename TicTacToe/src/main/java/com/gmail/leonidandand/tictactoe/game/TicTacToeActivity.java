@@ -1,14 +1,14 @@
 package com.gmail.leonidandand.tictactoe.game;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 
+import com.gmail.leonidandand.matrix.Dimension;
 import com.gmail.leonidandand.tictactoe.game.controller.GameController;
 import com.gmail.leonidandand.tictactoe.game.controller.GameControllerAndroidImpl;
 import com.gmail.leonidandand.tictactoe.game.model.GameModel;
 import com.gmail.leonidandand.tictactoe.game.model.GameModelImpl;
 import com.gmail.leonidandand.tictactoe.game.model.opponent.StupidAIOpponent;
-import com.gmail.leonidandand.tictactoe.utils.Dimension;
 
 public class TicTacToeActivity extends Activity {
 

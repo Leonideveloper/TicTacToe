@@ -2,10 +2,10 @@ package com.gmail.leonidandand.tictactoe.game.controller;
 
 import android.app.Activity;
 
+import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model.GameModel;
 import com.gmail.leonidandand.tictactoe.game.view.GameView;
 import com.gmail.leonidandand.tictactoe.game.view.android.GameViewAndroidImpl;
-import com.gmail.leonidandand.tictactoe.utils.Matrix;
 
 /**
  * Created by Leonid on 18.07.13.
@@ -25,9 +25,13 @@ public class GameControllerAndroidImpl implements GameController {
     }
 
     @Override
-    public void onPlayerMove(Matrix.Position movePos) {
+    public void onPlayerMove(Position movePos) {
         gameView.blockMoves();
         model.onPlayerMove(movePos);
         gameView.unblockMoves();
+    }
+
+    GameView getGameView() {
+        return gameView;
     }
 }

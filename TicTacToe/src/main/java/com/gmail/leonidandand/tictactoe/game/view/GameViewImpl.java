@@ -1,5 +1,6 @@
 package com.gmail.leonidandand.tictactoe.game.view;
 
+import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.controller.GameController;
 import com.gmail.leonidandand.tictactoe.game.model.TicTacToeResult;
 import com.gmail.leonidandand.tictactoe.game.model.GameModel;
@@ -7,7 +8,6 @@ import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListe
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnOpponentMoveListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnScoreChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model.Score;
-import com.gmail.leonidandand.tictactoe.utils.Matrix;
 
 /**
  * Created by Leonid on 26.07.13.
@@ -51,7 +51,7 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
     }
 
     @Override
-    public void onCellClick(Matrix.Position cellPos) {
+    public void onCellClick(Position cellPos) {
         if (gameFinished) {
             gameFinished = false;
             gameBoard().clear();
@@ -65,7 +65,7 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
     protected abstract GameBoard gameBoard();
 
     @Override
-    public void onOpponentMove(Matrix.Position movePos) {
+    public void onOpponentMove(Position movePos) {
         gameBoard().showMove(movePos);
     }
 

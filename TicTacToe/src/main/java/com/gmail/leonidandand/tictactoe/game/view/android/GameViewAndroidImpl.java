@@ -1,7 +1,6 @@
 package com.gmail.leonidandand.tictactoe.game.view.android;
 
 import android.app.Activity;
-import android.view.View;
 
 import com.gmail.leonidandand.tictactoe.R;
 import com.gmail.leonidandand.tictactoe.game.controller.GameController;

@@ -1,5 +1,10 @@
 package com.gmail.leonidandand.tictactoe.game.model;
 
+import com.gmail.leonidandand.matrix.ArrayMatrix;
+import com.gmail.leonidandand.matrix.Dimension;
+import com.gmail.leonidandand.matrix.Matrix;
+import com.gmail.leonidandand.matrix.OnEachHandler;
+import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model.game_judge.GameJudge;
 import com.gmail.leonidandand.tictactoe.game.model.game_judge.GameJudgeImpl;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
@@ -7,8 +12,6 @@ import com.gmail.leonidandand.tictactoe.game.model.listeners.OnOpponentMoveListe
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnScoreChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model.opponent.Opponent;
 import com.gmail.leonidandand.tictactoe.game.model.opponent.OpponentFactory;
-import com.gmail.leonidandand.tictactoe.utils.Dimension;
-import com.gmail.leonidandand.tictactoe.utils.Matrix;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +34,7 @@ public class GameModelImpl implements GameModel {
 
     public GameModelImpl(Dimension gameBoardDimension) {
         dimension = gameBoardDimension;
-        gameBoard = new Matrix<Cell>(gameBoardDimension);
+        gameBoard = new ArrayMatrix<Cell>(gameBoardDimension);
         initByEmpty(gameBoard);
         gameJudge = new GameJudgeImpl(gameBoard);
         onOpponentMoveListeners = new ArrayList<OnOpponentMoveListener>();
@@ -43,9 +46,9 @@ public class GameModelImpl implements GameModel {
     }
 
     private void initByEmpty(final Matrix<Cell> gameBoard) {
-        gameBoard.forEach(new Matrix.OnEachHandler<Cell>() {
+        gameBoard.forEach(new OnEachHandler<Cell>() {
             @Override
-            public void handle(Matrix<Cell> matrix, Matrix.Position pos) {
+            public void handle(Position pos, Cell elem) {
                 gameBoard.set(pos, Cell.EMPTY);
             }
         });
@@ -58,7 +61,7 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
-    public boolean emptyCell(Matrix.Position pos) {
+    public boolean emptyCell(Position pos) {
         return gameBoard.get(pos) == Cell.EMPTY;
     }
 
@@ -88,7 +91,7 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
-    public void onPlayerMove(Matrix.Position movePosition) {
+    public void onPlayerMove(Position movePosition) {
         gameBoard.set(movePosition, Cell.PLAYER);
         TicTacToeResult result = gameJudge.getResult();
         if (!result.isKnown()) {
@@ -101,12 +104,12 @@ public class GameModelImpl implements GameModel {
     }
 
     private void opponentMove() {
-        Matrix.Position opponentMovePos = opponent.positionToMove();
+        Position opponentMovePos = opponent.positionToMove();
         gameBoard.set(opponentMovePos, Cell.OPPONENT);
         notifyOnOpponentMoveListeners(opponentMovePos);
     }
 
-    private void notifyOnOpponentMoveListeners(Matrix.Position opponentMovePos) {
+    private void notifyOnOpponentMoveListeners(Position opponentMovePos) {
         for (OnOpponentMoveListener each : onOpponentMoveListeners) {
             each.onOpponentMove(opponentMovePos);
         }

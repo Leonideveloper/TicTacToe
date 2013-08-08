@@ -3,15 +3,16 @@ package com.gmail.leonidandand.tictactoe.game.view.android.game_board;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.gmail.leonidandand.matrix.Matrix;
+import com.gmail.leonidandand.matrix.OnEachHandler;
+import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.R;
 import com.gmail.leonidandand.tictactoe.game.view.CellIcon;
 import com.gmail.leonidandand.tictactoe.game.view.GameBoard;
 import com.gmail.leonidandand.tictactoe.game.view.OnCellClickListener;
 import com.gmail.leonidandand.tictactoe.game.view.android.IconRandomizer;
-import com.gmail.leonidandand.tictactoe.utils.Matrix;
 
 import java.util.Collection;
-import java.util.List;
 
 public class GameBoardAndroidImpl implements GameBoard {
 
@@ -25,25 +26,25 @@ public class GameBoardAndroidImpl implements GameBoard {
 
     @Override
     public void clear() {
-        cells.forEach(new Matrix.OnEachHandler<ImageView>() {
+        cells.forEach(new OnEachHandler<ImageView>() {
             @Override
-            public void handle(Matrix<ImageView> matrix, Matrix.Position pos) {
+            public void handle(Position pos, ImageView elem) {
                 clearCell(pos);
             }
         });
         currentIcon = CellIcon.X;
     }
 
-    private void clearCell(Matrix.Position cellPos) {
+    private void clearCell(Position cellPos) {
         setCellImageResource(cellPos, android.R.color.transparent);
         setCellBackgroundResource(cellPos, R.drawable.empty);
     }
 
     @Override
     public void setOnCellClickListener(final OnCellClickListener onCellClickListener) {
-        cells.forEach(new Matrix.OnEachHandler<ImageView>() {
+        cells.forEach(new OnEachHandler<ImageView>() {
             @Override
-            public void handle(Matrix<ImageView> matrix, final Matrix.Position pos) {
+            public void handle(final Position pos, ImageView elem) {
                 ImageView cell = cells.get(pos);
                 cell.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -56,7 +57,7 @@ public class GameBoardAndroidImpl implements GameBoard {
     }
 
     @Override
-    public void showMove(Matrix.Position pos) {
+    public void showMove(Position pos) {
         int iconId;
         if (currentIcon == CellIcon.X) {
             iconId = IconRandomizer.randomCrossIconId();
@@ -69,17 +70,17 @@ public class GameBoardAndroidImpl implements GameBoard {
     }
 
     @Override
-    public void showFireLine(Collection<Matrix.Position> positions) {
-        for (Matrix.Position pos : positions) {
+    public void showFireLine(Collection<Position> positions) {
+        for (Position pos : positions) {
             setCellImageResource(pos, IconRandomizer.randomFireIconId());
         }
     }
 
-    private void setCellBackgroundResource(Matrix.Position cellPos, int resId) {
+    private void setCellBackgroundResource(Position cellPos, int resId) {
         cells.get(cellPos).setBackgroundResource(resId);
     }
 
-    private void setCellImageResource(Matrix.Position cellPos, int resId) {
+    private void setCellImageResource(Position cellPos, int resId) {
         cells.get(cellPos).setImageResource(resId);
     }
 }

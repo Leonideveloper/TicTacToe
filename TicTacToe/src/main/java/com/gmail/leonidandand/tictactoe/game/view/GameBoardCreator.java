@@ -1,6 +1,7 @@
 package com.gmail.leonidandand.tictactoe.game.view;
 
-import com.gmail.leonidandand.tictactoe.utils.Dimension;
+
+import com.gmail.leonidandand.matrix.Dimension;
 
 /**
  * Created by Leonid on 19.07.13.
