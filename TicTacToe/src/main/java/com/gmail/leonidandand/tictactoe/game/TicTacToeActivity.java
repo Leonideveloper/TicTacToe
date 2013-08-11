@@ -16,7 +16,7 @@ public class TicTacToeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        GameModel model = new GameModelImpl(gameBoardDimension(5));
+        GameModel model = new GameModelImpl(gameBoardDimension(3));
         model.setOpponent(new StupidAIOpponent());
         GameController controller = new GameControllerAndroidImpl(model, this);
     }

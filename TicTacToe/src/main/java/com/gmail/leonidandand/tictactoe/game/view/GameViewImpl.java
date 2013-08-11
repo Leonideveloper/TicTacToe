@@ -2,7 +2,7 @@ package com.gmail.leonidandand.tictactoe.game.view;
 
 import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.controller.GameController;
-import com.gmail.leonidandand.tictactoe.game.model.TicTacToeResult;
+import com.gmail.leonidandand.tictactoe.game.model.game_judge.TicTacToeResult;
 import com.gmail.leonidandand.tictactoe.game.model.GameModel;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnOpponentMoveListener;
@@ -12,8 +12,12 @@ import com.gmail.leonidandand.tictactoe.game.model.Score;
 /**
  * Created by Leonid on 26.07.13.
  */
-public abstract class GameViewImpl implements GameView, OnCellClickListener,
-                        OnOpponentMoveListener, OnGameFinishedListener, OnScoreChangedListener {
+public abstract class GameViewImpl
+                    implements  GameView,
+                                OnCellClickListener,
+                                OnOpponentMoveListener,
+                                OnGameFinishedListener,
+                                OnScoreChangedListener {
 
     private final GameController controller;
     private final GameModel model;
@@ -34,14 +38,14 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
     @Override
     public void blockMoves() {
         movesBlocked = true;
-        opponentMoveProgressBar().show();
+        getOpponentMoveProgressBar().show();
     }
 
-    protected abstract OpponentMoveProgressBar opponentMoveProgressBar();
+    protected abstract OpponentMoveProgressBar getOpponentMoveProgressBar();
 
     @Override
     public void unblockMoves() {
-        opponentMoveProgressBar().hide();
+        getOpponentMoveProgressBar().hide();
         movesBlocked = false;
     }
 
@@ -54,36 +58,36 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
     public void onCellClick(Position cellPos) {
         if (gameFinished) {
             gameFinished = false;
-            gameBoard().clear();
+            getGameBoard().clear();
             controller.onViewIsReadyToStartGame();
         } else if (model.emptyCell(cellPos) && !movesBlocked()) {
-            gameBoard().showMove(cellPos);
+            getGameBoard().showMove(cellPos);
             controller.onPlayerMove(cellPos);
         }
     }
 
-    protected abstract GameBoard gameBoard();
+    protected abstract GameBoard getGameBoard();
 
     @Override
     public void onOpponentMove(Position movePos) {
-        gameBoard().showMove(movePos);
+        getGameBoard().showMove(movePos);
     }
 
     @Override
     public void onGameFinished(TicTacToeResult result) {
         gameFinished = true;
-        gameBoard().showFireLine(result.cellsOnFire());
-        gameResultDisplay().show(result.gameState());
+        getGameBoard().showFireLines(result.getFireLines());
+        getGameResultDisplay().show(result.getGameState());
     }
 
-    protected abstract GameResultDisplay gameResultDisplay();
+    protected abstract GameResultDisplay getGameResultDisplay();
 
     @Override
     public void onScoreChanged() {
         Score newScore = model.getScore();
-        gameScoreDisplay().showScore(newScore);
+        getGameScoreDisplay().showScore(newScore);
     }
 
-    protected abstract GameScoreDisplay gameScoreDisplay();
+    protected abstract GameScoreDisplay getGameScoreDisplay();
 
 }

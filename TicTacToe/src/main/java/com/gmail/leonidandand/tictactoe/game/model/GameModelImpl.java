@@ -7,6 +7,7 @@ import com.gmail.leonidandand.matrix.OnEachHandler;
 import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model.game_judge.GameJudge;
 import com.gmail.leonidandand.tictactoe.game.model.game_judge.GameJudgeImpl;
+import com.gmail.leonidandand.tictactoe.game.model.game_judge.TicTacToeResult;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnOpponentMoveListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnScoreChangedListener;
@@ -116,7 +117,7 @@ public class GameModelImpl implements GameModel {
     }
 
     private void onGameFinished(TicTacToeResult result) {
-        GameState gameState = result.gameState();
+        GameState gameState = result.getGameState();
         opponentMovesFirst = defineOpponentMovesFirst(gameState);
         notifyOnGameFinishedListeners(result);
         if (gameState != GameState.DRAW) {

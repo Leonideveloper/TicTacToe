@@ -10,7 +10,6 @@ import com.gmail.leonidandand.tictactoe.game.view.GameResultDisplay;
  * Created by Leonid on 19.07.13.
  */
 public class GameResultDisplayAndroidToastImpl implements GameResultDisplay {
-
     private final Activity activity;
 
     public GameResultDisplayAndroidToastImpl(Activity activity) {

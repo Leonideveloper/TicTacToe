@@ -17,7 +17,6 @@ import com.gmail.leonidandand.tictactoe.game.view.android.game_board.GameBoardCr
  * Created by Leonid on 18.07.13.
  */
 public class GameViewAndroidImpl extends GameViewImpl {
-
     private final GameBoard gameBoard;
     private final GameResultDisplay gameResultDisplay;
     private final GameScoreDisplay gameScoreDisplay;
@@ -39,22 +38,22 @@ public class GameViewAndroidImpl extends GameViewImpl {
     }
 
     @Override
-    protected OpponentMoveProgressBar opponentMoveProgressBar() {
+    protected OpponentMoveProgressBar getOpponentMoveProgressBar() {
         return opponentMoveProgressBar;
     }
 
     @Override
-    protected GameBoard gameBoard() {
+    protected GameBoard getGameBoard() {
         return gameBoard;
     }
 
     @Override
-    protected GameResultDisplay gameResultDisplay() {
+    protected GameResultDisplay getGameResultDisplay() {
         return gameResultDisplay;
     }
 
     @Override
-    protected GameScoreDisplay gameScoreDisplay() {
+    protected GameScoreDisplay getGameScoreDisplay() {
         return gameScoreDisplay;
     }
 }

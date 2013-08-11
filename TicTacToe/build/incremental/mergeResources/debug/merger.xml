@@ -4,6 +4,76 @@
     <dataSet config="main" >
         <source path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res" >
             <file
+                name="cross_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\cross_1.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="cross_2"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\cross_2.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="cross_3"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\cross_3.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="empty"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\empty.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="fire_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_1.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="fire_2"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_2.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="fire_3"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_3.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="fire_4"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_4.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="fire_5"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_5.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="fire_6"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_6.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="give_up"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\give_up.jpg"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="zero_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\zero_1.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="zero_2"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\zero_2.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="zero_3"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\zero_3.png"
+                qualifiers=""
+                type="drawable" />
+            <file
                 name="ic_launcher"
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable-hdpi\ic_launcher.png"
                 qualifiers="hdpi"
@@ -19,6 +89,11 @@
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
+                name="cell_image_view"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\layout\cell_image_view.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 name="tic_tac_toe_activity"
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\layout\tic_tac_toe_activity.xml"
                 qualifiers=""
@@ -28,6 +103,16 @@
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\menu\tic_tac_toe.xml"
                 qualifiers=""
                 type="menu" />
+            <file
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values\colors.xml"
+                qualifiers="" >
+                <color name="light_green" >#5bae28
+                </color>
+                <color name="opponent_score_color" >#ff2c2e
+                </color>
+                <color name="player_score_color" >#ff52b72e
+                </color>
+            </file>
             <file
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values\dimens.xml"
                 qualifiers="" >
@@ -100,108 +185,23 @@
                 </style>
             </file>
             <file
-                name="empty_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\empty_1.png"
+                name="right_upper_diagonal_fire_line_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\right_upper_diagonal_fire_line_1.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="zero_3"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\zero_3.png"
+                name="column_fire_line_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\column_fire_line_1.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="cross_2"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\cross_2.png"
+                name="row_fire_line_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\row_fire_line_1.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="empty_2"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\empty_2.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="cross_3"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\cross_3.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="cross_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\cross_1.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="zero_2"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\zero_2.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="empty_3"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\empty_3.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="zero_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\zero_1.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="empty"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\empty.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="fire_2"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_2.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="fire_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_1.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="fire_3"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_3.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="fire_4"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_4.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="fire_6"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_6.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="fire_5"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_5.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="cell_image_view"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\layout\cell_image_view.xml"
-                qualifiers=""
-                type="layout" />
-            <file
-                name="anim1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\anim1.gif"
-                qualifiers=""
-                type="drawable" />
-            <file
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values\colors.xml"
-                qualifiers="" >
-                <color name="light_green" >#5bae28
-                </color>
-                <color name="opponent_score_color" >#ff2c2e
-                </color>
-                <color name="player_score_color" >#ff52b72e
-                </color>
-            </file>
-            <file
-                name="give_up"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\give_up.jpg"
+                name="left_upper_diagonal_fire_line_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\left_upper_diagonal_fire_line_1.png"
                 qualifiers=""
                 type="drawable" />
         </source>

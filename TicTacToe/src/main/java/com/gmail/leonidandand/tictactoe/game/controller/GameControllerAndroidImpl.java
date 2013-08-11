@@ -30,8 +30,4 @@ public class GameControllerAndroidImpl implements GameController {
         model.onPlayerMove(movePos);
         gameView.unblockMoves();
     }
-
-    GameView getGameView() {
-        return gameView;
-    }
 }

@@ -6,21 +6,22 @@ import android.widget.ImageView;
 import com.gmail.leonidandand.matrix.Matrix;
 import com.gmail.leonidandand.matrix.OnEachHandler;
 import com.gmail.leonidandand.matrix.Position;
-import com.gmail.leonidandand.tictactoe.R;
+import com.gmail.leonidandand.tictactoe.game.model.game_judge.FireLine;
 import com.gmail.leonidandand.tictactoe.game.view.CellIcon;
 import com.gmail.leonidandand.tictactoe.game.view.GameBoard;
 import com.gmail.leonidandand.tictactoe.game.view.OnCellClickListener;
-import com.gmail.leonidandand.tictactoe.game.view.android.IconRandomizer;
 
 import java.util.Collection;
 
 public class GameBoardAndroidImpl implements GameBoard {
 
     private final Matrix<ImageView> cells;
+    private final IconsProvider iconsProvider;
     private CellIcon currentIcon;
 
-    GameBoardAndroidImpl(Matrix<ImageView> cells) {
-        this.cells = cells;
+    GameBoardAndroidImpl(Matrix<ImageView> gameBoardCells) {
+        cells = gameBoardCells;
+        iconsProvider = new PlainIconsProvider();
         clear();
     }
 
@@ -37,7 +38,15 @@ public class GameBoardAndroidImpl implements GameBoard {
 
     private void clearCell(Position cellPos) {
         setCellImageResource(cellPos, android.R.color.transparent);
-        setCellBackgroundResource(cellPos, R.drawable.empty);
+        setCellBackgroundResource(cellPos, iconsProvider.getEmptyIconId());
+    }
+
+    private void setCellBackgroundResource(Position cellPos, int resId) {
+        cells.get(cellPos).setBackgroundResource(resId);
+    }
+
+    private void setCellImageResource(Position cellPos, int resId) {
+        cells.get(cellPos).setImageResource(resId);
     }
 
     @Override
@@ -60,27 +69,27 @@ public class GameBoardAndroidImpl implements GameBoard {
     public void showMove(Position pos) {
         int iconId;
         if (currentIcon == CellIcon.X) {
-            iconId = IconRandomizer.randomCrossIconId();
+            iconId = iconsProvider.getCrossIconId();
             currentIcon = CellIcon.O;
         } else {
-            iconId = IconRandomizer.randomZeroIconId();
+            iconId = iconsProvider.getZeroIconId();
             currentIcon = CellIcon.X;
         }
         setCellBackgroundResource(pos, iconId);
     }
 
     @Override
-    public void showFireLine(Collection<Position> positions) {
-        for (Position pos : positions) {
-            setCellImageResource(pos, IconRandomizer.randomFireIconId());
+    public void showFireLines(Collection<FireLine> fireLines) {
+        for (FireLine each : fireLines) {
+            showFireLine(each);
         }
     }
 
-    private void setCellBackgroundResource(Position cellPos, int resId) {
-        cells.get(cellPos).setBackgroundResource(resId);
-    }
-
-    private void setCellImageResource(Position cellPos, int resId) {
-        cells.get(cellPos).setImageResource(resId);
+    private void showFireLine(FireLine fireLine) {
+        Collection<Position> positions = fireLine.getCellsPositions();
+        FireLine.Type fireLineType = fireLine.getFireLineType();
+        for (Position pos : positions) {
+            setCellImageResource(pos, iconsProvider.getFireIconId(fireLineType));
+        }
     }
 }
