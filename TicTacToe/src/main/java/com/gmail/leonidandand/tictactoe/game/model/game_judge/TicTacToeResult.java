@@ -13,11 +13,15 @@ public class TicTacToeResult {
     private final Collection<FireLine> fireLines;
 
     public static TicTacToeResult unknownResult() {
-        return new TicTacToeResult(GameState.UNKNOWN, new ArrayList<FireLine>());
+        return withoutFireLines(GameState.UNKNOWN);
     }
 
     public static TicTacToeResult drawResult() {
-        return new TicTacToeResult(GameState.DRAW, new ArrayList<FireLine>());
+        return withoutFireLines(GameState.DRAW);
+    }
+
+    public static TicTacToeResult withoutFireLines(GameState opponentWins) {
+        return new TicTacToeResult(opponentWins, new ArrayList<FireLine>());
     }
 
     public TicTacToeResult(GameState gameState, Collection<FireLine> fireLines) {

@@ -4,6 +4,11 @@
     <dataSet config="main" >
         <source path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res" >
             <file
+                name="column_fire_line_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\column_fire_line_1.png"
+                qualifiers=""
+                type="drawable" />
+            <file
                 name="cross_1"
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\cross_1.png"
                 qualifiers=""
@@ -55,7 +60,32 @@
                 type="drawable" />
             <file
                 name="give_up"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\give_up.jpg"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\give_up.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="give_up_pressed_background"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\give_up_pressed_background.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="left_upper_diagonal_fire_line_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\left_upper_diagonal_fire_line_1.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="right_upper_diagonal_fire_line_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\right_upper_diagonal_fire_line_1.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="row_fire_line_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\row_fire_line_1.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="selector_give_up_background"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\selector_give_up_background.xml"
                 qualifiers=""
                 type="drawable" />
             <file
@@ -185,23 +215,8 @@
                 </style>
             </file>
             <file
-                name="right_upper_diagonal_fire_line_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\right_upper_diagonal_fire_line_1.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="column_fire_line_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\column_fire_line_1.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="row_fire_line_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\row_fire_line_1.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="left_upper_diagonal_fire_line_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\left_upper_diagonal_fire_line_1.png"
+                name="give_up_normal_background"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\give_up_normal_background.png"
                 qualifiers=""
                 type="drawable" />
         </source>

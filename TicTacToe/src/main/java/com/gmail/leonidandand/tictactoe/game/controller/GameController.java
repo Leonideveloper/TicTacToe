@@ -9,4 +9,5 @@ import com.gmail.leonidandand.matrix.Position;
 public interface GameController {
     void onViewIsReadyToStartGame();
     void onPlayerMove(Position movePos);
+    void onPlayerGivesUp();
 }

@@ -30,4 +30,11 @@ public class GameControllerAndroidImpl implements GameController {
         model.onPlayerMove(movePos);
         gameView.unblockMoves();
     }
+
+    @Override
+    public void onPlayerGivesUp() {
+        gameView.blockMoves();
+        model.onPlayerGivesUp();
+        gameView.unblockMoves();
+    }
 }

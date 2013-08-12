@@ -72,6 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/giveUpButton"
+            android:background="@drawable/selector_give_up_background"
             android:src="@drawable/give_up"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
