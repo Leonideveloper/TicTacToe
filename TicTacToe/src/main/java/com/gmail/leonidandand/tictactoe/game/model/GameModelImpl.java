@@ -8,9 +8,7 @@ import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model.game_judge.GameJudge;
 import com.gmail.leonidandand.tictactoe.game.model.game_judge.GameJudgeImpl;
 import com.gmail.leonidandand.tictactoe.game.model.game_judge.TicTacToeResult;
-import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameBoardEmptyOrNotListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
-import com.gmail.leonidandand.tictactoe.game.model.listeners.OnNeedToRestartGameListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnOpponentMoveListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnScoreChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model.opponent.Opponent;
@@ -27,28 +25,23 @@ public class GameModelImpl implements GameModel {
     private final Dimension dimension;
     private final GameJudge gameJudge;
     private final List<OnOpponentMoveListener> onOpponentMoveListeners;
-    private final List<OnGameBoardEmptyOrNotListener> onGameBoardEmptyOrNotListeners;
     private final List<OnGameFinishedListener> onGameFinishedListeners;
-    private final List<OnNeedToRestartGameListener> onNeedToRestartGameListeners;
     private final List<OnScoreChangedListener> onScoreChangedListeners;
     private final Matrix<Cell> gameBoard;
     private final Score score;
 
-    private boolean gameBoardEmpty;
     private boolean opponentMovesFirst;
     private Opponent opponent;
 
     public GameModelImpl(Dimension gameBoardDimension) {
         onOpponentMoveListeners = new ArrayList<OnOpponentMoveListener>();
-        onGameBoardEmptyOrNotListeners = new ArrayList<OnGameBoardEmptyOrNotListener>();
         onGameFinishedListeners = new ArrayList<OnGameFinishedListener>();
-        onNeedToRestartGameListeners = new ArrayList<OnNeedToRestartGameListener>();
         onScoreChangedListeners = new ArrayList<OnScoreChangedListener>();
 
         dimension = gameBoardDimension;
         gameBoard = new ArrayMatrix<Cell>(gameBoardDimension);
         initByEmpty(gameBoard);
-        notifyOnGameBoardEmptyOrNotListeners();
+
         gameJudge = new GameJudgeImpl(gameBoard);
 
         score = new Score();
@@ -63,7 +56,6 @@ public class GameModelImpl implements GameModel {
                 gameBoard.set(pos, Cell.EMPTY);
             }
         });
-        gameBoardEmpty = true;
     }
 
     @Override
@@ -93,18 +85,8 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
-    public void addOnGameBoardEmptyOrNotListener(OnGameBoardEmptyOrNotListener listener) {
-        onGameBoardEmptyOrNotListeners.add(listener);
-    }
-
-    @Override
     public void addOnGameFinishedListener(OnGameFinishedListener listener) {
         onGameFinishedListeners.add(listener);
-    }
-
-    @Override
-    public void addOnNeedToRestartGameListener(OnNeedToRestartGameListener listener) {
-        onNeedToRestartGameListeners.add(listener);
     }
 
     @Override
@@ -115,10 +97,6 @@ public class GameModelImpl implements GameModel {
     @Override
     public void onPlayerMove(Position movePosition) {
         gameBoard.set(movePosition, Cell.PLAYER);
-        if (gameBoardEmpty) {
-            gameBoardEmpty = false;
-            notifyOnGameBoardEmptyOrNotListeners();
-        }
         TicTacToeResult result = gameJudge.getResult();
         if (!result.isKnown()) {
             opponentMove();
@@ -133,10 +111,6 @@ public class GameModelImpl implements GameModel {
         Position opponentMovePos = opponent.positionToMove();
         gameBoard.set(opponentMovePos, Cell.OPPONENT);
         notifyOnOpponentMoveListeners(opponentMovePos);
-        if (gameBoardEmpty) {
-            gameBoardEmpty = false;
-            notifyOnGameBoardEmptyOrNotListeners();
-        }
     }
 
     private void notifyOnOpponentMoveListeners(Position opponentMovePos) {
@@ -154,7 +128,6 @@ public class GameModelImpl implements GameModel {
             notifyOnScoreChangedListeners();
         }
         initByEmpty(gameBoard);
-        notifyOnGameBoardEmptyOrNotListeners();
     }
 
     private boolean defineOpponentMovesFirst(GameState gameState) {
@@ -186,32 +159,6 @@ public class GameModelImpl implements GameModel {
     public void onViewIsReadyToStartGame() {
         if (opponentMovesFirst) {
             opponentMove();
-        }
-    }
-
-    @Override
-    public void onPlayerGivesUp() {
-        score.increaseOpponentScore();
-        notifyOnScoreChangedListeners();
-        initByEmpty(gameBoard);
-        notifyOnGameBoardEmptyOrNotListeners();
-        notifyOnNeedToRestartGameListeners(GameState.OPPONENT_WINS);
-    }
-
-    private void notifyOnNeedToRestartGameListeners(GameState gameState) {
-        for (OnNeedToRestartGameListener each : onNeedToRestartGameListeners) {
-            each.onNeedToRestartGame(gameState);
-        }
-    }
-
-    private void notifyOnGameBoardEmptyOrNotListeners() {
-        boolean empty = !gameBoard.contains(Cell.PLAYER) && !gameBoard.contains(Cell.OPPONENT);
-        for (OnGameBoardEmptyOrNotListener each : onGameBoardEmptyOrNotListeners) {
-            if (empty) {
-                each.onBecomeEmpty();
-            } else {
-                each.onNoLongerEmpty();
-            }
         }
     }
 }

@@ -1,12 +1,10 @@
 package com.gmail.leonidandand.tictactoe.game.view.android;
 
 import android.app.Activity;
-import android.view.View;
 
 import com.gmail.leonidandand.tictactoe.R;
 import com.gmail.leonidandand.tictactoe.game.controller.GameController;
 import com.gmail.leonidandand.tictactoe.game.model.GameModel;
-import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameBoardEmptyOrNotListener;
 import com.gmail.leonidandand.tictactoe.game.view.GameBoard;
 import com.gmail.leonidandand.tictactoe.game.view.GameBoardCreator;
 import com.gmail.leonidandand.tictactoe.game.view.GameResultDisplay;
@@ -18,8 +16,8 @@ import com.gmail.leonidandand.tictactoe.game.view.android.game_board.GameBoardCr
 /**
  * Created by Leonid on 18.07.13.
  */
-public class GameViewAndroidImpl extends GameViewImpl implements OnGameBoardEmptyOrNotListener {
-    private final Activity activity;
+public class GameViewAndroidImpl extends GameViewImpl {
+
     private final GameBoard gameBoard;
     private final GameResultDisplay gameResultDisplay;
     private final GameScoreDisplay gameScoreDisplay;
@@ -27,7 +25,6 @@ public class GameViewAndroidImpl extends GameViewImpl implements OnGameBoardEmpt
 
     public GameViewAndroidImpl(GameController controller, GameModel model, Activity activity) {
         super(controller, model);
-        this.activity = activity;
         activity.setContentView(R.layout.tic_tac_toe_activity);
 
         opponentMoveProgressBar = new OpponentMoveProgressBarAndroidImpl(activity);
@@ -39,29 +36,6 @@ public class GameViewAndroidImpl extends GameViewImpl implements OnGameBoardEmpt
         gameBoard = gameBoardCreator.createGameBoard(model.getDimension());
         gameBoard.setOnCellClickListener(this);
 
-        activity.findViewById(R.id.giveUpButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onPlayerGivesUp();
-            }
-        });
-        setGiveUpButtonEnabled(false);
-
-        model.addOnGameBoardEmptyOrNotListener(this);
-    }
-
-    @Override
-    public void onBecomeEmpty() {
-        setGiveUpButtonEnabled(false);
-    }
-
-    @Override
-    public void onNoLongerEmpty() {
-        setGiveUpButtonEnabled(true);
-    }
-
-    void setGiveUpButtonEnabled(boolean enabled) {
-        activity.findViewById(R.id.giveUpButton).setEnabled(enabled);
     }
 
     @Override

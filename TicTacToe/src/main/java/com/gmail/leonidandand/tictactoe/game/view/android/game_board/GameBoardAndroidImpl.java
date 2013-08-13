@@ -15,9 +15,10 @@ import java.util.Collection;
 
 public class GameBoardAndroidImpl implements GameBoard {
 
-    private final Matrix<ImageView> cells;
     private final IconsProvider iconsProvider;
+    private final Matrix<ImageView> cells;
     private CellIcon currentIcon;
+
 
     GameBoardAndroidImpl(Matrix<ImageView> gameBoardCells) {
         cells = gameBoardCells;

@@ -12,11 +12,11 @@ import com.gmail.leonidandand.tictactoe.game.view.android.GameViewAndroidImpl;
  */
 public class GameControllerAndroidImpl implements GameController {
     private final GameModel model;
-    private final GameView gameView;
+    private final GameView view;
 
     public GameControllerAndroidImpl(GameModel model, Activity activity) {
         this.model = model;
-        gameView = new GameViewAndroidImpl(this, model, activity);
+        view = new GameViewAndroidImpl(this, model, activity);
     }
 
     @Override
@@ -26,15 +26,8 @@ public class GameControllerAndroidImpl implements GameController {
 
     @Override
     public void onPlayerMove(Position movePos) {
-        gameView.blockMoves();
+        view.blockMoves();
         model.onPlayerMove(movePos);
-        gameView.unblockMoves();
-    }
-
-    @Override
-    public void onPlayerGivesUp() {
-        gameView.blockMoves();
-        model.onPlayerGivesUp();
-        gameView.unblockMoves();
+        view.unblockMoves();
     }
 }
