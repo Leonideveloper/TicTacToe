@@ -16,20 +16,34 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
         OnOpponentMoveListener, OnGameFinishedListener, OnScoreChangedListener {
 
     private final GameController controller;
-    private final GameModel model;
-
+    private GameModel model;
     private boolean movesBlocked;
     protected boolean gameFinished;
 
-
     public GameViewImpl(GameController controller, GameModel model) {
         this.controller = controller;
+        gameFinished = false;
+        movesBlocked = false;
+        plugModel(model);
+    }
+
+    @Override
+    public void plugModel(GameModel model) {
+        if (this.model != null) {
+            unplugModel();
+        }
         this.model = model;
         model.addOnOpponentMoveListener(this);
         model.addOnGameFinishedListener(this);
         model.addOnScoreChangedListener(this);
-        gameFinished = false;
-        movesBlocked = false;
+    }
+
+    @Override
+    public void unplugModel() {
+        model.removeOnGameFinishedListener(this);
+        model.removeOnOpponentMoveListener(this);
+        model.removeOnScoreChangedListener(this);
+        model = null;
     }
 
     protected abstract GameBoard getGameBoard();

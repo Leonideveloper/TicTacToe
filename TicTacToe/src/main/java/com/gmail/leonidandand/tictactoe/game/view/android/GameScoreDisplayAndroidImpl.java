@@ -34,17 +34,13 @@ public class GameScoreDisplayAndroidImpl implements GameScoreDisplay, CapableSav
 
     @Override
     public void saveState(Map<String, Object> bundle) {
-        CharSequence playerScoreText = playerScore.getText();
-        CharSequence opponentScoreText = opponentScore.getText();
-        bundle.put(PLAYER_SCORE_KEY, playerScoreText);
-        bundle.put(OPPONENT_SCORE_KEY, opponentScoreText);
+        bundle.put(PLAYER_SCORE_KEY, playerScore.getText());
+        bundle.put(OPPONENT_SCORE_KEY, opponentScore.getText());
     }
 
     @Override
     public void restoreState(Map<String, Object> bundle) {
-        CharSequence playerScoreText = (CharSequence) bundle.get(PLAYER_SCORE_KEY);
-        CharSequence opponentScoreText = (CharSequence) bundle.get(OPPONENT_SCORE_KEY);
-        playerScore.setText(playerScoreText);
-        opponentScore.setText(opponentScoreText);
+        playerScore.setText((CharSequence) bundle.get(PLAYER_SCORE_KEY));
+        opponentScore.setText((CharSequence) bundle.get(OPPONENT_SCORE_KEY));
     }
 }

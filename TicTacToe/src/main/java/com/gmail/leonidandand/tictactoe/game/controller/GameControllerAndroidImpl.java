@@ -4,7 +4,6 @@ import android.app.Activity;
 
 import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model.GameModel;
-import com.gmail.leonidandand.tictactoe.game.view.GameView;
 import com.gmail.leonidandand.tictactoe.game.view.android.GameViewAndroidImpl;
 
 /**
@@ -12,15 +11,15 @@ import com.gmail.leonidandand.tictactoe.game.view.android.GameViewAndroidImpl;
  */
 public class GameControllerAndroidImpl implements GameController {
     private final GameModel model;
-    private final GameView view;
+    private final GameViewAndroidImpl view;
 
     public GameControllerAndroidImpl(GameModel model, Activity activity) {
         this.model = model;
         view = new GameViewAndroidImpl(this, model, activity);
+        view.plugModel(model);
     }
 
-    @Override
-    public GameView getView() {
+    public GameViewAndroidImpl getView() {
         return view;
     }
 

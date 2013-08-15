@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.gmail.leonidandand.matrix.ArrayMatrix;
-import com.gmail.leonidandand.matrix.Dimension;
 import com.gmail.leonidandand.matrix.Matrix;
 import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.R;
@@ -23,34 +22,34 @@ public class GameBoardCreator {
         this.activity = activity;
     }
 
-    public GameBoardAndroidImpl createGameBoard(Dimension dim) {
+    public GameBoardAndroidImpl createGameBoard(final int dim) {
         return new GameBoardAndroidImpl(prepareCells(dim));
     }
 
-    private Matrix<ImageView> prepareCells(Dimension dim) {
-        FrameLayout gameBoardFrameLayout =
-                (FrameLayout) activity.findViewById(R.id.gameBoardFrameLayout);
-        Matrix<ImageView> cells = new ArrayMatrix<ImageView>(dim);
-        LinearLayout verticalLayout = prepareVerticalLinearLayout(dim);
-        for (int row = 0; row < dim.rows; ++row) {
-            LinearLayout rowLayout = prepareHorizontalLinearLayout(dim);
-            for (int column = 0; column < dim.columns; ++column) {
+    private Matrix<ImageView> prepareCells(final int gameBoardDimension) {
+        Matrix<ImageView> cells = new ArrayMatrix<ImageView>(gameBoardDimension, gameBoardDimension);
+        LinearLayout verticalLayout = prepareVerticalLinearLayout(gameBoardDimension);
+        for (int row = 0; row < gameBoardDimension; ++row) {
+            LinearLayout rowLayout = prepareHorizontalLinearLayout(gameBoardDimension);
+            for (int column = 0; column < gameBoardDimension; ++column) {
                 ImageView cell = prepareCell();
                 rowLayout.addView(cell);
                 cells.set(new Position(row, column), cell);
             }
             verticalLayout.addView(rowLayout);
         }
+        FrameLayout gameBoardFrameLayout =
+                (FrameLayout) activity.findViewById(R.id.gameBoardFrameLayout);
         gameBoardFrameLayout.addView(verticalLayout);
         return cells;
     }
 
-    private LinearLayout prepareVerticalLinearLayout(Dimension dim) {
-        return prepareLinearLayout(LinearLayout.VERTICAL, dim.rows);
+    private LinearLayout prepareVerticalLinearLayout(int numberOfChildElements) {
+        return prepareLinearLayout(LinearLayout.VERTICAL, numberOfChildElements);
     }
 
-    private LinearLayout prepareHorizontalLinearLayout(Dimension dim) {
-        return prepareLinearLayout(LinearLayout.HORIZONTAL, dim.columns);
+    private LinearLayout prepareHorizontalLinearLayout(int numberOfChildElements) {
+        return prepareLinearLayout(LinearLayout.HORIZONTAL, numberOfChildElements);
     }
 
     private LinearLayout prepareLinearLayout(int orientation, int weightSum) {

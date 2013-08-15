@@ -1,7 +1,6 @@
 package com.gmail.leonidandand.tictactoe.game.model;
 
 import com.gmail.leonidandand.matrix.ArrayMatrix;
-import com.gmail.leonidandand.matrix.Dimension;
 import com.gmail.leonidandand.matrix.Matrix;
 import com.gmail.leonidandand.matrix.OnEachHandler;
 import com.gmail.leonidandand.matrix.Position;
@@ -22,23 +21,24 @@ import java.util.List;
  */
 public class GameModelImpl implements GameModel {
 
-    private final Dimension dimension;
+    private final int gameBoardDimension;
+    private final Matrix<Cell> gameBoard;
+    private final GameJudge gameJudge;
+    private final Score score;
     private final List<OnOpponentMoveListener> onOpponentMoveListeners;
     private final List<OnGameFinishedListener> onGameFinishedListeners;
     private final List<OnScoreChangedListener> onScoreChangedListeners;
-    protected boolean opponentMovesFirst;
-    protected GameJudge gameJudge;
-    protected Matrix<Cell> gameBoard;
-    protected Opponent opponent;
-    protected Score score;
+    private boolean opponentMovesFirst;
+    private Opponent opponent;
 
-    public GameModelImpl(Dimension gameBoardDimension) {
+    public GameModelImpl(int gameBoardDimension) {
         onOpponentMoveListeners = new ArrayList<OnOpponentMoveListener>();
         onGameFinishedListeners = new ArrayList<OnGameFinishedListener>();
         onScoreChangedListeners = new ArrayList<OnScoreChangedListener>();
-        dimension = gameBoardDimension;
 
-        gameBoard = new ArrayMatrix<Cell>(gameBoardDimension);
+        this.gameBoardDimension = gameBoardDimension;
+
+        gameBoard = new ArrayMatrix<Cell>(gameBoardDimension, gameBoardDimension);
         initByEmpty(gameBoard);
 
         gameJudge = new GameJudgeImpl(gameBoard);
@@ -69,8 +69,8 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
-    public Dimension getDimension() {
-        return dimension;
+    public int getGameBoardDimension() {
+        return gameBoardDimension;
     }
 
     @Override
@@ -84,8 +84,8 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
-    public void removeAllOnOpponentMoveListeners() {
-        onOpponentMoveListeners.clear();
+    public void removeOnOpponentMoveListener(OnOpponentMoveListener listener) {
+        onOpponentMoveListeners.remove(listener);
     }
 
     @Override
@@ -94,8 +94,8 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
-    public void removeAllOnGameFinishedListeners() {
-        onGameFinishedListeners.clear();
+    public void removeOnGameFinishedListener(OnGameFinishedListener listener) {
+        onGameFinishedListeners.remove(listener);
     }
 
     @Override
@@ -104,8 +104,8 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
-    public void removeAllOnScoreChangedListeners() {
-        onScoreChangedListeners.clear();
+    public void removeOnScoreChangedListener(OnScoreChangedListener listener) {
+        onScoreChangedListeners.remove(listener);
     }
 
     @Override

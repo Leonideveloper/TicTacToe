@@ -12,8 +12,8 @@ import java.util.Map;
 /**
  * Created by Leonid on 19.07.13.
  */
-public class GameResultDisplayAndroidToastImpl implements GameResultDisplay,
-                                                    CapableSaveRestoreState {
+public class GameResultDisplayAndroidToastImpl
+        implements GameResultDisplay, CapableSaveRestoreState {
 
     private static final String DISPLAYED_KEY = "GameResultDisplay.displayed";
     private static final String GAME_STATE_KEY = "GameResultDisplay.gameState";
@@ -29,8 +29,8 @@ public class GameResultDisplayAndroidToastImpl implements GameResultDisplay,
 
     @Override
     public void show(GameState gameState) {
-        Toast.makeText(activity, gameState.name(), Toast.LENGTH_LONG).show();
         this.gameState = gameState;
+        Toast.makeText(activity, gameState.name(), Toast.LENGTH_LONG).show();
         displayed = true;
     }
 

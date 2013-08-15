@@ -12,8 +12,8 @@ import java.util.Map;
 /**
  * Created by Leonid on 04.08.13.
  */
-public class OpponentMoveProgressBarAndroidImpl implements OpponentMoveProgressBar,
-                                                            CapableSaveRestoreState {
+public class OpponentMoveProgressBarAndroidImpl
+        implements OpponentMoveProgressBar, CapableSaveRestoreState {
 
     private static final String DISPLAYED_KEY = "OpponentMoveProgressBar.DISPLAYED";
 

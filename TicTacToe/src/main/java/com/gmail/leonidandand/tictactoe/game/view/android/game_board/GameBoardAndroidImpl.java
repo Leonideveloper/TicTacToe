@@ -26,7 +26,6 @@ public class GameBoardAndroidImpl implements GameBoard, CapableSaveRestoreState 
     private final Matrix<ImageView> cellsViews;
     private Matrix<Integer> cellsBackgroundResourcesIds;
     private Matrix<Integer> cellsImageResourcesIds;
-    private Collection<FireLine> fireLines;
     private CellIcon currentIcon;
 
     GameBoardAndroidImpl(Matrix<ImageView> gameBoardCells) {
@@ -45,7 +44,6 @@ public class GameBoardAndroidImpl implements GameBoard, CapableSaveRestoreState 
                 clearCell(pos);
             }
         });
-        fireLines = null;
         currentIcon = CellIcon.X;
     }
 
@@ -95,7 +93,6 @@ public class GameBoardAndroidImpl implements GameBoard, CapableSaveRestoreState 
 
     @Override
     public void showFireLines(Collection<FireLine> fireLines) {
-        this.fireLines = fireLines;
         for (FireLine each : fireLines) {
             showFireLine(each);
         }

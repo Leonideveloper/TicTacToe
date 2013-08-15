@@ -38,7 +38,8 @@ public class GameViewAndroidImpl extends GameViewImpl implements CapableSaveRest
         gameResultDisplay = new GameResultDisplayAndroidToastImpl(activity);
 
         GameBoardCreator gameBoardCreator = new GameBoardCreator(activity);
-        gameBoard = gameBoardCreator.createGameBoard(model.getDimension());
+        int gameBoardDimension = model.getGameBoardDimension();
+        gameBoard = gameBoardCreator.createGameBoard(gameBoardDimension);
         gameBoard.setOnCellClickListener(this);
     }
 
