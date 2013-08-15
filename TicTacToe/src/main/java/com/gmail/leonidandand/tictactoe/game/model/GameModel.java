@@ -15,8 +15,11 @@ public interface GameModel {
     Dimension getDimension();
     Score getScore();
     void addOnOpponentMoveListener(OnOpponentMoveListener listener);
+    void removeAllOnOpponentMoveListeners();
     void addOnGameFinishedListener(OnGameFinishedListener listener);
+    void removeAllOnGameFinishedListeners();
     void addOnScoreChangedListener(OnScoreChangedListener listener);
+    void removeAllOnScoreChangedListeners();
     void setOpponent(Opponent opponent);
     void onPlayerMove(Position movePosition);
     void onViewIsReadyToStartGame();

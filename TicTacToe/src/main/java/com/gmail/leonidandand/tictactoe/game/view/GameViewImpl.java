@@ -19,7 +19,7 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
     private final GameModel model;
 
     private boolean movesBlocked;
-    private boolean gameFinished;
+    protected boolean gameFinished;
 
 
     public GameViewImpl(GameController controller, GameModel model) {
@@ -67,6 +67,7 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
 
     private void prepareNewGame() {
         getGameBoard().clear();
+        getGameResultDisplay().hide();
         controller.onViewIsReadyToStartGame();
     }
 
@@ -87,5 +88,4 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
         Score newScore = model.getScore();
         getGameScoreDisplay().showScore(newScore);
     }
-
 }

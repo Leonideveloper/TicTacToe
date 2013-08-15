@@ -20,6 +20,11 @@ public class GameControllerAndroidImpl implements GameController {
     }
 
     @Override
+    public GameView getView() {
+        return view;
+    }
+
+    @Override
     public void onViewIsReadyToStartGame() {
         model.onViewIsReadyToStartGame();
     }

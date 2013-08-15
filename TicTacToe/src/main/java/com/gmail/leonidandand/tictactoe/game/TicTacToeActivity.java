@@ -7,21 +7,40 @@ import com.gmail.leonidandand.matrix.Dimension;
 import com.gmail.leonidandand.tictactoe.game.controller.GameController;
 import com.gmail.leonidandand.tictactoe.game.controller.GameControllerAndroidImpl;
 import com.gmail.leonidandand.tictactoe.game.model.GameModel;
-import com.gmail.leonidandand.tictactoe.game.model.GameModelImpl;
+import com.gmail.leonidandand.tictactoe.game.model.GameModelCapableSaveRestoreState;
 import com.gmail.leonidandand.tictactoe.game.model.opponent.StupidAIOpponent;
 
 public class TicTacToeActivity extends Activity {
+
+    private RuntimeChangesHandler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        GameModel model = new GameModelImpl(gameBoardDimension(3));
+        GameModel model = new GameModelCapableSaveRestoreState(gameBoardDimension(11));
         model.setOpponent(new StupidAIOpponent());
         GameController controller = new GameControllerAndroidImpl(model, this);
+
+        handler = new RuntimeChangesHandler(
+                (CapableSaveRestoreState) model,
+                (CapableSaveRestoreState) controller.getView()
+        );
     }
 
     private Dimension gameBoardDimension(int dimension) {
         return new Dimension(dimension, dimension);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        handler.restoreStates();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        handler.saveStates();
     }
 }

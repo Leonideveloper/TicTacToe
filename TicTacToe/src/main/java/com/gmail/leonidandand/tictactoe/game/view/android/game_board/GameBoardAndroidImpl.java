@@ -3,37 +3,49 @@ package com.gmail.leonidandand.tictactoe.game.view.android.game_board;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.gmail.leonidandand.matrix.ArrayMatrix;
 import com.gmail.leonidandand.matrix.Matrix;
 import com.gmail.leonidandand.matrix.OnEachHandler;
 import com.gmail.leonidandand.matrix.Position;
+import com.gmail.leonidandand.tictactoe.game.CapableSaveRestoreState;
 import com.gmail.leonidandand.tictactoe.game.model.game_judge.FireLine;
 import com.gmail.leonidandand.tictactoe.game.view.CellIcon;
 import com.gmail.leonidandand.tictactoe.game.view.GameBoard;
 import com.gmail.leonidandand.tictactoe.game.view.OnCellClickListener;
 
 import java.util.Collection;
+import java.util.Map;
 
-public class GameBoardAndroidImpl implements GameBoard {
+public class GameBoardAndroidImpl implements GameBoard, CapableSaveRestoreState {
+
+    private static final String CELLS_BACKGROUND_KEY = "GameBoard.cellsBackgroundResources";
+    private static final String CELLS_IMAGE_KEY = "GameBoard.cellsImageResources";
+    private static final String CURRENT_ICON_KEY = "GameBoard.currentIcon";
 
     private final IconsProvider iconsProvider;
-    private final Matrix<ImageView> cells;
+    private final Matrix<ImageView> cellsViews;
+    private Matrix<Integer> cellsBackgroundResourcesIds;
+    private Matrix<Integer> cellsImageResourcesIds;
+    private Collection<FireLine> fireLines;
     private CellIcon currentIcon;
 
-
     GameBoardAndroidImpl(Matrix<ImageView> gameBoardCells) {
-        cells = gameBoardCells;
+        cellsViews = gameBoardCells;
+        cellsBackgroundResourcesIds = new ArrayMatrix<Integer>(cellsViews.getDimension());
+        cellsImageResourcesIds = new ArrayMatrix<Integer>(cellsViews.getDimension());
         iconsProvider = new PlainIconsProvider();
         clear();
     }
 
     @Override
     public void clear() {
-        cells.forEach(new OnEachHandler<ImageView>() {
+        cellsViews.forEach(new OnEachHandler<ImageView>() {
             @Override
             public void handle(Position pos, ImageView elem) {
                 clearCell(pos);
             }
         });
+        fireLines = null;
         currentIcon = CellIcon.X;
     }
 
@@ -42,20 +54,22 @@ public class GameBoardAndroidImpl implements GameBoard {
         setCellBackgroundResource(cellPos, iconsProvider.getEmptyIconId());
     }
 
-    private void setCellBackgroundResource(Position cellPos, int resId) {
-        cells.get(cellPos).setBackgroundResource(resId);
+    private void setCellImageResource(Position cellPos, int resId) {
+        cellsViews.get(cellPos).setImageResource(resId);
+        cellsImageResourcesIds.set(cellPos, resId);
     }
 
-    private void setCellImageResource(Position cellPos, int resId) {
-        cells.get(cellPos).setImageResource(resId);
+    private void setCellBackgroundResource(Position cellPos, int resId) {
+        cellsViews.get(cellPos).setBackgroundResource(resId);
+        cellsBackgroundResourcesIds.set(cellPos, resId);
     }
 
     @Override
     public void setOnCellClickListener(final OnCellClickListener onCellClickListener) {
-        cells.forEach(new OnEachHandler<ImageView>() {
+        cellsViews.forEach(new OnEachHandler<ImageView>() {
             @Override
             public void handle(final Position pos, ImageView elem) {
-                ImageView cell = cells.get(pos);
+                ImageView cell = cellsViews.get(pos);
                 cell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -81,6 +95,7 @@ public class GameBoardAndroidImpl implements GameBoard {
 
     @Override
     public void showFireLines(Collection<FireLine> fireLines) {
+        this.fireLines = fireLines;
         for (FireLine each : fireLines) {
             showFireLine(each);
         }
@@ -92,5 +107,28 @@ public class GameBoardAndroidImpl implements GameBoard {
         for (Position pos : positions) {
             setCellImageResource(pos, iconsProvider.getFireIconId(fireLineType));
         }
+    }
+
+    @Override
+    public void saveState(Map<String, Object> bundle) {
+        bundle.put(CELLS_BACKGROUND_KEY, cellsBackgroundResourcesIds);
+        bundle.put(CELLS_IMAGE_KEY, cellsImageResourcesIds);
+        bundle.put(CURRENT_ICON_KEY, currentIcon);
+    }
+
+    @Override
+    public void restoreState(Map<String, Object> bundle) {
+        currentIcon = (CellIcon) bundle.get(CURRENT_ICON_KEY);
+        cellsImageResourcesIds = (Matrix<Integer>) bundle.get(CELLS_IMAGE_KEY);
+        cellsBackgroundResourcesIds = (Matrix<Integer>) bundle.get(CELLS_BACKGROUND_KEY);
+        cellsImageResourcesIds.forEach(new OnEachHandler<Integer>() {
+            @Override
+            public void handle(Position pos, Integer each) {
+                int imageResourceId = cellsImageResourcesIds.get(pos);
+                setCellImageResource(pos, imageResourceId);
+                int backgroundResourceId = cellsBackgroundResourcesIds.get(pos);
+                setCellBackgroundResource(pos, backgroundResourceId);
+            }
+        });
     }
 }

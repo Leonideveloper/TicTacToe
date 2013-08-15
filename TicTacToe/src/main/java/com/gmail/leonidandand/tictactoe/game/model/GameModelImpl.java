@@ -23,22 +23,21 @@ import java.util.List;
 public class GameModelImpl implements GameModel {
 
     private final Dimension dimension;
-    private final GameJudge gameJudge;
     private final List<OnOpponentMoveListener> onOpponentMoveListeners;
     private final List<OnGameFinishedListener> onGameFinishedListeners;
     private final List<OnScoreChangedListener> onScoreChangedListeners;
-    private final Matrix<Cell> gameBoard;
-    private final Score score;
-
-    private boolean opponentMovesFirst;
-    private Opponent opponent;
+    protected boolean opponentMovesFirst;
+    protected GameJudge gameJudge;
+    protected Matrix<Cell> gameBoard;
+    protected Opponent opponent;
+    protected Score score;
 
     public GameModelImpl(Dimension gameBoardDimension) {
         onOpponentMoveListeners = new ArrayList<OnOpponentMoveListener>();
         onGameFinishedListeners = new ArrayList<OnGameFinishedListener>();
         onScoreChangedListeners = new ArrayList<OnScoreChangedListener>();
-
         dimension = gameBoardDimension;
+
         gameBoard = new ArrayMatrix<Cell>(gameBoardDimension);
         initByEmpty(gameBoard);
 
@@ -85,13 +84,28 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
+    public void removeAllOnOpponentMoveListeners() {
+        onOpponentMoveListeners.clear();
+    }
+
+    @Override
     public void addOnGameFinishedListener(OnGameFinishedListener listener) {
         onGameFinishedListeners.add(listener);
     }
 
     @Override
+    public void removeAllOnGameFinishedListeners() {
+        onGameFinishedListeners.clear();
+    }
+
+    @Override
     public void addOnScoreChangedListener(OnScoreChangedListener listener) {
         onScoreChangedListeners.add(listener);
+    }
+
+    @Override
+    public void removeAllOnScoreChangedListeners() {
+        onScoreChangedListeners.clear();
     }
 
     @Override

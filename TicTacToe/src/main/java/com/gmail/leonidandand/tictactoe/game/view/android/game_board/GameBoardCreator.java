@@ -11,22 +11,19 @@ import com.gmail.leonidandand.matrix.Dimension;
 import com.gmail.leonidandand.matrix.Matrix;
 import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.R;
-import com.gmail.leonidandand.tictactoe.game.view.GameBoard;
-import com.gmail.leonidandand.tictactoe.game.view.GameBoardCreator;
 
 /**
  * Created by Leonid on 19.07.13.
  */
-public class GameBoardCreatorAndroidImpl implements GameBoardCreator {
+public class GameBoardCreator {
 
     private final Activity activity;
 
-    public GameBoardCreatorAndroidImpl(Activity activity) {
+    public GameBoardCreator(Activity activity) {
         this.activity = activity;
     }
 
-    @Override
-    public GameBoard createGameBoard(Dimension dim) {
+    public GameBoardAndroidImpl createGameBoard(Dimension dim) {
         return new GameBoardAndroidImpl(prepareCells(dim));
     }
 

@@ -3,24 +3,29 @@ package com.gmail.leonidandand.tictactoe.game.view.android;
 import android.app.Activity;
 
 import com.gmail.leonidandand.tictactoe.R;
+import com.gmail.leonidandand.tictactoe.game.CapableSaveRestoreState;
 import com.gmail.leonidandand.tictactoe.game.controller.GameController;
 import com.gmail.leonidandand.tictactoe.game.model.GameModel;
 import com.gmail.leonidandand.tictactoe.game.view.GameBoard;
-import com.gmail.leonidandand.tictactoe.game.view.GameBoardCreator;
 import com.gmail.leonidandand.tictactoe.game.view.GameResultDisplay;
 import com.gmail.leonidandand.tictactoe.game.view.GameScoreDisplay;
 import com.gmail.leonidandand.tictactoe.game.view.GameViewImpl;
 import com.gmail.leonidandand.tictactoe.game.view.OpponentMoveProgressBar;
-import com.gmail.leonidandand.tictactoe.game.view.android.game_board.GameBoardCreatorAndroidImpl;
+import com.gmail.leonidandand.tictactoe.game.view.android.game_board.GameBoardAndroidImpl;
+import com.gmail.leonidandand.tictactoe.game.view.android.game_board.GameBoardCreator;
+
+import java.util.Map;
 
 /**
  * Created by Leonid on 18.07.13.
  */
-public class GameViewAndroidImpl extends GameViewImpl {
+public class GameViewAndroidImpl extends GameViewImpl implements CapableSaveRestoreState {
 
-    private final GameBoard gameBoard;
-    private final GameResultDisplay gameResultDisplay;
-    private final GameScoreDisplay gameScoreDisplay;
+    private static final String GAME_FINISHED_KEY = "GameView.gameFinished";
+
+    private final GameBoardAndroidImpl gameBoard;
+    private final GameResultDisplayAndroidToastImpl gameResultDisplay;
+    private final GameScoreDisplayAndroidImpl gameScoreDisplay;
     private final OpponentMoveProgressBarAndroidImpl opponentMoveProgressBar;
 
     public GameViewAndroidImpl(GameController controller, GameModel model, Activity activity) {
@@ -32,10 +37,9 @@ public class GameViewAndroidImpl extends GameViewImpl {
         gameScoreDisplay.showScore(model.getScore());
         gameResultDisplay = new GameResultDisplayAndroidToastImpl(activity);
 
-        GameBoardCreator gameBoardCreator = new GameBoardCreatorAndroidImpl(activity);
+        GameBoardCreator gameBoardCreator = new GameBoardCreator(activity);
         gameBoard = gameBoardCreator.createGameBoard(model.getDimension());
         gameBoard.setOnCellClickListener(this);
-
     }
 
     @Override
@@ -56,5 +60,23 @@ public class GameViewAndroidImpl extends GameViewImpl {
     @Override
     protected GameScoreDisplay getGameScoreDisplay() {
         return gameScoreDisplay;
+    }
+
+    @Override
+    public void saveState(Map<String, Object> bundle) {
+        bundle.put(GAME_FINISHED_KEY, gameFinished);
+        gameBoard.saveState(bundle);
+        gameResultDisplay.saveState(bundle);
+        gameScoreDisplay.saveState(bundle);
+        opponentMoveProgressBar.saveState(bundle);
+    }
+
+    @Override
+    public void restoreState(Map<String, Object> bundle) {
+        gameFinished = (Boolean) bundle.get(GAME_FINISHED_KEY);
+        gameBoard.restoreState(bundle);
+        gameResultDisplay.restoreState(bundle);
+        gameScoreDisplay.restoreState(bundle);
+        opponentMoveProgressBar.restoreState(bundle);
     }
 }
