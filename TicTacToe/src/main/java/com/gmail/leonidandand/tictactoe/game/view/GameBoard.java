@@ -2,7 +2,7 @@ package com.gmail.leonidandand.tictactoe.game.view;
 
 
 import com.gmail.leonidandand.matrix.Position;
-import com.gmail.leonidandand.tictactoe.game.model.game_judge.FireLine;
+import com.gmail.leonidandand.tictactoe.game.model.tic_tac_toe_result.FireLine;
 
 import java.util.Collection;
 

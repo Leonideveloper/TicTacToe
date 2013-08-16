@@ -4,7 +4,7 @@ import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.controller.GameController;
 import com.gmail.leonidandand.tictactoe.game.model.GameModel;
 import com.gmail.leonidandand.tictactoe.game.model.Score;
-import com.gmail.leonidandand.tictactoe.game.model.game_judge.TicTacToeResult;
+import com.gmail.leonidandand.tictactoe.game.model.tic_tac_toe_result.TicTacToeResult;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnOpponentMoveListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnScoreChangedListener;
@@ -29,9 +29,7 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
 
     @Override
     public void plugModel(GameModel model) {
-        if (this.model != null) {
-            unplugModel();
-        }
+        unplugModel();
         this.model = model;
         model.addOnOpponentMoveListener(this);
         model.addOnGameFinishedListener(this);
@@ -40,10 +38,12 @@ public abstract class GameViewImpl implements GameView, OnCellClickListener,
 
     @Override
     public void unplugModel() {
-        model.removeOnGameFinishedListener(this);
-        model.removeOnOpponentMoveListener(this);
-        model.removeOnScoreChangedListener(this);
-        model = null;
+        if (model != null) {
+            model.removeOnGameFinishedListener(this);
+            model.removeOnOpponentMoveListener(this);
+            model.removeOnScoreChangedListener(this);
+            model = null;
+        }
     }
 
     protected abstract GameBoard getGameBoard();

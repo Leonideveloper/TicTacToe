@@ -4,6 +4,8 @@ import com.gmail.leonidandand.matrix.Matrix;
 import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model.Cell;
 import com.gmail.leonidandand.tictactoe.game.model.GameState;
+import com.gmail.leonidandand.tictactoe.game.model.tic_tac_toe_result.FireLine;
+import com.gmail.leonidandand.tictactoe.game.model.tic_tac_toe_result.TicTacToeResult;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,15 +37,18 @@ public class GameJudgeImpl implements GameJudge {
     }
 
     private TicTacToeResult checkBoard() {
-        // max number of fire-lines: 4 Fire Lines (need to combine):
-        // -----------------
-        //   X O O X O O X
-        //   O X O X O X O
-        //   O O X X X O O
-        //   X X X X X X X
-        //   O O X X X O O
-        //   O X O X O X O
-        //   X O O X O O X
+        // max number of fire-lines: 4 fire-lines (need to combine fire-lines):
+        // *****************
+        // X - - - X - - - X
+        // - X - - X - - X -
+        // - - X - X - X - -
+        // - - - X X X - - -
+        // X X X X X X X X X
+        // - - - X X X - - -
+        // - - X - X - X - -
+        // - X - - X - - X -
+        // X - - - X - - - X
+        // *****************
         TicTacToeResult result = combineFireLines(
                 checkRows(),
                 checkColumns(),
@@ -54,11 +59,11 @@ public class GameJudgeImpl implements GameJudge {
     }
 
     private TicTacToeResult combineFireLines(TicTacToeResult... results) {
-        List<TicTacToeResult> resultsToCombine = matchDecidedResults(results);
-        if (resultsToCombine.isEmpty()) {
+        List<TicTacToeResult> matchDecidedResults = matchDecidedResults(results);
+        if (matchDecidedResults.isEmpty()) {
             return TicTacToeResult.unknownResult();
         } else {
-            return combinedResults(resultsToCombine);
+            return resultWithCombinedFireLines(matchDecidedResults);
         }
     }
 
@@ -72,7 +77,7 @@ public class GameJudgeImpl implements GameJudge {
         return matchDecidedResults;
     }
 
-    private TicTacToeResult combinedResults(List<TicTacToeResult> resultsToCombine) {
+    private TicTacToeResult resultWithCombinedFireLines(List<TicTacToeResult> resultsToCombine) {
         TicTacToeResult result = resultsToCombine.get(0);
         Collection<FireLine> fireLines = result.getFireLines();
         for (int i = 1; i < resultsToCombine.size(); ++i) {
@@ -93,7 +98,7 @@ public class GameJudgeImpl implements GameJudge {
     }
 
     private TicTacToeResult checkRow(int row) {
-        return resultByCellsPositions(cellsPositionsOnRow(row), FireLine.Type.ROW);
+        return resultBy(cellsPositionsOnRow(row), FireLine.Type.ROW);
     }
 
     private List<Position> cellsPositionsOnRow(final int row) {
@@ -104,8 +109,7 @@ public class GameJudgeImpl implements GameJudge {
         return cells;
     }
 
-    private TicTacToeResult resultByCellsPositions(
-                    List<Position> cellsPositions, FireLine.Type fireLineType) {
+    private TicTacToeResult resultBy(List<Position> cellsPositions, FireLine.Type fireLineType) {
         Position firstCellOnLinePosition = cellsPositions.get(0);
         Cell firstCellOnLine = gameBoard.get(firstCellOnLinePosition);
         if (firstCellOnLine == Cell.EMPTY) {
@@ -143,7 +147,7 @@ public class GameJudgeImpl implements GameJudge {
     }
 
     private TicTacToeResult checkColumn(int column) {
-        return resultByCellsPositions(cellsPositionsOnColumn(column), FireLine.Type.COLUMN);
+        return resultBy(cellsPositionsOnColumn(column), FireLine.Type.COLUMN);
     }
 
     private List<Position> cellsPositionsOnColumn(final int column) {
@@ -155,8 +159,7 @@ public class GameJudgeImpl implements GameJudge {
     }
 
     private TicTacToeResult checkLeftUpperDiagonal() {
-        return resultByCellsPositions(cellsPositionsOnLeftUpperDiagonal(),
-                FireLine.Type.LEFT_UPPER_DIAGONAL);
+        return resultBy(cellsPositionsOnLeftUpperDiagonal(), FireLine.Type.LEFT_UPPER_DIAGONAL);
     }
 
     private List<Position> cellsPositionsOnLeftUpperDiagonal() {
@@ -168,8 +171,7 @@ public class GameJudgeImpl implements GameJudge {
     }
 
     private TicTacToeResult checkRightUpperDiagonal() {
-        return resultByCellsPositions(cellsPositionsOnRightUpperDiagonal(),
-                FireLine.Type.RIGHT_UPPER_DIAGONAL);
+        return resultBy(cellsPositionsOnRightUpperDiagonal(), FireLine.Type.RIGHT_UPPER_DIAGONAL);
     }
 
     private List<Position> cellsPositionsOnRightUpperDiagonal() {

@@ -22,7 +22,7 @@ public class GameResultDisplayAndroidToastImpl
     private boolean displayed;
     private GameState gameState;
 
-    public GameResultDisplayAndroidToastImpl(Activity activity) {
+    GameResultDisplayAndroidToastImpl(Activity activity) {
         this.activity = activity;
         hide();
     }
@@ -50,10 +50,12 @@ public class GameResultDisplayAndroidToastImpl
 
     @Override
     public void restoreState(Map<String, Object> bundle) {
-        displayed = (Boolean) bundle.get(DISPLAYED_KEY);
-        if (displayed) {
-            gameState = (GameState) bundle.get(GAME_STATE_KEY);
-            show(gameState);
+        Boolean needToDisplay = (Boolean) bundle.get(DISPLAYED_KEY);
+        if (needToDisplay) {
+            GameState savedGameState = (GameState) bundle.get(GAME_STATE_KEY);
+            show(savedGameState);
+        } else {
+            hide();
         }
     }
 }

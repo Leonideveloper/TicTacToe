@@ -1,4 +1,4 @@
-package com.gmail.leonidandand.tictactoe.game.model.game_judge;
+package com.gmail.leonidandand.tictactoe.game.model.tic_tac_toe_result;
 
 import com.gmail.leonidandand.tictactoe.game.model.GameState;
 

@@ -8,7 +8,7 @@ import com.gmail.leonidandand.matrix.Matrix;
 import com.gmail.leonidandand.matrix.OnEachHandler;
 import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.CapableSaveRestoreState;
-import com.gmail.leonidandand.tictactoe.game.model.game_judge.FireLine;
+import com.gmail.leonidandand.tictactoe.game.model.tic_tac_toe_result.FireLine;
 import com.gmail.leonidandand.tictactoe.game.view.CellIcon;
 import com.gmail.leonidandand.tictactoe.game.view.GameBoard;
 import com.gmail.leonidandand.tictactoe.game.view.OnCellClickListener;
@@ -22,7 +22,7 @@ public class GameBoardAndroidImpl implements GameBoard, CapableSaveRestoreState 
     private static final String CELLS_IMAGE_KEY = "GameBoard.cellsImageResources";
     private static final String CURRENT_ICON_KEY = "GameBoard.currentIcon";
 
-    private final IconsProvider iconsProvider;
+    private final RandomIconsProvider randomIconsProvider;
     private final Matrix<ImageView> cellsViews;
     private Matrix<Integer> cellsBackgroundResourcesIds;
     private Matrix<Integer> cellsImageResourcesIds;
@@ -32,7 +32,7 @@ public class GameBoardAndroidImpl implements GameBoard, CapableSaveRestoreState 
         cellsViews = gameBoardCells;
         cellsBackgroundResourcesIds = new ArrayMatrix<Integer>(cellsViews.getDimension());
         cellsImageResourcesIds = new ArrayMatrix<Integer>(cellsViews.getDimension());
-        iconsProvider = new PlainIconsProvider();
+        randomIconsProvider = new PlainRandomIconsProvider();
         clear();
     }
 
@@ -49,7 +49,7 @@ public class GameBoardAndroidImpl implements GameBoard, CapableSaveRestoreState 
 
     private void clearCell(Position cellPos) {
         setCellImageResource(cellPos, android.R.color.transparent);
-        setCellBackgroundResource(cellPos, iconsProvider.getEmptyIconId());
+        setCellBackgroundResource(cellPos, randomIconsProvider.getRandomEmptyIconId());
     }
 
     private void setCellImageResource(Position cellPos, int resId) {
@@ -82,10 +82,10 @@ public class GameBoardAndroidImpl implements GameBoard, CapableSaveRestoreState 
     public void showMove(Position pos) {
         int iconId;
         if (currentIcon == CellIcon.X) {
-            iconId = iconsProvider.getCrossIconId();
+            iconId = randomIconsProvider.getRandomCrossIconId();
             currentIcon = CellIcon.O;
         } else {
-            iconId = iconsProvider.getZeroIconId();
+            iconId = randomIconsProvider.getRandomZeroIconId();
             currentIcon = CellIcon.X;
         }
         setCellBackgroundResource(pos, iconId);
@@ -99,10 +99,10 @@ public class GameBoardAndroidImpl implements GameBoard, CapableSaveRestoreState 
     }
 
     private void showFireLine(FireLine fireLine) {
-        Collection<Position> positions = fireLine.getCellsPositions();
         FireLine.Type fireLineType = fireLine.getFireLineType();
-        for (Position pos : positions) {
-            setCellImageResource(pos, iconsProvider.getFireIconId(fireLineType));
+        Collection<Position> cellsPositions = fireLine.getCellsPositions();
+        for (Position pos : cellsPositions) {
+            setCellImageResource(pos, randomIconsProvider.getRandomFireIconId(fireLineType));
         }
     }
 

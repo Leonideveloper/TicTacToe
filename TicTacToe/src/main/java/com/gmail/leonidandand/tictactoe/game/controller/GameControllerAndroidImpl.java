@@ -19,10 +19,6 @@ public class GameControllerAndroidImpl implements GameController {
         view.plugModel(model);
     }
 
-    public GameViewAndroidImpl getView() {
-        return view;
-    }
-
     @Override
     public void onViewIsReadyToStartGame() {
         model.onViewIsReadyToStartGame();
@@ -33,5 +29,9 @@ public class GameControllerAndroidImpl implements GameController {
         view.blockMoves();
         model.onPlayerMove(movePos);
         view.unblockMoves();
+    }
+
+    public GameViewAndroidImpl getView() {
+        return view;
     }
 }

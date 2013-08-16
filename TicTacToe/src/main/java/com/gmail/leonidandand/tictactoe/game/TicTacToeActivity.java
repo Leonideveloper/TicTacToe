@@ -60,7 +60,18 @@ public class TicTacToeActivity extends Activity implements CapableSaveRestoreSta
     public void saveState(Map<String, Object> bundle) {
         GameViewAndroidImpl view = controller.getView();
         view.saveState(bundle);
-        view.unplugModel();
         bundle.put(MODEL_KEY, model);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        view.plugModel(model);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        view.unplugModel();
     }
 }

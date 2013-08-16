@@ -21,7 +21,7 @@ public class GameScoreDisplayAndroidImpl implements GameScoreDisplay, CapableSav
     private final TextView playerScore;
     private final TextView opponentScore;
 
-    public GameScoreDisplayAndroidImpl(Activity activity) {
+    GameScoreDisplayAndroidImpl(Activity activity) {
         playerScore = (TextView) activity.findViewById(R.id.playerScore);
         opponentScore = (TextView) activity.findViewById(R.id.opponentScore);
     }

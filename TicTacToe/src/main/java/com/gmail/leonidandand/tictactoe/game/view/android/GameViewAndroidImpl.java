@@ -33,8 +33,10 @@ public class GameViewAndroidImpl extends GameViewImpl implements CapableSaveRest
         activity.setContentView(R.layout.tic_tac_toe_activity);
 
         opponentMoveProgressBar = new OpponentMoveProgressBarAndroidImpl(activity);
+
         gameScoreDisplay = new GameScoreDisplayAndroidImpl(activity);
         gameScoreDisplay.showScore(model.getScore());
+
         gameResultDisplay = new GameResultDisplayAndroidToastImpl(activity);
 
         GameBoardCreator gameBoardCreator = new GameBoardCreator(activity);

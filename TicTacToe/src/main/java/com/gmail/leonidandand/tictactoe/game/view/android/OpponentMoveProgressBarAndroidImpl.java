@@ -22,7 +22,7 @@ public class OpponentMoveProgressBarAndroidImpl
 
     OpponentMoveProgressBarAndroidImpl(Activity activity) {
         progressBar = activity.findViewById(R.id.progressBar);
-        displayed = false;
+        hide();
     }
 
     @Override
@@ -44,9 +44,11 @@ public class OpponentMoveProgressBarAndroidImpl
 
     @Override
     public void restoreState(Map<String, Object> bundle) {
-        displayed = (Boolean) bundle.get(DISPLAYED_KEY);
-        if (displayed) {
+        Boolean needToDisplay = (Boolean) bundle.get(DISPLAYED_KEY);
+        if (needToDisplay) {
             show();
+        } else {
+            hide();
         }
     }
 }

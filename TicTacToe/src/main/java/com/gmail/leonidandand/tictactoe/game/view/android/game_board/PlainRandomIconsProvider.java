@@ -1,7 +1,7 @@
 package com.gmail.leonidandand.tictactoe.game.view.android.game_board;
 
 import com.gmail.leonidandand.tictactoe.R;
-import com.gmail.leonidandand.tictactoe.game.model.game_judge.FireLine;
+import com.gmail.leonidandand.tictactoe.game.model.tic_tac_toe_result.FireLine;
 
 import java.util.Random;
 
@@ -9,7 +9,7 @@ import java.util.Random;
  * Created by Leonid on 19.07.13.
  */
 
-public class PlainIconsProvider implements IconsProvider {
+public class PlainRandomIconsProvider implements RandomIconsProvider {
 
     private static final int[] CROSS_ICONS_IDS = {
             R.drawable.cross_1, R.drawable.cross_2, R.drawable.cross_3
@@ -38,12 +38,12 @@ public class PlainIconsProvider implements IconsProvider {
     };
 
     @Override
-    public int getEmptyIconId() {
+    public int getRandomEmptyIconId() {
         return R.drawable.empty;
     }
 
     @Override
-    public int getCrossIconId() {
+    public int getRandomCrossIconId() {
         return randomElement(CROSS_ICONS_IDS);
     }
 
@@ -60,12 +60,12 @@ public class PlainIconsProvider implements IconsProvider {
     }
 
     @Override
-    public int getZeroIconId() {
+    public int getRandomZeroIconId() {
         return randomElement(ZERO_ICONS_IDS);
     }
 
     @Override
-    public int getFireIconId(FireLine.Type fireLineType) {
+    public int getRandomFireIconId(FireLine.Type fireLineType) {
         return randomElement(FIRE_ICONS_IDS);
     }
 }

@@ -6,7 +6,7 @@ import com.gmail.leonidandand.matrix.OnEachHandler;
 import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model.game_judge.GameJudge;
 import com.gmail.leonidandand.tictactoe.game.model.game_judge.GameJudgeImpl;
-import com.gmail.leonidandand.tictactoe.game.model.game_judge.TicTacToeResult;
+import com.gmail.leonidandand.tictactoe.game.model.tic_tac_toe_result.TicTacToeResult;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnOpponentMoveListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnScoreChangedListener;
@@ -44,7 +44,9 @@ public class GameModelImpl implements GameModel {
         gameJudge = new GameJudgeImpl(gameBoard);
 
         score = new Score();
+
         opponentMovesFirst = false;
+
         setOpponent(OpponentFactory.createDefault());
     }
 
@@ -59,8 +61,8 @@ public class GameModelImpl implements GameModel {
 
     @Override
     public void setOpponent(Opponent opponent) {
-        opponent.setGameBoard(gameBoard);
         this.opponent = opponent;
+        opponent.setGameBoard(gameBoard);
     }
 
     @Override
