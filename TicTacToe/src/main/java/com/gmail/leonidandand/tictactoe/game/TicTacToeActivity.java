@@ -10,16 +10,14 @@ import com.gmail.leonidandand.tictactoe.game.model.opponent.Opponent;
 import com.gmail.leonidandand.tictactoe.game.model.opponent.StupidAIOpponent;
 import com.gmail.leonidandand.tictactoe.game.view.android.GameViewAndroidImpl;
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class TicTacToeActivity extends Activity {
+public class TicTacToeActivity extends Activity implements CapableSaveRestoreState {
+
+    private static final String MODEL_KEY = "TicTacToeActivity.MVC.model";
 
     private static final int GAME_BOARD_DIMENSION = 11;
     private static final Opponent OPPONENT = new StupidAIOpponent();
-
-    private static final Map<String, Object> BUNDLE = new HashMap<String, Object>();
-    private static final String MODEL_KEY = "TicTacToeActivity.model";
 
     private GameModel model;
     private GameViewAndroidImpl view;
@@ -29,19 +27,20 @@ public class TicTacToeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        boolean recreationOfActivityDueToChangesInRuntime = (savedInstanceState != null);
-        if (recreationOfActivityDueToChangesInRuntime) {
-            restoreState();
+        boolean restartingOfActivity = (savedInstanceState != null);
+        if (restartingOfActivity) {
+            restoreState(BundleProvider.getBundleToRestoreState());
         } else {
             initGame();
         }
     }
 
-    private void restoreState() {
-        model = (GameModel) BUNDLE.get(MODEL_KEY);
+    @Override
+    public void restoreState(Map<String, Object> bundle) {
+        model = (GameModel) bundle.get(MODEL_KEY);
         controller = new GameControllerAndroidImpl(model, this);
         view = controller.getView();
-        view.restoreState(BUNDLE);
+        view.restoreState(bundle);
     }
 
     private void initGame() {
@@ -54,14 +53,14 @@ public class TicTacToeActivity extends Activity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        BUNDLE.clear();
-        saveState();
+        saveState(BundleProvider.getBundleToSaveState());
     }
 
-    private void saveState() {
+    @Override
+    public void saveState(Map<String, Object> bundle) {
         GameViewAndroidImpl view = controller.getView();
-        view.saveState(BUNDLE);
+        view.saveState(bundle);
         view.unplugModel();
-        BUNDLE.put(MODEL_KEY, model);
+        bundle.put(MODEL_KEY, model);
     }
 }
