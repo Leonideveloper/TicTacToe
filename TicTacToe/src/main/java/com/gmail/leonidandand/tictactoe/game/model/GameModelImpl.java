@@ -6,12 +6,11 @@ import com.gmail.leonidandand.matrix.OnEachHandler;
 import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model.game_judge.GameJudge;
 import com.gmail.leonidandand.tictactoe.game.model.game_judge.GameJudgeImpl;
-import com.gmail.leonidandand.tictactoe.game.model.tic_tac_toe_result.TicTacToeResult;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnOpponentMoveListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnScoreChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model.opponent.Opponent;
-import com.gmail.leonidandand.tictactoe.game.model.opponent.OpponentFactory;
+import com.gmail.leonidandand.tictactoe.game.model.tic_tac_toe_result.TicTacToeResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +20,15 @@ import java.util.List;
  */
 public class GameModelImpl implements GameModel {
 
+    protected final Matrix<Cell> gameBoard;
+    protected final GameJudge gameJudge;
+
     private final int gameBoardDimension;
-    private final Matrix<Cell> gameBoard;
-    private final GameJudge gameJudge;
     private final Score score;
     private final List<OnOpponentMoveListener> onOpponentMoveListeners;
     private final List<OnGameFinishedListener> onGameFinishedListeners;
     private final List<OnScoreChangedListener> onScoreChangedListeners;
-    private boolean opponentMovesFirst;
+    protected boolean opponentMovesFirst;
     private Opponent opponent;
 
     public GameModelImpl(int gameBoardDimension) {
@@ -46,8 +46,6 @@ public class GameModelImpl implements GameModel {
         score = new Score();
 
         opponentMovesFirst = false;
-
-        setOpponent(OpponentFactory.createDefault());
     }
 
     private void initByEmpty(final Matrix<Cell> gameBoard) {
@@ -135,7 +133,7 @@ public class GameModelImpl implements GameModel {
         }
     }
 
-    private void onGameFinished(TicTacToeResult result) {
+    protected void onGameFinished(TicTacToeResult result) {
         GameState gameState = result.getGameState();
         opponentMovesFirst = defineOpponentMovesFirst(gameState);
         notifyOnGameFinishedListeners(result);

@@ -7,17 +7,18 @@ import com.gmail.leonidandand.tictactoe.game.controller.GameControllerAndroidImp
 import com.gmail.leonidandand.tictactoe.game.model.GameModel;
 import com.gmail.leonidandand.tictactoe.game.model.GameModelImpl;
 import com.gmail.leonidandand.tictactoe.game.model.opponent.Opponent;
-import com.gmail.leonidandand.tictactoe.game.model.opponent.StupidAIOpponent;
+import com.gmail.leonidandand.tictactoe.game.model.opponent.OpponentFactory;
 import com.gmail.leonidandand.tictactoe.game.view.android.GameViewAndroidImpl;
 
 import java.util.Map;
 
 public class TicTacToeActivity extends Activity implements CapableSaveRestoreState {
 
+    public static final String DIFFICULTY_LEVEL_KEY = "TicTacToeActivity.DIFFICULTY_LEVEL";
+
     private static final String MODEL_KEY = "TicTacToeActivity.MVC.model";
 
     private static final int GAME_BOARD_DIMENSION = 11;
-    private static final Opponent OPPONENT = new StupidAIOpponent();
 
     private GameModel model;
     private GameViewAndroidImpl view;
@@ -45,9 +46,15 @@ public class TicTacToeActivity extends Activity implements CapableSaveRestoreSta
 
     private void initGame() {
         model = new GameModelImpl(GAME_BOARD_DIMENSION);
-        model.setOpponent(OPPONENT);
+        Opponent opponent = OpponentFactory.createByDifficultyLevel(extractDifficultyLevel());
+        model.setOpponent(opponent);
         controller = new GameControllerAndroidImpl(model, this);
         view = controller.getView();
+    }
+
+    private DifficultyLevel extractDifficultyLevel() {
+        String name = getIntent().getStringExtra(DIFFICULTY_LEVEL_KEY);
+        return DifficultyLevel.valueOf(name);
     }
 
     @Override

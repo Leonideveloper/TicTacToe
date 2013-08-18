@@ -30,7 +30,7 @@ public class GameResultDisplayAndroidToastImpl
     @Override
     public void show(GameState gameState) {
         this.gameState = gameState;
-        Toast.makeText(activity, gameState.name(), Toast.LENGTH_LONG).show();
+        Toast.makeText(activity, gameState.name(), Toast.LENGTH_SHORT).show();
         displayed = true;
     }
 

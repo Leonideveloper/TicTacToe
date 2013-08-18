@@ -146,9 +146,9 @@
             <file
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values\dimens.xml"
                 qualifiers="" >
-                <dimen name="activity_horizontal_margin" >16dp
-                </dimen>
                 <dimen name="score_text_size" >35sp
+                </dimen>
+                <dimen name="activity_horizontal_margin" >16dp
                 </dimen>
                 <dimen name="adWidthSpace" >60dp
                 </dimen>
@@ -227,6 +227,11 @@
                 name="tic_tac_toe_activity"
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\layout-land\tic_tac_toe_activity.xml"
                 qualifiers="land"
+                type="layout" />
+            <file
+                name="start_game_menu_activity"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\layout\start_game_menu_activity.xml"
+                qualifiers=""
                 type="layout" />
         </source>
         <source path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\rs\debug" />

@@ -1,22 +1,13 @@
 package com.gmail.leonidandand.tictactoe.game.model.opponent;
 
 import com.gmail.leonidandand.matrix.Dimension;
-import com.gmail.leonidandand.matrix.Matrix;
 import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model.Cell;
 
 /**
- * Created by Leonid on 18.07.13.
+ * Created by Leonid on 18.08.13.
  */
-public class StupidAIOpponent implements Opponent {
-
-    private Matrix<Cell> gameBoard;
-
-    @Override
-    public void setGameBoard(Matrix<Cell> gameBoard) {
-        this.gameBoard = gameBoard;
-    }
-
+public class EasyOpponent extends BaseOpponent {
     @Override
     public Position positionToMove() {
         Dimension dim = gameBoard.getDimension();
