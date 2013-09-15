@@ -1,0 +1,43 @@
+TicTacToeTheme:
+	mainMenu
+	startGameMenu
+	selectThemeMenu
+	game
+	firstPlayer : PlayerTheme
+	secondPlayer : PlayerTheme
+	
+	
+MainMenuTheme:
+	screenBackgroundId()
+	itemsTextColor()
+	
+	
+SelectThemeMenuTheme:
+	listItemBackgroundId()
+	versusIconId() // Player1 vs. Player2:  vs. <- versus icon here
+	
+	
+StartGameMenuTheme:
+	screenBackgroundId()
+	startGameButtonBackgroundId()
+	startGameButtonTextColor()
+	
+		
+GameTheme:
+	scoreTextSize()
+	scoreBackgroundId()
+	gameBoardBackgroundId()
+	screenBackgroundId()
+	
+		
+PlayerTheme:
+	selectThemeMenuIconId()
+	startGameMenuIconId()
+	winnerIconId()
+	scoreIconId()
+	scoreTextColor()
+	moveIconId()
+	fireIconId()
+	moveSoundId()
+	fireSoundId()
+	winnerSoundId()

@@ -11,13 +11,12 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Player"
-            android:id="@+id/playerScore"
+            android:text="Player1"
+            android:id="@+id/scoreOfPlayer1"
             android:singleLine="true"
             android:textSize="@dimen/score_text_size"
-            android:textColor="@color/player_score_color"
-            android:layout_toLeftOf="@+id/gameBoardFrameLayout"
-            android:layout_alignParentTop="true"
+            android:textColor="@color/player_1_score_color"
+            android:layout_alignTop="@+id/gameBoardFrameLayout"
             android:layout_alignParentLeft="true"/>
 
     <TextView
@@ -64,13 +63,12 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Opponnent"
-            android:id="@+id/opponentScore"
+            android:text="Player2"
+            android:id="@+id/scoreOfPlayer2"
             android:singleLine="true"
             android:textSize="@dimen/score_text_size"
-            android:textColor="@color/opponent_score_color"
-            android:layout_below="@+id/playerScore"
-            android:layout_toLeftOf="@+id/gameBoardFrameLayout"
+            android:textColor="@color/player_2_score_color"
+            android:layout_above="@+id/secondPlayerProgressBar"
             android:layout_alignParentLeft="true"/>
 
     <TextView
@@ -78,16 +76,34 @@
             android:layout_height="wrap_content"
             android:text="123456"
             android:id="@+id/scoreWidthTextView"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
             android:textSize="@dimen/score_text_size"
-            android:textColor="@android:color/transparent"/>
+            android:textColor="@android:color/transparent"
+            android:layout_above="@+id/secondPlayerProgressBar"
+            android:layout_alignParentLeft="true"/>
 
     <TextView
-            android:layout_width="@dimen/adWidthSpace"
+            android:layout_width="@dimen/ad_width_space"
             android:layout_height="20dp"
             android:id="@+id/adWidthTextView"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"/>
+
+    <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/firstPlayerProgressBar"
+            android:indeterminate="false"
+            android:background="@color/player_1_score_color"
+            android:layout_below="@+id/scoreOfPlayer1"
+            android:layout_alignLeft="@+id/scoreOfPlayer1"/>
+
+    <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/secondPlayerProgressBar"
+            android:indeterminate="false"
+            android:background="@color/player_2_score_color"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"/>
 
 </RelativeLayout>

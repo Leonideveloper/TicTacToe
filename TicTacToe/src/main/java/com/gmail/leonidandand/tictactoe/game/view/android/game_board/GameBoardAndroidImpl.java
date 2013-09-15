@@ -8,8 +8,8 @@ import com.gmail.leonidandand.matrix.Matrix;
 import com.gmail.leonidandand.matrix.OnEachHandler;
 import com.gmail.leonidandand.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.CapableSaveRestoreState;
-import com.gmail.leonidandand.tictactoe.game.model.tic_tac_toe_result.FireLine;
-import com.gmail.leonidandand.tictactoe.game.view.CellIcon;
+import com.gmail.leonidandand.tictactoe.game.model.game_judge.FireLine;
+import com.gmail.leonidandand.tictactoe.game.player.Player;
 import com.gmail.leonidandand.tictactoe.game.view.GameBoard;
 import com.gmail.leonidandand.tictactoe.game.view.OnCellClickListener;
 
@@ -18,21 +18,19 @@ import java.util.Map;
 
 public class GameBoardAndroidImpl implements GameBoard, CapableSaveRestoreState {
 
-    private static final String CELLS_BACKGROUND_KEY = "GameBoard.cellsBackgroundResources";
-    private static final String CELLS_IMAGE_KEY = "GameBoard.cellsImageResources";
-    private static final String CURRENT_ICON_KEY = "GameBoard.currentIcon";
+    private static final String FIRST_LAYER_IMAGE_KEY = "GameBoard.FIRST_LAYER_IMAGE_KEY";
+    private static final String SECOND_LAYER_IMAGE_KEY = "GameBoard.SECOND_LAYER_IMAGE_KEY";
 
-    private final RandomIconsProvider randomIconsProvider;
+    private final TicTacToeIconsProvider iconsProvider;
     private final Matrix<ImageView> cellsViews;
-    private Matrix<Integer> cellsBackgroundResourcesIds;
-    private Matrix<Integer> cellsImageResourcesIds;
-    private CellIcon currentIcon;
+    private Matrix<Integer> firstLayerCellImageResourcesIds;
+    private Matrix<Integer> secondLayerCellImageResourcesIds;
 
     GameBoardAndroidImpl(Matrix<ImageView> gameBoardCells) {
         cellsViews = gameBoardCells;
-        cellsBackgroundResourcesIds = new ArrayMatrix<Integer>(cellsViews.getDimension());
-        cellsImageResourcesIds = new ArrayMatrix<Integer>(cellsViews.getDimension());
-        randomIconsProvider = new PlainRandomIconsProvider();
+        firstLayerCellImageResourcesIds = new ArrayMatrix<Integer>(cellsViews.getDimension());
+        secondLayerCellImageResourcesIds = new ArrayMatrix<Integer>(cellsViews.getDimension());
+        iconsProvider = new PlainTicTacToeIconsProvider();
         clear();
     }
 
@@ -44,22 +42,42 @@ public class GameBoardAndroidImpl implements GameBoard, CapableSaveRestoreState 
                 clearCell(pos);
             }
         });
-        currentIcon = CellIcon.X;
     }
 
     private void clearCell(Position cellPos) {
-        setCellImageResource(cellPos, android.R.color.transparent);
-        setCellBackgroundResource(cellPos, randomIconsProvider.getRandomEmptyIconId());
+        setSecondLayerImageResource(cellPos, android.R.color.transparent);
+        setFirstLayerImageResource(cellPos, iconsProvider.getEmptyIconId());
     }
 
-    private void setCellImageResource(Position cellPos, int resId) {
-        cellsViews.get(cellPos).setImageResource(resId);
-        cellsImageResourcesIds.set(cellPos, resId);
-    }
-
-    private void setCellBackgroundResource(Position cellPos, int resId) {
+    private void setFirstLayerImageResource(Position cellPos, int resId) {
         cellsViews.get(cellPos).setBackgroundResource(resId);
-        cellsBackgroundResourcesIds.set(cellPos, resId);
+        firstLayerCellImageResourcesIds.set(cellPos, resId);
+    }
+
+    private void setSecondLayerImageResource(Position cellPos, int resId) {
+        cellsViews.get(cellPos).setImageResource(resId);
+        secondLayerCellImageResourcesIds.set(cellPos, resId);
+    }
+
+    @Override
+    public void showMove(Position pos, Player.Id playerId) {
+        int iconId = iconsProvider.getPlayerIconId(playerId);
+        setFirstLayerImageResource(pos, iconId);
+    }
+
+    @Override
+    public void showFireLines(Collection<FireLine> fireLines) {
+        for (FireLine each : fireLines) {
+            showFireLine(each);
+        }
+    }
+
+    private void showFireLine(FireLine fireLine) {
+        FireLine.Type fireLineType = fireLine.getFireLineType();
+        Collection<Position> cellsPositions = fireLine.getCellsPositions();
+        for (Position pos : cellsPositions) {
+            setSecondLayerImageResource(pos, iconsProvider.getFireIconId(fireLineType));
+        }
     }
 
     @Override
@@ -79,52 +97,22 @@ public class GameBoardAndroidImpl implements GameBoard, CapableSaveRestoreState 
     }
 
     @Override
-    public void showMove(Position pos) {
-        int iconId;
-        if (currentIcon == CellIcon.X) {
-            iconId = randomIconsProvider.getRandomCrossIconId();
-            currentIcon = CellIcon.O;
-        } else {
-            iconId = randomIconsProvider.getRandomZeroIconId();
-            currentIcon = CellIcon.X;
-        }
-        setCellBackgroundResource(pos, iconId);
-    }
-
-    @Override
-    public void showFireLines(Collection<FireLine> fireLines) {
-        for (FireLine each : fireLines) {
-            showFireLine(each);
-        }
-    }
-
-    private void showFireLine(FireLine fireLine) {
-        FireLine.Type fireLineType = fireLine.getFireLineType();
-        Collection<Position> cellsPositions = fireLine.getCellsPositions();
-        for (Position pos : cellsPositions) {
-            setCellImageResource(pos, randomIconsProvider.getRandomFireIconId(fireLineType));
-        }
-    }
-
-    @Override
     public void saveState(Map<String, Object> bundle) {
-        bundle.put(CELLS_BACKGROUND_KEY, cellsBackgroundResourcesIds);
-        bundle.put(CELLS_IMAGE_KEY, cellsImageResourcesIds);
-        bundle.put(CURRENT_ICON_KEY, currentIcon);
+        bundle.put(FIRST_LAYER_IMAGE_KEY, firstLayerCellImageResourcesIds);
+        bundle.put(SECOND_LAYER_IMAGE_KEY, secondLayerCellImageResourcesIds);
     }
 
     @Override
     public void restoreState(Map<String, Object> bundle) {
-        currentIcon = (CellIcon) bundle.get(CURRENT_ICON_KEY);
-        cellsImageResourcesIds = (Matrix<Integer>) bundle.get(CELLS_IMAGE_KEY);
-        cellsBackgroundResourcesIds = (Matrix<Integer>) bundle.get(CELLS_BACKGROUND_KEY);
-        cellsImageResourcesIds.forEach(new OnEachHandler<Integer>() {
+        firstLayerCellImageResourcesIds = (Matrix<Integer>) bundle.get(FIRST_LAYER_IMAGE_KEY);
+        secondLayerCellImageResourcesIds = (Matrix<Integer>) bundle.get(SECOND_LAYER_IMAGE_KEY);
+        secondLayerCellImageResourcesIds.forEach(new OnEachHandler<Integer>() {
             @Override
             public void handle(Position pos, Integer each) {
-                int imageResourceId = cellsImageResourcesIds.get(pos);
-                setCellImageResource(pos, imageResourceId);
-                int backgroundResourceId = cellsBackgroundResourcesIds.get(pos);
-                setCellBackgroundResource(pos, backgroundResourceId);
+                int secondLayerImageResourceId = secondLayerCellImageResourcesIds.get(pos);
+                setSecondLayerImageResource(pos, secondLayerImageResourceId);
+                int firstLayerImageResourceId = firstLayerCellImageResourcesIds.get(pos);
+                setFirstLayerImageResource(pos, firstLayerImageResourceId);
             }
         });
     }

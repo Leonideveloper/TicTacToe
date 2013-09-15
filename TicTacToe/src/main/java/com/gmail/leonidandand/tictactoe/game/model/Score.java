@@ -4,27 +4,27 @@ package com.gmail.leonidandand.tictactoe.game.model;
  * Created by Leonid on 29.07.13.
  */
 public class Score {
-    private int playerScore;
-    private int opponentScore;
+    private int player1;
+    private int player2;
 
     public Score() {
-        playerScore = 0;
-        opponentScore = 0;
+        player1 = 0;
+        player2 = 0;
     }
 
-    public int getPlayerScore() {
-        return playerScore;
+    public int getScoreOfPlayer1() {
+        return player1;
     }
 
-    public int getOpponentScore() {
-        return opponentScore;
+    public int getScoreOfPlayer2() {
+        return player2;
     }
 
-    public void increasePlayerScore() {
-        ++playerScore;
+    public void increaseScoreOfPlayer1() {
+        ++player1;
     }
 
-    public void increaseOpponentScore() {
-        ++opponentScore;
+    public void increaseScoreOfPlayer2() {
+        ++player2;
     }
 }

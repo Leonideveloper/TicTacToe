@@ -2,10 +2,7 @@ package com.gmail.leonidandand.tictactoe.game.model.game_judge;
 
 import com.gmail.leonidandand.matrix.Matrix;
 import com.gmail.leonidandand.matrix.Position;
-import com.gmail.leonidandand.tictactoe.game.model.Cell;
-import com.gmail.leonidandand.tictactoe.game.model.GameState;
-import com.gmail.leonidandand.tictactoe.game.model.tic_tac_toe_result.FireLine;
-import com.gmail.leonidandand.tictactoe.game.model.tic_tac_toe_result.TicTacToeResult;
+import com.gmail.leonidandand.tictactoe.game.player.Player;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,12 +13,14 @@ import java.util.List;
  * Created by Leonid on 18.07.13.
  */
 public class GameJudgeImpl implements GameJudge {
-    private final Matrix<Cell> gameBoard;
+    private final Matrix<Player.Id> gameBoard;
     private final int gameBoardDimension;
+    private final LineCellsPositions lineCellsPositions;
 
-    public GameJudgeImpl(Matrix<Cell> gameBoard) {
+    public GameJudgeImpl(Matrix<Player.Id> gameBoard) {
         this.gameBoard = gameBoard;
         this.gameBoardDimension = gameBoard.getDimension().rows;
+        this.lineCellsPositions = new LineCellsPositions(gameBoardDimension);
     }
 
     @Override
@@ -30,7 +29,7 @@ public class GameJudgeImpl implements GameJudge {
         if (result.isKnown()) {
             return result;
         }
-        if (gameBoard.contains(Cell.EMPTY)) {
+        if (gameBoard.contains(null)) {
             return TicTacToeResult.unknownResult();
         }
         return TicTacToeResult.drawResult();
@@ -97,45 +96,6 @@ public class GameJudgeImpl implements GameJudge {
         return TicTacToeResult.unknownResult();
     }
 
-    private TicTacToeResult checkRow(int row) {
-        return resultBy(cellsPositionsOnRow(row), FireLine.Type.ROW);
-    }
-
-    private List<Position> cellsPositionsOnRow(final int row) {
-        List<Position> cells = new ArrayList<Position>(gameBoardDimension);
-        for (int column = 0; column < gameBoardDimension; ++column) {
-            cells.add(new Position(row, column));
-        }
-        return cells;
-    }
-
-    private TicTacToeResult resultBy(List<Position> cellsPositions, FireLine.Type fireLineType) {
-        Position firstCellOnLinePosition = cellsPositions.get(0);
-        Cell firstCellOnLine = gameBoard.get(firstCellOnLinePosition);
-        if (firstCellOnLine == Cell.EMPTY) {
-            return TicTacToeResult.unknownResult();
-        }
-        for (int i = 1; i < gameBoardDimension; ++i) {
-            Position currentPosition = cellsPositions.get(i);
-            Cell currentCell = gameBoard.get(currentPosition);
-            if (firstCellOnLine != currentCell) {
-                return TicTacToeResult.unknownResult();
-            }
-        }
-        Collection<FireLine> fireLines = new ArrayList<FireLine>();
-        fireLines.add(new FireLine(cellsPositions, fireLineType));
-        return new TicTacToeResult(stateByCell(firstCellOnLine), fireLines);
-    }
-
-    private GameState stateByCell(Cell cell) {
-        if (cell == Cell.PLAYER) {
-            return GameState.PLAYER_WINS;
-        } else if (cell == Cell.OPPONENT) {
-            return GameState.OPPONENT_WINS;
-        }
-        throw new IllegalArgumentException("Input cell must be not empty!");
-    }
-
     private TicTacToeResult checkColumns() {
         for (int i = 0; i < gameBoardDimension; ++i) {
             TicTacToeResult result = checkColumn(i);
@@ -146,39 +106,48 @@ public class GameJudgeImpl implements GameJudge {
         return TicTacToeResult.unknownResult();
     }
 
-    private TicTacToeResult checkColumn(int column) {
-        return resultBy(cellsPositionsOnColumn(column), FireLine.Type.COLUMN);
+    private TicTacToeResult checkRow(int row) {
+        return resultBy(lineCellsPositions.onRow(row), FireLine.Type.ROW);
     }
 
-    private List<Position> cellsPositionsOnColumn(final int column) {
-        List<Position> cells = new ArrayList<Position>(gameBoardDimension);
-        for (int row = 0; row < gameBoardDimension; ++row) {
-            cells.add(new Position(row, column));
-        }
-        return cells;
+    private TicTacToeResult checkColumn(int column) {
+        return resultBy(lineCellsPositions.onColumn(column), FireLine.Type.COLUMN);
     }
 
     private TicTacToeResult checkLeftUpperDiagonal() {
-        return resultBy(cellsPositionsOnLeftUpperDiagonal(), FireLine.Type.LEFT_UPPER_DIAGONAL);
-    }
-
-    private List<Position> cellsPositionsOnLeftUpperDiagonal() {
-        List<Position> positions = new ArrayList<Position>(gameBoardDimension);
-        for (int i = 0; i < gameBoardDimension; ++i) {
-            positions.add(new Position(i, i));
-        }
-        return positions;
+        return resultBy(lineCellsPositions.onLeftUpperDiagonal(),
+                        FireLine.Type.LEFT_UPPER_DIAGONAL);
     }
 
     private TicTacToeResult checkRightUpperDiagonal() {
-        return resultBy(cellsPositionsOnRightUpperDiagonal(), FireLine.Type.RIGHT_UPPER_DIAGONAL);
+        return resultBy(lineCellsPositions.onRightUpperDiagonal(),
+                        FireLine.Type.RIGHT_UPPER_DIAGONAL);
     }
 
-    private List<Position> cellsPositionsOnRightUpperDiagonal() {
-        List<Position> positions = new ArrayList<Position>(gameBoardDimension);
-        for (int i = 0; i < gameBoardDimension; ++i) {
-            positions.add(new Position(i, gameBoardDimension - i - 1));
+    private TicTacToeResult resultBy(List<Position> cellsPositions, FireLine.Type fireLineType) {
+        Position firstCellOnLinePosition = cellsPositions.get(0);
+        Player.Id firstCellOnLine = gameBoard.get(firstCellOnLinePosition);
+        if (firstCellOnLine == null) {
+            return TicTacToeResult.unknownResult();
         }
-        return positions;
+        for (int i = 1; i < gameBoardDimension; ++i) {
+            Position currentPosition = cellsPositions.get(i);
+            Player.Id currentCell = gameBoard.get(currentPosition);
+            if (firstCellOnLine != currentCell) {
+                return TicTacToeResult.unknownResult();
+            }
+        }
+        Collection<FireLine> fireLines = new ArrayList<FireLine>();
+        fireLines.add(new FireLine(cellsPositions, fireLineType));
+        return new TicTacToeResult(stateByCell(firstCellOnLine), fireLines);
+    }
+
+    private GameState stateByCell(Player.Id cell) {
+        if (cell == Player.Id.PLAYER_1) {
+            return GameState.PLAYER_1_WINS;
+        } else if (cell == Player.Id.PLAYER_2) {
+            return GameState.PLAYER_2_WINS;
+        }
+        throw new IllegalArgumentException("Input cell must be not empty!");
     }
 }

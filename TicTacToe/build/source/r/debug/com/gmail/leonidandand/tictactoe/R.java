@@ -12,13 +12,13 @@ public final class R {
     }
     public static final class color {
         public static final int light_green=0x7f040000;
-        public static final int opponent_score_color=0x7f040001;
-        public static final int player_score_color=0x7f040002;
+        public static final int player_1_score_color=0x7f040001;
+        public static final int player_2_score_color=0x7f040002;
     }
     public static final class dimen {
         public static final int activity_horizontal_margin=0x7f050000;
         public static final int activity_vertical_margin=0x7f050001;
-        public static final int adWidthSpace=0x7f050002;
+        public static final int ad_width_space=0x7f050002;
         public static final int score_text_size=0x7f050003;
     }
     public static final class drawable {
@@ -42,20 +42,23 @@ public final class R {
         public static final int zero_3=0x7f020011;
     }
     public static final class id {
-        public static final int action_settings=0x7f09000d;
+        public static final int action_settings=0x7f090010;
         public static final int adTextView=0x7f090007;
-        public static final int adWidthTextView=0x7f09000b;
+        public static final int adWidthTextView=0x7f09000d;
         public static final int difficultyLevelRadioGroup=0x7f090002;
         public static final int easyRadioButton=0x7f090001;
+        public static final int firstPlayerProgressBar=0x7f09000b;
         public static final int gameBoardFrameLayout=0x7f090008;
         public static final int gameScoreTextView=0x7f090006;
         public static final int hardRadioButton=0x7f090004;
         public static final int mediumRadioButton=0x7f090003;
-        public static final int opponentScore=0x7f09000a;
-        public static final int playerScore=0x7f090005;
-        public static final int progressBar=0x7f090009;
-        public static final int scoreWidthTextView=0x7f09000c;
+        public static final int progressBar=0x7f09000f;
+        public static final int scoreOfPlayer1=0x7f090005;
+        public static final int scoreOfPlayer2=0x7f09000a;
+        public static final int scoreWidthTextView=0x7f09000e;
+        public static final int secondPlayerProgressBar=0x7f09000c;
         public static final int startGameButton=0x7f090000;
+        public static final int textView=0x7f090009;
     }
     public static final class layout {
         public static final int cell_image_view=0x7f030000;

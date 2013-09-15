@@ -22,8 +22,8 @@ public class GameBoardCreator {
         this.activity = activity;
     }
 
-    public GameBoardAndroidImpl createGameBoard(final int dim) {
-        return new GameBoardAndroidImpl(prepareCells(dim));
+    public GameBoardAndroidImpl createGameBoardByDimension(int dimension) {
+        return new GameBoardAndroidImpl(prepareCells(dimension));
     }
 
     private Matrix<ImageView> prepareCells(final int gameBoardDimension) {

@@ -1,0 +1,147 @@
+Controller:
+	view;
+	player_1;
+	player_2;
+	model;
+
+	def __init__(gameMode, firstPlayerInfo, secondPlayerInfo):
+		view = prepareView();
+		preparePlayers(gameMode, firstPlayerInfo, secondPlayerInfo);
+		model = prepareModel(player_1, player_2);
+		player_1.setModel(model);
+		player_2.setModel(model);
+		view.addOnCellClickListener(player_1);
+		if player_2.isHuman():
+			view.addOnCellClickListener(player_2);
+			
+		
+	def preparePlayers(gameMode, firstPlayerInfo, secondPlayerInfo):
+		player_1 = createHumanPlayer(firstPlayerInfo);
+		if gameMode == GameMode.HUMAN_AI:
+			player_2 = createAIPlayer(secondPlayerInfo);
+		elif gameMode == GameMode.HUMAN_HUMAN:
+			player_2 = createHumanPlayer(secondPlayerInfo);
+		else:
+			player_2 = createRemotePlayer(secondPlayerInfo);
+		
+		
+
+View:
+	def onClick(Position pos):
+		if (!movesBlocked()):
+			Coordinate cellCoordinate = positionToCellCoordinate(pos);
+			notifyOnCellClickListeners(cellCoordinate);
+		
+
+		
+class Player:
+	boolean movesEnabled;
+	Model model;
+
+	def __init__():
+		movesEnabled = False;
+		
+	def setModel(Model model):
+		self.model = model;
+
+	def enableMoves():
+		movesEnabled = True;
+		
+	def disableMoves():
+		movesEnabled = False;
+		
+	def isHuman():
+		pass;
+		
+	def isAI():
+		pass;
+		
+	def isRemote():
+		pass;
+
+		
+class OnCellClickListener:
+	def onCellClick(Coordinate cellCoordinate):
+		pass;
+		
+		
+class HumanPlayer(Player, OnCellClickListener):
+	def __init__():
+		super.__init__();
+		
+	def isHuman():
+		return True;
+		
+	def isAI():
+		return False;
+		
+	def isRemote():
+		return False;
+
+	def onCellClick(Coordinate cellCoordinate):
+		if movesEnabled and model.isEmptyCell(cellCoordinate):
+			view.blockInput();
+			model.onMove(cellCoordinate);
+			view.unblockInput();
+			
+
+class AIPlayer(Player):		
+	def isHuman():
+		return False;
+		
+	def isAI():
+		return True;
+		
+	def isRemote():
+		return False;
+
+	def enableMoves():
+		moveCoordinate = calculateCoordinateToMove();
+		model.onMove(moveCoordinate);
+		
+	def calculateCoordinateToMove():
+		pass;
+		
+		
+class NormalAIPlayer(AIPlayer):
+	def calculateCoordinateToMove():
+		// calculation
+		
+		
+class HardAIPlayer(AIPlayer):
+	def calculateCoordinateToMove():
+		// calculation
+	
+		
+
+class Model:
+	Player player_1;
+	Player player_2;
+	Player nextMovePlayer;
+	
+	def __init__():
+		nextMovePlayer = player_1;
+	
+	def onViewIsReadyToStartGame():
+		nextMovePlayer.enableMoves();
+
+	def onMove(MatrixCoordinate moveCoordinate, Player player):
+		player.disableMoves();
+		cells.set(moveCoordinate, player.getOrderNumber());
+		gameResult = defineGameResult();
+		if (gameResult.isKnown()):
+			onGameFinished(gameResult);
+			nextMovePlayer = defineNextMovePlayerByGameResult(gameResult);
+		else:
+			nextMovePlayer = (player == player_1 ? player_2 : player_1);
+			nextMovePlayer.enableMoves();
+			
+			
+	def onGameFinished(GameResult gameResult) {
+		notifyOnGameFinishedListeners(gameResult);
+		if (gameResult != GameResult.DRAW) {
+			changeScore(score);
+			notifyOnScoreChangedListeners(score);
+		}
+		cells.clear();
+	}

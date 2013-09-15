@@ -138,14 +138,20 @@
                 qualifiers="" >
                 <color name="light_green" >#5bae28
                 </color>
+                <color name="player_2_score_color" >#ff2c2e
+                </color>
                 <color name="opponent_score_color" >#ff2c2e
                 </color>
                 <color name="player_score_color" >#ff52b72e
+                </color>
+                <color name="player_1_score_color" >#ff52b72e
                 </color>
             </file>
             <file
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values\dimens.xml"
                 qualifiers="" >
+                <dimen name="ad_width_space" >60dp
+                </dimen>
                 <dimen name="score_text_size" >35sp
                 </dimen>
                 <dimen name="activity_horizontal_margin" >16dp
