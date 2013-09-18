@@ -20,12 +20,16 @@ public class PlayersFactoryImpl implements PlayersFactory {
     private Player createPlayer(Player.Id playerId, String playerType, TicTacToeModel model) {
         if (playerType.equals(PlayerTypes.HUMAN)) {
             return new HumanPlayer(playerId, model);
+
         } else if (playerType.equals(PlayerTypes.Ai.NORMAL)) {
             return new AINormalPlayer(playerId, model);
+
         } else if (playerType.equals(PlayerTypes.Ai.HARD)) {
             throwNotYetImplementedType(playerType);
+
         } else if (playerType.equals(PlayerTypes.Remote.BLUE_TOOTH)) {
             throwNotYetImplementedType(playerType);
+
         } else if (playerType.equals(PlayerTypes.Remote.WIFI)) {
             throwNotYetImplementedType(playerType);
         }
