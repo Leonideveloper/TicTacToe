@@ -3,26 +3,39 @@ package com.gmail.leonidandand.tictactoe.game;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.gmail.leonidandand.tictactoe.game.player.Player;
+import com.gmail.leonidandand.tictactoe.game.players.PlayerTypes;
 
 public class TicTacToeActivity extends Activity {
 
-    private static TicTacToeControllerNewArchitecture controller;
+    private static TicTacToeController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        TicTacToeContext.setGameBoardDimension(3);
-        TicTacToeContext.setFirstPlayerType(Player.Type.HUMAN);
-        TicTacToeContext.setSecondPlayerType(Player.Type.HUMAN);
+        initContext();
 
         boolean restartingOfActivity = (savedInstanceState != null);
         if (restartingOfActivity) {
             controller.onRestoreState(this);
         } else {
-            controller = new TicTacToeControllerNewArchitecture(this);
+            controller = createController();
         }
+    }
+
+    private void initContext() {
+        TicTacToeContext.setGameBoardDimension(13);
+        TicTacToeContext.setFirstPlayerType(PlayerTypes.HUMAN);
+        TicTacToeContext.setSecondPlayerType(PlayerTypes.Ai.NORMAL);
+    }
+
+    private TicTacToeController createController() {
+        return new TicTacToeController(
+                this,
+                TicTacToeContext.getGameBoardDimension(),
+                TicTacToeContext.getFirstPlayerType(),
+                TicTacToeContext.getSecondPlayerType()
+        );
     }
 
     @Override

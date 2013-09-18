@@ -1,8 +1,8 @@
 package com.gmail.leonidandand.tictactoe.game.view;
 
 import com.gmail.leonidandand.matrix.Position;
-import com.gmail.leonidandand.tictactoe.game.model.game_judge.FireLine;
-import com.gmail.leonidandand.tictactoe.game.player.Player;
+import com.gmail.leonidandand.tictactoe.game.model.result.FireLine;
+import com.gmail.leonidandand.tictactoe.game.model.player.Player;
 
 import java.util.Collection;
 

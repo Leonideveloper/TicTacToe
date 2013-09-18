@@ -1,20 +1,18 @@
 package com.gmail.leonidandand.tictactoe.game;
 
-import com.gmail.leonidandand.tictactoe.game.player.Player;
-
 /**
  * Created by Leonid on 07.09.13.
  */
 public class TicTacToeContext {
     private static int gameBoardDimension;
-    private static Player.Type firstPlayerType;
-    private static Player.Type secondPlayerType;
+    private static String firstPlayerType;
+    private static String secondPlayerType;
 
-    public static Player.Type getFirstPlayerType() {
+    public static String getFirstPlayerType() {
         return firstPlayerType;
     }
 
-    public static Player.Type getSecondPlayerType() {
+    public static String getSecondPlayerType() {
         return secondPlayerType;
     }
 
@@ -26,11 +24,11 @@ public class TicTacToeContext {
         TicTacToeContext.gameBoardDimension = gameBoardDimension;
     }
 
-    public static void setFirstPlayerType(Player.Type firstPlayerType) {
+    public static void setFirstPlayerType(String firstPlayerType) {
         TicTacToeContext.firstPlayerType = firstPlayerType;
     }
 
-    public static void setSecondPlayerType(Player.Type secondPlayerType) {
+    public static void setSecondPlayerType(String secondPlayerType) {
         TicTacToeContext.secondPlayerType = secondPlayerType;
     }
 }

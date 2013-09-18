@@ -59,16 +59,6 @@
                 qualifiers=""
                 type="drawable" />
             <file
-                name="give_up"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\give_up.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="give_up_pressed_background"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\give_up_pressed_background.png"
-                qualifiers=""
-                type="drawable" />
-            <file
                 name="left_upper_diagonal_fire_line_1"
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\left_upper_diagonal_fire_line_1.png"
                 qualifiers=""
@@ -81,11 +71,6 @@
             <file
                 name="row_fire_line_1"
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\row_fire_line_1.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="selector_give_up_background"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\selector_give_up_background.xml"
                 qualifiers=""
                 type="drawable" />
             <file
@@ -124,9 +109,19 @@
                 qualifiers=""
                 type="layout" />
             <file
+                name="start_game_menu_activity"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\layout\start_game_menu_activity.xml"
+                qualifiers=""
+                type="layout" />
+            <file
                 name="tic_tac_toe_activity"
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\layout\tic_tac_toe_activity.xml"
                 qualifiers=""
+                type="layout" />
+            <file
+                name="tic_tac_toe_activity"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\layout-land\tic_tac_toe_activity.xml"
+                qualifiers="land"
                 type="layout" />
             <file
                 name="tic_tac_toe"
@@ -136,13 +131,9 @@
             <file
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values\colors.xml"
                 qualifiers="" >
-                <color name="light_green" >#5bae28
-                </color>
                 <color name="player_2_score_color" >#ff2c2e
                 </color>
-                <color name="opponent_score_color" >#ff2c2e
-                </color>
-                <color name="player_score_color" >#ff52b72e
+                <color name="light_green" >#5bae28
                 </color>
                 <color name="player_1_score_color" >#ff52b72e
                 </color>
@@ -155,8 +146,6 @@
                 <dimen name="score_text_size" >35sp
                 </dimen>
                 <dimen name="activity_horizontal_margin" >16dp
-                </dimen>
-                <dimen name="adWidthSpace" >60dp
                 </dimen>
                 <dimen name="activity_vertical_margin" >16dp
                 </dimen>
@@ -224,21 +213,6 @@
                     <!-- API 14 theme customizations can go here. -->
                 </style>
             </file>
-            <file
-                name="give_up_normal_background"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\give_up_normal_background.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="tic_tac_toe_activity"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\layout-land\tic_tac_toe_activity.xml"
-                qualifiers="land"
-                type="layout" />
-            <file
-                name="start_game_menu_activity"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\layout\start_game_menu_activity.xml"
-                qualifiers=""
-                type="layout" />
         </source>
         <source path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\rs\debug" />
     </dataSet>
