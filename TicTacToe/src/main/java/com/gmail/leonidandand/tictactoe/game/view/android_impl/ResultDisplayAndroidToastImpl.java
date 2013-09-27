@@ -3,7 +3,7 @@ package com.gmail.leonidandand.tictactoe.game.view.android_impl;
 import android.app.Activity;
 import android.widget.Toast;
 
-import com.gmail.leonidandand.tictactoe.game.model.result.TicTacToeResult;
+import com.gmail.leonidandand.tictactoe.game.model.judge.TicTacToeResult;
 import com.gmail.leonidandand.tictactoe.game.view.ResultDisplay;
 
 /**

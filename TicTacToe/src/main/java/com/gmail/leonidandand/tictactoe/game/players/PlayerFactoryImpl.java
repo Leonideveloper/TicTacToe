@@ -9,10 +9,12 @@ import com.gmail.leonidandand.tictactoe.game.model.player.PlayerFactory;
  */
 public class PlayerFactoryImpl implements PlayerFactory {
 
+    @Override
     public Player createFirstPlayer(String playerType, TicTacToeModel model) {
         return createPlayer(Player.Id.PLAYER_1, playerType, model);
     }
 
+    @Override
     public Player createSecondPlayer(String playerType, TicTacToeModel model) {
         return createPlayer(Player.Id.PLAYER_2, playerType, model);
     }

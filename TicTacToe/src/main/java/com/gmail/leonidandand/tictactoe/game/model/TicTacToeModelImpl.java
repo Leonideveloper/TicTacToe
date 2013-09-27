@@ -1,9 +1,6 @@
 package com.gmail.leonidandand.tictactoe.game.model;
 
 import com.gmail.landanurm.matrix.Position;
-import com.gmail.leonidandand.tictactoe.game.model.game_board.GameBoard;
-import com.gmail.leonidandand.tictactoe.game.model.game_board.GameBoardImpl;
-import com.gmail.leonidandand.tictactoe.game.model.game_board.ReadOnlyGameBoard;
 import com.gmail.leonidandand.tictactoe.game.model.judge.TicTacToeJudge;
 import com.gmail.leonidandand.tictactoe.game.model.judge.TicTacToeJudgeImpl;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
@@ -12,7 +9,7 @@ import com.gmail.leonidandand.tictactoe.game.model.listeners.OnNeedToShowMoveLis
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnScoreChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model.player.Player;
 import com.gmail.leonidandand.tictactoe.game.model.player.PlayerFactory;
-import com.gmail.leonidandand.tictactoe.game.model.result.TicTacToeResult;
+import com.gmail.leonidandand.tictactoe.game.model.judge.TicTacToeResult;
 
 import java.util.ArrayList;
 import java.util.List;

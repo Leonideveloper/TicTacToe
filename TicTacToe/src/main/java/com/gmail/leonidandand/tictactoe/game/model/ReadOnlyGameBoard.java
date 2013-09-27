@@ -1,4 +1,4 @@
-package com.gmail.leonidandand.tictactoe.game.model.game_board;
+package com.gmail.leonidandand.tictactoe.game.model;
 
 import com.gmail.landanurm.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model.player.Player;

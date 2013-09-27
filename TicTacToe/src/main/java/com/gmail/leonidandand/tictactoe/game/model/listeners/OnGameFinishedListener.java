@@ -1,7 +1,6 @@
 package com.gmail.leonidandand.tictactoe.game.model.listeners;
 
-
-import com.gmail.leonidandand.tictactoe.game.model.result.TicTacToeResult;
+import com.gmail.leonidandand.tictactoe.game.model.judge.TicTacToeResult;
 
 /**
  * Created by Leonid on 18.07.13.

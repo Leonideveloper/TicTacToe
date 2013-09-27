@@ -11,7 +11,7 @@ import com.gmail.landanurm.matrix.Dimension;
 import com.gmail.landanurm.matrix.Matrix;
 import com.gmail.landanurm.matrix.Position;
 import com.gmail.leonidandand.tictactoe.R;
-import com.gmail.leonidandand.tictactoe.game.model.game_board.ReadOnlyGameBoard;
+import com.gmail.leonidandand.tictactoe.game.model.ReadOnlyGameBoard;
 
 /**
  * Created by Leonid on 19.07.13.

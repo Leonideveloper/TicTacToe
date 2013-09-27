@@ -17,7 +17,7 @@ public class TicTacToeActivity extends Activity {
 
         boolean restartingOfActivity = (savedInstanceState != null);
         if (restartingOfActivity) {
-            controller.onRestoreState(this);
+            controller.onRestoreState(this, savedInstanceState);
         } else {
             controller = createController();
         }
@@ -40,6 +40,6 @@ public class TicTacToeActivity extends Activity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        controller.onSaveState(this);
+        controller.onSaveState(this, outState);
     }
 }

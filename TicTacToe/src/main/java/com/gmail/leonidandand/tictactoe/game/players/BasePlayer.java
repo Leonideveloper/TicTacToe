@@ -1,7 +1,7 @@
 package com.gmail.leonidandand.tictactoe.game.players;
 
 import com.gmail.leonidandand.tictactoe.game.model.TicTacToeModel;
-import com.gmail.leonidandand.tictactoe.game.model.game_board.ReadOnlyGameBoard;
+import com.gmail.leonidandand.tictactoe.game.model.ReadOnlyGameBoard;
 import com.gmail.leonidandand.tictactoe.game.model.player.Player;
 
 /**

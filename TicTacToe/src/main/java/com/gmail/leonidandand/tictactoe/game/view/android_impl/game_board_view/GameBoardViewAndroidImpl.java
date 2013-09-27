@@ -5,7 +5,7 @@ import android.widget.ImageView;
 
 import com.gmail.landanurm.matrix.*;
 import com.gmail.leonidandand.tictactoe.game.model.player.Player;
-import com.gmail.leonidandand.tictactoe.game.model.result.FireLine;
+import com.gmail.leonidandand.tictactoe.game.model.judge.FireLine;
 import com.gmail.leonidandand.tictactoe.game.view.GameBoardView;
 import com.gmail.leonidandand.tictactoe.game.view.OnCellClickListener;
 

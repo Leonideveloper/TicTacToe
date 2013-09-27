@@ -1,4 +1,4 @@
-package com.gmail.leonidandand.tictactoe.game.model.result;
+package com.gmail.leonidandand.tictactoe.game.model.judge;
 
 import com.gmail.landanurm.matrix.Position;
 import java.util.Collection;
@@ -18,7 +18,7 @@ public class FireLine {
     private final Collection<Position> cellsPositions;
     private final Type fireLineType;
 
-    public FireLine(Collection<Position> cellsPositions, Type fireLineType) {
+    FireLine(Collection<Position> cellsPositions, Type fireLineType) {
         this.cellsPositions = cellsPositions;
         this.fireLineType = fireLineType;
     }

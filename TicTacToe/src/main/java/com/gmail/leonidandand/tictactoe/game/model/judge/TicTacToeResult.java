@@ -1,4 +1,4 @@
-package com.gmail.leonidandand.tictactoe.game.model.result;
+package com.gmail.leonidandand.tictactoe.game.model.judge;
 
 import java.util.Collection;
 
@@ -14,7 +14,7 @@ public class TicTacToeResult {
     private final GameState gameState;
     private final Collection<FireLine> fireLines;
 
-    public TicTacToeResult(GameState gameState, Collection<FireLine> fireLines) {
+    TicTacToeResult(GameState gameState, Collection<FireLine> fireLines) {
         this.gameState = gameState;
         this.fireLines = fireLines;
     }

@@ -8,6 +8,7 @@ import com.gmail.leonidandand.tictactoe.game.model.player.Player;
  * Created by Leonid on 06.09.13.
  */
 class AINormalPlayer extends BasePlayer {
+
     AINormalPlayer(Player.Id id, TicTacToeModel model) {
         super(id, model);
     }

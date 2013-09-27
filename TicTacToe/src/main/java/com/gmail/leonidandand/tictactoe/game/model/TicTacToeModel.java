@@ -1,7 +1,6 @@
 package com.gmail.leonidandand.tictactoe.game.model;
 
 import com.gmail.landanurm.matrix.Position;
-import com.gmail.leonidandand.tictactoe.game.model.game_board.ReadOnlyGameBoard;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnMovePlayerChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnNeedToShowMoveListener;

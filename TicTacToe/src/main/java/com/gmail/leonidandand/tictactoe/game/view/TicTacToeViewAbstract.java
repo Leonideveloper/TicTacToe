@@ -7,7 +7,7 @@ import com.gmail.leonidandand.tictactoe.game.model.listeners.OnNeedToShowMoveLis
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnMovePlayerChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnScoreChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model.TicTacToeModel;
-import com.gmail.leonidandand.tictactoe.game.model.result.TicTacToeResult;
+import com.gmail.leonidandand.tictactoe.game.model.judge.TicTacToeResult;
 import com.gmail.leonidandand.tictactoe.game.model.player.Player;
 
 import java.util.ArrayList;

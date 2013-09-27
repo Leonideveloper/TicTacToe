@@ -12,21 +12,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6aa5c58e-013a-456e-a510-94e2c52418c0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/game_board/GameBoard.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/game_board/GameBoardImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/game_board/ReadOnlyGameBoard.java" />
-      <change type="DELETED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\leonidandand\tictactoe\game\view\android_impl\game_board\GameBoardViewAndroidImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\leonidandand\tictactoe\game\view\android_impl\game_board\PlainTicTacToeIconsProvider.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\leonidandand\tictactoe\game\view\android_impl\game_board\TicTacToeIconsProvider.java" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\leonidandand\tictactoe\game\view\android_impl\game_board\GameBoardCreator.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/game_board_view/GameBoardViewCreator.java" />
+      <change type="MOVED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\leonidandand\tictactoe\game\model\game_board\GameBoard.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/GameBoard.java" />
+      <change type="MOVED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\leonidandand\tictactoe\game\model\game_board\GameBoardImpl.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/GameBoardImpl.java" />
+      <change type="MOVED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\leonidandand\tictactoe\game\model\game_board\ReadOnlyGameBoard.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/ReadOnlyGameBoard.java" />
+      <change type="MOVED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\leonidandand\tictactoe\game\model\result\FireLine.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/judge/FireLine.java" />
+      <change type="MOVED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\leonidandand\tictactoe\game\model\result\TicTacToeResult.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/judge/TicTacToeResult.java" />
+      <change type="MOVED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\leonidandand\tictactoe\game\model\result\TicTacToeResultCreator.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/judge/TicTacToeResultCreator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/AINormalPlayer.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/AINormalPlayer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/BasePlayer.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/BasePlayer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/source/buildConfig/debug/com/gmail/leonidandand/tictactoe/BuildConfig.java" afterPath="$PROJECT_DIR$/TicTacToe/build/source/buildConfig/debug/com/gmail/leonidandand/tictactoe/BuildConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/HumanPlayer.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/HumanPlayer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/GameBoardView.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/GameBoardView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/game_board_view/GameBoardViewAndroidImpl.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/game_board_view/GameBoardViewAndroidImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/game_board_view/GameBoardViewCreator.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/game_board_view/GameBoardViewCreator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/NotYetImplementedException.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/NotYetImplementedException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/listeners/OnGameFinishedListener.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/listeners/OnGameFinishedListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/game_board_view/PlainTicTacToeIconsProvider.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/game_board_view/PlainTicTacToeIconsProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/PlayerFactoryImpl.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/PlayerFactoryImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/ResultDisplay.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/ResultDisplay.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/ResultDisplayAndroidToastImpl.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/ResultDisplayAndroidToastImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/TicTacToeActivity.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/TicTacToeActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/TicTacToeController.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/TicTacToeController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/game_board_view/TicTacToeIconsProvider.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/game_board_view/TicTacToeIconsProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/judge/TicTacToeJudge.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/judge/TicTacToeJudge.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/judge/TicTacToeJudgeImpl.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/judge/TicTacToeJudgeImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/TicTacToeModel.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/TicTacToeModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/TicTacToeModelImpl.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/TicTacToeModelImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/TicTacToeViewAndroidImpl.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/TicTacToeViewAndroidImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/TicTacToeViewAbstract.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/TicTacToeViewAbstract.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/values/values.xml" afterPath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/values/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/values-sw720dp-land/values.xml" afterPath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/values-sw720dp-land/values.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/values-v11/values.xml" afterPath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/values-v11/values.xml" />
@@ -94,7 +105,17 @@
     <favorites_list name="TicTacToe" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="TicTacToeController.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/TicTacToeController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="45" selection-start="1058" selection-end="1058" vertical-scroll-proportion="0.575" vertical-offset="52" max-vertical-offset="612">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -143,22 +164,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/TicTacToeActivity.java" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/ReadOnlyGameBoard.java" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/GameBoard.java" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/GameBoardImpl.java" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/game_board/GameBoard.java" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/game_board/ReadOnlyGameBoard.java" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/game_board/GameBoardImpl.java" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/judge/TicTacToeJudgeImpl.java" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/AINormalPlayer.java" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/HumanPlayer.java" />
         <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/TicTacToeModelImpl.java" />
         <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/TicTacToeModel.java" />
         <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/BasePlayer.java" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/PlayerFactoryImpl.java" />
         <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/game_board_view/GameBoardViewCreator.java" />
         <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/TicTacToeViewAndroidImpl.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/GameBoard.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/GameBoardImpl.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/judge/FireLine.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/judge/TicTacToeResult.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/judge/TicTacToeResultCreator.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/listeners/OnGameFinishedListener.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/NotYetImplementedException.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/PlayerFactoryImpl.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/AINormalPlayer.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/TicTacToeController.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/TicTacToeActivity.java" />
       </list>
     </option>
   </component>
@@ -276,120 +297,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="game" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTacToe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTacToe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTacToe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTacToe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTacToe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTacToe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android_impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTacToe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTacToe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicTacToe" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android_impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="game_board_view" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -655,8 +562,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26783004" sideWeight="0.75468487" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24531516" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26783004" sideWeight="0.6712095" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24531516" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962063" sideWeight="0.75468487" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -727,118 +634,118 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/TicTacToeModelImpl.java">
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/ScoreDisplay.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="30" selection-start="2514" selection-end="2514" vertical-scroll-proportion="0.35149863" vertical-offset="738" max-vertical-offset="3366">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/result/FireLine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="190" selection-end="190" vertical-scroll-proportion="-0.4359673" vertical-offset="279" max-vertical-offset="646">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/result/TicTacToeResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="146" selection-end="146" vertical-scroll-proportion="0.04359673" vertical-offset="103" max-vertical-offset="663">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/result/TicTacToeResultCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="145" selection-end="145" vertical-scroll-proportion="0.32425067" vertical-offset="0" max-vertical-offset="459">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/Score.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="109" selection-end="109" vertical-scroll-proportion="-0.4359673" vertical-offset="245" max-vertical-offset="612">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/BasePlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="13" selection-start="663" selection-end="663" vertical-scroll-proportion="0.5558583" vertical-offset="102" max-vertical-offset="493">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/AINormalPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="38" selection-start="687" selection-end="687" vertical-scroll-proportion="0.6757493" vertical-offset="92" max-vertical-offset="714">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/HumanPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="6" selection-start="353" selection-end="353" vertical-scroll-proportion="-0.3705722" vertical-offset="255" max-vertical-offset="646">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/NotYetImplementedException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="111" selection-end="111" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/PlayerFactoryImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="4" selection-start="367" selection-end="367" vertical-scroll-proportion="-0.46321526" vertical-offset="306" max-vertical-offset="680">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/players/PlayerTypes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="19" selection-start="117" selection-end="117" vertical-scroll-proportion="0.23160763" vertical-offset="0" max-vertical-offset="367">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/TicTacToeViewAndroidImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="70" selection-start="2402" selection-end="2402" vertical-scroll-proportion="1.760218" vertical-offset="0" max-vertical-offset="1156">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/game_board_view/GameBoardViewCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="66" selection-start="905" selection-end="905" vertical-scroll-proportion="-2.1035423" vertical-offset="1027" max-vertical-offset="1394">
+        <state line="7" column="17" selection-start="171" selection-end="171" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/TicTacToeViewAbstract.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="5" selection-start="3626" selection-end="3626" vertical-scroll-proportion="0.86538464" vertical-offset="1357" max-vertical-offset="2584">
+        <state line="18" column="22" selection-start="769" selection-end="769" vertical-scroll-proportion="-3.067857" vertical-offset="2024" max-vertical-offset="2584">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/TicTacToeView.java">
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/game_board_view/GameBoardViewAndroidImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="17" selection-start="113" selection-end="113" vertical-scroll-proportion="0.2451923" vertical-offset="0" max-vertical-offset="416">
+        <state line="25" column="5" selection-start="1157" selection-end="1157" vertical-scroll-proportion="0.7411444" vertical-offset="0" max-vertical-offset="1632">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/GameBoardView.java">
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/TicTacToeViewAndroidImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="17" selection-start="321" selection-end="321" vertical-scroll-proportion="0.28605768" vertical-offset="0" max-vertical-offset="416">
+        <state line="17" column="13" selection-start="802" selection-end="802" vertical-scroll-proportion="0.2125" vertical-offset="0" max-vertical-offset="1156">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/ScoreDisplayAndroidImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="6" selection-start="342" selection-end="342" vertical-scroll-proportion="0.2125" vertical-offset="0" max-vertical-offset="560">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/ResultDisplayAndroidToastImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="6" selection-start="313" selection-end="313" vertical-scroll-proportion="0.2125" vertical-offset="0" max-vertical-offset="731">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/android_impl/MoveProgressBarAndroidImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="6" selection-start="347" selection-end="347" vertical-scroll-proportion="0.2125" vertical-offset="0" max-vertical-offset="901">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/view/TicTacToeView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="17" selection-start="113" selection-end="113" vertical-scroll-proportion="0.18214285" vertical-offset="0" max-vertical-offset="560">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/listeners/OnGameFinishedListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="17" selection-start="198" selection-end="198" vertical-scroll-proportion="0.2125" vertical-offset="0" max-vertical-offset="560">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/listeners/OnScoreChangedListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="17" selection-start="123" selection-end="123" vertical-scroll-proportion="0.15178572" vertical-offset="0" max-vertical-offset="560">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/listeners/OnNeedToShowMoveListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="17" selection-start="234" selection-end="234" vertical-scroll-proportion="0.2125" vertical-offset="0" max-vertical-offset="560">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/listeners/OnMovePlayerChangedListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="17" selection-start="190" selection-end="190" vertical-scroll-proportion="0.2125" vertical-offset="0" max-vertical-offset="560">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/judge/LineCellsPositionsProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="6" selection-start="206" selection-end="206" vertical-scroll-proportion="-0.30535713" vertical-offset="307" max-vertical-offset="867">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/model/TicTacToeModelImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="13" selection-start="916" selection-end="916" vertical-scroll-proportion="-4.2517858" vertical-offset="2704" max-vertical-offset="3315">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/TicTacToeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="47" selection-end="47" vertical-scroll-proportion="-0.4267857" vertical-offset="256" max-vertical-offset="816">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/leonidandand/tictactoe/game/TicTacToeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="45" selection-start="1058" selection-end="1058" vertical-scroll-proportion="0.575" vertical-offset="52" max-vertical-offset="612">
           <folding />
         </state>
       </provider>

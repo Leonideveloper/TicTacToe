@@ -1,6 +1,7 @@
 package com.gmail.leonidandand.tictactoe.game;
 
 import android.app.Activity;
+import android.os.Bundle;
 
 import com.gmail.leonidandand.tictactoe.game.model.TicTacToeModel;
 import com.gmail.leonidandand.tictactoe.game.model.TicTacToeModelImpl;
@@ -25,11 +26,11 @@ public class TicTacToeController {
         view = new TicTacToeViewAndroidImpl(model, activity);
     }
 
-    public void onSaveState(Activity activity) {
+    public void onSaveState(Activity activity, Bundle outState) {
         // Do nothing
     }
 
-    public void onRestoreState(Activity activity) {
+    public void onRestoreState(Activity activity, Bundle savedInstanceState) {
         view = new TicTacToeViewAndroidImpl(model, activity, view);
     }
 }

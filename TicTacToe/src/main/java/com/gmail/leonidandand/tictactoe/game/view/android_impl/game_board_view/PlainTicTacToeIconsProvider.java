@@ -2,7 +2,7 @@ package com.gmail.leonidandand.tictactoe.game.view.android_impl.game_board_view;
 
 import com.gmail.leonidandand.tictactoe.R;
 import com.gmail.leonidandand.tictactoe.game.model.player.Player;
-import com.gmail.leonidandand.tictactoe.game.model.result.FireLine;
+import com.gmail.leonidandand.tictactoe.game.model.judge.FireLine;
 
 import java.util.Random;
 
