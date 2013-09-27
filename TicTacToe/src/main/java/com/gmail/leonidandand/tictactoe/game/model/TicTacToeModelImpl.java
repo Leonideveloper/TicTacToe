@@ -1,8 +1,10 @@
 package com.gmail.leonidandand.tictactoe.game.model;
 
-import com.gmail.leonidandand.matrix.ArrayMatrix;
-import com.gmail.leonidandand.matrix.Matrix;
-import com.gmail.leonidandand.matrix.Position;
+import com.gmail.landanurm.matrix.ArrayMatrix;
+import com.gmail.landanurm.matrix.Dimension;
+import com.gmail.landanurm.matrix.Matrix;
+import com.gmail.landanurm.matrix.Position;
+import com.gmail.landanurm.matrix.ReadOnlyMatrix;
 import com.gmail.leonidandand.tictactoe.game.model.judge.TicTacToeJudge;
 import com.gmail.leonidandand.tictactoe.game.model.judge.TicTacToeJudgeImpl;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
@@ -10,7 +12,7 @@ import com.gmail.leonidandand.tictactoe.game.model.listeners.OnMovePlayerChanged
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnNeedToShowMoveListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnScoreChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model.player.Player;
-import com.gmail.leonidandand.tictactoe.game.model.player.PlayersFactory;
+import com.gmail.leonidandand.tictactoe.game.model.player.PlayerFactory;
 import com.gmail.leonidandand.tictactoe.game.model.result.TicTacToeResult;
 
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class TicTacToeModelImpl implements TicTacToeModel {
     private Player movePlayer;
 
 
-    public TicTacToeModelImpl(int gameBoardDimension, PlayersFactory playersFactory,
+    public TicTacToeModelImpl(int gameBoardDimension, PlayerFactory playerFactory,
                               String firstPlayerType, String secondPlayerType) {
 
         onNeedToShowMoveListeners = new ArrayList<OnNeedToShowMoveListener>();
@@ -45,18 +47,13 @@ public class TicTacToeModelImpl implements TicTacToeModel {
         onScoreChangedListeners = new ArrayList<OnScoreChangedListener>();
 
         this.gameBoardDimension = gameBoardDimension;
-        gameBoard = new ArrayMatrix<Player.Id>(gameBoardDimension, gameBoardDimension);
+        gameBoard = new ArrayMatrix<Player.Id>(new Dimension(gameBoardDimension, gameBoardDimension));
         judge = new TicTacToeJudgeImpl(gameBoard);
         score = new Score();
 
-        player_1 = playersFactory.createFirstPlayer(firstPlayerType, this);
-        player_2 = playersFactory.createSecondPlayer(secondPlayerType, this);
+        player_1 = playerFactory.createFirstPlayer(firstPlayerType, this);
+        player_2 = playerFactory.createSecondPlayer(secondPlayerType, this);
         movePlayer = player_1;
-    }
-
-    @Override
-    public boolean cellIsEmpty(Position cellPos) {
-        return gameBoard.get(cellPos) == null;
     }
 
     @Override
@@ -65,8 +62,8 @@ public class TicTacToeModelImpl implements TicTacToeModel {
     }
 
     @Override
-    public Player.Id getCell(Position cellPos) {
-        return gameBoard.get(cellPos);
+    public ReadOnlyMatrix<Player.Id> getGameBoard() {
+        return gameBoard;
     }
 
     @Override

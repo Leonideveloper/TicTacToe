@@ -1,7 +1,6 @@
 package com.gmail.leonidandand.tictactoe.game.model.result;
 
-import com.gmail.leonidandand.matrix.Position;
-
+import com.gmail.landanurm.matrix.Position;
 import java.util.Collection;
 
 /**

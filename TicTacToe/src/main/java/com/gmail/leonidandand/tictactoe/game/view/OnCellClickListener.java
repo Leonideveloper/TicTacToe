@@ -1,6 +1,6 @@
 package com.gmail.leonidandand.tictactoe.game.view;
 
-import com.gmail.leonidandand.matrix.Position;
+import com.gmail.landanurm.matrix.Position;
 
 /**
  * Created by Leonid on 19.07.13.

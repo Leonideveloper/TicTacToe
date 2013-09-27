@@ -1,6 +1,7 @@
 package com.gmail.leonidandand.tictactoe.game.model.judge;
 
-import com.gmail.leonidandand.matrix.Position;
+
+import com.gmail.landanurm.matrix.Position;
 
 import java.util.ArrayList;
 import java.util.List;

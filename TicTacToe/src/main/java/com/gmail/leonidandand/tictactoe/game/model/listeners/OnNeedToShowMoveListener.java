@@ -1,6 +1,6 @@
 package com.gmail.leonidandand.tictactoe.game.model.listeners;
 
-import com.gmail.leonidandand.matrix.Position;
+import com.gmail.landanurm.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model.player.Player;
 
 /**

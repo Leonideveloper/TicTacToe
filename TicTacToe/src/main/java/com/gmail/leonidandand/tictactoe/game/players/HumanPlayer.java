@@ -1,7 +1,8 @@
 package com.gmail.leonidandand.tictactoe.game.players;
 
-import com.gmail.leonidandand.matrix.Position;
+import com.gmail.landanurm.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model.TicTacToeModel;
+import com.gmail.leonidandand.tictactoe.game.model.player.Player;
 import com.gmail.leonidandand.tictactoe.game.view.OnCellClickListener;
 
 /**
@@ -10,7 +11,7 @@ import com.gmail.leonidandand.tictactoe.game.view.OnCellClickListener;
 class HumanPlayer extends BasePlayer implements OnCellClickListener {
     private boolean movesEnabled;
 
-    HumanPlayer(Id id, TicTacToeModel model) {
+    HumanPlayer(Player.Id id, TicTacToeModel model) {
         super(id, model);
         movesEnabled = false;
     }
@@ -27,7 +28,7 @@ class HumanPlayer extends BasePlayer implements OnCellClickListener {
 
     @Override
     public void onCellClick(Position pos) {
-        if (movesEnabled && model.cellIsEmpty(pos)) {
+        if (movesEnabled && cellIsEmpty(pos)) {
             model.onMove(pos, this);
         }
     }

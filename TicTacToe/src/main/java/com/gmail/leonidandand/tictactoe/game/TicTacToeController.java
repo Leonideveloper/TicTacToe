@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.gmail.leonidandand.tictactoe.game.model.TicTacToeModel;
 import com.gmail.leonidandand.tictactoe.game.model.TicTacToeModelImpl;
-import com.gmail.leonidandand.tictactoe.game.players.PlayersFactoryImpl;
+import com.gmail.leonidandand.tictactoe.game.players.PlayerFactoryImpl;
 import com.gmail.leonidandand.tictactoe.game.view.android_impl.TicTacToeViewAndroidImpl;
 
 /**
@@ -19,7 +19,7 @@ public class TicTacToeController {
                                String firstPlayerType,
                                String secondPlayerType) {
 
-        model = new TicTacToeModelImpl(gameBoardDimension, new PlayersFactoryImpl(),
+        model = new TicTacToeModelImpl(gameBoardDimension, new PlayerFactoryImpl(),
                                        firstPlayerType, secondPlayerType);
 
         view = new TicTacToeViewAndroidImpl(model, activity);

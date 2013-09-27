@@ -1,11 +1,10 @@
 package com.gmail.leonidandand.tictactoe.game.model.judge;
 
-import com.gmail.leonidandand.matrix.Matrix;
-import com.gmail.leonidandand.matrix.Position;
+import com.gmail.landanurm.matrix.*;
+import com.gmail.leonidandand.tictactoe.game.model.player.Player;
 import com.gmail.leonidandand.tictactoe.game.model.result.FireLine;
 import com.gmail.leonidandand.tictactoe.game.model.result.TicTacToeResult;
 import com.gmail.leonidandand.tictactoe.game.model.result.TicTacToeResultCreator;
-import com.gmail.leonidandand.tictactoe.game.model.player.Player;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -26,7 +26,7 @@ public class TicTacToeActivity extends Activity {
     private void initContext() {
         TicTacToeContext.setGameBoardDimension(13);
         TicTacToeContext.setFirstPlayerType(PlayerTypes.HUMAN);
-        TicTacToeContext.setSecondPlayerType(PlayerTypes.Ai.NORMAL);
+        TicTacToeContext.setSecondPlayerType(PlayerTypes.AI.NORMAL);
     }
 
     private TicTacToeController createController() {

@@ -3,24 +3,21 @@ package com.gmail.leonidandand.tictactoe.game.view.android_impl.game_board;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.gmail.leonidandand.matrix.ArrayMatrix;
-import com.gmail.leonidandand.matrix.Matrix;
-import com.gmail.leonidandand.matrix.OnEachHandler;
-import com.gmail.leonidandand.matrix.Position;
+import com.gmail.landanurm.matrix.*;
 import com.gmail.leonidandand.tictactoe.game.model.player.Player;
 import com.gmail.leonidandand.tictactoe.game.model.result.FireLine;
-import com.gmail.leonidandand.tictactoe.game.view.GameBoard;
+import com.gmail.leonidandand.tictactoe.game.view.GameBoardView;
 import com.gmail.leonidandand.tictactoe.game.view.OnCellClickListener;
 
 import java.util.Collection;
 
-public class GameBoardAndroidImpl implements GameBoard {
+public class GameBoardViewAndroidImpl implements GameBoardView {
     private final Matrix<ImageView> cellViews;
     private final TicTacToeIconsProvider iconsProvider;
     private Matrix<Integer> firstLayerCellImageResourcesIds;
     private Matrix<Integer> secondLayerCellImageResourcesIds;
 
-    GameBoardAndroidImpl(Matrix<ImageView> cellViews) {
+    GameBoardViewAndroidImpl(Matrix<ImageView> cellViews) {
         this.cellViews = cellViews;
         this.iconsProvider = new PlainTicTacToeIconsProvider();
         this.firstLayerCellImageResourcesIds = new ArrayMatrix<Integer>(cellViews.getDimension());
@@ -53,7 +50,7 @@ public class GameBoardAndroidImpl implements GameBoard {
         secondLayerCellImageResourcesIds.set(cellPos, resId);
     }
 
-    GameBoardAndroidImpl(Matrix<ImageView> cellViews, GameBoardAndroidImpl toRestore) {
+    GameBoardViewAndroidImpl(Matrix<ImageView> cellViews, GameBoardViewAndroidImpl toRestore) {
         this.cellViews = cellViews;
         this.iconsProvider = toRestore.iconsProvider;
         this.firstLayerCellImageResourcesIds = toRestore.firstLayerCellImageResourcesIds;

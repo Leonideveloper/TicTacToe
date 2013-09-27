@@ -1,7 +1,7 @@
 package com.gmail.leonidandand.tictactoe.game.view;
 
 
-import com.gmail.leonidandand.matrix.Position;
+import com.gmail.landanurm.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnNeedToShowMoveListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnMovePlayerChangedListener;
@@ -72,7 +72,7 @@ public abstract class TicTacToeViewAbstract implements TicTacToeView, OnCellClic
         }
     }
 
-    protected abstract GameBoard getGameBoard();
+    protected abstract GameBoardView getGameBoardView();
     protected abstract ResultDisplay getResultDisplay();
     protected abstract ScoreDisplay getScoreDisplay();
     protected abstract MoveProgressBar getMoveProgressBar();
@@ -110,7 +110,7 @@ public abstract class TicTacToeViewAbstract implements TicTacToeView, OnCellClic
     }
 
     protected void prepareNewGame() {
-        getGameBoard().clear();
+        getGameBoardView().clear();
         getResultDisplay().hide();
         model.onViewIsReadyToStartGame();
     }
@@ -123,13 +123,13 @@ public abstract class TicTacToeViewAbstract implements TicTacToeView, OnCellClic
 
     @Override
     public void onNeedToShowMove(Position pos, Player.Id playerId) {
-        getGameBoard().showMove(pos, playerId);
+        getGameBoardView().showMove(pos, playerId);
     }
 
     @Override
     public void onGameFinished(TicTacToeResult result) {
         gameFinished = true;
-        getGameBoard().showFireLines(result.getFireLines());
+        getGameBoardView().showFireLines(result.getFireLines());
         getResultDisplay().show(result.getGameState());
         getMoveProgressBar().hide();
     }

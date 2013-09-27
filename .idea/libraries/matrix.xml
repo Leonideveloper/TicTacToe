@@ -1,6 +1,7 @@
 <component name="libraryTable">
   <library name="matrix">
     <CLASSES>
+      <root url="jar://$PROJECT_DIR$/matrix.jar!/" />
       <root url="jar://$PROJECT_DIR$/TicTacToe/libs/matrix.jar!/" />
     </CLASSES>
     <JAVADOC />

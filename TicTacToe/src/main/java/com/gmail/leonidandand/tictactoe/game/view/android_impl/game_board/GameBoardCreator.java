@@ -6,9 +6,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.gmail.leonidandand.matrix.ArrayMatrix;
-import com.gmail.leonidandand.matrix.Matrix;
-import com.gmail.leonidandand.matrix.Position;
+import com.gmail.landanurm.matrix.*;
 import com.gmail.leonidandand.tictactoe.R;
 
 /**
@@ -21,16 +19,18 @@ public class GameBoardCreator {
         this.activity = activity;
     }
 
-    public GameBoardAndroidImpl create(int dimension) {
-        return new GameBoardAndroidImpl(prepareCells(dimension));
+    public GameBoardViewAndroidImpl create(int dimension) {
+        return new GameBoardViewAndroidImpl(prepareCells(dimension));
     }
 
-    public GameBoardAndroidImpl create(int dimension, GameBoardAndroidImpl toRestore) {
-        return new GameBoardAndroidImpl(prepareCells(dimension), toRestore);
+    public GameBoardViewAndroidImpl create(int dimension, GameBoardViewAndroidImpl toRestore) {
+        return new GameBoardViewAndroidImpl(prepareCells(dimension), toRestore);
     }
 
     private Matrix<ImageView> prepareCells(final int gameBoardDimension) {
-        Matrix<ImageView> cells = new ArrayMatrix<ImageView>(gameBoardDimension, gameBoardDimension);
+        Matrix<ImageView> cells = new ArrayMatrix<ImageView>(
+                new Dimension(gameBoardDimension, gameBoardDimension)
+        );
         LinearLayout verticalLayout = prepareVerticalLinearLayout(gameBoardDimension);
         for (int row = 0; row < gameBoardDimension; ++row) {
             LinearLayout rowLayout = prepareHorizontalLinearLayout(gameBoardDimension);
