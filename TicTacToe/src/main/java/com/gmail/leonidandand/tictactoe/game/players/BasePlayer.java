@@ -1,17 +1,16 @@
 package com.gmail.leonidandand.tictactoe.game.players;
 
-import com.gmail.landanurm.matrix.Position;
-import com.gmail.landanurm.matrix.ReadOnlyMatrix;
 import com.gmail.leonidandand.tictactoe.game.model.TicTacToeModel;
+import com.gmail.leonidandand.tictactoe.game.model.game_board.ReadOnlyGameBoard;
 import com.gmail.leonidandand.tictactoe.game.model.player.Player;
 
 /**
  * Created by Leonid on 12.09.13.
  */
 abstract class BasePlayer implements Player {
-    protected final Player.Id id;
+    private final Player.Id id;
     protected final TicTacToeModel model;
-    protected final ReadOnlyMatrix<Player.Id> gameBoard;
+    protected final ReadOnlyGameBoard gameBoard;
 
     protected BasePlayer(Player.Id id, TicTacToeModel model) {
         this.id = id;
@@ -19,10 +18,7 @@ abstract class BasePlayer implements Player {
         this.gameBoard = model.getGameBoard();
     }
 
-    protected boolean cellIsEmpty(Position pos) {
-        return gameBoard.get(pos) == null;
-    }
-
+    @Override
     public Id getId() {
         return id;
     }

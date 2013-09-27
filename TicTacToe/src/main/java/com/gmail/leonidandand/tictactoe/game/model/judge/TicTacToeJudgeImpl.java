@@ -1,6 +1,7 @@
 package com.gmail.leonidandand.tictactoe.game.model.judge;
 
 import com.gmail.landanurm.matrix.*;
+import com.gmail.leonidandand.tictactoe.game.model.game_board.ReadOnlyGameBoard;
 import com.gmail.leonidandand.tictactoe.game.model.player.Player;
 import com.gmail.leonidandand.tictactoe.game.model.result.FireLine;
 import com.gmail.leonidandand.tictactoe.game.model.result.TicTacToeResult;
@@ -15,12 +16,12 @@ import java.util.List;
  */
 public class TicTacToeJudgeImpl implements TicTacToeJudge {
     private final Integer gameBoardDimension;
-    private final Matrix<Player.Id> gameBoard;
     private final LineCellsPositionsProvider positionsProvider;
+    private final ReadOnlyGameBoard gameBoard;
 
-    public TicTacToeJudgeImpl(Matrix<Player.Id> gameBoard) {
+    public TicTacToeJudgeImpl(ReadOnlyGameBoard gameBoard) {
         this.gameBoard = gameBoard;
-        this.gameBoardDimension = gameBoard.getDimension().rows;
+        this.gameBoardDimension = gameBoard.getDimension();
         this.positionsProvider = new LineCellsPositionsProvider(gameBoardDimension);
     }
 
@@ -30,7 +31,7 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge {
         if (result.isKnown()) {
             return result;
         }
-        if (gameBoard.contains(null)) {
+        if (gameBoard.containsEmptyCell()) {
             return TicTacToeResultCreator.createUnknownResult();
         }
         return TicTacToeResultCreator.createDrawResult();
@@ -50,13 +51,12 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge {
         // O X - - X - - X -      O X - - X - - X -
         // X O O - X - - - X      X O O - X - - - X
         // *****************      *****************
-        TicTacToeResult result = combineResults(
-                checkRows(),
-                checkColumns(),
-                checkLeftUpperDiagonal(),
-                checkRightUpperDiagonal()
+        return combineResults(
+            checkRows(),
+            checkColumns(),
+            checkLeftUpperDiagonal(),
+            checkRightUpperDiagonal()
         );
-        return result;
     }
 
     private TicTacToeResult combineResults(TicTacToeResult... results) {

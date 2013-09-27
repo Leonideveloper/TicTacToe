@@ -19,11 +19,11 @@ class AINormalPlayer extends BasePlayer {
     }
 
     private Position positionToMove_tempDummyAI() {
-        int dimension = model.getGameBoardDimension();
+        int dimension = gameBoard.getDimension();
         for (int row = 0; row < dimension; ++row) {
             for (int column = 0; column < dimension; ++column) {
                 Position pos = new Position(row, column);
-                if (cellIsEmpty(pos)) {
+                if (gameBoard.cellIsEmpty(pos)) {
                     return pos;
                 }
             }

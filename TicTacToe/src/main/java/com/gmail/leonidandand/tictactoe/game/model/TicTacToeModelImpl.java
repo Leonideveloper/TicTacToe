@@ -1,10 +1,9 @@
 package com.gmail.leonidandand.tictactoe.game.model;
 
-import com.gmail.landanurm.matrix.ArrayMatrix;
-import com.gmail.landanurm.matrix.Dimension;
-import com.gmail.landanurm.matrix.Matrix;
 import com.gmail.landanurm.matrix.Position;
-import com.gmail.landanurm.matrix.ReadOnlyMatrix;
+import com.gmail.leonidandand.tictactoe.game.model.game_board.GameBoard;
+import com.gmail.leonidandand.tictactoe.game.model.game_board.GameBoardImpl;
+import com.gmail.leonidandand.tictactoe.game.model.game_board.ReadOnlyGameBoard;
 import com.gmail.leonidandand.tictactoe.game.model.judge.TicTacToeJudge;
 import com.gmail.leonidandand.tictactoe.game.model.judge.TicTacToeJudgeImpl;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
@@ -22,14 +21,12 @@ import java.util.List;
  * Created by Leonid on 07.09.13.
  */
 public class TicTacToeModelImpl implements TicTacToeModel {
-
     private final List<OnNeedToShowMoveListener> onNeedToShowMoveListeners;
     private final List<OnMovePlayerChangedListener> onMovePlayerChangedListeners;
     private final List<OnGameFinishedListener> onGameFinishedListeners;
     private final List<OnScoreChangedListener> onScoreChangedListeners;
 
-    private final Integer gameBoardDimension;
-    private final Matrix<Player.Id> gameBoard;
+    private final GameBoard gameBoard;
     private final TicTacToeJudge judge;
     private final Score score;
 
@@ -46,8 +43,7 @@ public class TicTacToeModelImpl implements TicTacToeModel {
         onGameFinishedListeners = new ArrayList<OnGameFinishedListener>();
         onScoreChangedListeners = new ArrayList<OnScoreChangedListener>();
 
-        this.gameBoardDimension = gameBoardDimension;
-        gameBoard = new ArrayMatrix<Player.Id>(new Dimension(gameBoardDimension, gameBoardDimension));
+        gameBoard = new GameBoardImpl(gameBoardDimension);
         judge = new TicTacToeJudgeImpl(gameBoard);
         score = new Score();
 
@@ -57,12 +53,7 @@ public class TicTacToeModelImpl implements TicTacToeModel {
     }
 
     @Override
-    public int getGameBoardDimension() {
-        return gameBoardDimension;
-    }
-
-    @Override
-    public ReadOnlyMatrix<Player.Id> getGameBoard() {
+    public ReadOnlyGameBoard getGameBoard() {
         return gameBoard;
     }
 
@@ -154,15 +145,10 @@ public class TicTacToeModelImpl implements TicTacToeModel {
 
     @Override
     public void onViewIsReadyToStartGame() {
-        clearGameBoard();
+        gameBoard.clear();
         notifyOnMovePlayerChangedListeners();
         movePlayer.enableMoves();
     }
-
-    private void clearGameBoard() {
-        gameBoard.fill(null);
-    }
-
 
     @Override
     public void addOnGameFinishedListener(OnGameFinishedListener listener) {

@@ -1,7 +1,7 @@
 package com.gmail.leonidandand.tictactoe.game.model;
 
 import com.gmail.landanurm.matrix.Position;
-import com.gmail.landanurm.matrix.ReadOnlyMatrix;
+import com.gmail.leonidandand.tictactoe.game.model.game_board.ReadOnlyGameBoard;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnGameFinishedListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnMovePlayerChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model.listeners.OnNeedToShowMoveListener;
@@ -13,17 +13,11 @@ import com.gmail.leonidandand.tictactoe.game.model.player.Player;
  */
 public interface TicTacToeModel {
 
-    int getGameBoardDimension();
-
-    ReadOnlyMatrix<Player.Id> getGameBoard();
-
-    Score getScore();
-
     Player getFirstPlayer();
     Player getSecondPlayer();
-
+    ReadOnlyGameBoard getGameBoard();
+    Score getScore();
     void onMove(Position movePos, Player player);
-
     void onViewIsReadyToStartGame();
 
     void addOnGameFinishedListener(OnGameFinishedListener listener);

@@ -28,7 +28,7 @@ class HumanPlayer extends BasePlayer implements OnCellClickListener {
 
     @Override
     public void onCellClick(Position pos) {
-        if (movesEnabled && cellIsEmpty(pos)) {
+        if (movesEnabled && gameBoard.cellIsEmpty(pos)) {
             model.onMove(pos, this);
         }
     }

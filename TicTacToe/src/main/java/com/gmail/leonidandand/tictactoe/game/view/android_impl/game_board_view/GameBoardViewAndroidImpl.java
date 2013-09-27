@@ -1,4 +1,4 @@
-package com.gmail.leonidandand.tictactoe.game.view.android_impl.game_board;
+package com.gmail.leonidandand.tictactoe.game.view.android_impl.game_board_view;
 
 import android.view.View;
 import android.widget.ImageView;

@@ -1,4 +1,4 @@
-package com.gmail.leonidandand.tictactoe.game.view.android_impl.game_board;
+package com.gmail.leonidandand.tictactoe.game.view.android_impl.game_board_view;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -6,25 +6,34 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.gmail.landanurm.matrix.*;
+import com.gmail.landanurm.matrix.ArrayMatrix;
+import com.gmail.landanurm.matrix.Dimension;
+import com.gmail.landanurm.matrix.Matrix;
+import com.gmail.landanurm.matrix.Position;
 import com.gmail.leonidandand.tictactoe.R;
+import com.gmail.leonidandand.tictactoe.game.model.game_board.ReadOnlyGameBoard;
 
 /**
  * Created by Leonid on 19.07.13.
  */
-public class GameBoardCreator {
+public class GameBoardViewCreator {
     private final Activity activity;
 
-    public GameBoardCreator(Activity activity) {
+    public GameBoardViewCreator(Activity activity) {
         this.activity = activity;
     }
 
-    public GameBoardViewAndroidImpl create(int dimension) {
-        return new GameBoardViewAndroidImpl(prepareCells(dimension));
+    public GameBoardViewAndroidImpl create(ReadOnlyGameBoard gameBoard) {
+        return new GameBoardViewAndroidImpl(prepareCells(gameBoard));
     }
 
-    public GameBoardViewAndroidImpl create(int dimension, GameBoardViewAndroidImpl toRestore) {
-        return new GameBoardViewAndroidImpl(prepareCells(dimension), toRestore);
+    public GameBoardViewAndroidImpl create(ReadOnlyGameBoard gameBoard,
+                                           GameBoardViewAndroidImpl toRestore) {
+        return new GameBoardViewAndroidImpl(prepareCells(gameBoard), toRestore);
+    }
+
+    private Matrix<ImageView> prepareCells(ReadOnlyGameBoard gameBoard) {
+        return prepareCells(gameBoard.getDimension());
     }
 
     private Matrix<ImageView> prepareCells(final int gameBoardDimension) {
