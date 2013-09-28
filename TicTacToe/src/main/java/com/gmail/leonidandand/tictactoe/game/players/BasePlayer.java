@@ -1,8 +1,8 @@
 package com.gmail.leonidandand.tictactoe.game.players;
 
-import com.gmail.leonidandand.tictactoe.game.model.TicTacToeModel;
-import com.gmail.leonidandand.tictactoe.game.model.ReadOnlyGameBoard;
-import com.gmail.leonidandand.tictactoe.game.model.player.Player;
+import com.gmail.leonidandand.tictactoe.game.model_view.model.TicTacToeModel;
+import com.gmail.leonidandand.tictactoe.game.model_view.model.ReadOnlyGameBoard;
+import com.gmail.leonidandand.tictactoe.game.model_view.model.player.Player;
 
 /**
  * Created by Leonid on 12.09.13.

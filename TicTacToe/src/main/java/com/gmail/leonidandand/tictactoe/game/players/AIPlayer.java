@@ -1,8 +1,8 @@
 package com.gmail.leonidandand.tictactoe.game.players;
 
 import com.gmail.landanurm.matrix.Position;
-import com.gmail.leonidandand.tictactoe.game.model.TicTacToeModel;
-import com.gmail.leonidandand.tictactoe.game.model.player.Player;
+import com.gmail.leonidandand.tictactoe.game.model_view.model.TicTacToeModel;
+import com.gmail.leonidandand.tictactoe.game.model_view.model.player.Player;
 
 /**
  * Created by Leonid on 06.09.13.

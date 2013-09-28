@@ -1,7 +1,7 @@
 package com.gmail.leonidandand.tictactoe.game.players;
 
 import com.gmail.landanurm.matrix.Position;
-import com.gmail.leonidandand.tictactoe.game.model.ReadOnlyGameBoard;
+import com.gmail.leonidandand.tictactoe.game.model_view.model.ReadOnlyGameBoard;
 
 /**
  * Created by Leonid on 28.09.13.
