@@ -23,7 +23,7 @@ public class PlayerFactoryImpl implements PlayerFactory {
         if (playerType.equals(PlayerTypes.HUMAN)) {
             return new HumanPlayer(playerId, model);
         } else if (playerType.equals(PlayerTypes.AI.NORMAL)) {
-            return new AINormalPlayer(playerId, model);
+            return new AIPlayer(playerId, model, new NormalAIMoveCalculator());
         } else if (playerType.equals(PlayerTypes.AI.HARD)) {
             throwNotYetImplementedType(playerType);
         }

@@ -9,6 +9,22 @@ import com.gmail.leonidandand.tictactoe.game.players.PlayerFactoryImpl;
 import com.gmail.leonidandand.tictactoe.game.players.PlayerTypes;
 import com.gmail.leonidandand.tictactoe.game.view.android_impl.TicTacToeViewAndroidImpl;
 
+//
+// TODO:
+// New structure of processing configuration changes:
+//
+// start():
+//     model = createModel();
+//     view = createView(model);
+//
+// saveState(bundle):
+//     bundle.put("model", model);
+//
+// restoreState(bundle):
+//     model = bundle.get("model");
+//     view = createView(model);
+//
+
 public class TicTacToeActivity extends Activity {
 
     private static TicTacToeModel model;
@@ -24,7 +40,7 @@ public class TicTacToeActivity extends Activity {
         if (restartingOfActivity) {
             restoreState(savedInstanceState);
         } else {
-            create();
+            start();
         }
     }
 
@@ -34,7 +50,7 @@ public class TicTacToeActivity extends Activity {
         TicTacToeContext.setSecondPlayerType(PlayerTypes.AI.NORMAL);
     }
 
-    private void create() {
+    private void start() {
         model = new TicTacToeModelImpl(
             TicTacToeContext.getGameBoardDimension(),
             new PlayerFactoryImpl(),
