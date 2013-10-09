@@ -31,6 +31,8 @@ public class TicTacToeModelImpl implements TicTacToeModel {
     private final Player player_2;
     private Player movePlayer;
 
+    private boolean gameFinished;
+
 
     public TicTacToeModelImpl(int gameBoardDimension, PlayerFactory playerFactory,
                               String firstPlayerType, String secondPlayerType) {
@@ -47,6 +49,13 @@ public class TicTacToeModelImpl implements TicTacToeModel {
         player_1 = playerFactory.createFirstPlayer(firstPlayerType, this);
         player_2 = playerFactory.createSecondPlayer(secondPlayerType, this);
         movePlayer = player_1;
+
+        gameFinished = false;
+    }
+
+    @Override
+    public boolean gameFinished() {
+        return gameFinished;
     }
 
     @Override
@@ -91,6 +100,7 @@ public class TicTacToeModelImpl implements TicTacToeModel {
     }
 
     private void onGameFinished(TicTacToeResult result) {
+        gameFinished = true;
         updateScoreIfNeed(result.getGameState());
         notifyOnGameFinishedListeners(result);
         movePlayer = defineNextMovePlayer(result.getGameState());
@@ -142,48 +152,33 @@ public class TicTacToeModelImpl implements TicTacToeModel {
 
     @Override
     public void onViewIsReadyToStartGame() {
+        gameFinished = false;
         gameBoard.clear();
         notifyOnMovePlayerChangedListeners();
         movePlayer.enableMoves();
     }
 
     @Override
-    public void addOnGameFinishedListener(OnGameFinishedListener listener) {
+    public void setOnGameFinishedListener(OnGameFinishedListener listener) {
+        onGameFinishedListeners.clear();
         onGameFinishedListeners.add(listener);
     }
 
     @Override
-    public void removeOnGameFinishedListener(OnGameFinishedListener listener) {
-        onGameFinishedListeners.remove(listener);
-    }
-
-    @Override
-    public void addOnScoreChangedListener(OnScoreChangedListener listener) {
+    public void setOnScoreChangedListener(OnScoreChangedListener listener) {
+        onScoreChangedListeners.clear();
         onScoreChangedListeners.add(listener);
     }
 
     @Override
-    public void removeOnScoreChangedListener(OnScoreChangedListener listener) {
-        onScoreChangedListeners.remove(listener);
-    }
-
-    @Override
-    public void addOnNeedToShowMoveListener(OnNeedToShowMoveListener listener) {
+    public void setOnNeedToShowMoveListener(OnNeedToShowMoveListener listener) {
+        onNeedToShowMoveListeners.clear();
         onNeedToShowMoveListeners.add(listener);
     }
 
     @Override
-    public void removeOnNeedToShowMoveListener(OnNeedToShowMoveListener listener) {
-        onNeedToShowMoveListeners.remove(listener);
-    }
-
-    @Override
-    public void addOnMovePlayerChangedListener(OnMovePlayerChangedListener listener) {
+    public void setOnMovePlayerChangedListener(OnMovePlayerChangedListener listener) {
+        onMovePlayerChangedListeners.clear();
         onMovePlayerChangedListeners.add(listener);
-    }
-
-    @Override
-    public void removeOnMovePlayerChangedListener(OnMovePlayerChangedListener listener) {
-        onMovePlayerChangedListeners.remove(listener);
     }
 }

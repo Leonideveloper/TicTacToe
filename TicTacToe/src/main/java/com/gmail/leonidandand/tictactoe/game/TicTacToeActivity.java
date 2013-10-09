@@ -17,18 +17,22 @@ import com.gmail.leonidandand.tictactoe.game.view_components_provider_android_im
 //
 // start():
 //     model = createModel();
-//     view = createView(model);
+//     viewComponentsProvider = createViewComponentsProviderAndroidImpl();
+//     view = createView(viewComponentsProvider, model);
 //
 // saveState(bundle):
 //     bundle.put("model", model);
+//     viewComponentsState = viewComponentsProvider.getState();
+//     bundle.put("viewComponentState", viewComponentsState);
 //
 // restoreState(bundle):
 //     model = bundle.get("model");
-//     view = createView(model);
+//     viewComponentsState = bundle.get("viewComponentState");
+//     viewComponentsProvider = createViewComponentsProviderAndroidImpl(viewComponentsState);
+//     view = createView(viewComponentsProvider, model);
 //
 
 public class TicTacToeActivity extends Activity {
-
     private static TicTacToeModel model;
     private static TicTacToeViewComponentsProviderAndroidImpl viewComponentsProvider;
     private static TicTacToeViewImpl view;
@@ -38,20 +42,19 @@ public class TicTacToeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tic_tac_toe_activity);
 
-        initContext();
-
-        boolean restartingOfActivity = (savedInstanceState != null);
-        if (restartingOfActivity) {
-            restoreState(savedInstanceState);
-        } else {
+        boolean activityLaunched = (savedInstanceState == null);
+        if (activityLaunched) {
+            initContext();
             start();
+        } else {
+            restoreState(savedInstanceState);
         }
     }
 
     private void initContext() {
         TicTacToeContext.setGameBoardDimension(13);
         TicTacToeContext.setFirstPlayerType(PlayerTypes.HUMAN);
-        TicTacToeContext.setSecondPlayerType(PlayerTypes.HUMAN);
+        TicTacToeContext.setSecondPlayerType(PlayerTypes.AI.NORMAL);
     }
 
     private void start() {
@@ -63,13 +66,13 @@ public class TicTacToeActivity extends Activity {
         );
 
         viewComponentsProvider = new TicTacToeViewComponentsProviderAndroidImpl(model, this);
-        view = new TicTacToeViewImpl(viewComponentsProvider, model);
+        view = new TicTacToeViewImpl(viewComponentsProvider, model, true);
     }
 
     private void restoreState(Bundle savedInstanceState) {
         viewComponentsProvider =
                 new TicTacToeViewComponentsProviderAndroidImpl(viewComponentsProvider, model, this);
-        view = new TicTacToeViewImpl(viewComponentsProvider, view);
+        view = new TicTacToeViewImpl(viewComponentsProvider, model, false);
     }
 
     @Override

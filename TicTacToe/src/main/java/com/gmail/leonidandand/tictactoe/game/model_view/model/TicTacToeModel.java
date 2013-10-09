@@ -12,6 +12,8 @@ import com.gmail.leonidandand.tictactoe.game.model_view.model.player.Player;
  */
 public interface TicTacToeModel {
 
+    boolean gameFinished();
+
     Player getFirstPlayer();
     Player getSecondPlayer();
     ReadOnlyGameBoard getGameBoard();
@@ -19,15 +21,8 @@ public interface TicTacToeModel {
     void onMove(Position movePos, Player player);
     void onViewIsReadyToStartGame();
 
-    void addOnGameFinishedListener(OnGameFinishedListener listener);
-    void removeOnGameFinishedListener(OnGameFinishedListener listener);
-
-    void addOnScoreChangedListener(OnScoreChangedListener listener);
-    void removeOnScoreChangedListener(OnScoreChangedListener listener);
-
-    void addOnNeedToShowMoveListener(OnNeedToShowMoveListener listener);
-    void removeOnNeedToShowMoveListener(OnNeedToShowMoveListener listener);
-
-    void addOnMovePlayerChangedListener(OnMovePlayerChangedListener listener);
-    void removeOnMovePlayerChangedListener(OnMovePlayerChangedListener listener);
+    void setOnGameFinishedListener(OnGameFinishedListener listener);
+    void setOnScoreChangedListener(OnScoreChangedListener listener);
+    void setOnNeedToShowMoveListener(OnNeedToShowMoveListener listener);
+    void setOnMovePlayerChangedListener(OnMovePlayerChangedListener listener);
 }

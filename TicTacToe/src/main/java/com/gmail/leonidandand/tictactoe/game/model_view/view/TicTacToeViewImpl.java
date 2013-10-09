@@ -27,62 +27,32 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
 
     private final List<OnCellClickListener> onCellClickListeners;
 
+    private final TicTacToeModel model;
+
     private boolean movesBlocked;
-    private boolean gameFinished;
-    private TicTacToeModel model;
+
 
     public TicTacToeViewImpl(TicTacToeViewComponentsProvider viewComponentsProvider,
-                                TicTacToeModel model) {
+                                TicTacToeModel model, boolean needToPrepareNewGame) {
         gameBoardView = viewComponentsProvider.getGameBoardView();
         gameBoardView.setOnCellClickListener(this);
         resultDisplay = viewComponentsProvider.getResultDisplay();
         scoreDisplay = viewComponentsProvider.getScoreDisplay();
         scoreDisplay.showScore(model.getScore());
         moveProgressBar = viewComponentsProvider.getMoveProgressBar();
-
         onCellClickListeners = new ArrayList<OnCellClickListener>();
-        gameFinished = false;
         movesBlocked = false;
-        plugModel(model);
 
-        prepareNewGame();
-    }
-
-    public TicTacToeViewImpl(TicTacToeViewComponentsProvider viewComponentsProvider,
-                                TicTacToeViewImpl toRestore) {
-        gameBoardView = viewComponentsProvider.getGameBoardView();
-        gameBoardView.setOnCellClickListener(this);
-        resultDisplay = viewComponentsProvider.getResultDisplay();
-        scoreDisplay = viewComponentsProvider.getScoreDisplay();
-        scoreDisplay.showScore(toRestore.model.getScore());
-        moveProgressBar = viewComponentsProvider.getMoveProgressBar();
-
-        onCellClickListeners = toRestore.onCellClickListeners;
-        gameFinished = toRestore.gameFinished;
-        movesBlocked = toRestore.movesBlocked;
-        plugModel(toRestore.model);
-        toRestore.unplugModel();
-    }
-
-    private void plugModel(TicTacToeModel model) {
-        unplugModel();
-        model.addOnGameFinishedListener(this);
-        model.addOnScoreChangedListener(this);
-        model.addOnNeedToShowMoveListener(this);
-        model.addOnMovePlayerChangedListener(this);
-        connectPlayers(model.getFirstPlayer(), model.getSecondPlayer());
         this.model = model;
-    }
+        model.setOnGameFinishedListener(this);
+        model.setOnScoreChangedListener(this);
+        model.setOnNeedToShowMoveListener(this);
+        model.setOnMovePlayerChangedListener(this);
+        connectPlayers(model.getFirstPlayer(), model.getSecondPlayer());
 
-    private void unplugModel() {
-        if (model == null) {
-            return;
+        if (needToPrepareNewGame) {
+            prepareNewGame();
         }
-        model.removeOnGameFinishedListener(this);
-        model.removeOnScoreChangedListener(this);
-        model.removeOnNeedToShowMoveListener(this);
-        model.removeOnMovePlayerChangedListener(this);
-        model = null;
     }
 
     private void connectPlayers(Player firstPlayer, Player secondPlayer) {
@@ -106,8 +76,7 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
         if (movesBlocked()) {
             return;
         }
-        if (gameFinished) {
-            gameFinished = false;
+        if (model.gameFinished()) {
             prepareNewGame();
         } else {
             blockMoves();
@@ -147,7 +116,6 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
 
     @Override
     public void onGameFinished(TicTacToeResult result) {
-        gameFinished = true;
         gameBoardView.showFireLines(result.getFireLines());
         resultDisplay.show(result.getGameState());
         moveProgressBar.hide();
