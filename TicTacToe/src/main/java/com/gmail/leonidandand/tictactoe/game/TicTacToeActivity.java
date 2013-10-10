@@ -64,15 +64,21 @@ public class TicTacToeActivity extends Activity {
             TicTacToeContext.getFirstPlayerType(),
             TicTacToeContext.getSecondPlayerType()
         );
-
-        viewComponentsProvider = new TicTacToeViewComponentsProviderAndroidImpl(model, this);
-        view = new TicTacToeViewImpl(viewComponentsProvider, model, true);
+        viewComponentsProvider = new TicTacToeViewComponentsProviderAndroidImpl(
+            TicTacToeContext.getGameBoardDimension(),
+            this
+        );
+        view = new TicTacToeViewImpl(viewComponentsProvider, model);
+        model.startGame();
     }
 
     private void restoreState(Bundle savedInstanceState) {
-        viewComponentsProvider =
-                new TicTacToeViewComponentsProviderAndroidImpl(viewComponentsProvider, model, this);
-        view = new TicTacToeViewImpl(viewComponentsProvider, model, false);
+        viewComponentsProvider = new TicTacToeViewComponentsProviderAndroidImpl(
+            TicTacToeContext.getGameBoardDimension(),
+            this,
+            viewComponentsProvider
+        );
+        view = new TicTacToeViewImpl(viewComponentsProvider, model);
     }
 
     @Override

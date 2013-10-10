@@ -3,7 +3,6 @@ package com.gmail.leonidandand.tictactoe.game.view_components_provider_android_i
 import android.app.Activity;
 
 import com.gmail.leonidandand.tictactoe.game.TicTacToeActivity;
-import com.gmail.leonidandand.tictactoe.game.model_view.model.TicTacToeModel;
 import com.gmail.leonidandand.tictactoe.game.model_view.view.GameBoardView;
 import com.gmail.leonidandand.tictactoe.game.model_view.view.MoveProgressBar;
 import com.gmail.leonidandand.tictactoe.game.model_view.view.ResultDisplay;
@@ -21,25 +20,25 @@ public class TicTacToeViewComponentsProviderAndroidImpl implements TicTacToeView
     private final ScoreDisplayAndroidImpl scoreDisplay;
     private final MoveProgressBarAndroidImpl moveProgressBar;
 
-    public TicTacToeViewComponentsProviderAndroidImpl(TicTacToeModel model, Activity activity) {
+    public TicTacToeViewComponentsProviderAndroidImpl(int gameBoardDimension, Activity activity) {
         moveProgressBar = new MoveProgressBarAndroidImpl(activity);
         resultDisplay = new ResultDisplayAndroidToastImpl(activity);
         scoreDisplay = new ScoreDisplayAndroidImpl(activity);
 
         GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);
-        gameBoardView = gameBoardViewCreator.create(model.getGameBoard());
+        gameBoardView = gameBoardViewCreator.create(gameBoardDimension);
     }
 
     public TicTacToeViewComponentsProviderAndroidImpl(
-                    TicTacToeViewComponentsProviderAndroidImpl toRestore,
-                    TicTacToeModel model, TicTacToeActivity activity) {
+                    int gameBoardDimension, TicTacToeActivity activity,
+                    TicTacToeViewComponentsProviderAndroidImpl toRestore) {
 
         moveProgressBar = new MoveProgressBarAndroidImpl(activity, toRestore.moveProgressBar);
         resultDisplay = new ResultDisplayAndroidToastImpl(activity, toRestore.resultDisplay);
         scoreDisplay = new ScoreDisplayAndroidImpl(activity);
 
         GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);
-        gameBoardView = gameBoardViewCreator.create(model.getGameBoard(), toRestore.gameBoardView);
+        gameBoardView = gameBoardViewCreator.create(gameBoardDimension, toRestore.gameBoardView);
     }
 
     @Override

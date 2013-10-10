@@ -11,7 +11,6 @@ import com.gmail.landanurm.matrix.Dimension;
 import com.gmail.landanurm.matrix.Matrix;
 import com.gmail.landanurm.matrix.Position;
 import com.gmail.leonidandand.tictactoe.R;
-import com.gmail.leonidandand.tictactoe.game.model_view.model.ReadOnlyGameBoard;
 
 /**
  * Created by Leonid on 19.07.13.
@@ -23,23 +22,18 @@ public class GameBoardViewCreator {
         this.activity = activity;
     }
 
-    public GameBoardViewAndroidImpl create(ReadOnlyGameBoard gameBoard) {
-        return new GameBoardViewAndroidImpl(prepareCells(gameBoard));
+    public GameBoardViewAndroidImpl create(int gameBoardDimension) {
+        return new GameBoardViewAndroidImpl(prepareCells(gameBoardDimension));
     }
 
-    public GameBoardViewAndroidImpl create(ReadOnlyGameBoard gameBoard,
+    public GameBoardViewAndroidImpl create(int gameBoardDimension,
                                            GameBoardViewAndroidImpl toRestore) {
-        return new GameBoardViewAndroidImpl(prepareCells(gameBoard), toRestore);
-    }
-
-    private Matrix<ImageView> prepareCells(ReadOnlyGameBoard gameBoard) {
-        return prepareCells(gameBoard.getDimension());
+        return new GameBoardViewAndroidImpl(prepareCells(gameBoardDimension), toRestore);
     }
 
     private Matrix<ImageView> prepareCells(final int gameBoardDimension) {
-        Matrix<ImageView> cells = new ArrayMatrix<ImageView>(
-                new Dimension(gameBoardDimension, gameBoardDimension)
-        );
+        Matrix<ImageView> cells =
+                new ArrayMatrix<ImageView>( new Dimension(gameBoardDimension, gameBoardDimension) );
         LinearLayout verticalLayout = prepareVerticalLinearLayout(gameBoardDimension);
         for (int row = 0; row < gameBoardDimension; ++row) {
             LinearLayout rowLayout = prepareHorizontalLinearLayout(gameBoardDimension);

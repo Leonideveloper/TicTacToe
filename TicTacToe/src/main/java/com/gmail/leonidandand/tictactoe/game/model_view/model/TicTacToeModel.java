@@ -4,6 +4,7 @@ import com.gmail.landanurm.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnGameFinishedListener;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnMovePlayerChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnNeedToShowMoveListener;
+import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnNewGameStartedListener;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnScoreChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.player.Player;
 
@@ -16,11 +17,17 @@ public interface TicTacToeModel {
 
     Player getFirstPlayer();
     Player getSecondPlayer();
+
     ReadOnlyGameBoard getGameBoard();
+
     Score getScore();
+
     void onMove(Position movePos, Player player);
     void onViewIsReadyToStartGame();
 
+    void startGame();
+
+    void setOnNewGameStartedListener(OnNewGameStartedListener listener);
     void setOnGameFinishedListener(OnGameFinishedListener listener);
     void setOnScoreChangedListener(OnScoreChangedListener listener);
     void setOnNeedToShowMoveListener(OnNeedToShowMoveListener listener);

@@ -3,13 +3,14 @@ package com.gmail.leonidandand.tictactoe.game.model_view.model;
 import com.gmail.landanurm.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.judge.TicTacToeJudge;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.judge.TicTacToeJudgeImpl;
+import com.gmail.leonidandand.tictactoe.game.model_view.model.judge.TicTacToeResult;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnGameFinishedListener;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnMovePlayerChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnNeedToShowMoveListener;
+import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnNewGameStartedListener;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnScoreChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.player.Player;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.player.PlayerFactory;
-import com.gmail.leonidandand.tictactoe.game.model_view.model.judge.TicTacToeResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,8 @@ import java.util.List;
  * Created by Leonid on 07.09.13.
  */
 public class TicTacToeModelImpl implements TicTacToeModel {
+
+    private final List<OnNewGameStartedListener> onNewGameStartedListeners;
     private final List<OnNeedToShowMoveListener> onNeedToShowMoveListeners;
     private final List<OnMovePlayerChangedListener> onMovePlayerChangedListeners;
     private final List<OnGameFinishedListener> onGameFinishedListeners;
@@ -37,6 +40,7 @@ public class TicTacToeModelImpl implements TicTacToeModel {
     public TicTacToeModelImpl(int gameBoardDimension, PlayerFactory playerFactory,
                               String firstPlayerType, String secondPlayerType) {
 
+        onNewGameStartedListeners = new ArrayList<OnNewGameStartedListener>();
         onNeedToShowMoveListeners = new ArrayList<OnNeedToShowMoveListener>();
         onMovePlayerChangedListeners = new ArrayList<OnMovePlayerChangedListener>();
         onGameFinishedListeners = new ArrayList<OnGameFinishedListener>();
@@ -152,10 +156,28 @@ public class TicTacToeModelImpl implements TicTacToeModel {
 
     @Override
     public void onViewIsReadyToStartGame() {
+        startGame();
+    }
+
+    @Override
+    public void startGame() {
         gameFinished = false;
         gameBoard.clear();
+        notifyOnNewGameStartedListeners();
         notifyOnMovePlayerChangedListeners();
         movePlayer.enableMoves();
+    }
+
+    private void notifyOnNewGameStartedListeners() {
+        for (OnNewGameStartedListener each : onNewGameStartedListeners) {
+            each.onNewGameStarted();
+        }
+    }
+
+    @Override
+    public void setOnNewGameStartedListener(OnNewGameStartedListener listener) {
+        onNewGameStartedListeners.clear();
+        onNewGameStartedListeners.add(listener);
     }
 
     @Override

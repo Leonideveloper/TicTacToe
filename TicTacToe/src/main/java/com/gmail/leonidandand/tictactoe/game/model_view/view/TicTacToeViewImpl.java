@@ -7,6 +7,7 @@ import com.gmail.leonidandand.tictactoe.game.model_view.model.judge.TicTacToeRes
 import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnGameFinishedListener;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnMovePlayerChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnNeedToShowMoveListener;
+import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnNewGameStartedListener;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnScoreChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.player.Player;
 
@@ -17,8 +18,8 @@ import java.util.List;
  * Created by Leonid on 26.07.13.
  */
 public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
-                                        OnNeedToShowMoveListener, OnGameFinishedListener,
-                                        OnScoreChangedListener, OnMovePlayerChangedListener {
+                OnNewGameStartedListener, OnNeedToShowMoveListener, OnGameFinishedListener,
+                OnScoreChangedListener, OnMovePlayerChangedListener {
 
     private final GameBoardView gameBoardView;
     private final ResultDisplay resultDisplay;
@@ -33,7 +34,7 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
 
 
     public TicTacToeViewImpl(TicTacToeViewComponentsProvider viewComponentsProvider,
-                                TicTacToeModel model, boolean needToPrepareNewGame) {
+                             TicTacToeModel model) {
         gameBoardView = viewComponentsProvider.getGameBoardView();
         gameBoardView.setOnCellClickListener(this);
         resultDisplay = viewComponentsProvider.getResultDisplay();
@@ -44,15 +45,12 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
         movesBlocked = false;
 
         this.model = model;
+        model.setOnNewGameStartedListener(this);
         model.setOnGameFinishedListener(this);
         model.setOnScoreChangedListener(this);
         model.setOnNeedToShowMoveListener(this);
         model.setOnMovePlayerChangedListener(this);
         connectPlayers(model.getFirstPlayer(), model.getSecondPlayer());
-
-        if (needToPrepareNewGame) {
-            prepareNewGame();
-        }
     }
 
     private void connectPlayers(Player firstPlayer, Player secondPlayer) {
@@ -77,7 +75,7 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
             return;
         }
         if (model.gameFinished()) {
-            prepareNewGame();
+            model.onViewIsReadyToStartGame();
         } else {
             blockMoves();
             notifyOnCellClickListeners(cellPos);
@@ -95,12 +93,6 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
 
     private void unblockMoves() {
         movesBlocked = false;
-    }
-
-    protected void prepareNewGame() {
-        gameBoardView.clear();
-        resultDisplay.hide();
-        model.onViewIsReadyToStartGame();
     }
 
     private void notifyOnCellClickListeners(Position cellPos) {
@@ -129,5 +121,11 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
     @Override
     public void onScoreChanged() {
         scoreDisplay.showScore(model.getScore());
+    }
+
+    @Override
+    public void onNewGameStarted() {
+        gameBoardView.clear();
+        resultDisplay.hide();
     }
 }
