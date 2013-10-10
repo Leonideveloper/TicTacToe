@@ -21,10 +21,10 @@ import java.util.List;
 public class TicTacToeModelImpl implements TicTacToeModel {
 
     private final List<OnNewGameStartedListener> onNewGameStartedListeners;
-    private final List<OnNeedToShowMoveListener> onNeedToShowMoveListeners;
-    private final List<OnMovePlayerChangedListener> onMovePlayerChangedListeners;
     private final List<OnGameFinishedListener> onGameFinishedListeners;
     private final List<OnScoreChangedListener> onScoreChangedListeners;
+    private final List<OnNeedToShowMoveListener> onNeedToShowMoveListeners;
+    private final List<OnMovePlayerChangedListener> onMovePlayerChangedListeners;
 
     private final GameBoard gameBoard;
     private final TicTacToeJudge judge;
@@ -41,10 +41,10 @@ public class TicTacToeModelImpl implements TicTacToeModel {
                               String firstPlayerType, String secondPlayerType) {
 
         onNewGameStartedListeners = new ArrayList<OnNewGameStartedListener>();
-        onNeedToShowMoveListeners = new ArrayList<OnNeedToShowMoveListener>();
-        onMovePlayerChangedListeners = new ArrayList<OnMovePlayerChangedListener>();
         onGameFinishedListeners = new ArrayList<OnGameFinishedListener>();
         onScoreChangedListeners = new ArrayList<OnScoreChangedListener>();
+        onNeedToShowMoveListeners = new ArrayList<OnNeedToShowMoveListener>();
+        onMovePlayerChangedListeners = new ArrayList<OnMovePlayerChangedListener>();
 
         gameBoard = new GameBoardImpl(gameBoardDimension);
         judge = new TicTacToeJudgeImpl(gameBoard);
@@ -63,16 +63,6 @@ public class TicTacToeModelImpl implements TicTacToeModel {
     }
 
     @Override
-    public ReadOnlyGameBoard getGameBoard() {
-        return gameBoard;
-    }
-
-    @Override
-    public Score getScore() {
-        return score;
-    }
-
-    @Override
     public Player getFirstPlayer() {
         return player_1;
     }
@@ -80,6 +70,16 @@ public class TicTacToeModelImpl implements TicTacToeModel {
     @Override
     public Player getSecondPlayer() {
         return player_2;
+    }
+
+    @Override
+    public ReadOnlyGameBoard getGameBoard() {
+        return gameBoard;
+    }
+
+    @Override
+    public Score getScore() {
+        return score;
     }
 
     @Override
@@ -145,18 +145,13 @@ public class TicTacToeModelImpl implements TicTacToeModel {
     }
 
     private Player playerOtherThan(Player player) {
-        return (player == player_1) ? player_2 : player_1;
+        return (player.getId() == Player.Id.PLAYER_1) ? player_2 : player_1;
     }
 
     private void notifyOnMovePlayerChangedListeners() {
         for (OnMovePlayerChangedListener each : onMovePlayerChangedListeners) {
             each.onMovePlayerChanged(movePlayer.getId());
         }
-    }
-
-    @Override
-    public void onViewIsReadyToStartGame() {
-        startGame();
     }
 
     @Override

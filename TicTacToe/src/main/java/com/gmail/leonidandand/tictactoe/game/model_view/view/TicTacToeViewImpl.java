@@ -75,7 +75,7 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
             return;
         }
         if (model.gameFinished()) {
-            model.onViewIsReadyToStartGame();
+            model.startGame();
         } else {
             blockMoves();
             notifyOnCellClickListeners(cellPos);

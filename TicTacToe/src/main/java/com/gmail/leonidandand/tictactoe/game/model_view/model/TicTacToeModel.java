@@ -23,7 +23,6 @@ public interface TicTacToeModel {
     Score getScore();
 
     void onMove(Position movePos, Player player);
-    void onViewIsReadyToStartGame();
 
     void startGame();
 

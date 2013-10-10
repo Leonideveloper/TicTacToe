@@ -7,8 +7,7 @@ import java.util.Collection;
  * Created by Leonid on 10.08.13.
  */
 public class FireLine {
-
-    public enum Type {
+    public static enum Type {
         ROW,
         COLUMN,
         LEFT_UPPER_DIAGONAL,
@@ -16,9 +15,9 @@ public class FireLine {
     }
 
     private final Collection<Position> cellsPositions;
-    private final Type fireLineType;
+    private final FireLine.Type fireLineType;
 
-    FireLine(Collection<Position> cellsPositions, Type fireLineType) {
+    FireLine(Collection<Position> cellsPositions, FireLine.Type fireLineType) {
         this.cellsPositions = cellsPositions;
         this.fireLineType = fireLineType;
     }

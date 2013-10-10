@@ -44,10 +44,11 @@ class LineCellsPositionsProvider {
     }
 
     List<Position> onRightUpperDiagonal() {
+        final int indexOfLastColumn = gameBoardDimension - 1;
         return positions(new PositionProvider() {
             @Override
             public Position byIndex(int index) {
-                return new Position(index, (gameBoardDimension - 1) - index);
+                return new Position(index, indexOfLastColumn - index);
             }
         });
     }

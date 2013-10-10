@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Leonid on 18.07.13.
  */
 public class TicTacToeJudgeImpl implements TicTacToeJudge {
-    private final Integer gameBoardDimension;
+    private final int gameBoardDimension;
     private final LineCellsPositionsProvider positionsProvider;
     private final ReadOnlyGameBoard gameBoard;
 
@@ -24,7 +24,7 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge {
 
     @Override
     public TicTacToeResult getResult() {
-        TicTacToeResult result = checkBoard();
+        TicTacToeResult result = checkGameBoard();
         if (result.isKnown()) {
             return result;
         }
@@ -34,7 +34,7 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge {
         return TicTacToeResultCreator.createDrawResult();
     }
 
-    private TicTacToeResult checkBoard() {
+    private TicTacToeResult checkGameBoard() {
         // Max number of fire-lines: 4
         // So need to combine fire-lines
         // *****************      *****************
@@ -42,7 +42,7 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge {
         // O X O O X O O X O      O X O O X O O X O
         // O O X O X O X O O      O O X O X O X O O
         // O O O X X X O O O      O O O X X X O O O
-        // X X X X>-<X X X X  =>  X X X X>X<X X X X
+        // X X X X - X X X X  =>  X X X X X X X X X  Move at the central cell
         // O O O X X X - - -      O O O X X X - - -
         // O O X - X - X - -      O O X - X - X - -
         // O X - - X - - X -      O X - - X - - X -
@@ -123,10 +123,10 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge {
 
     private TicTacToeResult resultBy(List<Position> cellsPositions, FireLine.Type fireLineType) {
         Position positionOfFirstCellOnLine = cellsPositions.get(0);
-        Player.Id firstCellOnLine = gameBoard.get(positionOfFirstCellOnLine);
-        if (firstCellOnLine == null) {
+        if (gameBoard.cellIsEmpty(positionOfFirstCellOnLine)) {
             return TicTacToeResultCreator.createUnknownResult();
         }
+        Player.Id firstCellOnLine = gameBoard.get(positionOfFirstCellOnLine);
         for (int i = 1; i < gameBoardDimension; ++i) {
             Position currentPosition = cellsPositions.get(i);
             Player.Id currentCell = gameBoard.get(currentPosition);

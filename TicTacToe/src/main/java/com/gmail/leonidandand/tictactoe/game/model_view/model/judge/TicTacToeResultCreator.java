@@ -7,15 +7,15 @@ import java.util.ArrayList;
  */
 class TicTacToeResultCreator {
 
-    public static TicTacToeResult createUnknownResult() {
+    static TicTacToeResult createUnknownResult() {
         return createResultWithoutFireLines(TicTacToeResult.GameState.UNKNOWN);
     }
 
-    public static TicTacToeResult createDrawResult() {
+    static TicTacToeResult createDrawResult() {
         return createResultWithoutFireLines(TicTacToeResult.GameState.DRAW);
     }
 
-    public static TicTacToeResult createResultWithoutFireLines(TicTacToeResult.GameState state) {
+    static TicTacToeResult createResultWithoutFireLines(TicTacToeResult.GameState state) {
         return new TicTacToeResult(state, new ArrayList<FireLine>());
     }
 }
