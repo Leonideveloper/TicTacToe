@@ -6,9 +6,10 @@ import android.os.Bundle;
 import com.gmail.leonidandand.tictactoe.R;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.TicTacToeModel;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.TicTacToeModelImpl;
+import com.gmail.leonidandand.tictactoe.game.model_view.view.TicTacToeView;
+import com.gmail.leonidandand.tictactoe.game.model_view.view.TicTacToeViewImpl;
 import com.gmail.leonidandand.tictactoe.game.players.PlayerFactoryImpl;
 import com.gmail.leonidandand.tictactoe.game.players.PlayerTypes;
-import com.gmail.leonidandand.tictactoe.game.model_view.view.TicTacToeViewImpl;
 import com.gmail.leonidandand.tictactoe.game.view_components_provider_android_impl.TicTacToeViewComponentsProviderAndroidImpl;
 
 //
@@ -34,8 +35,8 @@ import com.gmail.leonidandand.tictactoe.game.view_components_provider_android_im
 
 public class TicTacToeActivity extends Activity {
     private static TicTacToeModel model;
+    private static TicTacToeView view;
     private static TicTacToeViewComponentsProviderAndroidImpl viewComponentsProvider;
-    private static TicTacToeViewImpl view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,12 @@ public class TicTacToeActivity extends Activity {
         } else {
             restoreState(savedInstanceState);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        saveState(outState);
     }
 
     private void initContext() {
@@ -79,12 +86,6 @@ public class TicTacToeActivity extends Activity {
             viewComponentsProvider
         );
         view = new TicTacToeViewImpl(viewComponentsProvider, model);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        saveState(outState);
     }
 
     private void saveState(Bundle outState) {

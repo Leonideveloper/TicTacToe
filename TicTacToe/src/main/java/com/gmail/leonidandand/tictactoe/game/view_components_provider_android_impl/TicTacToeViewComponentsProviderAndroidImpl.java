@@ -2,7 +2,6 @@ package com.gmail.leonidandand.tictactoe.game.view_components_provider_android_i
 
 import android.app.Activity;
 
-import com.gmail.leonidandand.tictactoe.game.TicTacToeActivity;
 import com.gmail.leonidandand.tictactoe.game.model_view.view.GameBoardView;
 import com.gmail.leonidandand.tictactoe.game.model_view.view.MoveProgressBar;
 import com.gmail.leonidandand.tictactoe.game.model_view.view.ResultDisplay;
@@ -16,29 +15,25 @@ import com.gmail.leonidandand.tictactoe.game.view_components_provider_android_im
  */
 public class TicTacToeViewComponentsProviderAndroidImpl implements TicTacToeViewComponentsProvider {
     private final GameBoardViewAndroidImpl gameBoardView;
+    private final MoveProgressBarAndroidImpl moveProgressBar;
     private final ResultDisplayAndroidToastImpl resultDisplay;
     private final ScoreDisplayAndroidImpl scoreDisplay;
-    private final MoveProgressBarAndroidImpl moveProgressBar;
 
     public TicTacToeViewComponentsProviderAndroidImpl(int gameBoardDimension, Activity activity) {
+        GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);
+        gameBoardView = gameBoardViewCreator.create(gameBoardDimension);
         moveProgressBar = new MoveProgressBarAndroidImpl(activity);
         resultDisplay = new ResultDisplayAndroidToastImpl(activity);
         scoreDisplay = new ScoreDisplayAndroidImpl(activity);
-
-        GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);
-        gameBoardView = gameBoardViewCreator.create(gameBoardDimension);
     }
 
-    public TicTacToeViewComponentsProviderAndroidImpl(
-                    int gameBoardDimension, TicTacToeActivity activity,
-                    TicTacToeViewComponentsProviderAndroidImpl toRestore) {
-
+    public TicTacToeViewComponentsProviderAndroidImpl(int gameBoardDimension, Activity activity,
+                                        TicTacToeViewComponentsProviderAndroidImpl toRestore) {
+        GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);
+        gameBoardView = gameBoardViewCreator.create(gameBoardDimension, toRestore.gameBoardView);
         moveProgressBar = new MoveProgressBarAndroidImpl(activity, toRestore.moveProgressBar);
         resultDisplay = new ResultDisplayAndroidToastImpl(activity, toRestore.resultDisplay);
         scoreDisplay = new ScoreDisplayAndroidImpl(activity);
-
-        GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);
-        gameBoardView = gameBoardViewCreator.create(gameBoardDimension, toRestore.gameBoardView);
     }
 
     @Override

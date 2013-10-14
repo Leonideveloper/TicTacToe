@@ -35,7 +35,7 @@ class ResultDisplayAndroidToastImpl implements ResultDisplay {
 
     @Override
     public void hide() {
-        this.gameState = null;
         displayed = false;
+        gameState = null;
     }
 }

@@ -34,46 +34,46 @@ public class GameBoardViewCreator {
     private Matrix<ImageView> prepareCells(final int gameBoardDimension) {
         Matrix<ImageView> cells =
                 new ArrayMatrix<ImageView>( new Dimension(gameBoardDimension, gameBoardDimension) );
-        LinearLayout verticalLayout = prepareVerticalLinearLayout(gameBoardDimension);
+        LinearLayout rowsContainerLayout = prepareRowsContainerLayout(gameBoardDimension);
         for (int row = 0; row < gameBoardDimension; ++row) {
-            LinearLayout rowLayout = prepareHorizontalLinearLayout(gameBoardDimension);
+            LinearLayout rowLayout = prepareRowLayout(gameBoardDimension);
             for (int column = 0; column < gameBoardDimension; ++column) {
                 ImageView cell = prepareCell();
                 rowLayout.addView(cell);
                 cells.set(new Position(row, column), cell);
             }
-            verticalLayout.addView(rowLayout);
+            rowsContainerLayout.addView(rowLayout);
         }
         FrameLayout gameBoardFrameLayout =
                 (FrameLayout) activity.findViewById(R.id.gameBoardFrameLayout);
-        gameBoardFrameLayout.addView(verticalLayout);
+        gameBoardFrameLayout.addView(rowsContainerLayout);
         return cells;
     }
 
-    private LinearLayout prepareVerticalLinearLayout(int numberOfChildElements) {
-        return prepareLinearLayout(LinearLayout.VERTICAL, numberOfChildElements);
+    private LinearLayout prepareRowsContainerLayout(int numberOfRows) {
+        return prepareLinearLayout(LinearLayout.VERTICAL, numberOfRows);
     }
 
-    private LinearLayout prepareHorizontalLinearLayout(int numberOfChildElements) {
-        return prepareLinearLayout(LinearLayout.HORIZONTAL, numberOfChildElements);
+    private LinearLayout prepareRowLayout(int numberOfColumns) {
+        return prepareLinearLayout(LinearLayout.HORIZONTAL, numberOfColumns);
     }
 
     private LinearLayout prepareLinearLayout(int orientation, int weightSum) {
         LinearLayout layout = new LinearLayout(activity);
         layout.setWeightSum(weightSum);
         layout.setOrientation(orientation);
-        layout.setLayoutParams(createParams());
+        layout.setLayoutParams(prepareParams());
         return layout;
     }
 
     private ImageView prepareCell() {
         LayoutInflater inflater = activity.getLayoutInflater();
         ImageView cell = (ImageView) inflater.inflate(R.layout.cell_image_view, null);
-        cell.setLayoutParams(createParams());
+        cell.setLayoutParams(prepareParams());
         return cell;
     }
 
-    private LinearLayout.LayoutParams createParams() {
+    private LinearLayout.LayoutParams prepareParams() {
         return new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f
         );

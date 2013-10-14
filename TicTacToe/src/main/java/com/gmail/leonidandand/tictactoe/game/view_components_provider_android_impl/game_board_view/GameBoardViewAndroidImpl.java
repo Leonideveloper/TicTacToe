@@ -12,22 +12,30 @@ import com.gmail.leonidandand.tictactoe.game.model_view.view.OnCellClickListener
 import java.util.Collection;
 
 public class GameBoardViewAndroidImpl implements GameBoardView {
-    private final Matrix<ImageView> cellViews;
+    private final ReadOnlyMatrix<ImageView> cells;
     private final TicTacToeIconsProvider iconsProvider;
     private Matrix<Integer> firstLayerCellImageResourcesIds;
     private Matrix<Integer> secondLayerCellImageResourcesIds;
 
-    GameBoardViewAndroidImpl(Matrix<ImageView> cellViews) {
-        this.cellViews = cellViews;
+    GameBoardViewAndroidImpl(ReadOnlyMatrix<ImageView> cells) {
+        this.cells = cells;
         this.iconsProvider = new PlainTicTacToeIconsProvider();
-        this.firstLayerCellImageResourcesIds = new ArrayMatrix<Integer>(cellViews.getDimension());
-        this.secondLayerCellImageResourcesIds = new ArrayMatrix<Integer>(cellViews.getDimension());
+        this.firstLayerCellImageResourcesIds = new ArrayMatrix<Integer>(cells.getDimension());
+        this.secondLayerCellImageResourcesIds = new ArrayMatrix<Integer>(cells.getDimension());
         this.clear();
+    }
+
+    GameBoardViewAndroidImpl(Matrix<ImageView> cells, GameBoardViewAndroidImpl toRestore) {
+        this.cells = cells;
+        this.iconsProvider = toRestore.iconsProvider;
+        this.firstLayerCellImageResourcesIds = toRestore.firstLayerCellImageResourcesIds;
+        this.secondLayerCellImageResourcesIds = toRestore.secondLayerCellImageResourcesIds;
+        this.updateAllCellViews();
     }
 
     @Override
     public void clear() {
-        cellViews.forEach(new OnEachHandler<ImageView>() {
+        cells.forEach(new OnEachHandler<ImageView>() {
             @Override
             public void handle(Position pos, ImageView elem) {
                 clearCell(pos);
@@ -41,21 +49,13 @@ public class GameBoardViewAndroidImpl implements GameBoardView {
     }
 
     private void setFirstLayerImageResource(Position cellPos, int resId) {
-        cellViews.get(cellPos).setBackgroundResource(resId);
+        cells.get(cellPos).setBackgroundResource(resId);
         firstLayerCellImageResourcesIds.set(cellPos, resId);
     }
 
     private void setSecondLayerImageResource(Position cellPos, int resId) {
-        cellViews.get(cellPos).setImageResource(resId);
+        cells.get(cellPos).setImageResource(resId);
         secondLayerCellImageResourcesIds.set(cellPos, resId);
-    }
-
-    GameBoardViewAndroidImpl(Matrix<ImageView> cellViews, GameBoardViewAndroidImpl toRestore) {
-        this.cellViews = cellViews;
-        this.iconsProvider = toRestore.iconsProvider;
-        this.firstLayerCellImageResourcesIds = toRestore.firstLayerCellImageResourcesIds;
-        this.secondLayerCellImageResourcesIds = toRestore.secondLayerCellImageResourcesIds;
-        this.updateAllCellViews();
     }
 
     private void updateAllCellViews() {
@@ -68,10 +68,8 @@ public class GameBoardViewAndroidImpl implements GameBoardView {
     }
 
     private void updateCell(Position pos) {
-        int secondLayerImageResourceId = secondLayerCellImageResourcesIds.get(pos);
-        setSecondLayerImageResource(pos, secondLayerImageResourceId);
-        int firstLayerImageResourceId = firstLayerCellImageResourcesIds.get(pos);
-        setFirstLayerImageResource(pos, firstLayerImageResourceId);
+        setSecondLayerImageResource(pos, secondLayerCellImageResourcesIds.get(pos));
+        setFirstLayerImageResource(pos, firstLayerCellImageResourcesIds.get(pos));
     }
 
     @Override
@@ -97,10 +95,10 @@ public class GameBoardViewAndroidImpl implements GameBoardView {
 
     @Override
     public void setOnCellClickListener(final OnCellClickListener onCellClickListener) {
-        cellViews.forEach(new OnEachHandler<ImageView>() {
+        cells.forEach(new OnEachHandler<ImageView>() {
             @Override
             public void handle(final Position pos, ImageView elem) {
-                ImageView cell = cellViews.get(pos);
+                ImageView cell = cells.get(pos);
                 cell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

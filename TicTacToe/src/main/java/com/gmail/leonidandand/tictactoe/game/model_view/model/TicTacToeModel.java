@@ -14,12 +14,9 @@ import com.gmail.leonidandand.tictactoe.game.model_view.model.player.Player;
 public interface TicTacToeModel {
 
     boolean gameFinished();
-
     Player getFirstPlayer();
     Player getSecondPlayer();
-
     ReadOnlyGameBoard getGameBoard();
-
     Score getScore();
 
     void onMove(Position movePos, Player player);

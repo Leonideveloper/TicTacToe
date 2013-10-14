@@ -141,7 +141,7 @@ public class TicTacToeModelImpl implements TicTacToeModel {
         case DRAW:
             return movePlayer;
         }
-        throw new IllegalArgumentException("unknown argument - gameState");
+        throw new IllegalArgumentException("unknown argument \'gameState\': " + gameState.name());
     }
 
     private Player playerOtherThan(Player player) {

@@ -19,11 +19,6 @@ class ScoreDisplayAndroidImpl implements ScoreDisplay {
         scoreOfPlayer2 = (TextView) activity.findViewById(R.id.scoreOfPlayer2);
     }
 
-    ScoreDisplayAndroidImpl(Activity activity, Score score) {
-        this(activity);
-        showScore(score);
-    }
-
     @Override
     public void showScore(Score score) {
         scoreOfPlayer1.setText(String.valueOf(score.getScoreOfPlayer1()));
