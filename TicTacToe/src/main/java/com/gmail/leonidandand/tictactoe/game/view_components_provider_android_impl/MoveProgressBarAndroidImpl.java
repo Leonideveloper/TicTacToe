@@ -39,9 +39,9 @@ class MoveProgressBarAndroidImpl implements MoveProgressBar {
     }
 
     @Override
-    public void show(Player.Id movePlayerId) {
+    public void show(Player.Id playerId) {
         hide();
-        setVisibility(movePlayerId, View.VISIBLE);
+        setVisibility(playerId, View.VISIBLE);
     }
 
     @Override

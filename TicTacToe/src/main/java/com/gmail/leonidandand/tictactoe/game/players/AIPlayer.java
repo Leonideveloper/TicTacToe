@@ -17,7 +17,7 @@ class AIPlayer extends BasePlayer {
 
     @Override
     public void enableMoves() {
-        Position pos = aiMoveCalculator.positionToMove(gameBoard);
+        Position pos = aiMoveCalculator.calculatePositionToMove(gameBoard);
         model.onMove(pos, this);
     }
 

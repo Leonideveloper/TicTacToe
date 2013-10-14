@@ -8,10 +8,10 @@ import com.gmail.leonidandand.tictactoe.game.model_view.model.ReadOnlyGameBoard;
  */
 class NormalAIMoveCalculator implements AIMoveCalculator {
     @Override
-    public Position positionToMove(ReadOnlyGameBoard gameBoard) {
-        int dimension = gameBoard.getDimension();
-        for (int row = 0; row < dimension; ++row) {
-            for (int column = 0; column < dimension; ++column) {
+    public Position calculatePositionToMove(ReadOnlyGameBoard gameBoard) {
+        final int gameBoardDimension = gameBoard.getDimension();
+        for (int row = 0; row < gameBoardDimension; ++row) {
+            for (int column = 0; column < gameBoardDimension; ++column) {
                 Position pos = new Position(row, column);
                 if (gameBoard.cellIsEmpty(pos)) {
                     return pos;

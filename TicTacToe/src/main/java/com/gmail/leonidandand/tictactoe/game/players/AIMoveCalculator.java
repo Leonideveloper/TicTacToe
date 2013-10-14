@@ -7,5 +7,5 @@ import com.gmail.leonidandand.tictactoe.game.model_view.model.ReadOnlyGameBoard;
  * Created by Leonid on 28.09.13.
  */
 interface AIMoveCalculator {
-    Position positionToMove(ReadOnlyGameBoard gameBoard);
+    Position calculatePositionToMove(ReadOnlyGameBoard gameBoard);
 }

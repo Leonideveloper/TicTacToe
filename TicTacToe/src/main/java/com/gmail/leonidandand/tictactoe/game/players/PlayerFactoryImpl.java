@@ -11,28 +11,22 @@ public class PlayerFactoryImpl implements PlayerFactory {
 
     @Override
     public Player createFirstPlayer(String playerType, TicTacToeModel model) {
-        return createPlayer(Player.Id.PLAYER_1, playerType, model);
+        return createPlayer(playerType, model, Player.Id.PLAYER_1);
     }
 
     @Override
     public Player createSecondPlayer(String playerType, TicTacToeModel model) {
-        return createPlayer(Player.Id.PLAYER_2, playerType, model);
+        return createPlayer(playerType, model, Player.Id.PLAYER_2);
     }
 
-    private Player createPlayer(Player.Id playerId, String playerType, TicTacToeModel model) {
+    private Player createPlayer(String playerType, TicTacToeModel model, Player.Id playerId) {
         if (playerType.equals(PlayerTypes.HUMAN)) {
             return new HumanPlayer(playerId, model);
         } else if (playerType.equals(PlayerTypes.AI.NORMAL)) {
             return new AIPlayer(playerId, model, new NormalAIMoveCalculator());
         } else if (playerType.equals(PlayerTypes.AI.HARD)) {
-            throwNotYetImplementedType(playerType);
+            throw new PlayerTypeIsNotYetImplementedException(playerType);
         }
-        throw new IllegalArgumentException("Unknown player type");
-    }
-
-    private void throwNotYetImplementedType(String playerType) {
-        throw new NotYetImplementedException(
-                "Player type \'" + playerType + "\' is not yet implemented."
-        );
+        throw new IllegalArgumentException("Unknown player type: " + playerType);
     }
 }

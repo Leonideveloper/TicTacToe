@@ -22,9 +22,9 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
                 OnScoreChangedListener, OnMovePlayerChangedListener {
 
     private final GameBoardView gameBoardView;
+    private final MoveProgressBar moveProgressBar;
     private final ResultDisplay resultDisplay;
     private final ScoreDisplay scoreDisplay;
-    private final MoveProgressBar moveProgressBar;
 
     private final List<OnCellClickListener> onCellClickListeners;
 
@@ -35,13 +35,19 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
 
     public TicTacToeViewImpl(TicTacToeViewComponentsProvider viewComponentsProvider,
                              TicTacToeModel model) {
+
         gameBoardView = viewComponentsProvider.getGameBoardView();
         gameBoardView.setOnCellClickListener(this);
+
+        moveProgressBar = viewComponentsProvider.getMoveProgressBar();
+
         resultDisplay = viewComponentsProvider.getResultDisplay();
+
         scoreDisplay = viewComponentsProvider.getScoreDisplay();
         scoreDisplay.showScore(model.getScore());
-        moveProgressBar = viewComponentsProvider.getMoveProgressBar();
+
         onCellClickListeners = new ArrayList<OnCellClickListener>();
+
         movesBlocked = false;
 
         this.model = model;
@@ -60,7 +66,7 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
 
     private void connectIfPlayerIsOnCellClickListener(Player player) {
         if (player instanceof OnCellClickListener) {
-            this.addOnCellClickListener((OnCellClickListener) player);
+            addOnCellClickListener((OnCellClickListener) player);
         }
     }
 
@@ -114,8 +120,8 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
     }
 
     @Override
-    public void onMovePlayerChanged(Player.Id movePlayerId) {
-        moveProgressBar.show(movePlayerId);
+    public void onMovePlayerChanged(Player.Id playerId) {
+        moveProgressBar.show(playerId);
     }
 
     @Override
