@@ -11,26 +11,27 @@ import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnNewGam
 import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnScoreChangedListener;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.player.Player;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Leonid on 26.07.13.
  */
-public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
-                OnNewGameStartedListener, OnNeedToShowMoveListener, OnGameFinishedListener,
-                OnScoreChangedListener, OnMovePlayerChangedListener {
+public class TicTacToeViewImpl implements TicTacToeView, Serializable,
+                OnCellClickListener, OnNewGameStartedListener, OnNeedToShowMoveListener,
+                OnGameFinishedListener, OnScoreChangedListener, OnMovePlayerChangedListener {
 
-    private final GameBoardView gameBoardView;
-    private final MoveProgressBar moveProgressBar;
-    private final ResultDisplay resultDisplay;
-    private final ScoreDisplay scoreDisplay;
+    private transient final GameBoardView gameBoardView;
+    private transient final MoveProgressBar moveProgressBar;
+    private transient final ResultDisplay resultDisplay;
+    private transient final ScoreDisplay scoreDisplay;
 
-    private final List<OnCellClickListener> onCellClickListeners;
+    private transient final List<OnCellClickListener> onCellClickListeners;
 
-    private final TicTacToeModel model;
+    private transient final TicTacToeModel model;
 
-    private boolean movesBlocked;
+    private transient boolean movesBlocked;
 
 
     public TicTacToeViewImpl(TicTacToeViewComponentsProvider viewComponentsProvider,

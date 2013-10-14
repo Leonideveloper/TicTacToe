@@ -12,6 +12,8 @@ import com.gmail.leonidandand.tictactoe.game.players.PlayerFactoryImpl;
 import com.gmail.leonidandand.tictactoe.game.players.PlayerTypes;
 import com.gmail.leonidandand.tictactoe.game.view_components_provider_android_impl.TicTacToeViewComponentsProviderAndroidImpl;
 
+import java.io.Serializable;
+
 //
 // TODO:
 // New structure of processing configuration changes:
@@ -34,8 +36,8 @@ import com.gmail.leonidandand.tictactoe.game.view_components_provider_android_im
 //
 
 public class TicTacToeActivity extends Activity {
-    private static TicTacToeModel model;
-    private static TicTacToeView view;
+    private TicTacToeModel model;
+    private TicTacToeView view;
     private static TicTacToeViewComponentsProviderAndroidImpl viewComponentsProvider;
 
     @Override
@@ -61,7 +63,7 @@ public class TicTacToeActivity extends Activity {
     private void initContext() {
         TicTacToeContext.setGameBoardDimension(13);
         TicTacToeContext.setFirstPlayerType(PlayerTypes.HUMAN);
-        TicTacToeContext.setSecondPlayerType(PlayerTypes.AI.NORMAL);
+        TicTacToeContext.setSecondPlayerType(PlayerTypes.HUMAN);
     }
 
     private void start() {
@@ -80,6 +82,7 @@ public class TicTacToeActivity extends Activity {
     }
 
     private void restoreState(Bundle savedInstanceState) {
+        model = (TicTacToeModel) savedInstanceState.getSerializable("model");
         viewComponentsProvider = new TicTacToeViewComponentsProviderAndroidImpl(
             TicTacToeContext.getGameBoardDimension(),
             this,
@@ -89,6 +92,6 @@ public class TicTacToeActivity extends Activity {
     }
 
     private void saveState(Bundle outState) {
-        // Do nothing
+        outState.putSerializable("model", (Serializable) model);
     }
 }

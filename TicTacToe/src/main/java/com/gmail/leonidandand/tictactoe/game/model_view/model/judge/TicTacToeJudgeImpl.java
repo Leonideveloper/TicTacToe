@@ -4,6 +4,7 @@ import com.gmail.landanurm.matrix.*;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.ReadOnlyGameBoard;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.player.Player;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  * Created by Leonid on 18.07.13.
  */
-public class TicTacToeJudgeImpl implements TicTacToeJudge {
+public class TicTacToeJudgeImpl implements TicTacToeJudge, Serializable {
     private final int gameBoardDimension;
     private final LineCellsPositionsProvider positionsProvider;
     private final ReadOnlyGameBoard gameBoard;

@@ -3,13 +3,14 @@ package com.gmail.leonidandand.tictactoe.game.model_view.model.judge;
 
 import com.gmail.landanurm.matrix.Position;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Leonid on 15.09.13.
  */
-class LineCellsPositionsProvider {
+class LineCellsPositionsProvider implements Serializable {
     private final int gameBoardDimension;
 
     LineCellsPositionsProvider(int gameBoardDimension) {

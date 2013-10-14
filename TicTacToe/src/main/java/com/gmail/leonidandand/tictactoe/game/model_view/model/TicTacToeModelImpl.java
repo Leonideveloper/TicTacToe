@@ -12,13 +12,14 @@ import com.gmail.leonidandand.tictactoe.game.model_view.model.listeners.OnScoreC
 import com.gmail.leonidandand.tictactoe.game.model_view.model.player.Player;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.player.PlayerFactory;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Leonid on 07.09.13.
  */
-public class TicTacToeModelImpl implements TicTacToeModel {
+public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
 
     private final List<OnNewGameStartedListener> onNewGameStartedListeners;
     private final List<OnGameFinishedListener> onGameFinishedListeners;

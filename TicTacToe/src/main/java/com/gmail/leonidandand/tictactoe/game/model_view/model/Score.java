@@ -1,9 +1,11 @@
 package com.gmail.leonidandand.tictactoe.game.model_view.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Leonid on 29.07.13.
  */
-public class Score {
+public class Score implements Serializable {
     private int scoreOfPlayer1;
     private int scoreOfPlayer2;
 

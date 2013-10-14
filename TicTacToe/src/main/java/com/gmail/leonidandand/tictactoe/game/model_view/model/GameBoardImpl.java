@@ -6,10 +6,12 @@ import com.gmail.landanurm.matrix.Matrix;
 import com.gmail.landanurm.matrix.Position;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.player.Player;
 
+import java.io.Serializable;
+
 /**
  * Created by Leonid on 27.09.13.
  */
-class GameBoardImpl implements GameBoard {
+class GameBoardImpl implements GameBoard, Serializable {
     private final Matrix<Player.Id> cells;
 
     GameBoardImpl(int gameBoardDimension) {
