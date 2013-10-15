@@ -27,7 +27,7 @@ class TicTacToeController {
     private static TicTacToeViewComponentsProviderAndroidImpl viewComponentsProvider;
     private TicTacToeView view;
     private TicTacToeModel model;
-    
+
 
     TicTacToeController(Activity activity) {
         this.activity = activity;

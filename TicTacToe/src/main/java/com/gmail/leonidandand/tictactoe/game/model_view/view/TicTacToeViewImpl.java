@@ -27,11 +27,10 @@ public class TicTacToeViewImpl implements TicTacToeView, Serializable,
     private transient final ResultDisplay resultDisplay;
     private transient final ScoreDisplay scoreDisplay;
 
-    private transient final List<OnCellClickListener> onCellClickListeners;
+    private final List<OnCellClickListener> onCellClickListeners;
+    private final TicTacToeModel model;
 
-    private transient final TicTacToeModel model;
-
-    private transient boolean movesBlocked;
+    private boolean movesBlocked;
 
 
     public TicTacToeViewImpl(TicTacToeViewComponentsProvider viewComponentsProvider,
