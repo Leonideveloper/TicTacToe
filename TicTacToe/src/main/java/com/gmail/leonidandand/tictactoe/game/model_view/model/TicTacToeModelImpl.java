@@ -33,9 +33,9 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
 
     private final Player player_1;
     private final Player player_2;
-    private Player movePlayer;
 
     private boolean gameFinished;
+    private Player movePlayer;
 
 
     public TicTacToeModelImpl(int gameBoardDimension, PlayerFactory playerFactory,
@@ -53,9 +53,9 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
 
         player_1 = playerFactory.createFirstPlayer(firstPlayerType, this);
         player_2 = playerFactory.createSecondPlayer(secondPlayerType, this);
-        movePlayer = player_1;
 
         gameFinished = false;
+        movePlayer = player_1;
     }
 
     @Override
