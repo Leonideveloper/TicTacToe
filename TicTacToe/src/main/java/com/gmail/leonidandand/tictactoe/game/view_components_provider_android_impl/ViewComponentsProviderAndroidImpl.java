@@ -6,7 +6,7 @@ import com.gmail.leonidandand.tictactoe.game.model_view.view.GameBoardView;
 import com.gmail.leonidandand.tictactoe.game.model_view.view.MoveProgressBar;
 import com.gmail.leonidandand.tictactoe.game.model_view.view.ResultDisplay;
 import com.gmail.leonidandand.tictactoe.game.model_view.view.ScoreDisplay;
-import com.gmail.leonidandand.tictactoe.game.model_view.view.TicTacToeViewComponentsProvider;
+import com.gmail.leonidandand.tictactoe.game.model_view.view.TicTacToeView;
 import com.gmail.leonidandand.tictactoe.game.view_components_provider_android_impl.game_board_view.GameBoardViewAndroidImpl;
 import com.gmail.leonidandand.tictactoe.game.view_components_provider_android_impl.game_board_view.GameBoardViewCreator;
 
@@ -17,13 +17,13 @@ import java.util.Map;
 /**
  * Created by Leonid on 28.09.13.
  */
-public class TicTacToeViewComponentsProviderAndroidImpl implements TicTacToeViewComponentsProvider {
+public class ViewComponentsProviderAndroidImpl implements TicTacToeView.ComponentsProvider {
     private final GameBoardViewAndroidImpl gameBoardView;
     private final MoveProgressBarAndroidImpl moveProgressBar;
     private final ResultDisplayAndroidToastImpl resultDisplay;
     private final ScoreDisplayAndroidImpl scoreDisplay;
 
-    public TicTacToeViewComponentsProviderAndroidImpl(int gameBoardDimension, Activity activity) {
+    public ViewComponentsProviderAndroidImpl(int gameBoardDimension, Activity activity) {
         GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);
         gameBoardView = gameBoardViewCreator.create(gameBoardDimension);
         moveProgressBar = new MoveProgressBarAndroidImpl(activity);
@@ -31,14 +31,14 @@ public class TicTacToeViewComponentsProviderAndroidImpl implements TicTacToeView
         scoreDisplay = new ScoreDisplayAndroidImpl(activity);
     }
 
-    public TicTacToeViewComponentsProviderAndroidImpl(int gameBoardDimension,
-                                        Activity activity, Serializable savedState) {
+    public ViewComponentsProviderAndroidImpl(int gameBoardDimension,
+                                             Activity activity, Serializable savedState) {
 
         this(gameBoardDimension, activity, (Map<String, Serializable>) savedState);
     }
 
-    private TicTacToeViewComponentsProviderAndroidImpl(int gameBoardDimension,
-                                        Activity activity, Map<String, Serializable> savedState) {
+    private ViewComponentsProviderAndroidImpl(int gameBoardDimension,
+                                              Activity activity, Map<String, Serializable> savedState) {
 
         GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);
         gameBoardView = gameBoardViewCreator.create(gameBoardDimension, savedState);

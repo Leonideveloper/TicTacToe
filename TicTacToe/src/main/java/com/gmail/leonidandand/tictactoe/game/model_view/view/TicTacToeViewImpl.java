@@ -33,7 +33,7 @@ public class TicTacToeViewImpl implements TicTacToeView, Serializable,
     private boolean movesBlocked;
 
 
-    public TicTacToeViewImpl(TicTacToeViewComponentsProvider viewComponentsProvider,
+    public TicTacToeViewImpl(ComponentsProvider viewComponentsProvider,
                              TicTacToeModel model) {
 
         gameBoardView = viewComponentsProvider.getGameBoardView();

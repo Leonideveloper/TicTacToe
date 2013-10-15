@@ -10,7 +10,7 @@ import com.gmail.leonidandand.tictactoe.game.model_view.view.TicTacToeView;
 import com.gmail.leonidandand.tictactoe.game.model_view.view.TicTacToeViewImpl;
 import com.gmail.leonidandand.tictactoe.game.players.PlayerFactoryImpl;
 import com.gmail.leonidandand.tictactoe.game.players.PlayerTypes;
-import com.gmail.leonidandand.tictactoe.game.view_components_provider_android_impl.TicTacToeViewComponentsProviderAndroidImpl;
+import com.gmail.leonidandand.tictactoe.game.view_components_provider_android_impl.ViewComponentsProviderAndroidImpl;
 
 import java.io.Serializable;
 
@@ -27,7 +27,7 @@ class TicTacToeController {
 
     private TicTacToeModel model;
     private TicTacToeView view;
-    private TicTacToeViewComponentsProviderAndroidImpl viewComponentsProvider;
+    private ViewComponentsProviderAndroidImpl viewComponentsProvider;
 
 
     TicTacToeController(Activity activity) {
@@ -38,9 +38,15 @@ class TicTacToeController {
         this.secondPlayerType = PlayerTypes.AI.NORMAL;
     }
 
+
     void startGame() {
-        model = new TicTacToeModelImpl(gameBoardDimension, playerFactory, firstPlayerType, secondPlayerType);
-        viewComponentsProvider = new TicTacToeViewComponentsProviderAndroidImpl(gameBoardDimension, activity);
+        model = new TicTacToeModelImpl(gameBoardDimension,
+                                       playerFactory,
+                                       firstPlayerType,
+                                       secondPlayerType);
+
+        viewComponentsProvider = new ViewComponentsProviderAndroidImpl(gameBoardDimension, activity);
+
         view = new TicTacToeViewImpl(viewComponentsProvider, model);
 
         model.startGame();
@@ -54,17 +60,17 @@ class TicTacToeController {
 
     void saveState(Bundle outState) {
         outState.putSerializable(BundleKeys.model, (Serializable) model);
-
-        Serializable viewComponentsState = viewComponentsProvider.getState();
-        outState.putSerializable(BundleKeys.viewComponentsState, viewComponentsState);
+        outState.putSerializable(BundleKeys.viewComponentsState, viewComponentsProvider.getState());
     }
 
     void restoreState(Bundle savedState) {
         model = (TicTacToeModel) savedState.getSerializable(BundleKeys.model);
 
-        Serializable viewComponentsState = savedState.getSerializable(BundleKeys.viewComponentsState);
-        viewComponentsProvider = new TicTacToeViewComponentsProviderAndroidImpl(
-                                            gameBoardDimension, activity, viewComponentsState);
+        viewComponentsProvider = new ViewComponentsProviderAndroidImpl(
+                                        gameBoardDimension,
+                                        activity,
+                                        savedState.getSerializable(BundleKeys.viewComponentsState)
+                                 );
 
         view = new TicTacToeViewImpl(viewComponentsProvider, model);
     }

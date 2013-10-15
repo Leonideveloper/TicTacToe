@@ -6,4 +6,11 @@ package com.gmail.leonidandand.tictactoe.game.model_view.view;
  */
 public interface TicTacToeView {
     void addOnCellClickListener(OnCellClickListener listener);
+
+    public static interface ComponentsProvider {
+        GameBoardView getGameBoardView();
+        ResultDisplay getResultDisplay();
+        ScoreDisplay getScoreDisplay();
+        MoveProgressBar getMoveProgressBar();
+    }
 }
