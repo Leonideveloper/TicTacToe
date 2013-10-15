@@ -22,7 +22,7 @@ class ScoreDisplayAndroidImpl implements ScoreDisplay {
         scoreOfPlayer2 = (TextView) activity.findViewById(R.id.scoreOfPlayer2);
     }
 
-    void saveStateInto(Map<String,Serializable> outState) {
+    void saveStateInto(Map<String, Serializable> outState) {
         // do nothing
     }
 

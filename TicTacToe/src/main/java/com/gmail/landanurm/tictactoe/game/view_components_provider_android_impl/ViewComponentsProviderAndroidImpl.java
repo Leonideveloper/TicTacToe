@@ -32,7 +32,8 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
     }
 
     public ViewComponentsProviderAndroidImpl(int gameBoardDimension,
-                            Activity activity, Serializable viewComponentsState) {
+                                             Activity activity,
+                                             Serializable viewComponentsState) {
 
         Map<String, Serializable> savedState = (Map<String, Serializable>) viewComponentsState;
         GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);

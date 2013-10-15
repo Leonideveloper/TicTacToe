@@ -38,7 +38,8 @@ class MoveProgressBarAndroidImpl implements MoveProgressBar {
     }
 
     MoveProgressBarAndroidImpl(Activity activity, Map<String, Serializable> savedState) {
-        this(activity);
+        firstPlayerProgressBar = activity.findViewById(R.id.firstPlayerProgressBar);
+        secondPlayerProgressBar = activity.findViewById(R.id.secondPlayerProgressBar);
         setVisibility(Player.Id.PLAYER_1, (Integer) savedState.get(MapKeys.firstPlayerVisibility));
         setVisibility(Player.Id.PLAYER_2, (Integer) savedState.get(MapKeys.secondPlayerVisibility));
     }

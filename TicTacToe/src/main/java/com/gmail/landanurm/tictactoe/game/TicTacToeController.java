@@ -65,11 +65,10 @@ class TicTacToeController {
     void restoreState(Bundle savedState) {
         model = (TicTacToeModel) savedState.getSerializable(BundleKeys.model);
 
-        viewComponentsProvider = new ViewComponentsProviderAndroidImpl(
-                                        gameBoardDimension,
-                                        activity,
-                                        savedState.getSerializable(BundleKeys.viewComponentsState)
-                                 );
+        Serializable viewComponentsState = savedState.getSerializable(BundleKeys.viewComponentsState);
+        viewComponentsProvider = new ViewComponentsProviderAndroidImpl(gameBoardDimension,
+                                                                       activity,
+                                                                       viewComponentsState);
 
         view = new TicTacToeViewImpl(viewComponentsProvider, model);
     }

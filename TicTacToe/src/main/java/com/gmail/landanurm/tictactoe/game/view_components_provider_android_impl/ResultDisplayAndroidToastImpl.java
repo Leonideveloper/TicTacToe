@@ -20,12 +20,13 @@ class ResultDisplayAndroidToastImpl implements ResultDisplay {
     }
 
     private final Activity activity;
-    private boolean displayed;
+    private Boolean displayed;
     private TicTacToeResult.GameState gameState;
 
     ResultDisplayAndroidToastImpl(Activity activity) {
         this.activity = activity;
-        hide();
+        this.displayed = false;
+        this.gameState = null;
     }
 
     void saveStateInto(Map<String, Serializable> outState) {

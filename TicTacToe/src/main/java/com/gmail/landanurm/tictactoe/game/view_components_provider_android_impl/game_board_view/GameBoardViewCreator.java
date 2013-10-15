@@ -37,6 +37,7 @@ public class GameBoardViewCreator {
     private Matrix<ImageView> prepareCells(final int gameBoardDimension) {
         Matrix<ImageView> cells =
                 new ArrayMatrix<ImageView>( new Dimension(gameBoardDimension, gameBoardDimension) );
+
         LinearLayout rowsContainerLayout = prepareRowsContainerLayout(gameBoardDimension);
         for (int row = 0; row < gameBoardDimension; ++row) {
             LinearLayout rowLayout = prepareRowLayout(gameBoardDimension);
