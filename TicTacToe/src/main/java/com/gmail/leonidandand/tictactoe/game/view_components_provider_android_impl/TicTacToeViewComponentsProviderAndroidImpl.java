@@ -10,6 +10,10 @@ import com.gmail.leonidandand.tictactoe.game.model_view.view.TicTacToeViewCompon
 import com.gmail.leonidandand.tictactoe.game.view_components_provider_android_impl.game_board_view.GameBoardViewAndroidImpl;
 import com.gmail.leonidandand.tictactoe.game.view_components_provider_android_impl.game_board_view.GameBoardViewCreator;
 
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Leonid on 28.09.13.
  */
@@ -27,13 +31,20 @@ public class TicTacToeViewComponentsProviderAndroidImpl implements TicTacToeView
         scoreDisplay = new ScoreDisplayAndroidImpl(activity);
     }
 
-    public TicTacToeViewComponentsProviderAndroidImpl(int gameBoardDimension, Activity activity,
-                                        TicTacToeViewComponentsProviderAndroidImpl toRestore) {
+    public TicTacToeViewComponentsProviderAndroidImpl(int gameBoardDimension,
+                                        Activity activity, Serializable savedState) {
+
+        this(gameBoardDimension, activity, (Map<String, Serializable>) savedState);
+    }
+
+    private TicTacToeViewComponentsProviderAndroidImpl(int gameBoardDimension,
+                                        Activity activity, Map<String, Serializable> savedState) {
+
         GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);
-        gameBoardView = gameBoardViewCreator.create(gameBoardDimension, toRestore.gameBoardView);
-        moveProgressBar = new MoveProgressBarAndroidImpl(activity, toRestore.moveProgressBar);
-        resultDisplay = new ResultDisplayAndroidToastImpl(activity, toRestore.resultDisplay);
-        scoreDisplay = new ScoreDisplayAndroidImpl(activity);
+        gameBoardView = gameBoardViewCreator.create(gameBoardDimension, savedState);
+        moveProgressBar = new MoveProgressBarAndroidImpl(activity, savedState);
+        resultDisplay = new ResultDisplayAndroidToastImpl(activity, savedState);
+        scoreDisplay = new ScoreDisplayAndroidImpl(activity, savedState);
     }
 
     @Override
@@ -54,5 +65,14 @@ public class TicTacToeViewComponentsProviderAndroidImpl implements TicTacToeView
     @Override
     public MoveProgressBar getMoveProgressBar() {
         return moveProgressBar;
+    }
+
+    public Serializable getState() {
+        HashMap<String, Serializable> viewComponentsState = new HashMap<String, Serializable>();
+        gameBoardView.saveStateInto(viewComponentsState);
+        resultDisplay.saveStateInto(viewComponentsState);
+        scoreDisplay.saveStateInto(viewComponentsState);
+        moveProgressBar.saveStateInto(viewComponentsState);
+        return viewComponentsState;
     }
 }

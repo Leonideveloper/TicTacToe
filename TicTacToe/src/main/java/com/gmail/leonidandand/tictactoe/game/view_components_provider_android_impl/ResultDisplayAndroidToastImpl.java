@@ -6,10 +6,19 @@ import android.widget.Toast;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.judge.TicTacToeResult;
 import com.gmail.leonidandand.tictactoe.game.model_view.view.ResultDisplay;
 
+import java.io.Serializable;
+import java.util.Map;
+
 /**
  * Created by Leonid on 19.07.13.
  */
 class ResultDisplayAndroidToastImpl implements ResultDisplay {
+
+    private static class MapKeys {
+        final static String displayed = "ResultDisplay.displayed";
+        final static String gameState = "ResultDisplay.gameState";
+    }
+
     private final Activity activity;
     private boolean displayed;
     private TicTacToeResult.GameState gameState;
@@ -19,10 +28,17 @@ class ResultDisplayAndroidToastImpl implements ResultDisplay {
         hide();
     }
 
-    ResultDisplayAndroidToastImpl(Activity activity, ResultDisplayAndroidToastImpl toRestore) {
-        this(activity);
-        if (toRestore.displayed) {
-            show(toRestore.gameState);
+    void saveStateInto(Map<String, Serializable> outState) {
+        outState.put(MapKeys.displayed, displayed);
+        outState.put(MapKeys.gameState, gameState);
+    }
+
+    ResultDisplayAndroidToastImpl(Activity activity, Map<String, Serializable> savedState) {
+        this.activity = activity;
+        this.displayed = (Boolean) savedState.get(MapKeys.displayed);
+        if (displayed) {
+            gameState = (TicTacToeResult.GameState) savedState.get(MapKeys.gameState);
+            show(gameState);
         }
     }
 

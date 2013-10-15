@@ -12,6 +12,9 @@ import com.gmail.landanurm.matrix.Matrix;
 import com.gmail.landanurm.matrix.Position;
 import com.gmail.leonidandand.tictactoe.R;
 
+import java.io.Serializable;
+import java.util.Map;
+
 /**
  * Created by Leonid on 19.07.13.
  */
@@ -27,8 +30,8 @@ public class GameBoardViewCreator {
     }
 
     public GameBoardViewAndroidImpl create(int gameBoardDimension,
-                                           GameBoardViewAndroidImpl toRestore) {
-        return new GameBoardViewAndroidImpl(prepareCells(gameBoardDimension), toRestore);
+                                           Map<String, Serializable> savedState) {
+        return new GameBoardViewAndroidImpl(prepareCells(gameBoardDimension), savedState);
     }
 
     private Matrix<ImageView> prepareCells(final int gameBoardDimension) {

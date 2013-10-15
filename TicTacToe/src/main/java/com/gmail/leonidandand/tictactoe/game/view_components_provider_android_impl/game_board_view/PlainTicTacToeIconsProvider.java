@@ -4,13 +4,14 @@ import com.gmail.leonidandand.tictactoe.R;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.player.Player;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.judge.FireLine;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  * Created by Leonid on 19.07.13.
  */
 
-class PlainTicTacToeIconsProvider implements TicTacToeIconsProvider {
+class PlainTicTacToeIconsProvider implements TicTacToeIconsProvider, Serializable {
 
     private static final int[] CROSS_ICONS_IDS = {
             R.drawable.cross_1, R.drawable.cross_2, R.drawable.cross_3
@@ -45,19 +46,19 @@ class PlainTicTacToeIconsProvider implements TicTacToeIconsProvider {
 
     @Override
     public int getPlayerIconId(Player.Id playerId) {
-        return randomElement(
-            playerId == Player.Id.PLAYER_1
-                ? CROSS_ICONS_IDS
-                : NOUGHT_ICONS_IDS
+        return randomElementFrom(
+                playerId == Player.Id.PLAYER_1
+                        ? CROSS_ICONS_IDS
+                        : NOUGHT_ICONS_IDS
         );
     }
 
     @Override
     public int getFireIconId(FireLine.Type fireLineType) {
-        return randomElement(FIRE_ICONS_IDS);
+        return randomElementFrom(FIRE_ICONS_IDS);
     }
 
-    private static int randomElement(int[] array) {
+    private static int randomElementFrom(int[] array) {
         int randomIndex = randomPositiveInt() % array.length;
         return array[randomIndex];
     }

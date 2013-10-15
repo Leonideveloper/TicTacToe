@@ -7,6 +7,9 @@ import com.gmail.leonidandand.tictactoe.R;
 import com.gmail.leonidandand.tictactoe.game.model_view.model.Score;
 import com.gmail.leonidandand.tictactoe.game.model_view.view.ScoreDisplay;
 
+import java.io.Serializable;
+import java.util.Map;
+
 /**
  * Created by Leonid on 04.08.13.
  */
@@ -17,6 +20,14 @@ class ScoreDisplayAndroidImpl implements ScoreDisplay {
     ScoreDisplayAndroidImpl(Activity activity) {
         scoreOfPlayer1 = (TextView) activity.findViewById(R.id.scoreOfPlayer1);
         scoreOfPlayer2 = (TextView) activity.findViewById(R.id.scoreOfPlayer2);
+    }
+
+    void saveStateInto(Map<String,Serializable> outState) {
+        // do nothing
+    }
+
+    ScoreDisplayAndroidImpl(Activity activity, Map<String, Serializable> savedState) {
+        this(activity);
     }
 
     @Override
