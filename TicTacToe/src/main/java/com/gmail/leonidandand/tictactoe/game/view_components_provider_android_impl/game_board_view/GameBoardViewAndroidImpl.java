@@ -43,10 +43,10 @@ public class GameBoardViewAndroidImpl implements GameBoardView {
     GameBoardViewAndroidImpl(Matrix<ImageView> cells, Map<String, Serializable> savedState) {
         this.cells = cells;
         this.iconsProvider = (TicTacToeIconsProvider) savedState.get(MapKeys.iconsProvider);
-        this.firstLayerCellImageResourcesIds =
-                (Matrix<Integer>) savedState.get(MapKeys.firstLayerCellsIds);
-        this.secondLayerCellImageResourcesIds =
-                (Matrix<Integer>) savedState.get(MapKeys.secondLayerCellsIds);
+        this.firstLayerCellImageResourcesIds = (Matrix<Integer>)
+                                                savedState.get(MapKeys.firstLayerCellsIds);
+        this.secondLayerCellImageResourcesIds = (Matrix<Integer>)
+                                                savedState.get(MapKeys.secondLayerCellsIds);
         this.updateAllCellViews();
     }
 
