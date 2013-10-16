@@ -34,23 +34,23 @@ class TicTacToeController {
         this.gameBoardDimension = 13;
         this.playersFactory = new PlayersFactoryImpl();
         this.firstPlayerType = PlayerTypes.HUMAN;
-        this.secondPlayerType = PlayerTypes.HUMAN;
+        this.secondPlayerType = PlayerTypes.AI.NORMAL;
     }
 
     void startGame() {
-        viewComponentsProvider = createViewComponentsProvider();
         model = createModel();
+        viewComponentsProvider = createViewComponentsProvider();
         view = new TicTacToeViewImpl(viewComponentsProvider, model);
         model.startGame();
-    }
-
-    private ViewComponentsProviderAndroidImpl createViewComponentsProvider() {
-        return new ViewComponentsProviderAndroidImpl(gameBoardDimension, activity);
     }
 
     private TicTacToeModel createModel() {
         return new TicTacToeModelImpl(gameBoardDimension,
                 playersFactory, firstPlayerType, secondPlayerType);
+    }
+
+    private ViewComponentsProviderAndroidImpl createViewComponentsProvider() {
+        return new ViewComponentsProviderAndroidImpl(gameBoardDimension, activity);
     }
 
     private static class BundleKeys {

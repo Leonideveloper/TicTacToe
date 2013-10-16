@@ -62,7 +62,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/firstPlayerProgressBar"
-            android:indeterminate="false"
             android:background="@color/player_1_score_color"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/scoreOfPlayer1"
@@ -72,9 +71,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/secondPlayerProgressBar"
+            android:background="@color/player_2_score_color"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/scoreOfPlayer2"
-            android:background="@color/player_2_score_color"
             android:visibility="invisible"/>
 
     <TextView

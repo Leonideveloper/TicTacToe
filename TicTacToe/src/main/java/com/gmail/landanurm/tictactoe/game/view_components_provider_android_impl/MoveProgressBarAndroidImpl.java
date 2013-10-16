@@ -2,6 +2,7 @@ package com.gmail.landanurm.tictactoe.game.view_components_provider_android_impl
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.gmail.landanurm.tictactoe.R;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
@@ -16,41 +17,43 @@ import java.util.Map;
 class MoveProgressBarAndroidImpl implements MoveProgressBar {
 
     private static class MapKeys {
-        final static String firstPlayerVisibility = "MoveProgressBar.firstPlayerVisibility";
-        final static String secondPlayerVisibility = "MoveProgressBar.secondPlayerVisibility";
+        final static String firstVisibility = "MoveProgressBar.firstVisibility";
+        final static String secondVisibility = "MoveProgressBar.secondVisibility";
     }
 
-    private final View firstPlayerProgressBar;
-    private final View secondPlayerProgressBar;
-    private int firstPlayerProgressBarVisibility;
-    private int secondPlayerProgressBarVisibility;
+    private final ProgressBar firstPlayerProgressBar;
+    private final ProgressBar secondPlayerProgressBar;
+    private int firstVisibility;
+    private int secondVisibility;
 
     MoveProgressBarAndroidImpl(Activity activity) {
-        firstPlayerProgressBar = activity.findViewById(R.id.firstPlayerProgressBar);
-        secondPlayerProgressBar = activity.findViewById(R.id.secondPlayerProgressBar);
-        setVisibility(Player.Id.PLAYER_1, View.INVISIBLE);
-        setVisibility(Player.Id.PLAYER_2, View.INVISIBLE);
+        this(activity, View.INVISIBLE, View.INVISIBLE);
     }
 
     void saveStateInto(Map<String, Serializable> outState) {
-        outState.put(MapKeys.firstPlayerVisibility, firstPlayerProgressBarVisibility);
-        outState.put(MapKeys.secondPlayerVisibility, secondPlayerProgressBarVisibility);
+        outState.put(MapKeys.firstVisibility, firstVisibility);
+        outState.put(MapKeys.secondVisibility, secondVisibility);
     }
 
     MoveProgressBarAndroidImpl(Activity activity, Map<String, Serializable> savedState) {
-        firstPlayerProgressBar = activity.findViewById(R.id.firstPlayerProgressBar);
-        secondPlayerProgressBar = activity.findViewById(R.id.secondPlayerProgressBar);
-        setVisibility(Player.Id.PLAYER_1, (Integer) savedState.get(MapKeys.firstPlayerVisibility));
-        setVisibility(Player.Id.PLAYER_2, (Integer) savedState.get(MapKeys.secondPlayerVisibility));
+        this(activity, (Integer) savedState.get(MapKeys.firstVisibility),
+                       (Integer) savedState.get(MapKeys.secondVisibility));
+    }
+
+    private MoveProgressBarAndroidImpl(Activity activity, int firstVisibility, int secondVisibility) {
+        firstPlayerProgressBar = (ProgressBar) activity.findViewById(R.id.firstPlayerProgressBar);
+        secondPlayerProgressBar = (ProgressBar) activity.findViewById(R.id.secondPlayerProgressBar);
+        setVisibility(Player.Id.PLAYER_1, firstVisibility);
+        setVisibility(Player.Id.PLAYER_2, secondVisibility);
     }
 
     private void setVisibility(Player.Id playerId, int visibility) {
         if (playerId == Player.Id.PLAYER_1) {
             firstPlayerProgressBar.setVisibility(visibility);
-            firstPlayerProgressBarVisibility = visibility;
+            firstVisibility = visibility;
         } else {
             secondPlayerProgressBar.setVisibility(visibility);
-            secondPlayerProgressBarVisibility = visibility;
+            secondVisibility = visibility;
         }
     }
 
