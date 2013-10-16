@@ -10,7 +10,7 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnNeedToSho
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnNewGameStartedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnScoreChangedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
-import com.gmail.landanurm.tictactoe.game.model_view.model.player.PlayerFactory;
+import com.gmail.landanurm.tictactoe.game.model_view.model.player.PlayersFactory;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
     private Player movePlayer;
 
 
-    public TicTacToeModelImpl(int gameBoardDimension, PlayerFactory playerFactory,
+    public TicTacToeModelImpl(int gameBoardDimension, PlayersFactory playersFactory,
                               String firstPlayerType, String secondPlayerType) {
 
         onNewGameStartedListeners = new ArrayList<OnNewGameStartedListener>();
@@ -51,8 +51,8 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
         judge = new TicTacToeJudgeImpl(gameBoard);
         score = new Score();
 
-        player_1 = playerFactory.createFirstPlayer(firstPlayerType, this);
-        player_2 = playerFactory.createSecondPlayer(secondPlayerType, this);
+        player_1 = playersFactory.createFirstPlayer(firstPlayerType, this);
+        player_2 = playersFactory.createSecondPlayer(secondPlayerType, this);
 
         gameFinished = false;
         movePlayer = player_1;

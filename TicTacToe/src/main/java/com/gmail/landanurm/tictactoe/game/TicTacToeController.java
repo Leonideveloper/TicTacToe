@@ -5,10 +5,10 @@ import android.os.Bundle;
 
 import com.gmail.landanurm.tictactoe.game.model_view.model.TicTacToeModel;
 import com.gmail.landanurm.tictactoe.game.model_view.model.TicTacToeModelImpl;
-import com.gmail.landanurm.tictactoe.game.model_view.model.player.PlayerFactory;
+import com.gmail.landanurm.tictactoe.game.model_view.model.player.PlayersFactory;
 import com.gmail.landanurm.tictactoe.game.model_view.view.TicTacToeView;
 import com.gmail.landanurm.tictactoe.game.model_view.view.TicTacToeViewImpl;
-import com.gmail.landanurm.tictactoe.game.players.PlayerFactoryImpl;
+import com.gmail.landanurm.tictactoe.game.players.PlayersFactoryImpl;
 import com.gmail.landanurm.tictactoe.game.players.PlayerTypes;
 import com.gmail.landanurm.tictactoe.game.view_components_provider_android_impl.ViewComponentsProviderAndroidImpl;
 
@@ -20,56 +20,57 @@ import java.io.Serializable;
 class TicTacToeController {
     private final Activity activity;
     private final Integer gameBoardDimension;
-    private final PlayerFactory playerFactory;
+    private final PlayersFactory playersFactory;
     private final String firstPlayerType;
     private final String secondPlayerType;
 
+    private ViewComponentsProviderAndroidImpl viewComponentsProvider;
     private TicTacToeModel model;
     private TicTacToeView view;
-    private ViewComponentsProviderAndroidImpl viewComponentsProvider;
 
 
     TicTacToeController(Activity activity) {
         this.activity = activity;
         this.gameBoardDimension = 13;
-        this.playerFactory = new PlayerFactoryImpl();
+        this.playersFactory = new PlayersFactoryImpl();
         this.firstPlayerType = PlayerTypes.HUMAN;
-        this.secondPlayerType = PlayerTypes.AI.NORMAL;
+        this.secondPlayerType = PlayerTypes.HUMAN;
     }
 
-
     void startGame() {
-        model = new TicTacToeModelImpl(gameBoardDimension,
-                                       playerFactory,
-                                       firstPlayerType,
-                                       secondPlayerType);
-
-        viewComponentsProvider = new ViewComponentsProviderAndroidImpl(gameBoardDimension, activity);
-
+        viewComponentsProvider = createViewComponentsProvider();
+        model = createModel();
         view = new TicTacToeViewImpl(viewComponentsProvider, model);
-
         model.startGame();
     }
 
+    private ViewComponentsProviderAndroidImpl createViewComponentsProvider() {
+        return new ViewComponentsProviderAndroidImpl(gameBoardDimension, activity);
+    }
+
+    private TicTacToeModel createModel() {
+        return new TicTacToeModelImpl(gameBoardDimension,
+                playersFactory, firstPlayerType, secondPlayerType);
+    }
 
     private static class BundleKeys {
         final static String model = "Controller.model";
         final static String viewComponentsState = "Controller.viewComponentsState";
     }
 
-    void saveState(Bundle outState) {
+    void saveStateInto(Bundle outState) {
         outState.putSerializable(BundleKeys.model, (Serializable) model);
         outState.putSerializable(BundleKeys.viewComponentsState, viewComponentsProvider.getState());
     }
 
-    void restoreState(Bundle savedState) {
-        model = (TicTacToeModel) savedState.getSerializable(BundleKeys.model);
-
+    void restoreStateByUsing(Bundle savedState) {
         Serializable viewComponentsState = savedState.getSerializable(BundleKeys.viewComponentsState);
-        viewComponentsProvider = new ViewComponentsProviderAndroidImpl(gameBoardDimension,
-                                                                       activity,
-                                                                       viewComponentsState);
-
+        viewComponentsProvider = createViewComponentsProvider(viewComponentsState);
+        model = (TicTacToeModel) savedState.getSerializable(BundleKeys.model);
         view = new TicTacToeViewImpl(viewComponentsProvider, model);
+    }
+
+    private ViewComponentsProviderAndroidImpl createViewComponentsProvider(Serializable state) {
+        return new ViewComponentsProviderAndroidImpl(gameBoardDimension, activity, state);
     }
 }

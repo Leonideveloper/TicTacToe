@@ -20,13 +20,13 @@ public class TicTacToeActivity extends Activity {
         if (activityLaunched) {
             controller.startGame();
         } else {
-            controller.restoreState(savedInstanceState);
+            controller.restoreStateByUsing(savedInstanceState);
         }
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        controller.saveState(outState);
+        controller.saveStateInto(outState);
     }
 }
