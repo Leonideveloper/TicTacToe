@@ -4,28 +4,8 @@
     <dataSet config="main" >
         <source path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res" >
             <file
-                name="column_fire_line_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\column_fire_line_1.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="cross_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\cross_1.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="cross_2"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\cross_2.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="cross_3"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\cross_3.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="empty"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\empty.png"
+                name="empty_cell"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\empty_cell.png"
                 qualifiers=""
                 type="drawable" />
             <file
@@ -59,39 +39,64 @@
                 qualifiers=""
                 type="drawable" />
             <file
-                name="left_upper_diagonal_fire_line_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\left_upper_diagonal_fire_line_1.png"
+                name="first_player_face"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\first_player_face.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="right_upper_diagonal_fire_line_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\right_upper_diagonal_fire_line_1.png"
+                name="first_player_move_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\first_player_move_1.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="row_fire_line_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\row_fire_line_1.png"
+                name="first_player_move_2"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\first_player_move_2.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="zero_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\zero_1.png"
+                name="first_player_move_3"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\first_player_move_3.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="zero_2"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\zero_2.png"
+                name="second_player_face"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\second_player_face.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="zero_3"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\zero_3.png"
+                name="second_player_move_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\second_player_move_1.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="second_player_move_2"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\second_player_move_2.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="second_player_move_3"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\second_player_move_3.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="separator"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\separator.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="versus"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\versus.png"
                 qualifiers=""
                 type="drawable" />
             <file
                 name="ic_launcher"
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable-hdpi\ic_launcher.png"
                 qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="separator"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable-land\separator.png"
+                qualifiers="land"
                 type="drawable" />
             <file
                 name="ic_launcher"
@@ -131,11 +136,11 @@
             <file
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values\colors.xml"
                 qualifiers="" >
-                <color name="player_2_score_color" >#ff2c2e
+                <color name="green_transparent" >#900a7d0c
                 </color>
                 <color name="light_green" >#5bae28
                 </color>
-                <color name="player_1_score_color" >#ff52b72e
+                <color name="red_transparent" >#90ff0a0c
                 </color>
             </file>
             <file

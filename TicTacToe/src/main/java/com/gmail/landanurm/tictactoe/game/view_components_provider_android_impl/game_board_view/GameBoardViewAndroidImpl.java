@@ -3,11 +3,17 @@ package com.gmail.landanurm.tictactoe.game.view_components_provider_android_impl
 import android.view.View;
 import android.widget.ImageView;
 
-import com.gmail.landanurm.matrix.*;
-import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
+import com.gmail.landanurm.matrix.ArrayMatrix;
+import com.gmail.landanurm.matrix.Matrix;
+import com.gmail.landanurm.matrix.OnEachHandler;
+import com.gmail.landanurm.matrix.Position;
+import com.gmail.landanurm.matrix.ReadOnlyMatrix;
+import com.gmail.landanurm.tictactoe.CurrentThemeProvider;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.FireLine;
+import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 import com.gmail.landanurm.tictactoe.game.model_view.view.GameBoardView;
 import com.gmail.landanurm.tictactoe.game.model_view.view.OnCellClickListener;
+import com.gmail.landanurm.tictactoe.theme.game_theme.CellsTheme;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -16,37 +22,44 @@ import java.util.Map;
 public class GameBoardViewAndroidImpl implements GameBoardView {
 
     private static class MapKeys {
-        final static String iconsProvider = "GameBoardView.iconsProvider";
-        final static String firstLayerCellsIds = "GameBoardView.firstLayerCellsIds";
-        final static String secondLayerCellsIds = "GameBoardView.secondLayerCellsIds";
+        final static String firstLayer = "GameBoardView.firstLayer";
+        final static String secondLayer = "GameBoardView.secondLayer";
     }
 
+    private final CellsTheme cellsTheme;
     private final ReadOnlyMatrix<ImageView> cells;
-    private final TicTacToeIconsProvider iconsProvider;
-    private Matrix<Integer> firstLayerCellImageResourcesIds;
-    private Matrix<Integer> secondLayerCellImageResourcesIds;
+    private final Matrix<Integer> firstLayerCellsIconsIds;
+    private final Matrix<Integer> secondLayerCellsIconsIds;
 
     GameBoardViewAndroidImpl(ReadOnlyMatrix<ImageView> cells) {
-        this.cells = cells;
-        this.iconsProvider = new PlainTicTacToeIconsProvider();
-        this.firstLayerCellImageResourcesIds = new ArrayMatrix<Integer>(cells.getDimension());
-        this.secondLayerCellImageResourcesIds = new ArrayMatrix<Integer>(cells.getDimension());
+        this(
+            cells,
+            new ArrayMatrix<Integer>(cells.getDimension()),
+            new ArrayMatrix<Integer>(cells.getDimension())
+        );
         this.clear();
     }
 
-    public void saveStateInto(Map<String, Serializable> outState) {
-        outState.put(MapKeys.iconsProvider, (Serializable) iconsProvider);
-        outState.put(MapKeys.firstLayerCellsIds, (Serializable) firstLayerCellImageResourcesIds);
-        outState.put(MapKeys.secondLayerCellsIds, (Serializable) secondLayerCellImageResourcesIds);
+    private GameBoardViewAndroidImpl(ReadOnlyMatrix<ImageView> cells,
+                                     Matrix<Integer> firstLayerCellsIconsIds,
+                                     Matrix<Integer> secondLayerCellsIconsIds) {
+        this.cells = cells;
+        this.firstLayerCellsIconsIds = firstLayerCellsIconsIds;
+        this.secondLayerCellsIconsIds = secondLayerCellsIconsIds;
+        this.cellsTheme = CurrentThemeProvider.getGameTheme().getGameBoardTheme().getCellsTheme();
     }
 
-    GameBoardViewAndroidImpl(ReadOnlyMatrix<ImageView> cells, Map<String, Serializable> savedState) {
-        this.cells = cells;
-        this.iconsProvider = (TicTacToeIconsProvider) savedState.get(MapKeys.iconsProvider);
-        this.firstLayerCellImageResourcesIds = (Matrix<Integer>)
-                                                savedState.get(MapKeys.firstLayerCellsIds);
-        this.secondLayerCellImageResourcesIds = (Matrix<Integer>)
-                                                savedState.get(MapKeys.secondLayerCellsIds);
+    public void saveStateInto(Map<String, Serializable> outState) {
+        outState.put(MapKeys.firstLayer, (Serializable) firstLayerCellsIconsIds);
+        outState.put(MapKeys.secondLayer, (Serializable) secondLayerCellsIconsIds);
+    }
+
+    GameBoardViewAndroidImpl(ReadOnlyMatrix<ImageView> cells, Map<String,Serializable> savedState) {
+        this(
+            cells,
+            (Matrix<Integer>) savedState.get(MapKeys.firstLayer),
+            (Matrix<Integer>) savedState.get(MapKeys.secondLayer)
+        );
         this.updateAllCellViews();
     }
 
@@ -61,22 +74,22 @@ public class GameBoardViewAndroidImpl implements GameBoardView {
     }
 
     private void clearCell(Position cellPos) {
-        setSecondLayerImageResource(cellPos, android.R.color.transparent);
-        setFirstLayerImageResource(cellPos, iconsProvider.getEmptyIconId());
+        setSecondLayerCellIconId(cellPos, android.R.color.transparent);
+        setFirstLayerCellIconId(cellPos, cellsTheme.getEmptyCellIconId());
     }
 
-    private void setFirstLayerImageResource(Position cellPos, int resId) {
+    private void setFirstLayerCellIconId(Position cellPos, int resId) {
         cells.get(cellPos).setBackgroundResource(resId);
-        firstLayerCellImageResourcesIds.set(cellPos, resId);
+        firstLayerCellsIconsIds.set(cellPos, resId);
     }
 
-    private void setSecondLayerImageResource(Position cellPos, int resId) {
+    private void setSecondLayerCellIconId(Position cellPos, int resId) {
         cells.get(cellPos).setImageResource(resId);
-        secondLayerCellImageResourcesIds.set(cellPos, resId);
+        secondLayerCellsIconsIds.set(cellPos, resId);
     }
 
     private void updateAllCellViews() {
-        secondLayerCellImageResourcesIds.forEach(new OnEachHandler<Integer>() {
+        secondLayerCellsIconsIds.forEach(new OnEachHandler<Integer>() {
             @Override
             public void handle(Position pos, Integer each) {
                 updateCell(pos);
@@ -85,14 +98,17 @@ public class GameBoardViewAndroidImpl implements GameBoardView {
     }
 
     private void updateCell(Position pos) {
-        setSecondLayerImageResource(pos, secondLayerCellImageResourcesIds.get(pos));
-        setFirstLayerImageResource(pos, firstLayerCellImageResourcesIds.get(pos));
+        setSecondLayerCellIconId(pos, secondLayerCellsIconsIds.get(pos));
+        setFirstLayerCellIconId(pos, firstLayerCellsIconsIds.get(pos));
     }
 
     @Override
     public void showMove(Position pos, Player.Id playerId) {
-        int iconId = iconsProvider.getPlayerIconId(playerId);
-        setFirstLayerImageResource(pos, iconId);
+        if (playerId == Player.Id.PLAYER_1) {
+            setFirstLayerCellIconId(pos, cellsTheme.getFirstPlayerMoveIconId());
+        } else {
+            setFirstLayerCellIconId(pos, cellsTheme.getSecondPlayerMoveIconId());
+        }
     }
 
     @Override
@@ -106,7 +122,7 @@ public class GameBoardViewAndroidImpl implements GameBoardView {
         FireLine.Type fireLineType = fireLine.getFireLineType();
         Collection<Position> cellsPositions = fireLine.getCellsPositions();
         for (Position pos : cellsPositions) {
-            setSecondLayerImageResource(pos, iconsProvider.getFireIconId(fireLineType));
+            setSecondLayerCellIconId(pos, cellsTheme.getFireIconId(fireLineType));
         }
     }
 

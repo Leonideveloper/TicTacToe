@@ -20,7 +20,7 @@ public class TicTacToeActivity extends Activity {
         if (activityLaunched) {
             controller.startGame();
         } else {
-            controller.restoreStateByUsing(savedInstanceState);
+            controller.restoreStateByMeansOf(savedInstanceState);
         }
     }
 

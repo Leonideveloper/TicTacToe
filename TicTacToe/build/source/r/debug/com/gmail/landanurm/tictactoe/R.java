@@ -11,9 +11,9 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static final int light_green=0x7f040000;
-        public static final int player_1_score_color=0x7f040001;
-        public static final int player_2_score_color=0x7f040002;
+        public static final int green_transparent=0x7f040000;
+        public static final int light_green=0x7f040001;
+        public static final int red_transparent=0x7f040002;
     }
     public static final class dimen {
         public static final int activity_horizontal_margin=0x7f050000;
@@ -22,24 +22,24 @@ public final class R {
         public static final int score_text_size=0x7f050003;
     }
     public static final class drawable {
-        public static final int column_fire_line_1=0x7f020000;
-        public static final int cross_1=0x7f020001;
-        public static final int cross_2=0x7f020002;
-        public static final int cross_3=0x7f020003;
-        public static final int empty=0x7f020004;
-        public static final int fire_1=0x7f020005;
-        public static final int fire_2=0x7f020006;
-        public static final int fire_3=0x7f020007;
-        public static final int fire_4=0x7f020008;
-        public static final int fire_5=0x7f020009;
-        public static final int fire_6=0x7f02000a;
+        public static final int empty_cell=0x7f020000;
+        public static final int fire_1=0x7f020001;
+        public static final int fire_2=0x7f020002;
+        public static final int fire_3=0x7f020003;
+        public static final int fire_4=0x7f020004;
+        public static final int fire_5=0x7f020005;
+        public static final int fire_6=0x7f020006;
+        public static final int first_player_face=0x7f020007;
+        public static final int first_player_move_1=0x7f020008;
+        public static final int first_player_move_2=0x7f020009;
+        public static final int first_player_move_3=0x7f02000a;
         public static final int ic_launcher=0x7f02000b;
-        public static final int left_upper_diagonal_fire_line_1=0x7f02000c;
-        public static final int right_upper_diagonal_fire_line_1=0x7f02000d;
-        public static final int row_fire_line_1=0x7f02000e;
-        public static final int zero_1=0x7f02000f;
-        public static final int zero_2=0x7f020010;
-        public static final int zero_3=0x7f020011;
+        public static final int second_player_face=0x7f02000c;
+        public static final int second_player_move_1=0x7f02000d;
+        public static final int second_player_move_2=0x7f02000e;
+        public static final int second_player_move_3=0x7f02000f;
+        public static final int separator=0x7f020010;
+        public static final int versus=0x7f020011;
     }
     public static final class id {
         public static final int action_settings=0x7f090010;

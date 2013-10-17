@@ -25,8 +25,8 @@ class TicTacToeController {
     private final String secondPlayerType;
 
     private ViewComponentsProviderAndroidImpl viewComponentsProvider;
-    private TicTacToeModel model;
     private TicTacToeView view;
+    private TicTacToeModel model;
 
 
     TicTacToeController(Activity activity) {
@@ -37,10 +37,10 @@ class TicTacToeController {
         this.secondPlayerType = PlayerTypes.AI.NORMAL;
     }
 
-    void startGame() {
+    public void startGame() {
         model = createModel();
         viewComponentsProvider = createViewComponentsProvider();
-        view = new TicTacToeViewImpl(viewComponentsProvider, model);
+        view = createView();
         model.startGame();
     }
 
@@ -53,24 +53,28 @@ class TicTacToeController {
         return new ViewComponentsProviderAndroidImpl(gameBoardDimension, activity);
     }
 
+    private TicTacToeView createView() {
+        return new TicTacToeViewImpl(viewComponentsProvider, model);
+    }
+
     private static class BundleKeys {
         final static String model = "Controller.model";
         final static String viewComponentsState = "Controller.viewComponentsState";
     }
 
-    void saveStateInto(Bundle outState) {
+    public void saveStateInto(Bundle outState) {
         outState.putSerializable(BundleKeys.model, (Serializable) model);
         outState.putSerializable(BundleKeys.viewComponentsState, viewComponentsProvider.getState());
     }
 
-    void restoreStateByUsing(Bundle savedState) {
-        Serializable viewComponentsState = savedState.getSerializable(BundleKeys.viewComponentsState);
-        viewComponentsProvider = createViewComponentsProvider(viewComponentsState);
+    public void restoreStateByMeansOf(Bundle savedState) {
         model = (TicTacToeModel) savedState.getSerializable(BundleKeys.model);
-        view = new TicTacToeViewImpl(viewComponentsProvider, model);
+        viewComponentsProvider = createViewComponentsProvider(savedState);
+        view = createView();
     }
 
-    private ViewComponentsProviderAndroidImpl createViewComponentsProvider(Serializable state) {
+    private ViewComponentsProviderAndroidImpl createViewComponentsProvider(Bundle savedState) {
+        Serializable state = savedState.getSerializable(BundleKeys.viewComponentsState);
         return new ViewComponentsProviderAndroidImpl(gameBoardDimension, activity, state);
     }
 }

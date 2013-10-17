@@ -16,7 +16,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:textSize="35sp"
-            android:textColor="@color/player_1_score_color"/>
+            android:textColor="@color/green_transparent"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
             android:id="@+id/scoreOfPlayer2"
             android:textSize="35sp"
             android:gravity="right"
-            android:textColor="@color/player_2_score_color"
+            android:textColor="@color/red_transparent"
             android:layout_alignRight="@+id/gameScoreTextView"
             android:layout_alignTop="@+id/gameScoreTextView"/>
 
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/firstPlayerProgressBar"
-            android:background="@color/player_1_score_color"
+            android:background="@color/green_transparent"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/scoreOfPlayer1"
             android:visibility="invisible"/>
@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/secondPlayerProgressBar"
-            android:background="@color/player_2_score_color"
+            android:background="@color/red_transparent"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/scoreOfPlayer2"
             android:visibility="invisible"/>
