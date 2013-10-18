@@ -13,7 +13,7 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.judge.FireLine;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 import com.gmail.landanurm.tictactoe.game.model_view.view.GameBoardView;
 import com.gmail.landanurm.tictactoe.game.model_view.view.OnCellClickListener;
-import com.gmail.landanurm.tictactoe.theme.game_theme.CellsTheme;
+import com.gmail.landanurm.tictactoe.theme.CellsTheme;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -46,7 +46,14 @@ public class GameBoardViewAndroidImpl implements GameBoardView {
         this.cells = cells;
         this.firstLayerCellsIconsIds = firstLayerCellsIconsIds;
         this.secondLayerCellsIconsIds = secondLayerCellsIconsIds;
-        this.cellsTheme = CurrentThemeProvider.getGameTheme().getGameBoardTheme().getCellsTheme();
+        this.cellsTheme = getCurrentCellsTheme();
+    }
+
+    private static CellsTheme getCurrentCellsTheme() {
+        return CurrentThemeProvider.getCurrentTheme()
+                                   .getGameTheme()
+                                   .getGameBoardTheme()
+                                   .getCellsTheme();
     }
 
     public void saveStateInto(Map<String, Serializable> outState) {

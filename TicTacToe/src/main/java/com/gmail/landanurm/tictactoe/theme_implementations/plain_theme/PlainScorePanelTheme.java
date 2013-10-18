@@ -1,7 +1,7 @@
-package com.gmail.landanurm.tictactoe.theme_implementations.plain_theme.game_theme;
+package com.gmail.landanurm.tictactoe.theme_implementations.plain_theme;
 
 import com.gmail.landanurm.tictactoe.R;
-import com.gmail.landanurm.tictactoe.theme.game_theme.ScorePanelTheme;
+import com.gmail.landanurm.tictactoe.theme.ScorePanelTheme;
 
 /**
  * Created by Leonid on 17.10.13.

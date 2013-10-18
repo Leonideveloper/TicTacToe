@@ -1,4 +1,4 @@
-package com.gmail.landanurm.tictactoe.theme.game_theme;
+package com.gmail.landanurm.tictactoe.theme;
 
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.FireLine;
 

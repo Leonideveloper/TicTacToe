@@ -1,16 +1,16 @@
 package com.gmail.landanurm.tictactoe;
 
-import com.gmail.landanurm.tictactoe.theme.game_theme.GameTheme;
-import com.gmail.landanurm.tictactoe.theme_implementations.plain_theme.game_theme.PlainGameTheme;
+import com.gmail.landanurm.tictactoe.theme.TicTacToeTheme;
+import com.gmail.landanurm.tictactoe.theme_implementations.plain_theme.PlainTicTacToeTheme;
 
 /**
  * Created by Leonid on 17.10.13.
  */
 public class CurrentThemeProvider {
 
-    private static GameTheme gameTheme = new PlainGameTheme();
+    private static TicTacToeTheme currentTheme = new PlainTicTacToeTheme();
 
-    public static GameTheme getGameTheme() {
-        return gameTheme;
+    public static TicTacToeTheme getCurrentTheme() {
+        return currentTheme;
     }
 }

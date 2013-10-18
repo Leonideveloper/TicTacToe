@@ -1,4 +1,4 @@
-package com.gmail.landanurm.tictactoe.theme.game_theme;
+package com.gmail.landanurm.tictactoe.theme;
 
 /**
  * Created by Leonid on 16.10.13.

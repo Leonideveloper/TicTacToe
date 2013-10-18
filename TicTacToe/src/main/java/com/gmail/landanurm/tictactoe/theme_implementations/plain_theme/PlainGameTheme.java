@@ -1,15 +1,15 @@
-package com.gmail.landanurm.tictactoe.theme_implementations.plain_theme.game_theme;
+package com.gmail.landanurm.tictactoe.theme_implementations.plain_theme;
 
 
 import com.gmail.landanurm.tictactoe.R;
-import com.gmail.landanurm.tictactoe.theme.game_theme.GameBoardTheme;
-import com.gmail.landanurm.tictactoe.theme.game_theme.GameTheme;
-import com.gmail.landanurm.tictactoe.theme.game_theme.ScorePanelTheme;
+import com.gmail.landanurm.tictactoe.theme.GameBoardTheme;
+import com.gmail.landanurm.tictactoe.theme.GameTheme;
+import com.gmail.landanurm.tictactoe.theme.ScorePanelTheme;
 
 /**
  * Created by Leonid on 17.10.13.
  */
-public class PlainGameTheme implements GameTheme {
+class PlainGameTheme implements GameTheme {
     private static final GameBoardTheme gameBoardTheme = new PlainGameBoardTheme();
     private static final ScorePanelTheme scorePanelTheme = new PlainScorePanelTheme();
 

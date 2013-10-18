@@ -67,7 +67,7 @@ class TicTacToeController {
         outState.putSerializable(BundleKeys.viewComponentsState, viewComponentsProvider.getState());
     }
 
-    public void restoreStateByMeansOf(Bundle savedState) {
+    public void restoreStateFrom(Bundle savedState) {
         model = (TicTacToeModel) savedState.getSerializable(BundleKeys.model);
         viewComponentsProvider = createViewComponentsProvider(savedState);
         view = createView();
