@@ -3,6 +3,7 @@ package com.gmail.landanurm.tictactoe.game;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.gmail.landanurm.tictactoe.CurrentThemeProvider;
 import com.gmail.landanurm.tictactoe.R;
 
 
@@ -13,6 +14,9 @@ public class TicTacToeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tic_tac_toe_activity);
+
+        GameThemeInstaller gameThemeInstaller = new GameThemeInstaller(this);
+        gameThemeInstaller.install(CurrentThemeProvider.getCurrentTheme().getGameTheme());
 
         controller = new TicTacToeController(this);
 

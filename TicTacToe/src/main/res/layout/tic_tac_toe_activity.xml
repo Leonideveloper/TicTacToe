@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tic_tac_toe_game_activity_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -8,32 +9,85 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".TicTacToeActivity">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Player1"
-            android:id="@+id/scoreOfPlayer1"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:textSize="35sp"
-            android:textColor="@color/green_transparent"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scorePanelLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/gameScoreTextView"
-            android:textSize="64sp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"/>
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/firstPlayerFaceImageView"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"/>
 
-    <TextView
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/versusImageView"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"/>
+
+        <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/secondPlayerFaceImageView"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:id="@+id/scoreOfPlayer1"
+                android:gravity="left"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/firstPlayerFaceImageView"
+                android:layout_toLeftOf="@id/versusImageView"
+                android:textSize="@dimen/score_text_size"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:id="@+id/scoreOfPlayer2"
+                android:gravity="right"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/secondPlayerFaceImageView"
+                android:layout_toRightOf="@id/versusImageView"
+                android:textSize="@dimen/score_text_size"/>
+
+        <ProgressBar
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/firstPlayerProgressBar"
+                android:layout_centerVertical="true"
+                android:layout_alignRight="@+id/firstPlayerFaceImageView"
+                android:visibility="invisible"/>
+
+        <ProgressBar
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/secondPlayerProgressBar"
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/secondPlayerFaceImageView"
+                android:visibility="invisible"/>
+
+    </RelativeLayout>
+
+    <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="margin"
-            android:id="@+id/adTextView"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:textSize="74sp"/>
+            android:layout_height="@dimen/separatorHeight"
+            android:id="@+id/separator"
+            android:scaleType="centerCrop"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/scorePanelLayout"/>
 
     <FrameLayout
             android:id="@+id/gameBoardFrameLayout"
@@ -43,48 +97,15 @@
             android:layout_above="@+id/adTextView"
             android:layout_alignParentRight="true"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/textView">
-
+            android:layout_below="@+id/separator">
     </FrameLayout>
 
     <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Player2"
-            android:id="@+id/scoreOfPlayer2"
-            android:textSize="35sp"
-            android:gravity="right"
-            android:textColor="@color/red_transparent"
-            android:layout_alignRight="@+id/gameScoreTextView"
-            android:layout_alignTop="@+id/gameScoreTextView"/>
-
-    <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/firstPlayerProgressBar"
-            android:background="@color/green_transparent"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/scoreOfPlayer1"
-            android:visibility="invisible"/>
-
-    <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/secondPlayerProgressBar"
-            android:background="@color/red_transparent"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/scoreOfPlayer2"
-            android:visibility="invisible"/>
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="        "
-            android:id="@+id/textView"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/firstPlayerProgressBar"
-            android:layout_alignParentLeft="true"
-            android:textSize="5sp"/>
+            android:text="Ad"
+            android:id="@+id/adTextView"
+            android:layout_alignParentBottom="true"
+            android:textSize="74sp"/>
 
 </RelativeLayout>

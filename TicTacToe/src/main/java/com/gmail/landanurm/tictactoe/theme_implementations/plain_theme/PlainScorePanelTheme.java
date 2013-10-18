@@ -1,5 +1,7 @@
 package com.gmail.landanurm.tictactoe.theme_implementations.plain_theme;
 
+import android.graphics.Color;
+
 import com.gmail.landanurm.tictactoe.R;
 import com.gmail.landanurm.tictactoe.theme.ScorePanelTheme;
 
@@ -29,11 +31,11 @@ class PlainScorePanelTheme implements ScorePanelTheme {
 
     @Override
     public int getFirstPlayerScoreColor() {
-        return R.color.green_transparent;
+        return Color.GREEN;
     }
 
     @Override
     public int getSecondPlayerScoreColor() {
-        return R.color.red_transparent;
+        return Color.RED;
     }
 }

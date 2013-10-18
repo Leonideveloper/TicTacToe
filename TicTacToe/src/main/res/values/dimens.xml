@@ -4,4 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="score_text_size">35sp</dimen>
     <dimen name="ad_width_space">60dp</dimen>
+    <dimen name="separatorHeight">18dp</dimen>
+    <dimen name="separatorWidth">20dp</dimen>
 </resources>

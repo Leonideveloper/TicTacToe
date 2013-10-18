@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="light_green">#5bae28</color>
-    <color name="green_transparent">#900a7d0c</color>
-    <color name="red_transparent">#90ff0a0c</color>
+    <color name="green">#ff0a7d0c</color>
+    <color name="red">#ffff0a0c</color>
 </resources>

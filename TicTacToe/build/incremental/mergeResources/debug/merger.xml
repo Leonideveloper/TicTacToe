@@ -114,11 +114,6 @@
                 qualifiers=""
                 type="layout" />
             <file
-                name="start_game_menu_activity"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\layout\start_game_menu_activity.xml"
-                qualifiers=""
-                type="layout" />
-            <file
                 name="tic_tac_toe_activity"
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\layout\tic_tac_toe_activity.xml"
                 qualifiers=""
@@ -136,9 +131,13 @@
             <file
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values\colors.xml"
                 qualifiers="" >
+                <color name="green" >#ff0a7d0c
+                </color>
                 <color name="green_transparent" >#900a7d0c
                 </color>
                 <color name="light_green" >#5bae28
+                </color>
+                <color name="red" >#ffff0a0c
                 </color>
                 <color name="red_transparent" >#90ff0a0c
                 </color>
@@ -153,6 +152,10 @@
                 <dimen name="activity_horizontal_margin" >16dp
                 </dimen>
                 <dimen name="activity_vertical_margin" >16dp
+                </dimen>
+                <dimen name="separatorHeight" >18dp
+                </dimen>
+                <dimen name="separatorWidth" >20dp
                 </dimen>
             </file>
             <file
