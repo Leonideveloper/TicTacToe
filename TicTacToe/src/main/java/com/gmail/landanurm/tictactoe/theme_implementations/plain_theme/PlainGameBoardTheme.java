@@ -12,12 +12,12 @@ class PlainGameBoardTheme implements GameBoardTheme {
 
     @Override
     public int getBackgroundIconId() {
-        return R.color.light_green;
+        return R.drawable.game_board_background;
     }
 
     @Override
     public int getDistanceBetweenCells() {
-        return 2;
+        return 7;
     }
 
     @Override

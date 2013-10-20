@@ -17,7 +17,7 @@ import java.io.Serializable;
 /**
  * Created by Leonid on 15.10.13.
  */
-class TicTacToeController {
+public class TicTacToeController {
     private final Activity activity;
     private final Integer gameBoardDimension;
     private final PlayersFactory playersFactory;
@@ -29,12 +29,12 @@ class TicTacToeController {
     private TicTacToeModel model;
 
 
-    TicTacToeController(Activity activity) {
+    public TicTacToeController(Activity activity) {
         this.activity = activity;
-        this.gameBoardDimension = 13;
+        this.gameBoardDimension = 5;
         this.playersFactory = new PlayersFactoryImpl();
         this.firstPlayerType = PlayerTypes.HUMAN;
-        this.secondPlayerType = PlayerTypes.AI.NORMAL;
+        this.secondPlayerType = PlayerTypes.HUMAN;
     }
 
     public void startGame() {
@@ -68,12 +68,16 @@ class TicTacToeController {
     }
 
     public void restoreStateFrom(Bundle savedState) {
-        model = (TicTacToeModel) savedState.getSerializable(BundleKeys.model);
-        viewComponentsProvider = createViewComponentsProvider(savedState);
+        model = restoreModelFrom(savedState);
+        viewComponentsProvider = createViewComponentsProviderFrom(savedState);
         view = createView();
     }
 
-    private ViewComponentsProviderAndroidImpl createViewComponentsProvider(Bundle savedState) {
+    private TicTacToeModel restoreModelFrom(Bundle savedState) {
+        return (TicTacToeModel) savedState.getSerializable(BundleKeys.model);
+    }
+
+    private ViewComponentsProviderAndroidImpl createViewComponentsProviderFrom(Bundle savedState) {
         Serializable state = savedState.getSerializable(BundleKeys.viewComponentsState);
         return new ViewComponentsProviderAndroidImpl(gameBoardDimension, activity, state);
     }

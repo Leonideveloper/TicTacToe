@@ -15,7 +15,7 @@ class PlainGameTheme implements GameTheme {
 
     @Override
     public int getScreenBackgroundIconId() {
-        return android.R.color.transparent;
+        return R.drawable.game_screen_background;
     }
 
     @Override

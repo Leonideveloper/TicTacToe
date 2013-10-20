@@ -11,7 +11,7 @@ import com.gmail.landanurm.tictactoe.theme.ScorePanelTheme;
 class PlainScorePanelTheme implements ScorePanelTheme {
     @Override
     public int getBackgroundIconId() {
-        return android.R.color.transparent;
+        return R.drawable.score_panel_background;
     }
 
     @Override

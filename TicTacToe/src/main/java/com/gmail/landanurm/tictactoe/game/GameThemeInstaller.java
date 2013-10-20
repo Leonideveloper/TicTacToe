@@ -13,7 +13,7 @@ import com.gmail.landanurm.tictactoe.theme.ScorePanelTheme;
 /**
  * Created by Leonid on 18.10.13.
  */
-public class GameThemeInstaller {
+class GameThemeInstaller {
     private final RelativeLayout mainLayout;
     private final RelativeLayout scorePanel;
     private final ImageView firstPlayerFace;

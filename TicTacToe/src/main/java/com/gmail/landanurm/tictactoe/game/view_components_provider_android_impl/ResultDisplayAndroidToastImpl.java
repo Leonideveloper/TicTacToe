@@ -37,10 +37,12 @@ class ResultDisplayAndroidToastImpl implements ResultDisplay {
     }
 
     ResultDisplayAndroidToastImpl(Activity activity, Map<String, Serializable> savedState) {
-        this.activity = activity;
-        this.displayed = (Boolean) savedState.get(MapKeys.displayed);
-        if (displayed) {
-            show( (TicTacToeResult.GameState) savedState.get(MapKeys.gameState) );
+        this(activity);
+        Boolean needToDisplay = (Boolean) savedState.get(MapKeys.displayed);
+        if (needToDisplay) {
+            show(
+                 (TicTacToeResult.GameState) savedState.get(MapKeys.gameState)
+            );
         }
     }
 

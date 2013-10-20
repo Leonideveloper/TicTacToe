@@ -49,6 +49,11 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
     }
 
     @Override
+    public MoveProgressBar getMoveProgressBar() {
+        return moveProgressBar;
+    }
+
+    @Override
     public ResultDisplay getResultDisplay() {
         return resultDisplay;
     }
@@ -56,11 +61,6 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
     @Override
     public ScoreDisplay getScoreDisplay() {
         return scoreDisplay;
-    }
-
-    @Override
-    public MoveProgressBar getMoveProgressBar() {
-        return moveProgressBar;
     }
 
     public Serializable getState() {

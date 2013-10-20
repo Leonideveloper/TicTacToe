@@ -13,14 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scorePanelLayout"
+        android:background="@android:color/darker_gray"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentLeft="true">
 
         <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/score_icon_width"
+                android:layout_height="@dimen/score_icon_height"
                 android:id="@+id/firstPlayerFaceImageView"
+                android:layout_centerVertical="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"/>
 
@@ -28,36 +30,50 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/versusImageView"
+                android:layout_centerVertical="true"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"/>
 
         <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/score_icon_width"
+                android:layout_height="@dimen/score_icon_height"
                 android:id="@+id/secondPlayerFaceImageView"
+                android:layout_centerVertical="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"/>
+
+        <TextView
+                android:layout_width="@dimen/space_between_face_and_score"
+                android:layout_height="wrap_content"
+                android:id="@+id/spaceBetweenFaceAndScore_1"
+                android:layout_toRightOf="@id/firstPlayerFaceImageView"/>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
                 android:id="@+id/scoreOfPlayer1"
-                android:gravity="left"
+                android:gravity="left|center_vertical"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/firstPlayerFaceImageView"
+                android:layout_toRightOf="@id/spaceBetweenFaceAndScore_1"
                 android:layout_toLeftOf="@id/versusImageView"
                 android:textSize="@dimen/score_text_size"/>
+
+        <TextView
+                android:layout_width="@dimen/space_between_face_and_score"
+                android:layout_height="wrap_content"
+                android:id="@+id/spaceBetweenFaceAndScore_2"
+                android:layout_toLeftOf="@id/secondPlayerFaceImageView"/>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
                 android:id="@+id/scoreOfPlayer2"
-                android:gravity="right"
+                android:gravity="right|center_vertical"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/secondPlayerFaceImageView"
                 android:layout_toRightOf="@id/versusImageView"
+                android:layout_toLeftOf="@+id/spaceBetweenFaceAndScore_2"
                 android:textSize="@dimen/score_text_size"/>
 
         <ProgressBar
@@ -84,6 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/separatorHeight"
             android:id="@+id/separator"
+            android:src="@android:color/black"
             android:scaleType="centerCrop"
             android:layout_alignParentRight="true"
             android:layout_alignParentLeft="true"
@@ -106,6 +123,6 @@
             android:text="Ad"
             android:id="@+id/adTextView"
             android:layout_alignParentBottom="true"
-            android:textSize="74sp"/>
+            android:textSize="@dimen/ad_text_size"/>
 
 </RelativeLayout>

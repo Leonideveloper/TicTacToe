@@ -10,7 +10,9 @@ import com.gmail.landanurm.matrix.ArrayMatrix;
 import com.gmail.landanurm.matrix.Dimension;
 import com.gmail.landanurm.matrix.Matrix;
 import com.gmail.landanurm.matrix.Position;
+import com.gmail.landanurm.tictactoe.CurrentThemeProvider;
 import com.gmail.landanurm.tictactoe.R;
+import com.gmail.landanurm.tictactoe.theme.TicTacToeTheme;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -20,9 +22,16 @@ import java.util.Map;
  */
 public class GameBoardViewCreator {
     private final Activity activity;
+    private final int distanceBetweenCells;
 
     public GameBoardViewCreator(Activity activity) {
         this.activity = activity;
+        this.distanceBetweenCells = getDistanceBetweenCells();
+    }
+
+    private static int getDistanceBetweenCells() {
+        TicTacToeTheme theme = CurrentThemeProvider.getCurrentTheme();
+        return theme.getGameTheme().getGameBoardTheme().getDistanceBetweenCells();
     }
 
     public GameBoardViewAndroidImpl create(int gameBoardDimension) {
@@ -42,7 +51,7 @@ public class GameBoardViewCreator {
         for (int row = 0; row < gameBoardDimension; ++row) {
             LinearLayout rowLayout = prepareRowLayout(gameBoardDimension);
             for (int column = 0; column < gameBoardDimension; ++column) {
-                ImageView cell = prepareCell();
+                ImageView cell = prepareCell(row, column);
                 rowLayout.addView(cell);
                 cells.set(new Position(row, column), cell);
             }
@@ -70,16 +79,26 @@ public class GameBoardViewCreator {
         return layout;
     }
 
-    private ImageView prepareCell() {
+    private LinearLayout.LayoutParams prepareParams() {
+        return new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f
+        );
+    }
+
+    private ImageView prepareCell(int row, int column) {
         LayoutInflater inflater = activity.getLayoutInflater();
         ImageView cell = (ImageView) inflater.inflate(R.layout.cell_image_view, null);
-        cell.setLayoutParams(prepareParams());
+        cell.setLayoutParams(prepareCellParams(row, column));
         return cell;
     }
 
-    private LinearLayout.LayoutParams prepareParams() {
-        return new LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f
-        );
+    private LinearLayout.LayoutParams prepareCellParams(int row, int column) {
+        int left = (column == 0) ? distanceBetweenCells : 0;
+        int top = (row == 0) ? distanceBetweenCells : 0;
+        int right = distanceBetweenCells;
+        int bottom = distanceBetweenCells;
+        LinearLayout.LayoutParams params = prepareParams();
+        params.setMargins(left, top, right, bottom);
+        return params;
     }
 }

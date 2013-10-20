@@ -12,16 +12,21 @@ public final class R {
     }
     public static final class color {
         public static final int green=0x7f040000;
-        public static final int light_green=0x7f040001;
-        public static final int red=0x7f040002;
+        public static final int green_transparent=0x7f040001;
+        public static final int light_green=0x7f040002;
+        public static final int red=0x7f040003;
+        public static final int red_transparent=0x7f040004;
     }
     public static final class dimen {
         public static final int activity_horizontal_margin=0x7f050000;
         public static final int activity_vertical_margin=0x7f050001;
-        public static final int ad_width_space=0x7f050002;
-        public static final int score_text_size=0x7f050003;
-        public static final int separatorHeight=0x7f050004;
-        public static final int separatorWidth=0x7f050005;
+        public static final int ad_text_size=0x7f050002;
+        public static final int score_icon_height=0x7f050003;
+        public static final int score_icon_width=0x7f050004;
+        public static final int score_text_size=0x7f050005;
+        public static final int separatorHeight=0x7f050006;
+        public static final int separatorWidth=0x7f050007;
+        public static final int space_between_face_and_score=0x7f050008;
     }
     public static final class drawable {
         public static final int empty_cell=0x7f020000;
@@ -35,26 +40,31 @@ public final class R {
         public static final int first_player_move_1=0x7f020008;
         public static final int first_player_move_2=0x7f020009;
         public static final int first_player_move_3=0x7f02000a;
-        public static final int ic_launcher=0x7f02000b;
-        public static final int second_player_face=0x7f02000c;
-        public static final int second_player_move_1=0x7f02000d;
-        public static final int second_player_move_2=0x7f02000e;
-        public static final int second_player_move_3=0x7f02000f;
-        public static final int separator=0x7f020010;
-        public static final int versus=0x7f020011;
+        public static final int game_board_background=0x7f02000b;
+        public static final int game_screen_background=0x7f02000c;
+        public static final int ic_launcher=0x7f02000d;
+        public static final int score_panel_background=0x7f02000e;
+        public static final int second_player_face=0x7f02000f;
+        public static final int second_player_move_1=0x7f020010;
+        public static final int second_player_move_2=0x7f020011;
+        public static final int second_player_move_3=0x7f020012;
+        public static final int separator=0x7f020013;
+        public static final int versus=0x7f020014;
     }
     public static final class id {
-        public static final int action_settings=0x7f09000c;
-        public static final int adTextView=0x7f09000b;
+        public static final int action_settings=0x7f09000e;
+        public static final int adTextView=0x7f09000d;
         public static final int firstPlayerFaceImageView=0x7f090002;
-        public static final int firstPlayerProgressBar=0x7f090007;
-        public static final int gameBoardFrameLayout=0x7f09000a;
-        public static final int scoreOfPlayer1=0x7f090005;
-        public static final int scoreOfPlayer2=0x7f090006;
+        public static final int firstPlayerProgressBar=0x7f090009;
+        public static final int gameBoardFrameLayout=0x7f09000c;
+        public static final int scoreOfPlayer1=0x7f090006;
+        public static final int scoreOfPlayer2=0x7f090008;
         public static final int scorePanelLayout=0x7f090001;
         public static final int secondPlayerFaceImageView=0x7f090004;
-        public static final int secondPlayerProgressBar=0x7f090008;
-        public static final int separator=0x7f090009;
+        public static final int secondPlayerProgressBar=0x7f09000a;
+        public static final int separator=0x7f09000b;
+        public static final int spaceBetweenFaceAndScore_1=0x7f090005;
+        public static final int spaceBetweenFaceAndScore_2=0x7f090007;
         public static final int tic_tac_toe_game_activity_layout=0x7f090000;
         public static final int versusImageView=0x7f090003;
     }
