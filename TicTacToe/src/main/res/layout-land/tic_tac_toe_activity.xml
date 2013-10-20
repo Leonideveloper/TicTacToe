@@ -26,6 +26,22 @@
                 android:layout_alignParentTop="true"/>
 
         <ImageView
+                android:layout_width="@dimen/score_icon_width"
+                android:layout_height="@dimen/score_icon_height"
+                android:id="@+id/winnerFirstPlayerImageView"
+                android:src="@drawable/winner"
+                android:layout_toRightOf="@id/firstPlayerFaceImageView"
+                android:layout_alignTop="@id/firstPlayerFaceImageView"/>
+
+        <ImageView
+                android:layout_width="@dimen/score_icon_width"
+                android:layout_height="@dimen/score_icon_height"
+                android:id="@+id/loserFirstPlayerImageView"
+                android:src="@drawable/loser"
+                android:layout_toRightOf="@id/firstPlayerFaceImageView"
+                android:layout_alignTop="@id/firstPlayerFaceImageView"/>
+
+        <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/versusImageView"
@@ -38,6 +54,22 @@
                 android:id="@+id/secondPlayerFaceImageView"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"/>
+
+        <ImageView
+                android:layout_width="@dimen/score_icon_width"
+                android:layout_height="@dimen/score_icon_height"
+                android:id="@+id/winnerSecondPlayerImageView"
+                android:src="@drawable/winner"
+                android:layout_toRightOf="@id/secondPlayerFaceImageView"
+                android:layout_alignTop="@id/secondPlayerFaceImageView"/>
+
+        <ImageView
+                android:layout_width="@dimen/score_icon_width"
+                android:layout_height="@dimen/score_icon_height"
+                android:id="@+id/loserSecondPlayerImageView"
+                android:src="@drawable/loser"
+                android:layout_toRightOf="@id/secondPlayerFaceImageView"
+                android:layout_alignTop="@id/secondPlayerFaceImageView"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -80,7 +112,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/firstPlayerProgressBar"
-                android:layout_centerHorizontal="true"
+                android:layout_alignLeft="@id/winnerFirstPlayerImageView"
                 android:layout_alignBottom="@id/firstPlayerFaceImageView"
                 android:visibility="invisible"/>
 
@@ -89,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/secondPlayerProgressBar"
-                android:layout_centerHorizontal="true"
+                android:layout_alignLeft="@id/winnerSecondPlayerImageView"
                 android:layout_alignTop="@+id/secondPlayerFaceImageView"
                 android:visibility="invisible"/>
 

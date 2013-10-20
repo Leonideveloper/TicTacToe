@@ -8,6 +8,7 @@ import com.gmail.landanurm.tictactoe.R;
 
 
 public class TicTacToeActivity extends Activity {
+
     private TicTacToeController controller;
 
     @Override

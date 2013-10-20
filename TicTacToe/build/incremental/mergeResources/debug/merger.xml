@@ -244,6 +244,16 @@
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\game_board_background.png"
                 qualifiers=""
                 type="drawable" />
+            <file
+                name="winner"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\winner.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="loser"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\loser.png"
+                qualifiers=""
+                type="drawable" />
         </source>
         <source path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\rs\debug" />
     </dataSet>

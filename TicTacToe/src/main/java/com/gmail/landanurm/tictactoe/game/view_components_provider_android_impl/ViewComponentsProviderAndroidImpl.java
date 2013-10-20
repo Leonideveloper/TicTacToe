@@ -20,14 +20,14 @@ import java.util.Map;
 public class ViewComponentsProviderAndroidImpl implements TicTacToeView.ComponentsProvider {
     private final GameBoardViewAndroidImpl gameBoardView;
     private final MoveProgressBarAndroidImpl moveProgressBar;
-    private final ResultDisplayAndroidToastImpl resultDisplay;
+    private final ResultDisplayAndroidImpl resultDisplay;
     private final ScoreDisplayAndroidImpl scoreDisplay;
 
     public ViewComponentsProviderAndroidImpl(int gameBoardDimension, Activity activity) {
         GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);
         gameBoardView = gameBoardViewCreator.create(gameBoardDimension);
         moveProgressBar = new MoveProgressBarAndroidImpl(activity);
-        resultDisplay = new ResultDisplayAndroidToastImpl(activity);
+        resultDisplay = new ResultDisplayAndroidImpl(activity);
         scoreDisplay = new ScoreDisplayAndroidImpl(activity);
     }
 
@@ -39,7 +39,7 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
         GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);
         gameBoardView = gameBoardViewCreator.create(gameBoardDimension, savedState);
         moveProgressBar = new MoveProgressBarAndroidImpl(activity, savedState);
-        resultDisplay = new ResultDisplayAndroidToastImpl(activity, savedState);
+        resultDisplay = new ResultDisplayAndroidImpl(activity, savedState);
         scoreDisplay = new ScoreDisplayAndroidImpl(activity, savedState);
     }
 
