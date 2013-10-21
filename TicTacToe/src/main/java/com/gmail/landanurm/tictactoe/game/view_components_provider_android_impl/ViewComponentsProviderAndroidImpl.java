@@ -2,6 +2,7 @@ package com.gmail.landanurm.tictactoe.game.view_components_provider_android_impl
 
 import android.app.Activity;
 
+import com.gmail.landanurm.tictactoe.game.model_view.view.AskerAboutNeedToStartGame;
 import com.gmail.landanurm.tictactoe.game.model_view.view.GameBoardView;
 import com.gmail.landanurm.tictactoe.game.model_view.view.MoveProgressBar;
 import com.gmail.landanurm.tictactoe.game.model_view.view.ResultDisplay;
@@ -22,6 +23,7 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
     private final MoveProgressBarAndroidImpl moveProgressBar;
     private final ResultDisplayAndroidImpl resultDisplay;
     private final ScoreDisplayAndroidImpl scoreDisplay;
+    private final AskerAboutNeedToStartGameAndroidImpl askerAboutNeedToStartGame;
 
     public ViewComponentsProviderAndroidImpl(int gameBoardDimension, Activity activity) {
         GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);
@@ -29,6 +31,7 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
         moveProgressBar = new MoveProgressBarAndroidImpl(activity);
         resultDisplay = new ResultDisplayAndroidImpl(activity);
         scoreDisplay = new ScoreDisplayAndroidImpl(activity);
+        askerAboutNeedToStartGame = new AskerAboutNeedToStartGameAndroidImpl(activity);
     }
 
     public ViewComponentsProviderAndroidImpl(int gameBoardDimension, Activity activity,
@@ -39,6 +42,12 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
         moveProgressBar = new MoveProgressBarAndroidImpl(activity, viewComponentsState);
         resultDisplay = new ResultDisplayAndroidImpl(activity, viewComponentsState);
         scoreDisplay = new ScoreDisplayAndroidImpl(activity, viewComponentsState);
+        askerAboutNeedToStartGame = new AskerAboutNeedToStartGameAndroidImpl(activity, viewComponentsState);
+    }
+
+    @Override
+    public AskerAboutNeedToStartGame getAskerAboutNeedToStartGame() {
+        return askerAboutNeedToStartGame;
     }
 
     @Override
@@ -63,6 +72,7 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
 
     public Serializable getState() {
         HashMap<String, Serializable> viewComponentsState = new HashMap<String, Serializable>();
+        askerAboutNeedToStartGame.saveStateInto(viewComponentsState);
         gameBoardView.saveStateInto(viewComponentsState);
         moveProgressBar.saveStateInto(viewComponentsState);
         resultDisplay.saveStateInto(viewComponentsState);

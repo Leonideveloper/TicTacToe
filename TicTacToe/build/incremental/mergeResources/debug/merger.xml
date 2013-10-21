@@ -59,6 +59,26 @@
                 qualifiers=""
                 type="drawable" />
             <file
+                name="game_board_background"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\game_board_background.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="game_screen_background"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\game_screen_background.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="loser"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\loser.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="score_panel_background"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\score_panel_background.png"
+                qualifiers=""
+                type="drawable" />
+            <file
                 name="second_player_face"
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\second_player_face.png"
                 qualifiers=""
@@ -86,6 +106,11 @@
             <file
                 name="versus"
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\versus.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="winner"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\winner.png"
                 qualifiers=""
                 type="drawable" />
             <file
@@ -133,13 +158,9 @@
                 qualifiers="" >
                 <color name="light_green" >#5bae28
                 </color>
-                <color name="green_transparent" >#900a7d0c
-                </color>
                 <color name="green" >#ff0a7d0c
                 </color>
                 <color name="red" >#ffff0a0c
-                </color>
-                <color name="red_transparent" >#90ff0a0c
                 </color>
             </file>
             <file
@@ -147,17 +168,15 @@
                 qualifiers="" >
                 <dimen name="score_icon_height" >28dp
                 </dimen>
-                <dimen name="ad_width_space" >60dp
-                </dimen>
                 <dimen name="ad_text_size" >74sp
                 </dimen>
                 <dimen name="activity_horizontal_margin" >8dp
                 </dimen>
                 <dimen name="score_text_size" >30sp
                 </dimen>
-                <dimen name="space_between_face_and_score" >7dp
-                </dimen>
                 <dimen name="activity_vertical_margin" >14dp
+                </dimen>
+                <dimen name="space_between_face_and_score" >7dp
                 </dimen>
                 <dimen name="score_icon_width" >28dp
                 </dimen>
@@ -202,12 +221,6 @@
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values-sw600dp\dimens.xml"
                 qualifiers="sw600dp" />
             <file
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values-sw720dp-land\dimens.xml"
-                qualifiers="sw720dp-land" >
-                <dimen name="activity_horizontal_margin" >128dp
-                </dimen>
-            </file>
-            <file
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values-v11\styles.xml"
                 qualifiers="v11" >
 
@@ -229,31 +242,6 @@
                     <!-- API 14 theme customizations can go here. -->
                 </style>
             </file>
-            <file
-                name="score_panel_background"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\score_panel_background.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="game_screen_background"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\game_screen_background.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="game_board_background"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\game_board_background.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="winner"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\winner.png"
-                qualifiers=""
-                type="drawable" />
-            <file
-                name="loser"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\loser.png"
-                qualifiers=""
-                type="drawable" />
         </source>
         <source path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\rs\debug" />
     </dataSet>

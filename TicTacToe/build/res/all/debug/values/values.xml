@@ -2,10 +2,8 @@
 <resources>
 
     <color name="green">#ff0a7d0c</color>
-    <color name="green_transparent">#900a7d0c</color>
     <color name="light_green">#5bae28</color>
     <color name="red">#ffff0a0c</color>
-    <color name="red_transparent">#90ff0a0c</color>
 
     <dimen name="activity_horizontal_margin">8dp</dimen>
     <dimen name="activity_vertical_margin">14dp</dimen>

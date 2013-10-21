@@ -154,4 +154,19 @@
             android:layout_alignParentBottom="true"
             android:textSize="@dimen/ad_text_size"/>
 
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@android:drawable/screen_background_dark_transparent"
+            android:id="@+id/layoutOfAskerAboutNeedToStartGame">
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start New Game"
+                android:id="@+id/startNewGameButton"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
 </RelativeLayout>

@@ -20,8 +20,9 @@ import java.util.List;
  */
 public class TicTacToeViewImpl implements TicTacToeView, Serializable,
                 OnCellClickListener, OnNewGameStartedListener, OnNeedToShowMoveListener,
-                OnGameFinishedListener, OnScoreChangedListener, OnMovePlayerChangedListener {
+                OnGameFinishedListener, OnScoreChangedListener, OnMovePlayerChangedListener, OnNeedToStartGameListener {
 
+    private transient final AskerAboutNeedToStartGame askerAboutNeedToStartGame;
     private transient final GameBoardView gameBoardView;
     private transient final MoveProgressBar moveProgressBar;
     private transient final ResultDisplay resultDisplay;
@@ -36,6 +37,9 @@ public class TicTacToeViewImpl implements TicTacToeView, Serializable,
     public TicTacToeViewImpl(ComponentsProvider viewComponentsProvider,
                              TicTacToeModel model) {
 
+        askerAboutNeedToStartGame = viewComponentsProvider.getAskerAboutNeedToStartGame();
+        askerAboutNeedToStartGame.setOnNeedToStartGameListener(this);
+
         gameBoardView = viewComponentsProvider.getGameBoardView();
         gameBoardView.setOnCellClickListener(this);
 
@@ -47,8 +51,6 @@ public class TicTacToeViewImpl implements TicTacToeView, Serializable,
         scoreDisplay.showScore(model.getScore());
 
         onCellClickListeners = new ArrayList<OnCellClickListener>();
-
-        movesBlocked = false;
 
         this.model = model;
         model.setOnNewGameStartedListener(this);
@@ -77,28 +79,12 @@ public class TicTacToeViewImpl implements TicTacToeView, Serializable,
 
     @Override
     public void onCellClick(Position cellPos) {
-        if (movesBlocked()) {
+        if (gameBoardView.movesBlocked()) {
             return;
         }
-        if (model.gameFinished()) {
-            model.startGame();
-        } else {
-            blockMoves();
-            notifyOnCellClickListeners(cellPos);
-            unblockMoves();
-        }
-    }
-
-    private boolean movesBlocked() {
-        return movesBlocked;
-    }
-
-    private void blockMoves() {
-        movesBlocked = true;
-    }
-
-    private void unblockMoves() {
-        movesBlocked = false;
+        gameBoardView.blockMoves();
+        notifyOnCellClickListeners(cellPos);
+        gameBoardView.unblockMoves();
     }
 
     private void notifyOnCellClickListeners(Position cellPos) {
@@ -113,13 +99,6 @@ public class TicTacToeViewImpl implements TicTacToeView, Serializable,
     }
 
     @Override
-    public void onGameFinished(TicTacToeResult result) {
-        gameBoardView.showFireLines(result.getFireLines());
-        resultDisplay.show(result.getGameState());
-        moveProgressBar.hide();
-    }
-
-    @Override
     public void onMovePlayerChanged(Player.Id playerId) {
         moveProgressBar.show(playerId);
     }
@@ -130,8 +109,24 @@ public class TicTacToeViewImpl implements TicTacToeView, Serializable,
     }
 
     @Override
+    public void onGameFinished(TicTacToeResult result) {
+        gameBoardView.blockMoves();
+        gameBoardView.showFireLines(result.getFireLines());
+        resultDisplay.show(result.getGameState());
+        moveProgressBar.hide();
+        askerAboutNeedToStartGame.askAboutNeedToStartGame();
+    }
+
+    @Override
+    public void onNeedToStartGame() {
+        model.startGame();
+    }
+
+    @Override
     public void onNewGameStarted() {
-        gameBoardView.clear();
+        askerAboutNeedToStartGame.hide();
         resultDisplay.hide();
+        gameBoardView.clear();
+        gameBoardView.unblockMoves();
     }
 }

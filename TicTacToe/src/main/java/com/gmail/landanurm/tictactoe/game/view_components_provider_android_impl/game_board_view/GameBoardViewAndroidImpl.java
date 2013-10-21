@@ -1,5 +1,6 @@
 package com.gmail.landanurm.tictactoe.game.view_components_provider_android_impl.game_board_view;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -24,6 +25,7 @@ public class GameBoardViewAndroidImpl implements GameBoardView {
     private static class MapKeys {
         final static String firstLayer = "GameBoardView.firstLayer";
         final static String secondLayer = "GameBoardView.secondLayer";
+        final static String movesBlocked = "GameBoardView.movesBlocked";
     }
 
     private final CellsTheme cellsTheme;
@@ -31,21 +33,26 @@ public class GameBoardViewAndroidImpl implements GameBoardView {
     private final Matrix<Integer> firstLayerCellsIconsIds;
     private final Matrix<Integer> secondLayerCellsIconsIds;
 
+    private boolean movesBlocked;
+
     GameBoardViewAndroidImpl(ReadOnlyMatrix<ImageView> cells) {
         this(
             cells,
             new ArrayMatrix<Integer>(cells.getDimension()),
-            new ArrayMatrix<Integer>(cells.getDimension())
+            new ArrayMatrix<Integer>(cells.getDimension()),
+            false
         );
         this.clear();
     }
 
     private GameBoardViewAndroidImpl(ReadOnlyMatrix<ImageView> cells,
                                      Matrix<Integer> firstLayerCellsIconsIds,
-                                     Matrix<Integer> secondLayerCellsIconsIds) {
+                                     Matrix<Integer> secondLayerCellsIconsIds,
+                                     boolean movesBlocked) {
         this.cells = cells;
         this.firstLayerCellsIconsIds = firstLayerCellsIconsIds;
         this.secondLayerCellsIconsIds = secondLayerCellsIconsIds;
+        this.movesBlocked = movesBlocked;
         this.cellsTheme = getCurrentCellsTheme();
     }
 
@@ -59,15 +66,32 @@ public class GameBoardViewAndroidImpl implements GameBoardView {
     public void saveStateInto(Map<String, Serializable> outState) {
         outState.put(MapKeys.firstLayer, (Serializable) firstLayerCellsIconsIds);
         outState.put(MapKeys.secondLayer, (Serializable) secondLayerCellsIconsIds);
+        outState.put(MapKeys.movesBlocked, movesBlocked);
     }
 
     GameBoardViewAndroidImpl(ReadOnlyMatrix<ImageView> cells, Map<String,Serializable> savedState) {
         this(
             cells,
             (Matrix<Integer>) savedState.get(MapKeys.firstLayer),
-            (Matrix<Integer>) savedState.get(MapKeys.secondLayer)
+            (Matrix<Integer>) savedState.get(MapKeys.secondLayer),
+            (Boolean) savedState.get(MapKeys.movesBlocked)
         );
         this.updateAllCellViews();
+    }
+
+    @Override
+    public boolean movesBlocked() {
+        return movesBlocked;
+    }
+
+    @Override
+    public void blockMoves() {
+        movesBlocked = true;
+    }
+
+    @Override
+    public void unblockMoves() {
+        movesBlocked = false;
     }
 
     @Override
@@ -142,7 +166,9 @@ public class GameBoardViewAndroidImpl implements GameBoardView {
                 cell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        onCellClickListener.onCellClick(pos);
+                        if (!movesBlocked()) {
+                            onCellClickListener.onCellClick(pos);
+                        }
                     }
                 });
             }
