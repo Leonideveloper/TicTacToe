@@ -33,12 +33,12 @@ class MoveProgressBarAndroidImpl implements MoveProgressBar {
     private MoveProgressBarAndroidImpl(Activity activity, int firstVisibility, int secondVisibility) {
         firstPlayerProgressBar = (ProgressBar) activity.findViewById(R.id.firstPlayerProgressBar);
         secondPlayerProgressBar = (ProgressBar) activity.findViewById(R.id.secondPlayerProgressBar);
-        setVisibility(Player.Id.PLAYER_1, firstVisibility);
-        setVisibility(Player.Id.PLAYER_2, secondVisibility);
+        setVisibility(Player.Id.FIRST_PLAYER, firstVisibility);
+        setVisibility(Player.Id.SECOND_PLAYER, secondVisibility);
     }
 
     private void setVisibility(Player.Id playerId, int visibility) {
-        if (playerId == Player.Id.PLAYER_1) {
+        if (playerId == Player.Id.FIRST_PLAYER) {
             firstPlayerProgressBar.setVisibility(visibility);
             firstVisibility = visibility;
         } else {
@@ -47,14 +47,14 @@ class MoveProgressBarAndroidImpl implements MoveProgressBar {
         }
     }
 
-    void saveStateInto(Map<String, Serializable> outState) {
-        outState.put(MapKeys.firstVisibility, firstVisibility);
-        outState.put(MapKeys.secondVisibility, secondVisibility);
-    }
-
     MoveProgressBarAndroidImpl(Activity activity, Map<String, Serializable> savedState) {
         this(activity, (Integer) savedState.get(MapKeys.firstVisibility),
                        (Integer) savedState.get(MapKeys.secondVisibility));
+    }
+
+    void saveStateInto(Map<String, Serializable> outState) {
+        outState.put(MapKeys.firstVisibility, firstVisibility);
+        outState.put(MapKeys.secondVisibility, secondVisibility);
     }
 
     @Override
@@ -65,7 +65,7 @@ class MoveProgressBarAndroidImpl implements MoveProgressBar {
 
     @Override
     public void hide() {
-        setVisibility(Player.Id.PLAYER_1, View.INVISIBLE);
-        setVisibility(Player.Id.PLAYER_2, View.INVISIBLE);
+        setVisibility(Player.Id.FIRST_PLAYER, View.INVISIBLE);
+        setVisibility(Player.Id.SECOND_PLAYER, View.INVISIBLE);
     }
 }

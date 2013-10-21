@@ -20,25 +20,20 @@ import java.util.List;
  */
 public class TicTacToeViewImpl implements TicTacToeView, Serializable,
                 OnCellClickListener, OnNewGameStartedListener, OnNeedToShowMoveListener,
-                OnGameFinishedListener, OnScoreChangedListener, OnMovePlayerChangedListener, OnNeedToStartGameListener {
+                OnGameFinishedListener, OnScoreChangedListener, OnMovePlayerChangedListener,
+                OnNeedToStartNewGameListener {
 
-    private transient final AskerAboutNeedToStartGame askerAboutNeedToStartGame;
     private transient final GameBoardView gameBoardView;
     private transient final MoveProgressBar moveProgressBar;
     private transient final ResultDisplay resultDisplay;
     private transient final ScoreDisplay scoreDisplay;
+    private transient final StartNewGameRequestor startNewGameRequestor;
 
     private final List<OnCellClickListener> onCellClickListeners;
     private final TicTacToeModel model;
 
-    private boolean movesBlocked;
 
-
-    public TicTacToeViewImpl(ComponentsProvider viewComponentsProvider,
-                             TicTacToeModel model) {
-
-        askerAboutNeedToStartGame = viewComponentsProvider.getAskerAboutNeedToStartGame();
-        askerAboutNeedToStartGame.setOnNeedToStartGameListener(this);
+    public TicTacToeViewImpl(ComponentsProvider viewComponentsProvider, TicTacToeModel model) {
 
         gameBoardView = viewComponentsProvider.getGameBoardView();
         gameBoardView.setOnCellClickListener(this);
@@ -49,6 +44,9 @@ public class TicTacToeViewImpl implements TicTacToeView, Serializable,
 
         scoreDisplay = viewComponentsProvider.getScoreDisplay();
         scoreDisplay.showScore(model.getScore());
+
+        startNewGameRequestor = viewComponentsProvider.getStartNewGameRequestor();
+        startNewGameRequestor.setOnNeedToStartNewGameListener(this);
 
         onCellClickListeners = new ArrayList<OnCellClickListener>();
 
@@ -110,23 +108,21 @@ public class TicTacToeViewImpl implements TicTacToeView, Serializable,
 
     @Override
     public void onGameFinished(TicTacToeResult result) {
-        gameBoardView.blockMoves();
         gameBoardView.showFireLines(result.getFireLines());
         resultDisplay.show(result.getGameState());
         moveProgressBar.hide();
-        askerAboutNeedToStartGame.askAboutNeedToStartGame();
+        startNewGameRequestor.requestToStartNewGame();
     }
 
     @Override
-    public void onNeedToStartGame() {
+    public void onNeedToStartNewGame() {
         model.startGame();
     }
 
     @Override
     public void onNewGameStarted() {
-        askerAboutNeedToStartGame.hide();
+        startNewGameRequestor.hide();
         resultDisplay.hide();
         gameBoardView.clear();
-        gameBoardView.unblockMoves();
     }
 }

@@ -52,13 +52,12 @@ public final class R {
         public static final int winner=0x7f020016;
     }
     public static final class id {
-        public static final int action_settings=0x7f090014;
+        public static final int action_settings=0x7f090013;
         public static final int adTextView=0x7f090011;
         public static final int firstPlayerFaceImageView=0x7f090006;
         public static final int firstPlayerProgressBar=0x7f09000d;
         public static final int firstPlayerScore=0x7f09000a;
         public static final int gameBoardFrameLayout=0x7f090010;
-        public static final int layoutOfAskerAboutNeedToStartGame=0x7f090012;
         public static final int loserFirstPlayerImageView=0x7f090003;
         public static final int loserSecondPlayerImageView=0x7f090005;
         public static final int scorePanelLayout=0x7f090001;
@@ -68,7 +67,7 @@ public final class R {
         public static final int separator=0x7f09000f;
         public static final int spaceBetweenFaceAndScore_1=0x7f090009;
         public static final int spaceBetweenFaceAndScore_2=0x7f09000b;
-        public static final int startNewGameButton=0x7f090013;
+        public static final int startNewGameButton=0x7f090012;
         public static final int tic_tac_toe_game_activity_layout=0x7f090000;
         public static final int versusImageView=0x7f090007;
         public static final int winnerFirstPlayerImageView=0x7f090002;

@@ -8,7 +8,7 @@ import java.util.Collection;
 public class TicTacToeResult {
 
     public static enum GameState {
-        UNKNOWN, DRAW, PLAYER_1_WINS, PLAYER_2_WINS
+        UNKNOWN, DRAW, FIRST_PLAYER_WINS, SECOND_PLAYER_WINS
     }
 
     private final GameState gameState;

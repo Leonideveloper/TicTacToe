@@ -8,7 +8,7 @@ public interface TicTacToeView {
     void addOnCellClickListener(OnCellClickListener listener);
 
     public static interface ComponentsProvider {
-        AskerAboutNeedToStartGame getAskerAboutNeedToStartGame();
+        StartNewGameRequestor getStartNewGameRequestor();
         GameBoardView getGameBoardView();
         ResultDisplay getResultDisplay();
         ScoreDisplay getScoreDisplay();

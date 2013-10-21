@@ -141,10 +141,10 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge, Serializable {
     }
 
     private TicTacToeResult.GameState stateByCell(Player.Id cell) {
-        if (cell == Player.Id.PLAYER_1) {
-            return TicTacToeResult.GameState.PLAYER_1_WINS;
-        } else if (cell == Player.Id.PLAYER_2) {
-            return TicTacToeResult.GameState.PLAYER_2_WINS;
+        if (cell == Player.Id.FIRST_PLAYER) {
+            return TicTacToeResult.GameState.FIRST_PLAYER_WINS;
+        } else if (cell == Player.Id.SECOND_PLAYER) {
+            return TicTacToeResult.GameState.SECOND_PLAYER_WINS;
         }
         throw new IllegalArgumentException("Input cell must be not empty!");
     }

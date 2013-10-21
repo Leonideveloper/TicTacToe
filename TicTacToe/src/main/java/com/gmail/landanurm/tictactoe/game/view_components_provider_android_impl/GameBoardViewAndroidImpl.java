@@ -1,6 +1,5 @@
-package com.gmail.landanurm.tictactoe.game.view_components_provider_android_impl.game_board_view;
+package com.gmail.landanurm.tictactoe.game.view_components_provider_android_impl;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -20,7 +19,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 
-public class GameBoardViewAndroidImpl implements GameBoardView {
+class GameBoardViewAndroidImpl implements GameBoardView {
 
     private static class MapKeys {
         final static String firstLayer = "GameBoardView.firstLayer";
@@ -63,12 +62,6 @@ public class GameBoardViewAndroidImpl implements GameBoardView {
                                    .getCellsTheme();
     }
 
-    public void saveStateInto(Map<String, Serializable> outState) {
-        outState.put(MapKeys.firstLayer, (Serializable) firstLayerCellsIconsIds);
-        outState.put(MapKeys.secondLayer, (Serializable) secondLayerCellsIconsIds);
-        outState.put(MapKeys.movesBlocked, movesBlocked);
-    }
-
     GameBoardViewAndroidImpl(ReadOnlyMatrix<ImageView> cells, Map<String,Serializable> savedState) {
         this(
             cells,
@@ -77,6 +70,12 @@ public class GameBoardViewAndroidImpl implements GameBoardView {
             (Boolean) savedState.get(MapKeys.movesBlocked)
         );
         this.updateAllCellViews();
+    }
+
+    void saveStateInto(Map<String, Serializable> outState) {
+        outState.put(MapKeys.firstLayer, (Serializable) firstLayerCellsIconsIds);
+        outState.put(MapKeys.secondLayer, (Serializable) secondLayerCellsIconsIds);
+        outState.put(MapKeys.movesBlocked, movesBlocked);
     }
 
     @Override
@@ -135,7 +134,7 @@ public class GameBoardViewAndroidImpl implements GameBoardView {
 
     @Override
     public void showMove(Position pos, Player.Id playerId) {
-        if (playerId == Player.Id.PLAYER_1) {
+        if (playerId == Player.Id.FIRST_PLAYER) {
             setFirstLayerCellIconId(pos, cellsTheme.getFirstPlayerMoveIconId());
         } else {
             setFirstLayerCellIconId(pos, cellsTheme.getSecondPlayerMoveIconId());

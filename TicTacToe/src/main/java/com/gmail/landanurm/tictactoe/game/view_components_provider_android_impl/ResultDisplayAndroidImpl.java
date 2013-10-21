@@ -35,13 +35,6 @@ class ResultDisplayAndroidImpl implements ResultDisplay {
         hide();
     }
 
-    void saveStateInto(Map<String, Serializable> outState) {
-        outState.put(MapKeys.displayed, displayed);
-        if (displayed) {
-            outState.put(MapKeys.gameState, gameState);
-        }
-    }
-
     ResultDisplayAndroidImpl(Activity activity, Map<String, Serializable> savedState) {
         this(activity);
         Boolean needToDisplay = (Boolean) savedState.get(MapKeys.displayed);
@@ -52,6 +45,13 @@ class ResultDisplayAndroidImpl implements ResultDisplay {
         }
     }
 
+    void saveStateInto(Map<String, Serializable> outState) {
+        outState.put(MapKeys.displayed, displayed);
+        if (displayed) {
+            outState.put(MapKeys.gameState, gameState);
+        }
+    }
+
     @Override
     public void show(TicTacToeResult.GameState gameState) {
         this.gameState = gameState;
@@ -59,10 +59,10 @@ class ResultDisplayAndroidImpl implements ResultDisplay {
 
         hide(winnerFirstPlayer, winnerSecondPlayer, loserFirstPlayer, loserSecondPlayer);
         switch (gameState) {
-        case PLAYER_1_WINS:
+        case FIRST_PLAYER_WINS:
             show(winnerFirstPlayer, loserSecondPlayer);
             break;
-        case PLAYER_2_WINS:
+        case SECOND_PLAYER_WINS:
             show(winnerSecondPlayer, loserFirstPlayer);
             break;
         case DRAW:

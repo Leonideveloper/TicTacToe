@@ -1,4 +1,4 @@
-package com.gmail.landanurm.tictactoe.game.view_components_provider_android_impl.game_board_view;
+package com.gmail.landanurm.tictactoe.game.view_components_provider_android_impl;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -20,11 +20,11 @@ import java.util.Map;
 /**
  * Created by Leonid on 19.07.13.
  */
-public class GameBoardViewCreator {
+class GameBoardViewCreator {
     private final Activity activity;
     private final int distanceBetweenCells;
 
-    public GameBoardViewCreator(Activity activity) {
+    GameBoardViewCreator(Activity activity) {
         this.activity = activity;
         this.distanceBetweenCells = getDistanceBetweenCells();
     }
@@ -34,12 +34,11 @@ public class GameBoardViewCreator {
         return theme.getGameTheme().getGameBoardTheme().getDistanceBetweenCells();
     }
 
-    public GameBoardViewAndroidImpl create(int gameBoardDimension) {
+    GameBoardViewAndroidImpl create(int gameBoardDimension) {
         return new GameBoardViewAndroidImpl(prepareCells(gameBoardDimension));
     }
 
-    public GameBoardViewAndroidImpl create(int gameBoardDimension,
-                                           Map<String, Serializable> savedState) {
+    GameBoardViewAndroidImpl create(int gameBoardDimension, Map<String, Serializable> savedState) {
         return new GameBoardViewAndroidImpl(prepareCells(gameBoardDimension), savedState);
     }
 

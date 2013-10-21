@@ -13,7 +13,6 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
  */
 public interface TicTacToeModel {
 
-    boolean gameFinished();
     Player getFirstPlayer();
     Player getSecondPlayer();
     ReadOnlyGameBoard getGameBoard();

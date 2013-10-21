@@ -6,7 +6,7 @@ package com.gmail.landanurm.tictactoe.game.model_view.model.player;
  */
 public interface Player {
     public static enum Id {
-        PLAYER_1, PLAYER_2
+        FIRST_PLAYER, SECOND_PLAYER
     }
 
     Id getId();

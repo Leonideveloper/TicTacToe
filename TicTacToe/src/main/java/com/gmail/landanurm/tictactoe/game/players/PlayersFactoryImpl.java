@@ -11,12 +11,12 @@ public class PlayersFactoryImpl implements PlayersFactory {
 
     @Override
     public Player createFirstPlayer(String playerType, TicTacToeModel model) {
-        return createPlayer(playerType, model, Player.Id.PLAYER_1);
+        return createPlayer(playerType, model, Player.Id.FIRST_PLAYER);
     }
 
     @Override
     public Player createSecondPlayer(String playerType, TicTacToeModel model) {
-        return createPlayer(playerType, model, Player.Id.PLAYER_2);
+        return createPlayer(playerType, model, Player.Id.SECOND_PLAYER);
     }
 
     private Player createPlayer(String playerType, TicTacToeModel model, Player.Id playerId) {

@@ -31,10 +31,9 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
     private final TicTacToeJudge judge;
     private final Score score;
 
-    private final Player player_1;
-    private final Player player_2;
+    private final Player firstPlayer;
+    private final Player secondPlayer;
 
-    private boolean gameFinished;
     private Player movePlayer;
 
 
@@ -51,26 +50,20 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
         judge = new TicTacToeJudgeImpl(gameBoard);
         score = new Score();
 
-        player_1 = playersFactory.createFirstPlayer(firstPlayerType, this);
-        player_2 = playersFactory.createSecondPlayer(secondPlayerType, this);
+        firstPlayer = playersFactory.createFirstPlayer(firstPlayerType, this);
+        secondPlayer = playersFactory.createSecondPlayer(secondPlayerType, this);
 
-        gameFinished = false;
-        movePlayer = player_1;
-    }
-
-    @Override
-    public boolean gameFinished() {
-        return gameFinished;
+        movePlayer = firstPlayer;
     }
 
     @Override
     public Player getFirstPlayer() {
-        return player_1;
+        return firstPlayer;
     }
 
     @Override
     public Player getSecondPlayer() {
-        return player_2;
+        return secondPlayer;
     }
 
     @Override
@@ -92,9 +85,7 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
         if (result.isKnown()) {
             onGameFinished(result);
         } else {
-            movePlayer = playerOtherThan(movePlayer);
-            notifyOnMovePlayerChangedListeners();
-            movePlayer.enableMoves();
+            changeMovePlayer();
         }
     }
 
@@ -105,17 +96,16 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
     }
 
     private void onGameFinished(TicTacToeResult result) {
-        gameFinished = true;
         updateScoreIfNeed(result.getGameState());
         notifyOnGameFinishedListeners(result);
         movePlayer = defineNextMovePlayer(result.getGameState());
     }
 
     private void updateScoreIfNeed(TicTacToeResult.GameState gameState) {
-        if (gameState == TicTacToeResult.GameState.PLAYER_1_WINS) {
+        if (gameState == TicTacToeResult.GameState.FIRST_PLAYER_WINS) {
             score.increaseFirstPlayerScore();
             notifyOnScoreChangedListeners();
-        } else if (gameState == TicTacToeResult.GameState.PLAYER_2_WINS) {
+        } else if (gameState == TicTacToeResult.GameState.SECOND_PLAYER_WINS) {
             score.increaseSecondPlayerScore();
             notifyOnScoreChangedListeners();
         }
@@ -135,18 +125,24 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
 
     private Player defineNextMovePlayer(TicTacToeResult.GameState gameState) {
         switch (gameState) {
-        case PLAYER_1_WINS:
-            return player_1;
-        case PLAYER_2_WINS:
-            return player_2;
+        case FIRST_PLAYER_WINS:
+            return firstPlayer;
+        case SECOND_PLAYER_WINS:
+            return secondPlayer;
         case DRAW:
             return movePlayer;
         }
-        throw new IllegalArgumentException("unknown argument \'gameState\': " + gameState.name());
+        throw new IllegalArgumentException("unknown gameState: " + gameState);
+    }
+
+    private void changeMovePlayer() {
+        movePlayer = playerOtherThan(movePlayer);
+        notifyOnMovePlayerChangedListeners();
+        movePlayer.enableMoves();
     }
 
     private Player playerOtherThan(Player player) {
-        return (player.getId() == Player.Id.PLAYER_1) ? player_2 : player_1;
+        return (player.getId() == Player.Id.FIRST_PLAYER) ? secondPlayer : firstPlayer;
     }
 
     private void notifyOnMovePlayerChangedListeners() {
@@ -157,7 +153,6 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
 
     @Override
     public void startGame() {
-        gameFinished = false;
         gameBoard.clear();
         notifyOnNewGameStartedListeners();
         notifyOnMovePlayerChangedListeners();

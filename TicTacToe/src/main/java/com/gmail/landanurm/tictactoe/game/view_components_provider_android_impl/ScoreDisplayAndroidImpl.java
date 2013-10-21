@@ -22,12 +22,12 @@ class ScoreDisplayAndroidImpl implements ScoreDisplay {
         secondPlayerScore = (TextView) activity.findViewById(R.id.secondPlayerScore);
     }
 
-    void saveStateInto(Map<String, Serializable> outState) {
-        // do nothing
-    }
-
     ScoreDisplayAndroidImpl(Activity activity, Map<String, Serializable> savedState) {
         this(activity);
+    }
+
+    void saveStateInto(Map<String, Serializable> outState) {
+        // do nothing
     }
 
     @Override
