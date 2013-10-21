@@ -44,9 +44,7 @@ public class GameBoardViewCreator {
     }
 
     private Matrix<ImageView> prepareCells(final int gameBoardDimension) {
-        Matrix<ImageView> cells =
-                new ArrayMatrix<ImageView>( new Dimension(gameBoardDimension, gameBoardDimension) );
-
+        Matrix<ImageView> cells = createSquareMatrix(gameBoardDimension);
         LinearLayout rowsContainerLayout = prepareRowsContainerLayout(gameBoardDimension);
         for (int row = 0; row < gameBoardDimension; ++row) {
             LinearLayout rowLayout = prepareRowLayout(gameBoardDimension);
@@ -61,6 +59,10 @@ public class GameBoardViewCreator {
                 (FrameLayout) activity.findViewById(R.id.gameBoardFrameLayout);
         gameBoardFrameLayout.addView(rowsContainerLayout);
         return cells;
+    }
+
+    private Matrix<ImageView> createSquareMatrix(int dimension) {
+        return new ArrayMatrix<ImageView>(new Dimension(dimension, dimension));
     }
 
     private LinearLayout prepareRowsContainerLayout(int numberOfRows) {

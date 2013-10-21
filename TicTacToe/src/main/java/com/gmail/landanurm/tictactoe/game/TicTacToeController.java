@@ -39,10 +39,8 @@ public class TicTacToeController {
     }
 
     private TicTacToeModel createModel() {
-        return new TicTacToeModelImpl(gameBoardDimension,
-                                      new PlayersFactoryImpl(),
-                                      firstPlayerType,
-                                      secondPlayerType);
+        return new TicTacToeModelImpl(gameBoardDimension, new PlayersFactoryImpl(),
+                                      firstPlayerType, secondPlayerType);
     }
 
     private ViewComponentsProviderAndroidImpl createViewComponentsProvider() {
@@ -75,6 +73,6 @@ public class TicTacToeController {
 
     private ViewComponentsProviderAndroidImpl createViewComponentsProviderFrom(Bundle savedState) {
         return new ViewComponentsProviderAndroidImpl(gameBoardDimension, activity,
-                                    savedState.getSerializable(BundleKeys.viewComponentsState));
+                             savedState.getSerializable(BundleKeys.viewComponentsState));
     }
 }

@@ -6,27 +6,27 @@ import java.io.Serializable;
  * Created by Leonid on 29.07.13.
  */
 public class Score implements Serializable {
-    private int scoreOfPlayer1;
-    private int scoreOfPlayer2;
+    private int firstPlayerScore;
+    private int secondPlayerScore;
 
     Score() {
-        scoreOfPlayer1 = 0;
-        scoreOfPlayer2 = 0;
+        firstPlayerScore = 0;
+        secondPlayerScore = 0;
     }
 
-    public int getScoreOfPlayer1() {
-        return scoreOfPlayer1;
+    public int getFirstPlayerScore() {
+        return firstPlayerScore;
     }
 
-    public int getScoreOfPlayer2() {
-        return scoreOfPlayer2;
+    public int getSecondPlayerScore() {
+        return secondPlayerScore;
     }
 
-    void increaseScoreOfPlayer1() {
-        ++scoreOfPlayer1;
+    void increaseFirstPlayerScore() {
+        ++firstPlayerScore;
     }
 
-    void increaseScoreOfPlayer2() {
-        ++scoreOfPlayer2;
+    void increaseSecondPlayerScore() {
+        ++secondPlayerScore;
     }
 }

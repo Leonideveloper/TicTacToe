@@ -30,8 +30,8 @@ class GameThemeInstaller {
         firstPlayerFace = (ImageView) activity.findViewById(R.id.firstPlayerFaceImageView);
         secondPlayerFace = (ImageView) activity.findViewById(R.id.secondPlayerFaceImageView);
         versusIcon = (ImageView) activity.findViewById(R.id.versusImageView);
-        firstPlayerScore = (TextView) activity.findViewById(R.id.scoreOfPlayer1);
-        secondPlayerScore = (TextView) activity.findViewById(R.id.scoreOfPlayer2);
+        firstPlayerScore = (TextView) activity.findViewById(R.id.firstPlayerScore);
+        secondPlayerScore = (TextView) activity.findViewById(R.id.secondPlayerScore);
         separator = (ImageView) activity.findViewById(R.id.separator);
         gameBoard = (FrameLayout) activity.findViewById(R.id.gameBoardFrameLayout);
     }

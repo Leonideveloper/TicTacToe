@@ -30,16 +30,6 @@ class MoveProgressBarAndroidImpl implements MoveProgressBar {
         this(activity, View.INVISIBLE, View.INVISIBLE);
     }
 
-    void saveStateInto(Map<String, Serializable> outState) {
-        outState.put(MapKeys.firstVisibility, firstVisibility);
-        outState.put(MapKeys.secondVisibility, secondVisibility);
-    }
-
-    MoveProgressBarAndroidImpl(Activity activity, Map<String, Serializable> savedState) {
-        this(activity, (Integer) savedState.get(MapKeys.firstVisibility),
-                       (Integer) savedState.get(MapKeys.secondVisibility));
-    }
-
     private MoveProgressBarAndroidImpl(Activity activity, int firstVisibility, int secondVisibility) {
         firstPlayerProgressBar = (ProgressBar) activity.findViewById(R.id.firstPlayerProgressBar);
         secondPlayerProgressBar = (ProgressBar) activity.findViewById(R.id.secondPlayerProgressBar);
@@ -55,6 +45,16 @@ class MoveProgressBarAndroidImpl implements MoveProgressBar {
             secondPlayerProgressBar.setVisibility(visibility);
             secondVisibility = visibility;
         }
+    }
+
+    void saveStateInto(Map<String, Serializable> outState) {
+        outState.put(MapKeys.firstVisibility, firstVisibility);
+        outState.put(MapKeys.secondVisibility, secondVisibility);
+    }
+
+    MoveProgressBarAndroidImpl(Activity activity, Map<String, Serializable> savedState) {
+        this(activity, (Integer) savedState.get(MapKeys.firstVisibility),
+                       (Integer) savedState.get(MapKeys.secondVisibility));
     }
 
     @Override

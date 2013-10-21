@@ -31,16 +31,14 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
         scoreDisplay = new ScoreDisplayAndroidImpl(activity);
     }
 
-    public ViewComponentsProviderAndroidImpl(int gameBoardDimension,
-                                             Activity activity,
-                                             Serializable viewComponentsState) {
-
-        Map<String, Serializable> savedState = (Map<String, Serializable>) viewComponentsState;
+    public ViewComponentsProviderAndroidImpl(int gameBoardDimension, Activity activity,
+                                             Serializable savedState) {
+        Map<String, Serializable> viewComponentsState = (Map<String, Serializable>) savedState;
         GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);
-        gameBoardView = gameBoardViewCreator.create(gameBoardDimension, savedState);
-        moveProgressBar = new MoveProgressBarAndroidImpl(activity, savedState);
-        resultDisplay = new ResultDisplayAndroidImpl(activity, savedState);
-        scoreDisplay = new ScoreDisplayAndroidImpl(activity, savedState);
+        gameBoardView = gameBoardViewCreator.create(gameBoardDimension, viewComponentsState);
+        moveProgressBar = new MoveProgressBarAndroidImpl(activity, viewComponentsState);
+        resultDisplay = new ResultDisplayAndroidImpl(activity, viewComponentsState);
+        scoreDisplay = new ScoreDisplayAndroidImpl(activity, viewComponentsState);
     }
 
     @Override
@@ -66,9 +64,9 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
     public Serializable getState() {
         HashMap<String, Serializable> viewComponentsState = new HashMap<String, Serializable>();
         gameBoardView.saveStateInto(viewComponentsState);
+        moveProgressBar.saveStateInto(viewComponentsState);
         resultDisplay.saveStateInto(viewComponentsState);
         scoreDisplay.saveStateInto(viewComponentsState);
-        moveProgressBar.saveStateInto(viewComponentsState);
         return viewComponentsState;
     }
 }

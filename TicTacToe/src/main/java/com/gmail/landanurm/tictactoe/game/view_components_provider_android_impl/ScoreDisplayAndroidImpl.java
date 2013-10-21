@@ -14,12 +14,12 @@ import java.util.Map;
  * Created by Leonid on 04.08.13.
  */
 class ScoreDisplayAndroidImpl implements ScoreDisplay {
-    private final TextView scoreOfPlayer1;
-    private final TextView scoreOfPlayer2;
+    private final TextView firstPlayerScore;
+    private final TextView secondPlayerScore;
 
     ScoreDisplayAndroidImpl(Activity activity) {
-        scoreOfPlayer1 = (TextView) activity.findViewById(R.id.scoreOfPlayer1);
-        scoreOfPlayer2 = (TextView) activity.findViewById(R.id.scoreOfPlayer2);
+        firstPlayerScore = (TextView) activity.findViewById(R.id.firstPlayerScore);
+        secondPlayerScore = (TextView) activity.findViewById(R.id.secondPlayerScore);
     }
 
     void saveStateInto(Map<String, Serializable> outState) {
@@ -32,7 +32,7 @@ class ScoreDisplayAndroidImpl implements ScoreDisplay {
 
     @Override
     public void showScore(Score score) {
-        scoreOfPlayer1.setText(String.valueOf(score.getScoreOfPlayer1()));
-        scoreOfPlayer2.setText(String.valueOf(score.getScoreOfPlayer2()));
+        firstPlayerScore.setText(String.valueOf(score.getFirstPlayerScore()));
+        secondPlayerScore.setText(String.valueOf(score.getSecondPlayerScore()));
     }
 }

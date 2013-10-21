@@ -113,10 +113,10 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
 
     private void updateScoreIfNeed(TicTacToeResult.GameState gameState) {
         if (gameState == TicTacToeResult.GameState.PLAYER_1_WINS) {
-            score.increaseScoreOfPlayer1();
+            score.increaseFirstPlayerScore();
             notifyOnScoreChangedListeners();
         } else if (gameState == TicTacToeResult.GameState.PLAYER_2_WINS) {
-            score.increaseScoreOfPlayer2();
+            score.increaseSecondPlayerScore();
             notifyOnScoreChangedListeners();
         }
     }

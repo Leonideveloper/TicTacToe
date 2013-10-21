@@ -46,28 +46,44 @@ class ResultDisplayAndroidImpl implements ResultDisplay {
         this(activity);
         Boolean needToDisplay = (Boolean) savedState.get(MapKeys.displayed);
         if (needToDisplay) {
-            show(
-                 (TicTacToeResult.GameState) savedState.get(MapKeys.gameState)
-            );
+            TicTacToeResult.GameState savedGameState =
+                    (TicTacToeResult.GameState) savedState.get(MapKeys.gameState);
+            show(savedGameState);
         }
     }
 
     @Override
     public void show(TicTacToeResult.GameState gameState) {
-        hide();
         this.gameState = gameState;
         this.displayed = true;
-        if (gameState == TicTacToeResult.GameState.PLAYER_1_WINS) {
-            setVisibilityForViews(View.VISIBLE,
-                    winnerFirstPlayer, loserSecondPlayer);
-        } else if (gameState == TicTacToeResult.GameState.PLAYER_2_WINS) {
-            setVisibilityForViews(View.VISIBLE,
-                    winnerSecondPlayer, loserFirstPlayer);
-        } else if (gameState == TicTacToeResult.GameState.DRAW) {
-            setVisibilityForViews(View.VISIBLE,
-                    loserFirstPlayer, loserSecondPlayer);
-        } else {
+
+        hide(winnerFirstPlayer, winnerSecondPlayer, loserFirstPlayer, loserSecondPlayer);
+        switch (gameState) {
+        case PLAYER_1_WINS:
+            show(winnerFirstPlayer, loserSecondPlayer);
+            break;
+        case PLAYER_2_WINS:
+            show(winnerSecondPlayer, loserFirstPlayer);
+            break;
+        case DRAW:
+            show(loserFirstPlayer, loserSecondPlayer);
+            break;
+        default:
             throw new IllegalArgumentException("Unknown gameState: " + gameState);
+        }
+    }
+
+    private void hide(View... views) {
+        setVisibilityForViews(View.INVISIBLE, views);
+    }
+
+    private void show(View... views) {
+        setVisibilityForViews(View.VISIBLE, views);
+    }
+
+    private void setVisibilityForViews(int visibility, View... views) {
+        for (View each : views) {
+            each.setVisibility(visibility);
         }
     }
 
@@ -75,14 +91,6 @@ class ResultDisplayAndroidImpl implements ResultDisplay {
     public void hide() {
         this.displayed = false;
         this.gameState = null;
-        setVisibilityForViews(View.INVISIBLE,
-                winnerFirstPlayer, winnerSecondPlayer,
-                loserFirstPlayer, loserSecondPlayer);
-    }
-
-    private void setVisibilityForViews(int visibility, View... views) {
-        for (View each : views) {
-            each.setVisibility(visibility);
-        }
+        hide(winnerFirstPlayer, winnerSecondPlayer, loserFirstPlayer, loserSecondPlayer);
     }
 }

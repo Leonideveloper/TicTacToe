@@ -10,6 +10,11 @@ public class PlainTicTacToeTheme implements TicTacToeTheme {
     private static final GameTheme gameTheme = new PlainGameTheme();
 
     @Override
+    public String getName() {
+        return "Plain Theme";
+    }
+
+    @Override
     public GameTheme getGameTheme() {
         return gameTheme;
     }

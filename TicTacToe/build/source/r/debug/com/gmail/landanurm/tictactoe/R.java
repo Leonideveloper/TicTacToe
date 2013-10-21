@@ -58,14 +58,14 @@ public final class R {
         public static final int adTextView=0x7f090011;
         public static final int firstPlayerFaceImageView=0x7f090006;
         public static final int firstPlayerProgressBar=0x7f09000d;
+        public static final int firstPlayerScore=0x7f09000a;
         public static final int gameBoardFrameLayout=0x7f090010;
         public static final int loserFirstPlayerImageView=0x7f090003;
         public static final int loserSecondPlayerImageView=0x7f090005;
-        public static final int scoreOfPlayer1=0x7f09000a;
-        public static final int scoreOfPlayer2=0x7f09000c;
         public static final int scorePanelLayout=0x7f090001;
         public static final int secondPlayerFaceImageView=0x7f090008;
         public static final int secondPlayerProgressBar=0x7f09000e;
+        public static final int secondPlayerScore=0x7f09000c;
         public static final int separator=0x7f09000f;
         public static final int spaceBetweenFaceAndScore_1=0x7f090009;
         public static final int spaceBetweenFaceAndScore_2=0x7f09000b;
