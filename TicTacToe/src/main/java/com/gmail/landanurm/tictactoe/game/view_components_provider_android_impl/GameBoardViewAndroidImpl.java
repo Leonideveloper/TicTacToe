@@ -79,7 +79,24 @@ class GameBoardViewAndroidImpl implements GameBoardView {
     }
 
     @Override
-    public boolean movesBlocked() {
+    public void setOnCellClickListener(final OnCellClickListener onCellClickListener) {
+        cells.forEach(new OnEachHandler<ImageView>() {
+            @Override
+            public void handle(final Position pos, ImageView elem) {
+                ImageView cell = cells.get(pos);
+                cell.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (!movesBlocked()) {
+                            onCellClickListener.onCellClick(pos);
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    private boolean movesBlocked() {
         return movesBlocked;
     }
 
@@ -154,23 +171,5 @@ class GameBoardViewAndroidImpl implements GameBoardView {
         for (Position pos : cellsPositions) {
             setSecondLayerCellIconId(pos, cellsTheme.getFireIconId(fireLineType));
         }
-    }
-
-    @Override
-    public void setOnCellClickListener(final OnCellClickListener onCellClickListener) {
-        cells.forEach(new OnEachHandler<ImageView>() {
-            @Override
-            public void handle(final Position pos, ImageView elem) {
-                ImageView cell = cells.get(pos);
-                cell.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (!movesBlocked()) {
-                            onCellClickListener.onCellClick(pos);
-                        }
-                    }
-                });
-            }
-        });
     }
 }

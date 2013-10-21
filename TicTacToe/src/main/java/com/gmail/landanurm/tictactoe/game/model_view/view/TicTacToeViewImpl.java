@@ -56,18 +56,9 @@ public class TicTacToeViewImpl implements TicTacToeView, Serializable,
         model.setOnScoreChangedListener(this);
         model.setOnNeedToShowMoveListener(this);
         model.setOnMovePlayerChangedListener(this);
-        connectPlayers(model.getFirstPlayer(), model.getSecondPlayer());
-    }
 
-    private void connectPlayers(Player firstPlayer, Player secondPlayer) {
-        connectIfPlayerIsOnCellClickListener(firstPlayer);
-        connectIfPlayerIsOnCellClickListener(secondPlayer);
-    }
-
-    private void connectIfPlayerIsOnCellClickListener(Player player) {
-        if (player instanceof OnCellClickListener) {
-            addOnCellClickListener((OnCellClickListener) player);
-        }
+        ConnectorPlayersToView connectorPlayersToView = new ConnectorPlayersToView(this, model);
+        connectorPlayersToView.connect();
     }
 
     @Override
@@ -77,9 +68,6 @@ public class TicTacToeViewImpl implements TicTacToeView, Serializable,
 
     @Override
     public void onCellClick(Position cellPos) {
-        if (gameBoardView.movesBlocked()) {
-            return;
-        }
         gameBoardView.blockMoves();
         notifyOnCellClickListeners(cellPos);
         gameBoardView.unblockMoves();
@@ -121,8 +109,8 @@ public class TicTacToeViewImpl implements TicTacToeView, Serializable,
 
     @Override
     public void onNewGameStarted() {
-        startNewGameRequestor.hide();
-        resultDisplay.hide();
         gameBoardView.clear();
+        resultDisplay.hide();
+        startNewGameRequestor.hideRequest();
     }
 }

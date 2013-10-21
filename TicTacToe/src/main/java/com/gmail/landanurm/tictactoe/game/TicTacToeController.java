@@ -16,22 +16,22 @@ import java.io.Serializable;
 /**
  * Created by Leonid on 15.10.13.
  */
-public class TicTacToeController {
+class TicTacToeController {
     private static final Integer gameBoardDimension = 5;
-    private static final String firstPlayerType = PlayerTypes.HUMAN;
+    private static final String firstPlayerType = PlayerTypes.AI.NORMAL;
     private static final String secondPlayerType = PlayerTypes.HUMAN;
 
     private final Activity activity;
-    private ViewComponentsProviderAndroidImpl viewComponentsProvider;
-    private TicTacToeView view;
     private TicTacToeModel model;
+    private TicTacToeView view;
+    private ViewComponentsProviderAndroidImpl viewComponentsProvider;
 
 
-    public TicTacToeController(Activity activity) {
+    TicTacToeController(Activity activity) {
         this.activity = activity;
     }
 
-    public void startGame() {
+    void startGame() {
         model = createModel();
         viewComponentsProvider = createViewComponentsProvider();
         view = createView();
@@ -56,12 +56,12 @@ public class TicTacToeController {
         final static String viewComponentsState = "Controller.viewComponentsState";
     }
 
-    public void saveStateInto(Bundle outState) {
+    void saveStateInto(Bundle outState) {
         outState.putSerializable(BundleKeys.model, (Serializable) model);
         outState.putSerializable(BundleKeys.viewComponentsState, viewComponentsProvider.getState());
     }
 
-    public void restoreStateFrom(Bundle savedState) {
+    void restoreStateFrom(Bundle savedState) {
         model = getModelRestoredFrom(savedState);
         viewComponentsProvider = createViewComponentsProviderFrom(savedState);
         view = createView();

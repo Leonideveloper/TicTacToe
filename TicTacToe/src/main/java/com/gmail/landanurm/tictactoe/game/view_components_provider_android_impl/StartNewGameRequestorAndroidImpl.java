@@ -34,7 +34,7 @@ class StartNewGameRequestorAndroidImpl implements StartNewGameRequestor {
                 notifyOnNeedToStartGameListeners();
             }
         });
-        hide();
+        hideRequest();
     }
 
     private void notifyOnNeedToStartGameListeners() {
@@ -68,7 +68,7 @@ class StartNewGameRequestorAndroidImpl implements StartNewGameRequestor {
     }
 
     @Override
-    public void hide() {
+    public void hideRequest() {
         requested = false;
         startNewGameButton.setVisibility(View.INVISIBLE);
     }
