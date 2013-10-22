@@ -13,19 +13,19 @@ import java.io.Serializable;
 class HumanPlayer implements Player, OnCellClickListener, Serializable {
     private final OnMoveListener onMoveListener;
     private final ReadOnlyGameBoard gameBoard;
-    private final Position position;
+    private final Id id;
     private boolean movesEnabled;
 
-    HumanPlayer(Position position, ReadOnlyGameBoard gameBoard, OnMoveListener onMoveListener) {
-        this.position = position;
+    HumanPlayer(Id id, ReadOnlyGameBoard gameBoard, OnMoveListener onMoveListener) {
+        this.id = id;
         this.gameBoard = gameBoard;
         this.onMoveListener = onMoveListener;
         this.movesEnabled = false;
     }
 
     @Override
-    public Position getPosition() {
-        return position;
+    public Id getId() {
+        return id;
     }
 
     @Override

@@ -9,5 +9,5 @@ public interface ReadOnlyGameBoard {
     boolean cellIsEmpty(com.gmail.landanurm.matrix.Position pos);
     boolean containsEmptyCell();
     int getDimension();
-    Player.Position get(com.gmail.landanurm.matrix.Position pos);
+    Player.Id get(com.gmail.landanurm.matrix.Position pos);
 }

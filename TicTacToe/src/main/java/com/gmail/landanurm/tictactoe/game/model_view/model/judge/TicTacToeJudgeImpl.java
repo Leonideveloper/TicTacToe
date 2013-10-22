@@ -127,10 +127,10 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge, Serializable {
         if (gameBoard.cellIsEmpty(positionOfFirstCellOnLine)) {
             return TicTacToeResultCreator.createUnknownResult();
         }
-        Player.Position firstCellOnLine = gameBoard.get(positionOfFirstCellOnLine);
+        Player.Id firstCellOnLine = gameBoard.get(positionOfFirstCellOnLine);
         for (int i = 1; i < gameBoardDimension; ++i) {
             Position currentPosition = cellsPositions.get(i);
-            Player.Position currentCell = gameBoard.get(currentPosition);
+            Player.Id currentCell = gameBoard.get(currentPosition);
             if (firstCellOnLine != currentCell) {
                 return TicTacToeResultCreator.createUnknownResult();
             }
@@ -140,10 +140,10 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge, Serializable {
         return new TicTacToeResult(stateByCell(firstCellOnLine), fireLines);
     }
 
-    private TicTacToeResult.GameState stateByCell(Player.Position cell) {
-        if (cell == Player.Position.FIRST) {
+    private TicTacToeResult.GameState stateByCell(Player.Id cell) {
+        if (cell == Player.Id.FIRST_PLAYER) {
             return TicTacToeResult.GameState.FIRST_PLAYER_WINS;
-        } else if (cell == Player.Position.SECOND) {
+        } else if (cell == Player.Id.SECOND_PLAYER) {
             return TicTacToeResult.GameState.SECOND_PLAYER_WINS;
         }
         throw new IllegalArgumentException("Input cell must be not empty!");

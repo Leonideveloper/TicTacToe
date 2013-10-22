@@ -6,5 +6,5 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
  * Created by Leonid on 07.09.13.
  */
 public interface OnMovePlayerChangedListener {
-    void onMovePlayerChanged(Player.Position movePlayerPosition);
+    void onMovePlayerChanged(Player.Id movePlayerId);
 }

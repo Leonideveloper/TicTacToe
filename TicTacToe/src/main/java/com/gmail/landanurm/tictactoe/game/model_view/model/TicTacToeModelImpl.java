@@ -70,7 +70,7 @@ public class TicTacToeModelImpl implements TicTacToeModel, OnMoveListener, Seria
 
     private void notifyOnMovePlayerChangedListeners() {
         for (OnMovePlayerChangedListener each : onMovePlayerChangedListeners) {
-            each.onMovePlayerChanged(movePlayer.getPosition());
+            each.onMovePlayerChanged(movePlayer.getId());
         }
     }
 
@@ -117,8 +117,8 @@ public class TicTacToeModelImpl implements TicTacToeModel, OnMoveListener, Seria
     @Override
     public void onMove(com.gmail.landanurm.matrix.Position movePos, Player player) {
         player.disableMoves();
-        gameBoard.set(movePos, player.getPosition());
-        notifyOnNeedToShowMoveListeners(movePos, player.getPosition());
+        gameBoard.set(movePos, player.getId());
+        notifyOnNeedToShowMoveListeners(movePos, player.getId());
         TicTacToeResult result = judge.getResult();
         if (result.isKnown()) {
             onGameFinished(result);
@@ -127,9 +127,9 @@ public class TicTacToeModelImpl implements TicTacToeModel, OnMoveListener, Seria
         }
     }
 
-    private void notifyOnNeedToShowMoveListeners(com.gmail.landanurm.matrix.Position pos, Player.Position position) {
+    private void notifyOnNeedToShowMoveListeners(com.gmail.landanurm.matrix.Position pos, Player.Id id) {
         for (OnNeedToShowMoveListener each : onNeedToShowMoveListeners) {
-            each.onNeedToShowMove(pos, position);
+            each.onNeedToShowMove(pos, id);
         }
     }
 
@@ -180,6 +180,6 @@ public class TicTacToeModelImpl implements TicTacToeModel, OnMoveListener, Seria
     }
 
     private Player playerOtherThan(Player player) {
-        return (player.getPosition() == Player.Position.FIRST) ? secondPlayer : firstPlayer;
+        return (player.getId() == Player.Id.FIRST_PLAYER) ? secondPlayer : firstPlayer;
     }
 }

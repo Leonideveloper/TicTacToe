@@ -10,10 +10,10 @@ import java.io.Serializable;
  * Created by Leonid on 27.09.13.
  */
 class GameBoardImpl implements GameBoard, Serializable {
-    private final Matrix<Player.Position> cells;
+    private final Matrix<Player.Id> cells;
 
     GameBoardImpl(int gameBoardDimension) {
-        cells = new SquareMatrix<Player.Position>(gameBoardDimension);
+        cells = new SquareMatrix<Player.Id>(gameBoardDimension);
     }
 
     @Override
@@ -32,7 +32,7 @@ class GameBoardImpl implements GameBoard, Serializable {
     }
 
     @Override
-    public Player.Position get(com.gmail.landanurm.matrix.Position pos) {
+    public Player.Id get(com.gmail.landanurm.matrix.Position pos) {
         return cells.get(pos);
     }
 
@@ -42,7 +42,7 @@ class GameBoardImpl implements GameBoard, Serializable {
     }
 
     @Override
-    public void set(com.gmail.landanurm.matrix.Position pos, Player.Position position) {
-        cells.set(pos, position);
+    public void set(com.gmail.landanurm.matrix.Position pos, Player.Id id) {
+        cells.set(pos, id);
     }
 }

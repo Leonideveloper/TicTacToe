@@ -9,19 +9,19 @@ import java.io.Serializable;
  * Created by Leonid on 06.09.13.
  */
 class AIPlayer implements Player, Serializable {
-    private final Position position;
+    private final Id id;
     private final OnMoveListener onMoveListener;
     private final AIMoveCalculator aiMoveCalculator;
 
-    AIPlayer(Position position, OnMoveListener onMoveListener, AIMoveCalculator aiMoveCalculator) {
-        this.position = position;
+    AIPlayer(Id id, OnMoveListener onMoveListener, AIMoveCalculator aiMoveCalculator) {
+        this.id = id;
         this.onMoveListener = onMoveListener;
         this.aiMoveCalculator = aiMoveCalculator;
     }
 
     @Override
-    public Position getPosition() {
-        return position;
+    public Id getId() {
+        return id;
     }
 
     @Override

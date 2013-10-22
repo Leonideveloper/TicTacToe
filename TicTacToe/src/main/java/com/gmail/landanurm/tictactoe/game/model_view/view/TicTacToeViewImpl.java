@@ -77,8 +77,8 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
     }
 
     @Override
-    public void onNeedToShowMove(com.gmail.landanurm.matrix.Position pos, Player.Position playerPosition) {
-        gameBoardView.showMove(pos, playerPosition);
+    public void onNeedToShowMove(com.gmail.landanurm.matrix.Position pos, Player.Id playerId) {
+        gameBoardView.showMove(pos, playerId);
     }
 
     @Override
@@ -87,8 +87,8 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
     }
 
     @Override
-    public void onMovePlayerChanged(Player.Position playerPosition) {
-        moveProgressBar.show(playerPosition);
+    public void onMovePlayerChanged(Player.Id playerId) {
+        moveProgressBar.show(playerId);
     }
 
     @Override

@@ -149,8 +149,8 @@ class GameBoardViewAndroidImpl implements GameBoardView {
     }
 
     @Override
-    public void showMove(com.gmail.landanurm.matrix.Position pos, Player.Position playerPosition) {
-        if (playerPosition == Player.Position.FIRST) {
+    public void showMove(com.gmail.landanurm.matrix.Position pos, Player.Id playerId) {
+        if (playerId == Player.Id.FIRST_PLAYER) {
             setFirstLayerCellIconId(pos, cellsTheme.getFirstPlayerMoveIconId());
         } else {
             setFirstLayerCellIconId(pos, cellsTheme.getSecondPlayerMoveIconId());

@@ -13,21 +13,21 @@ public class PlayersFactoryImpl implements PlayersFactory {
     @Override
     public Player createFirstPlayer(String playerType, ReadOnlyGameBoard gameBoard,
                                     OnMoveListener onMoveListener) {
-        return createPlayer(playerType, gameBoard, onMoveListener, Player.Position.FIRST);
+        return createPlayer(playerType, gameBoard, onMoveListener, Player.Id.FIRST_PLAYER);
     }
 
     @Override
     public Player createSecondPlayer(String playerType, ReadOnlyGameBoard gameBoard,
                                      OnMoveListener onMoveListener) {
-        return createPlayer(playerType, gameBoard, onMoveListener, Player.Position.SECOND);
+        return createPlayer(playerType, gameBoard, onMoveListener, Player.Id.SECOND_PLAYER);
     }
 
     private Player createPlayer(String playerType, ReadOnlyGameBoard gameBoard,
-                                OnMoveListener onMoveListener, Player.Position playerPosition) {
+                                OnMoveListener onMoveListener, Player.Id playerId) {
         if (playerType.equals(PlayerTypes.HUMAN)) {
-            return new HumanPlayer(playerPosition, gameBoard, onMoveListener);
+            return new HumanPlayer(playerId, gameBoard, onMoveListener);
         } else if (playerType.equals(PlayerTypes.AI.NORMAL)) {
-            return new AIPlayer(playerPosition, onMoveListener, new NormalAIMoveCalculator(gameBoard));
+            return new AIPlayer(playerId, onMoveListener, new NormalAIMoveCalculator(gameBoard));
         } else if (playerType.equals(PlayerTypes.AI.HARD)) {
             throw new PlayerTypeIsNotYetImplementedException(playerType);
         }

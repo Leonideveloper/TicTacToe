@@ -13,6 +13,6 @@ public interface GameBoardView {
     void blockMoves();
     void unblockMoves();
     void clear();
-    void showMove(com.gmail.landanurm.matrix.Position pos, Player.Position playerPosition);
+    void showMove(com.gmail.landanurm.matrix.Position pos, Player.Id playerId);
     void showFireLines(Collection<FireLine> fireLines);
 }
