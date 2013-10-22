@@ -1,6 +1,7 @@
 package com.gmail.landanurm.tictactoe.game.model_view.view;
 
 
+import com.gmail.landanurm.matrix.Position;
 import com.gmail.landanurm.tictactoe.game.model_view.model.TicTacToeModel;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeResult;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnGameFinishedListener;
@@ -64,20 +65,20 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
     }
 
     @Override
-    public void onCellClick(com.gmail.landanurm.matrix.Position cellPos) {
+    public void onCellClick(Position cellPos) {
         gameBoardView.blockMoves();
         notifyOnCellClickListeners(cellPos);
         gameBoardView.unblockMoves();
     }
 
-    private void notifyOnCellClickListeners(com.gmail.landanurm.matrix.Position cellPos) {
+    private void notifyOnCellClickListeners(Position cellPos) {
         for (OnCellClickListener each : onCellClickListeners) {
             each.onCellClick(cellPos);
         }
     }
 
     @Override
-    public void onNeedToShowMove(com.gmail.landanurm.matrix.Position pos, Player.Id playerId) {
+    public void onNeedToShowMove(Position pos, Player.Id playerId) {
         gameBoardView.showMove(pos, playerId);
     }
 

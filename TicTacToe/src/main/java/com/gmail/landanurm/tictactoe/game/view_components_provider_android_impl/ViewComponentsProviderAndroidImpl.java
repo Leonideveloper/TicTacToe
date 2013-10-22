@@ -23,24 +23,22 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
     private final ScoreDisplayAndroidImpl scoreDisplay;
     private final StartNewGameRequestorAndroidImpl startNewGameRequestor;
 
-    public ViewComponentsProviderAndroidImpl(int gameBoardDimension, Activity activity) {
-        GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);
-        gameBoardView = gameBoardViewCreator.create(gameBoardDimension);
+    public ViewComponentsProviderAndroidImpl(Activity activity, int gameBoardDimension) {
+        gameBoardView = new GameBoardViewAndroidImpl(activity, gameBoardDimension);
         moveProgressBar = new MoveProgressBarAndroidImpl(activity);
         resultDisplay = new ResultDisplayAndroidImpl(activity);
         scoreDisplay = new ScoreDisplayAndroidImpl(activity);
         startNewGameRequestor = new StartNewGameRequestorAndroidImpl(activity);
     }
 
-    public ViewComponentsProviderAndroidImpl(int gameBoardDimension, Activity activity,
-                                             Serializable savedState) {
-        Map<String, Serializable> viewComponentsState = (Map<String, Serializable>) savedState;
-        GameBoardViewCreator gameBoardViewCreator = new GameBoardViewCreator(activity);
-        gameBoardView = gameBoardViewCreator.create(gameBoardDimension, viewComponentsState);
-        moveProgressBar = new MoveProgressBarAndroidImpl(activity, viewComponentsState);
-        resultDisplay = new ResultDisplayAndroidImpl(activity, viewComponentsState);
-        scoreDisplay = new ScoreDisplayAndroidImpl(activity, viewComponentsState);
-        startNewGameRequestor = new StartNewGameRequestorAndroidImpl(activity, viewComponentsState);
+    public ViewComponentsProviderAndroidImpl(Activity activity, int gameBoardDimension,
+                                             Serializable viewComponentsState) {
+        Map<String, Serializable> savedState = (Map<String, Serializable>) viewComponentsState;
+        gameBoardView = new GameBoardViewAndroidImpl(activity, gameBoardDimension, savedState);
+        moveProgressBar = new MoveProgressBarAndroidImpl(activity, savedState);
+        resultDisplay = new ResultDisplayAndroidImpl(activity, savedState);
+        scoreDisplay = new ScoreDisplayAndroidImpl(activity, savedState);
+        startNewGameRequestor = new StartNewGameRequestorAndroidImpl(activity, savedState);
     }
 
     @Override

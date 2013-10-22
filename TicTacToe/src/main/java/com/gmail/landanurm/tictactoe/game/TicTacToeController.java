@@ -44,7 +44,7 @@ class TicTacToeController {
     }
 
     private ViewComponentsProviderAndroidImpl createViewComponentsProvider() {
-        return new ViewComponentsProviderAndroidImpl(gameBoardDimension, activity);
+        return new ViewComponentsProviderAndroidImpl(activity, gameBoardDimension);
     }
 
     private TicTacToeView createView() {
@@ -72,7 +72,7 @@ class TicTacToeController {
     }
 
     private ViewComponentsProviderAndroidImpl createViewComponentsProviderFrom(Bundle savedState) {
-        return new ViewComponentsProviderAndroidImpl(gameBoardDimension, activity,
-                             savedState.getSerializable(BundleKeys.viewComponentsState));
+        Serializable viewComponentsState = savedState.getSerializable(BundleKeys.viewComponentsState);
+        return new ViewComponentsProviderAndroidImpl(activity, gameBoardDimension, viewComponentsState);
     }
 }

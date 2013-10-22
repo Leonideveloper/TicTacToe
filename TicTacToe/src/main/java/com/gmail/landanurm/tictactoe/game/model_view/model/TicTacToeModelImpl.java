@@ -1,5 +1,6 @@
 package com.gmail.landanurm.tictactoe.game.model_view.model;
 
+import com.gmail.landanurm.matrix.Position;
 import com.gmail.landanurm.tictactoe.game.model_view.model.game_board.GameBoard;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.GameState;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeJudge;
@@ -116,7 +117,7 @@ public class TicTacToeModelImpl implements TicTacToeModel, OnMoveListener, Seria
     }
 
     @Override
-    public void onMove(com.gmail.landanurm.matrix.Position movePos, Player player) {
+    public void onMove(Position movePos, Player player) {
         player.disableMoves();
         gameBoard.set(movePos, player.getId());
         notifyOnNeedToShowMoveListeners(movePos, player.getId());
@@ -128,7 +129,7 @@ public class TicTacToeModelImpl implements TicTacToeModel, OnMoveListener, Seria
         }
     }
 
-    private void notifyOnNeedToShowMoveListeners(com.gmail.landanurm.matrix.Position pos, Player.Id id) {
+    private void notifyOnNeedToShowMoveListeners(Position pos, Player.Id id) {
         for (OnNeedToShowMoveListener each : onNeedToShowMoveListeners) {
             each.onNeedToShowMove(pos, id);
         }

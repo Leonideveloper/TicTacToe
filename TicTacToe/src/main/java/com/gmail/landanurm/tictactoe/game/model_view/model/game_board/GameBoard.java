@@ -1,5 +1,6 @@
 package com.gmail.landanurm.tictactoe.game.model_view.model.game_board;
 
+import com.gmail.landanurm.matrix.Position;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 
 /**
@@ -7,5 +8,5 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
  */
 public interface GameBoard extends ReadOnlyGameBoard {
     void clear();
-    void set(com.gmail.landanurm.matrix.Position pos, Player.Id id);
+    void set(Position pos, Player.Id id);
 }

@@ -1,6 +1,7 @@
 package com.gmail.landanurm.tictactoe.game.model_view.model;
 
 import com.gmail.landanurm.matrix.Matrix;
+import com.gmail.landanurm.matrix.Position;
 import com.gmail.landanurm.tictactoe.game.model_view.model.game_board.GameBoard;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 
@@ -17,7 +18,7 @@ class GameBoardImpl implements GameBoard, Serializable {
     }
 
     @Override
-    public boolean cellIsEmpty(com.gmail.landanurm.matrix.Position pos) {
+    public boolean cellIsEmpty(Position pos) {
         return (cells.get(pos) == null);
     }
 
@@ -32,7 +33,7 @@ class GameBoardImpl implements GameBoard, Serializable {
     }
 
     @Override
-    public Player.Id get(com.gmail.landanurm.matrix.Position pos) {
+    public Player.Id get(Position pos) {
         return cells.get(pos);
     }
 
@@ -42,7 +43,7 @@ class GameBoardImpl implements GameBoard, Serializable {
     }
 
     @Override
-    public void set(com.gmail.landanurm.matrix.Position pos, Player.Id id) {
+    public void set(Position pos, Player.Id id) {
         cells.set(pos, id);
     }
 }

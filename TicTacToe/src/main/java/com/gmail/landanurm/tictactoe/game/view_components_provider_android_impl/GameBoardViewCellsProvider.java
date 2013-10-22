@@ -13,18 +13,19 @@ import com.gmail.landanurm.tictactoe.R;
 import com.gmail.landanurm.tictactoe.game.model_view.model.SquareMatrix;
 import com.gmail.landanurm.tictactoe.theme.TicTacToeTheme;
 
-import java.io.Serializable;
-import java.util.Map;
-
 /**
  * Created by Leonid on 19.07.13.
  */
 
-class GameBoardViewCreator {
+class GameBoardViewCellsProvider {
     private final Activity activity;
     private final Integer distanceBetweenCells;
 
-    GameBoardViewCreator(Activity activity) {
+    static Matrix<ImageView> prepareCells(Activity activity, int gameBoardDimension) {
+        return new GameBoardViewCellsProvider(activity).prepareCells(gameBoardDimension);
+    }
+
+    GameBoardViewCellsProvider(Activity activity) {
         this.activity = activity;
         this.distanceBetweenCells = getDistanceBetweenCells();
     }
@@ -34,15 +35,7 @@ class GameBoardViewCreator {
         return theme.getGameTheme().getGameBoardTheme().getDistanceBetweenCells();
     }
 
-    GameBoardViewAndroidImpl create(int gameBoardDimension) {
-        return new GameBoardViewAndroidImpl(prepareCells(gameBoardDimension));
-    }
-
-    GameBoardViewAndroidImpl create(int gameBoardDimension, Map<String, Serializable> savedState) {
-        return new GameBoardViewAndroidImpl(prepareCells(gameBoardDimension), savedState);
-    }
-
-    private Matrix<ImageView> prepareCells(final int gameBoardDimension) {
+    Matrix<ImageView> prepareCells(final int gameBoardDimension) {
         Matrix<ImageView> cells = new SquareMatrix<ImageView>(gameBoardDimension);
         LinearLayout rowsContainerLayout = prepareRowsContainerLayout(gameBoardDimension);
         for (int row = 0; row < gameBoardDimension; ++row) {

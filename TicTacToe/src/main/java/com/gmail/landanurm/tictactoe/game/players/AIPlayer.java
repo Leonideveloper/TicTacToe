@@ -1,5 +1,6 @@
 package com.gmail.landanurm.tictactoe.game.players;
 
+import com.gmail.landanurm.matrix.Position;
 import com.gmail.landanurm.tictactoe.game.model_view.model.OnMoveListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 
@@ -26,7 +27,7 @@ class AIPlayer implements Player, Serializable {
 
     @Override
     public void enableMoves() {
-        com.gmail.landanurm.matrix.Position pos = aiMoveCalculator.calculatePositionToMove();
+        Position pos = aiMoveCalculator.calculatePositionToMove();
         onMoveListener.onMove(pos, this);
     }
 

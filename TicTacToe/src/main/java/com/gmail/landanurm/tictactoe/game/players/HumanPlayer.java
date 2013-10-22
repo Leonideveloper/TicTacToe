@@ -1,7 +1,8 @@
 package com.gmail.landanurm.tictactoe.game.players;
 
-import com.gmail.landanurm.tictactoe.game.model_view.model.game_board.ReadOnlyGameBoard;
+import com.gmail.landanurm.matrix.Position;
 import com.gmail.landanurm.tictactoe.game.model_view.model.OnMoveListener;
+import com.gmail.landanurm.tictactoe.game.model_view.model.game_board.ReadOnlyGameBoard;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 import com.gmail.landanurm.tictactoe.game.model_view.view.OnCellClickListener;
 
@@ -39,7 +40,7 @@ class HumanPlayer implements Player, OnCellClickListener, Serializable {
     }
 
     @Override
-    public void onCellClick(com.gmail.landanurm.matrix.Position pos) {
+    public void onCellClick(Position pos) {
         if (movesEnabled && gameBoard.cellIsEmpty(pos)) {
             onMoveListener.onMove(pos, this);
         }
