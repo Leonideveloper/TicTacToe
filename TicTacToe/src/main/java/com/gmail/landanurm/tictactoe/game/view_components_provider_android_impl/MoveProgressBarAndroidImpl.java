@@ -27,29 +27,16 @@ class MoveProgressBarAndroidImpl implements MoveProgressBar {
     private int secondVisibility;
 
     MoveProgressBarAndroidImpl(Activity activity) {
-        this(activity, View.INVISIBLE, View.INVISIBLE);
-    }
-
-    private MoveProgressBarAndroidImpl(Activity activity, int firstVisibility, int secondVisibility) {
         firstPlayerProgressBar = (ProgressBar) activity.findViewById(R.id.firstPlayerProgressBar);
         secondPlayerProgressBar = (ProgressBar) activity.findViewById(R.id.secondPlayerProgressBar);
-        setVisibility(Player.Id.FIRST_PLAYER, firstVisibility);
-        setVisibility(Player.Id.SECOND_PLAYER, secondVisibility);
-    }
-
-    private void setVisibility(Player.Id playerId, int visibility) {
-        if (playerId == Player.Id.FIRST_PLAYER) {
-            firstPlayerProgressBar.setVisibility(visibility);
-            firstVisibility = visibility;
-        } else {
-            secondPlayerProgressBar.setVisibility(visibility);
-            secondVisibility = visibility;
-        }
+        hide();
     }
 
     MoveProgressBarAndroidImpl(Activity activity, Map<String, Serializable> savedState) {
-        this(activity, (Integer) savedState.get(MapKeys.firstVisibility),
-                       (Integer) savedState.get(MapKeys.secondVisibility));
+        firstPlayerProgressBar = (ProgressBar) activity.findViewById(R.id.firstPlayerProgressBar);
+        secondPlayerProgressBar = (ProgressBar) activity.findViewById(R.id.secondPlayerProgressBar);
+        setVisibility(Player.Id.FIRST_PLAYER, (Integer) savedState.get(MapKeys.firstVisibility));
+        setVisibility(Player.Id.SECOND_PLAYER, (Integer) savedState.get(MapKeys.secondVisibility));
     }
 
     void saveStateInto(Map<String, Serializable> outState) {
@@ -67,5 +54,15 @@ class MoveProgressBarAndroidImpl implements MoveProgressBar {
     public void hide() {
         setVisibility(Player.Id.FIRST_PLAYER, View.INVISIBLE);
         setVisibility(Player.Id.SECOND_PLAYER, View.INVISIBLE);
+    }
+
+    private void setVisibility(Player.Id playerId, int visibility) {
+        if (playerId == Player.Id.FIRST_PLAYER) {
+            firstPlayerProgressBar.setVisibility(visibility);
+            firstVisibility = visibility;
+        } else {
+            secondPlayerProgressBar.setVisibility(visibility);
+            secondVisibility = visibility;
+        }
     }
 }

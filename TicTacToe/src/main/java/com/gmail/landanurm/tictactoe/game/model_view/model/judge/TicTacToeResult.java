@@ -6,11 +6,6 @@ import java.util.Collection;
  * Created by Leonid on 07.09.13.
  */
 public class TicTacToeResult {
-
-    public static enum GameState {
-        UNKNOWN, DRAW, FIRST_PLAYER_WINS, SECOND_PLAYER_WINS
-    }
-
     private final GameState gameState;
     private final Collection<FireLine> fireLines;
 

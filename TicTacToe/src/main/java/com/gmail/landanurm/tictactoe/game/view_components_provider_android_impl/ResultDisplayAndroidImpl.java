@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.view.View;
 
 import com.gmail.landanurm.tictactoe.R;
-import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeResult;
+import com.gmail.landanurm.tictactoe.game.model_view.model.judge.GameState;
 import com.gmail.landanurm.tictactoe.game.model_view.view.ResultDisplay;
 
 import java.io.Serializable;
@@ -25,7 +25,7 @@ class ResultDisplayAndroidImpl implements ResultDisplay {
     private final View loserFirstPlayer;
     private final View loserSecondPlayer;
     private Boolean displayed;
-    private TicTacToeResult.GameState gameState;
+    private GameState gameState;
 
     ResultDisplayAndroidImpl(Activity activity) {
         winnerFirstPlayer = activity.findViewById(R.id.winnerFirstPlayerImageView);
@@ -39,8 +39,7 @@ class ResultDisplayAndroidImpl implements ResultDisplay {
         this(activity);
         Boolean needToDisplay = (Boolean) savedState.get(MapKeys.displayed);
         if (needToDisplay) {
-            TicTacToeResult.GameState savedGameState =
-                    (TicTacToeResult.GameState) savedState.get(MapKeys.gameState);
+            GameState savedGameState = (GameState) savedState.get(MapKeys.gameState);
             show(savedGameState);
         }
     }
@@ -53,7 +52,7 @@ class ResultDisplayAndroidImpl implements ResultDisplay {
     }
 
     @Override
-    public void show(TicTacToeResult.GameState gameState) {
+    public void show(GameState gameState) {
         this.gameState = gameState;
         this.displayed = true;
 

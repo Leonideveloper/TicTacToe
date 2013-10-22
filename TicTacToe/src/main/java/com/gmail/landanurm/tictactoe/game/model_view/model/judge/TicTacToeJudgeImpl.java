@@ -1,6 +1,6 @@
 package com.gmail.landanurm.tictactoe.game.model_view.model.judge;
 
-import com.gmail.landanurm.matrix.*;
+import com.gmail.landanurm.matrix.Position;
 import com.gmail.landanurm.tictactoe.game.model_view.model.game_board.ReadOnlyGameBoard;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 
@@ -58,8 +58,8 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge, Serializable {
     }
 
     private TicTacToeResult combineResults(TicTacToeResult... results) {
-        TicTacToeResult.GameState gameState = gameStateOfResults(results);
-        if (gameState == TicTacToeResult.GameState.UNKNOWN) {
+        GameState gameState = gameStateOfResults(results);
+        if (gameState == GameState.UNKNOWN) {
             return TicTacToeResultCreator.createUnknownResult();
         } else {
             Collection<FireLine> combinedFireLines = combineFireLinesOfResults(results);
@@ -67,13 +67,13 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge, Serializable {
         }
     }
 
-    private TicTacToeResult.GameState gameStateOfResults(TicTacToeResult... results) {
+    private GameState gameStateOfResults(TicTacToeResult... results) {
         for (TicTacToeResult each : results) {
             if (each.isKnown()) {
                 return each.getGameState();
             }
         }
-        return TicTacToeResult.GameState.UNKNOWN;
+        return GameState.UNKNOWN;
     }
 
     private Collection<FireLine> combineFireLinesOfResults(TicTacToeResult... results) {
@@ -140,11 +140,11 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge, Serializable {
         return new TicTacToeResult(stateByCell(firstCellOnLine), fireLines);
     }
 
-    private TicTacToeResult.GameState stateByCell(Player.Id cell) {
+    private GameState stateByCell(Player.Id cell) {
         if (cell == Player.Id.FIRST_PLAYER) {
-            return TicTacToeResult.GameState.FIRST_PLAYER_WINS;
+            return GameState.FIRST_PLAYER_WINS;
         } else if (cell == Player.Id.SECOND_PLAYER) {
-            return TicTacToeResult.GameState.SECOND_PLAYER_WINS;
+            return GameState.SECOND_PLAYER_WINS;
         }
         throw new IllegalArgumentException("Input cell must be not empty!");
     }

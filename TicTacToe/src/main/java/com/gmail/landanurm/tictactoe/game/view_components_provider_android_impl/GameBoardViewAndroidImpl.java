@@ -26,49 +26,32 @@ class GameBoardViewAndroidImpl implements GameBoardView {
         final static String movesBlocked = "GameBoardView.movesBlocked";
     }
 
-    private final CellsTheme cellsTheme;
-    private final ReadOnlyMatrix<ImageView> cells;
-    private final Matrix<Integer> firstLayerCellsIconsIds;
-    private final Matrix<Integer> secondLayerCellsIconsIds;
-
-    private boolean movesBlocked;
-
-    GameBoardViewAndroidImpl(ReadOnlyMatrix<ImageView> cells) {
-        this(
-            cells,
-            new ArrayMatrix<Integer>(cells.getDimension()),
-            new ArrayMatrix<Integer>(cells.getDimension()),
-            false
-        );
-        this.clear();
-    }
-
-    private GameBoardViewAndroidImpl(ReadOnlyMatrix<ImageView> cells,
-                                     Matrix<Integer> firstLayerCellsIconsIds,
-                                     Matrix<Integer> secondLayerCellsIconsIds,
-                                     boolean movesBlocked) {
-        this.cells = cells;
-        this.firstLayerCellsIconsIds = firstLayerCellsIconsIds;
-        this.secondLayerCellsIconsIds = secondLayerCellsIconsIds;
-        this.movesBlocked = movesBlocked;
-        this.cellsTheme = getCurrentCellsTheme();
-    }
+    private final CellsTheme cellsTheme = getCurrentCellsTheme();
 
     private static CellsTheme getCurrentCellsTheme() {
         return CurrentThemeProvider.getCurrentTheme()
-                                   .getGameTheme()
-                                   .getGameBoardTheme()
-                                   .getCellsTheme();
+                   .getGameTheme().getGameBoardTheme().getCellsTheme();
+    }
+
+    private final ReadOnlyMatrix<ImageView> cells;
+    private final Matrix<Integer> firstLayerCellsIconsIds;
+    private final Matrix<Integer> secondLayerCellsIconsIds;
+    private boolean movesBlocked;
+
+    GameBoardViewAndroidImpl(ReadOnlyMatrix<ImageView> cells) {
+        this.cells = cells;
+        firstLayerCellsIconsIds = new ArrayMatrix<Integer>(cells.getDimension());
+        secondLayerCellsIconsIds = new ArrayMatrix<Integer>(cells.getDimension());
+        movesBlocked = false;
+        clear();
     }
 
     GameBoardViewAndroidImpl(ReadOnlyMatrix<ImageView> cells, Map<String,Serializable> savedState) {
-        this(
-            cells,
-            (Matrix<Integer>) savedState.get(MapKeys.firstLayer),
-            (Matrix<Integer>) savedState.get(MapKeys.secondLayer),
-            (Boolean) savedState.get(MapKeys.movesBlocked)
-        );
-        this.updateAllCellViews();
+        this.cells = cells;
+        firstLayerCellsIconsIds = (Matrix<Integer>) savedState.get(MapKeys.firstLayer);
+        secondLayerCellsIconsIds = (Matrix<Integer>) savedState.get(MapKeys.secondLayer);
+        movesBlocked = (Boolean) savedState.get(MapKeys.movesBlocked);
+        updateAllCellViews();
     }
 
     void saveStateInto(Map<String, Serializable> outState) {

@@ -8,14 +8,14 @@ import java.util.ArrayList;
 class TicTacToeResultCreator {
 
     static TicTacToeResult createUnknownResult() {
-        return createResultWithoutFireLines(TicTacToeResult.GameState.UNKNOWN);
+        return createResultWithoutFireLines(GameState.UNKNOWN);
     }
 
     static TicTacToeResult createDrawResult() {
-        return createResultWithoutFireLines(TicTacToeResult.GameState.DRAW);
+        return createResultWithoutFireLines(GameState.DRAW);
     }
 
-    static TicTacToeResult createResultWithoutFireLines(TicTacToeResult.GameState state) {
+    static TicTacToeResult createResultWithoutFireLines(GameState state) {
         return new TicTacToeResult(state, new ArrayList<FireLine>());
     }
 }

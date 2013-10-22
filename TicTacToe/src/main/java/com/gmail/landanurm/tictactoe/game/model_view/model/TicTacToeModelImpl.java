@@ -1,6 +1,7 @@
 package com.gmail.landanurm.tictactoe.game.model_view.model;
 
 import com.gmail.landanurm.tictactoe.game.model_view.model.game_board.GameBoard;
+import com.gmail.landanurm.tictactoe.game.model_view.model.judge.GameState;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeJudge;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeJudgeImpl;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeResult;
@@ -139,11 +140,11 @@ public class TicTacToeModelImpl implements TicTacToeModel, OnMoveListener, Seria
         movePlayer = defineNextMovePlayer(result.getGameState());
     }
 
-    private void updateScoreIfNeed(TicTacToeResult.GameState gameState) {
-        if (gameState == TicTacToeResult.GameState.FIRST_PLAYER_WINS) {
+    private void updateScoreIfNeed(GameState gameState) {
+        if (gameState == GameState.FIRST_PLAYER_WINS) {
             score.increaseFirstPlayerScore();
             notifyOnScoreChangedListeners();
-        } else if (gameState == TicTacToeResult.GameState.SECOND_PLAYER_WINS) {
+        } else if (gameState == GameState.SECOND_PLAYER_WINS) {
             score.increaseSecondPlayerScore();
             notifyOnScoreChangedListeners();
         }
@@ -161,7 +162,7 @@ public class TicTacToeModelImpl implements TicTacToeModel, OnMoveListener, Seria
         }
     }
 
-    private Player defineNextMovePlayer(TicTacToeResult.GameState gameState) {
+    private Player defineNextMovePlayer(GameState gameState) {
         switch (gameState) {
             case FIRST_PLAYER_WINS:
                 return firstPlayer;
