@@ -18,27 +18,27 @@ class LineCellsPositionsProvider implements Serializable {
     }
 
     List<Position> onRow(final int row) {
-        return positions(new PositionProvider() {
+        return positions(new PositionByIndexProvider() {
             @Override
-            public Position byIndex(int index) {
+            public Position getPositionByIndex(int index) {
                 return new Position(row, index);
             }
         });
     }
 
     List<Position> onColumn(final int column) {
-        return positions(new PositionProvider() {
+        return positions(new PositionByIndexProvider() {
             @Override
-            public Position byIndex(int index) {
+            public Position getPositionByIndex(int index) {
                 return new Position(index, column);
             }
         });
     }
 
     List<Position> onLeftUpperDiagonal() {
-        return positions(new PositionProvider() {
+        return positions(new PositionByIndexProvider() {
             @Override
-            public Position byIndex(int index) {
+            public Position getPositionByIndex(int index) {
                 return new Position(index, index);
             }
         });
@@ -46,23 +46,23 @@ class LineCellsPositionsProvider implements Serializable {
 
     List<Position> onRightUpperDiagonal() {
         final int indexOfLastColumn = gameBoardDimension - 1;
-        return positions(new PositionProvider() {
+        return positions(new PositionByIndexProvider() {
             @Override
-            public Position byIndex(int index) {
+            public Position getPositionByIndex(int index) {
                 return new Position(index, indexOfLastColumn - index);
             }
         });
     }
 
-    private List<Position> positions(PositionProvider positionProvider) {
+    private List<Position> positions(PositionByIndexProvider positionByIndexProvider) {
         List<Position> positions = new ArrayList<Position>();
         for (int index = 0; index < gameBoardDimension; ++index) {
-            positions.add(positionProvider.byIndex(index));
+            positions.add(positionByIndexProvider.getPositionByIndex(index));
         }
         return positions;
     }
 
-    private static interface PositionProvider {
-        Position byIndex(int index);
+    private static interface PositionByIndexProvider {
+        Position getPositionByIndex(int index);
     }
 }
