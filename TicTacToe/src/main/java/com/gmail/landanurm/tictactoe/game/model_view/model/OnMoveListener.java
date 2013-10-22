@@ -4,9 +4,8 @@ import com.gmail.landanurm.matrix.Position;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 
 /**
- * Created by Leonid on 27.09.13.
+ * Created by Leonid on 22.10.13.
  */
-interface GameBoard extends ReadOnlyGameBoard {
-    void clear();
-    void set(Position pos, Player.Id id);
+public interface OnMoveListener {
+    void onMove(Position movePos, Player player);
 }

@@ -55,7 +55,7 @@
                 android:layout_height="@dimen/score_icon_height"
                 android:id="@+id/firstPlayerFaceImageView"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/winnerFirstPlayerImageView"/>
+                android:layout_toRightOf="@+id/winnerFirstPlayerImageView"/>
 
         <ImageView
                 android:layout_width="wrap_content"
@@ -69,13 +69,13 @@
                 android:layout_height="@dimen/score_icon_height"
                 android:id="@+id/secondPlayerFaceImageView"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/winnerSecondPlayerImageView"/>
+                android:layout_toLeftOf="@+id/winnerSecondPlayerImageView"/>
 
         <TextView
                 android:layout_width="@dimen/space_between_face_and_score"
                 android:layout_height="wrap_content"
                 android:id="@+id/spaceBetweenFaceAndScore_1"
-                android:layout_toRightOf="@id/firstPlayerFaceImageView"/>
+                android:layout_toRightOf="@+id/firstPlayerFaceImageView"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -84,15 +84,15 @@
                 android:id="@+id/firstPlayerScore"
                 android:gravity="left|center_vertical"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/versusImageView"
-                android:layout_toRightOf="@id/spaceBetweenFaceAndScore_1"
+                android:layout_toLeftOf="@+id/versusImageView"
+                android:layout_toRightOf="@+id/spaceBetweenFaceAndScore_1"
                 android:textSize="@dimen/score_text_size"/>
 
         <TextView
                 android:layout_width="@dimen/space_between_face_and_score"
                 android:layout_height="wrap_content"
                 android:id="@+id/spaceBetweenFaceAndScore_2"
-                android:layout_toLeftOf="@id/secondPlayerFaceImageView"/>
+                android:layout_toLeftOf="@+id/secondPlayerFaceImageView"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
                 android:id="@+id/secondPlayerScore"
                 android:gravity="right|center_vertical"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/versusImageView"
+                android:layout_toRightOf="@+id/versusImageView"
                 android:layout_toLeftOf="@+id/spaceBetweenFaceAndScore_2"
                 android:textSize="@dimen/score_text_size"/>
 
@@ -133,7 +133,7 @@
             android:scaleType="centerCrop"
             android:layout_alignParentRight="true"
             android:layout_alignParentLeft="true"
-            android:layout_below="@id/scorePanelLayout"/>
+            android:layout_below="@+id/scorePanelLayout"/>
 
     <FrameLayout
             android:id="@+id/gameBoardFrameLayout"

@@ -1,9 +1,7 @@
 package com.gmail.landanurm.tictactoe.game.model_view.model;
 
-import com.gmail.landanurm.matrix.ArrayMatrix;
-import com.gmail.landanurm.matrix.Dimension;
 import com.gmail.landanurm.matrix.Matrix;
-import com.gmail.landanurm.matrix.Position;
+import com.gmail.landanurm.tictactoe.game.model_view.model.game_board.GameBoard;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 
 import java.io.Serializable;
@@ -12,14 +10,14 @@ import java.io.Serializable;
  * Created by Leonid on 27.09.13.
  */
 class GameBoardImpl implements GameBoard, Serializable {
-    private final Matrix<Player.Id> cells;
+    private final Matrix<Player.Position> cells;
 
     GameBoardImpl(int gameBoardDimension) {
-        cells = new ArrayMatrix<Player.Id>(new Dimension(gameBoardDimension, gameBoardDimension));
+        cells = new SquareMatrix<Player.Position>(gameBoardDimension);
     }
 
     @Override
-    public boolean cellIsEmpty(Position pos) {
+    public boolean cellIsEmpty(com.gmail.landanurm.matrix.Position pos) {
         return (cells.get(pos) == null);
     }
 
@@ -34,7 +32,7 @@ class GameBoardImpl implements GameBoard, Serializable {
     }
 
     @Override
-    public Player.Id get(Position pos) {
+    public Player.Position get(com.gmail.landanurm.matrix.Position pos) {
         return cells.get(pos);
     }
 
@@ -44,7 +42,7 @@ class GameBoardImpl implements GameBoard, Serializable {
     }
 
     @Override
-    public void set(Position pos, Player.Id id) {
-        cells.set(pos, id);
+    public void set(com.gmail.landanurm.matrix.Position pos, Player.Position position) {
+        cells.set(pos, position);
     }
 }

@@ -1,7 +1,7 @@
 package com.gmail.landanurm.tictactoe.game.players;
 
-import com.gmail.landanurm.matrix.Position;
-import com.gmail.landanurm.tictactoe.game.model_view.model.TicTacToeModel;
+import com.gmail.landanurm.tictactoe.game.model_view.model.game_board.ReadOnlyGameBoard;
+import com.gmail.landanurm.tictactoe.game.model_view.model.OnMoveListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 import com.gmail.landanurm.tictactoe.game.model_view.view.OnCellClickListener;
 
@@ -10,12 +10,22 @@ import java.io.Serializable;
 /**
  * Created by Leonid on 06.09.13.
  */
-class HumanPlayer extends BasePlayer implements OnCellClickListener, Serializable {
+class HumanPlayer implements Player, OnCellClickListener, Serializable {
+    private final OnMoveListener onMoveListener;
+    private final ReadOnlyGameBoard gameBoard;
+    private final Position position;
     private boolean movesEnabled;
 
-    HumanPlayer(Player.Id id, TicTacToeModel model) {
-        super(id, model);
-        movesEnabled = false;
+    HumanPlayer(Position position, ReadOnlyGameBoard gameBoard, OnMoveListener onMoveListener) {
+        this.position = position;
+        this.gameBoard = gameBoard;
+        this.onMoveListener = onMoveListener;
+        this.movesEnabled = false;
+    }
+
+    @Override
+    public Position getPosition() {
+        return position;
     }
 
     @Override
@@ -29,9 +39,9 @@ class HumanPlayer extends BasePlayer implements OnCellClickListener, Serializabl
     }
 
     @Override
-    public void onCellClick(Position pos) {
+    public void onCellClick(com.gmail.landanurm.matrix.Position pos) {
         if (movesEnabled && gameBoard.cellIsEmpty(pos)) {
-            model.onMove(pos, this);
+            onMoveListener.onMove(pos, this);
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.gmail.landanurm.tictactoe.game.players;
 
-import com.gmail.landanurm.matrix.Position;
-import com.gmail.landanurm.tictactoe.game.model_view.model.TicTacToeModel;
+import com.gmail.landanurm.tictactoe.game.model_view.model.OnMoveListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 
 import java.io.Serializable;
@@ -9,18 +8,26 @@ import java.io.Serializable;
 /**
  * Created by Leonid on 06.09.13.
  */
-class AIPlayer extends BasePlayer implements Serializable {
+class AIPlayer implements Player, Serializable {
+    private final Position position;
+    private final OnMoveListener onMoveListener;
     private final AIMoveCalculator aiMoveCalculator;
 
-    AIPlayer(Player.Id id, TicTacToeModel model, AIMoveCalculator aiMoveCalculator) {
-        super(id, model);
+    AIPlayer(Position position, OnMoveListener onMoveListener, AIMoveCalculator aiMoveCalculator) {
+        this.position = position;
+        this.onMoveListener = onMoveListener;
         this.aiMoveCalculator = aiMoveCalculator;
     }
 
     @Override
+    public Position getPosition() {
+        return position;
+    }
+
+    @Override
     public void enableMoves() {
-        Position pos = aiMoveCalculator.calculatePositionToMove(gameBoard);
-        model.onMove(pos, this);
+        com.gmail.landanurm.matrix.Position pos = aiMoveCalculator.calculatePositionToMove();
+        onMoveListener.onMove(pos, this);
     }
 
     @Override

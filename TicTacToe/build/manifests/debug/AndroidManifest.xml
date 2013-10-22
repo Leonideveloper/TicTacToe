@@ -9,8 +9,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:label="StartGameMenu" android:name="com.gmail.landanurm.tictactoe.menu.StartGameMenuActivity">
-        </activity>
     </application>
 
 </manifest>

@@ -1,6 +1,6 @@
 package com.gmail.landanurm.tictactoe.game.model_view.model;
 
-import com.gmail.landanurm.matrix.Position;
+import com.gmail.landanurm.tictactoe.game.model_view.model.game_board.GameBoard;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeJudge;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeJudgeImpl;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeResult;
@@ -19,20 +19,24 @@ import java.util.List;
 /**
  * Created by Leonid on 07.09.13.
  */
-public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
+public class TicTacToeModelImpl implements TicTacToeModel, OnMoveListener, Serializable {
 
-    private final List<OnNewGameStartedListener> onNewGameStartedListeners;
-    private final List<OnGameFinishedListener> onGameFinishedListeners;
-    private final List<OnScoreChangedListener> onScoreChangedListeners;
-    private final List<OnNeedToShowMoveListener> onNeedToShowMoveListeners;
-    private final List<OnMovePlayerChangedListener> onMovePlayerChangedListeners;
+    private transient final List<OnNewGameStartedListener> onNewGameStartedListeners =
+                                                  new ArrayList<OnNewGameStartedListener>();
+    private transient final List<OnGameFinishedListener> onGameFinishedListeners =
+                                                  new ArrayList<OnGameFinishedListener>();
+    private transient final List<OnScoreChangedListener> onScoreChangedListeners =
+                                                  new ArrayList<OnScoreChangedListener>();
+    private transient final List<OnNeedToShowMoveListener> onNeedToShowMoveListeners =
+                                                  new ArrayList<OnNeedToShowMoveListener>();
+    private transient final List<OnMovePlayerChangedListener> onMovePlayerChangedListeners =
+                                                  new ArrayList<OnMovePlayerChangedListener>();
 
     private final GameBoard gameBoard;
-    private final TicTacToeJudge judge;
-    private final Score score;
-
     private final Player firstPlayer;
     private final Player secondPlayer;
+    private final Score score;
+    private final TicTacToeJudge judge;
 
     private Player movePlayer;
 
@@ -40,20 +44,34 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
     public TicTacToeModelImpl(int gameBoardDimension, PlayersFactory playersFactory,
                               String firstPlayerType, String secondPlayerType) {
 
-        onNewGameStartedListeners = new ArrayList<OnNewGameStartedListener>();
-        onGameFinishedListeners = new ArrayList<OnGameFinishedListener>();
-        onScoreChangedListeners = new ArrayList<OnScoreChangedListener>();
-        onNeedToShowMoveListeners = new ArrayList<OnNeedToShowMoveListener>();
-        onMovePlayerChangedListeners = new ArrayList<OnMovePlayerChangedListener>();
-
         gameBoard = new GameBoardImpl(gameBoardDimension);
         judge = new TicTacToeJudgeImpl(gameBoard);
         score = new Score();
 
-        firstPlayer = playersFactory.createFirstPlayer(firstPlayerType, this);
-        secondPlayer = playersFactory.createSecondPlayer(secondPlayerType, this);
+        firstPlayer = playersFactory.createFirstPlayer(firstPlayerType, gameBoard, this);
+        secondPlayer = playersFactory.createSecondPlayer(secondPlayerType, gameBoard, this);
 
         movePlayer = firstPlayer;
+    }
+
+    @Override
+    public void startGame() {
+        gameBoard.clear();
+        notifyOnNewGameStartedListeners();
+        notifyOnMovePlayerChangedListeners();
+        movePlayer.enableMoves();
+    }
+
+    private void notifyOnNewGameStartedListeners() {
+        for (OnNewGameStartedListener each : onNewGameStartedListeners) {
+            each.onNewGameStarted();
+        }
+    }
+
+    private void notifyOnMovePlayerChangedListeners() {
+        for (OnMovePlayerChangedListener each : onMovePlayerChangedListeners) {
+            each.onMovePlayerChanged(movePlayer.getPosition());
+        }
     }
 
     @Override
@@ -67,20 +85,40 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
     }
 
     @Override
-    public ReadOnlyGameBoard getGameBoard() {
-        return gameBoard;
-    }
-
-    @Override
     public Score getScore() {
         return score;
     }
 
     @Override
-    public void onMove(Position movePos, Player player) {
+    public void addOnNewGameStartedListener(OnNewGameStartedListener listener) {
+        onNewGameStartedListeners.add(listener);
+    }
+
+    @Override
+    public void addOnGameFinishedListener(OnGameFinishedListener listener) {
+        onGameFinishedListeners.add(listener);
+    }
+
+    @Override
+    public void addOnScoreChangedListener(OnScoreChangedListener listener) {
+        onScoreChangedListeners.add(listener);
+    }
+
+    @Override
+    public void addOnNeedToShowMoveListener(OnNeedToShowMoveListener listener) {
+        onNeedToShowMoveListeners.add(listener);
+    }
+
+    @Override
+    public void addOnMovePlayerChangedListener(OnMovePlayerChangedListener listener) {
+        onMovePlayerChangedListeners.add(listener);
+    }
+
+    @Override
+    public void onMove(com.gmail.landanurm.matrix.Position movePos, Player player) {
         player.disableMoves();
-        gameBoard.set(movePos, player.getId());
-        notifyOnNeedToShowMoveListeners(movePos, player.getId());
+        gameBoard.set(movePos, player.getPosition());
+        notifyOnNeedToShowMoveListeners(movePos, player.getPosition());
         TicTacToeResult result = judge.getResult();
         if (result.isKnown()) {
             onGameFinished(result);
@@ -89,9 +127,9 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
         }
     }
 
-    private void notifyOnNeedToShowMoveListeners(Position pos, Player.Id id) {
+    private void notifyOnNeedToShowMoveListeners(com.gmail.landanurm.matrix.Position pos, Player.Position position) {
         for (OnNeedToShowMoveListener each : onNeedToShowMoveListeners) {
-            each.onNeedToShowMove(pos, id);
+            each.onNeedToShowMove(pos, position);
         }
     }
 
@@ -125,12 +163,12 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
 
     private Player defineNextMovePlayer(TicTacToeResult.GameState gameState) {
         switch (gameState) {
-        case FIRST_PLAYER_WINS:
-            return firstPlayer;
-        case SECOND_PLAYER_WINS:
-            return secondPlayer;
-        case DRAW:
-            return movePlayer;
+            case FIRST_PLAYER_WINS:
+                return firstPlayer;
+            case SECOND_PLAYER_WINS:
+                return secondPlayer;
+            case DRAW:
+                return movePlayer;
         }
         throw new IllegalArgumentException("unknown gameState: " + gameState);
     }
@@ -142,56 +180,6 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
     }
 
     private Player playerOtherThan(Player player) {
-        return (player.getId() == Player.Id.FIRST_PLAYER) ? secondPlayer : firstPlayer;
-    }
-
-    private void notifyOnMovePlayerChangedListeners() {
-        for (OnMovePlayerChangedListener each : onMovePlayerChangedListeners) {
-            each.onMovePlayerChanged(movePlayer.getId());
-        }
-    }
-
-    @Override
-    public void startGame() {
-        gameBoard.clear();
-        notifyOnNewGameStartedListeners();
-        notifyOnMovePlayerChangedListeners();
-        movePlayer.enableMoves();
-    }
-
-    private void notifyOnNewGameStartedListeners() {
-        for (OnNewGameStartedListener each : onNewGameStartedListeners) {
-            each.onNewGameStarted();
-        }
-    }
-
-    @Override
-    public void setOnNewGameStartedListener(OnNewGameStartedListener listener) {
-        onNewGameStartedListeners.clear();
-        onNewGameStartedListeners.add(listener);
-    }
-
-    @Override
-    public void setOnGameFinishedListener(OnGameFinishedListener listener) {
-        onGameFinishedListeners.clear();
-        onGameFinishedListeners.add(listener);
-    }
-
-    @Override
-    public void setOnScoreChangedListener(OnScoreChangedListener listener) {
-        onScoreChangedListeners.clear();
-        onScoreChangedListeners.add(listener);
-    }
-
-    @Override
-    public void setOnNeedToShowMoveListener(OnNeedToShowMoveListener listener) {
-        onNeedToShowMoveListeners.clear();
-        onNeedToShowMoveListeners.add(listener);
-    }
-
-    @Override
-    public void setOnMovePlayerChangedListener(OnMovePlayerChangedListener listener) {
-        onMovePlayerChangedListeners.clear();
-        onMovePlayerChangedListeners.add(listener);
+        return (player.getPosition() == Player.Position.FIRST) ? secondPlayer : firstPlayer;
     }
 }

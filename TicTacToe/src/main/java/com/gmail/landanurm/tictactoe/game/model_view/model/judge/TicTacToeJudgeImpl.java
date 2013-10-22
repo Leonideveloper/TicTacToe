@@ -1,7 +1,7 @@
 package com.gmail.landanurm.tictactoe.game.model_view.model.judge;
 
 import com.gmail.landanurm.matrix.*;
-import com.gmail.landanurm.tictactoe.game.model_view.model.ReadOnlyGameBoard;
+import com.gmail.landanurm.tictactoe.game.model_view.model.game_board.ReadOnlyGameBoard;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 
 import java.io.Serializable;
@@ -127,10 +127,10 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge, Serializable {
         if (gameBoard.cellIsEmpty(positionOfFirstCellOnLine)) {
             return TicTacToeResultCreator.createUnknownResult();
         }
-        Player.Id firstCellOnLine = gameBoard.get(positionOfFirstCellOnLine);
+        Player.Position firstCellOnLine = gameBoard.get(positionOfFirstCellOnLine);
         for (int i = 1; i < gameBoardDimension; ++i) {
             Position currentPosition = cellsPositions.get(i);
-            Player.Id currentCell = gameBoard.get(currentPosition);
+            Player.Position currentCell = gameBoard.get(currentPosition);
             if (firstCellOnLine != currentCell) {
                 return TicTacToeResultCreator.createUnknownResult();
             }
@@ -140,10 +140,10 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge, Serializable {
         return new TicTacToeResult(stateByCell(firstCellOnLine), fireLines);
     }
 
-    private TicTacToeResult.GameState stateByCell(Player.Id cell) {
-        if (cell == Player.Id.FIRST_PLAYER) {
+    private TicTacToeResult.GameState stateByCell(Player.Position cell) {
+        if (cell == Player.Position.FIRST) {
             return TicTacToeResult.GameState.FIRST_PLAYER_WINS;
-        } else if (cell == Player.Id.SECOND_PLAYER) {
+        } else if (cell == Player.Position.SECOND) {
             return TicTacToeResult.GameState.SECOND_PLAYER_WINS;
         }
         throw new IllegalArgumentException("Input cell must be not empty!");

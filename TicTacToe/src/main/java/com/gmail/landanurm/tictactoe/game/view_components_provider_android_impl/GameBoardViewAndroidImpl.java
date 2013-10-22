@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import com.gmail.landanurm.matrix.ArrayMatrix;
 import com.gmail.landanurm.matrix.Matrix;
 import com.gmail.landanurm.matrix.OnEachHandler;
-import com.gmail.landanurm.matrix.Position;
 import com.gmail.landanurm.matrix.ReadOnlyMatrix;
 import com.gmail.landanurm.tictactoe.CurrentThemeProvider;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.FireLine;
@@ -82,7 +81,7 @@ class GameBoardViewAndroidImpl implements GameBoardView {
     public void setOnCellClickListener(final OnCellClickListener onCellClickListener) {
         cells.forEach(new OnEachHandler<ImageView>() {
             @Override
-            public void handle(final Position pos, ImageView elem) {
+            public void handle(final com.gmail.landanurm.matrix.Position pos, ImageView elem) {
                 ImageView cell = cells.get(pos);
                 cell.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -114,23 +113,23 @@ class GameBoardViewAndroidImpl implements GameBoardView {
     public void clear() {
         cells.forEach(new OnEachHandler<ImageView>() {
             @Override
-            public void handle(Position pos, ImageView elem) {
+            public void handle(com.gmail.landanurm.matrix.Position pos, ImageView elem) {
                 clearCell(pos);
             }
         });
     }
 
-    private void clearCell(Position cellPos) {
+    private void clearCell(com.gmail.landanurm.matrix.Position cellPos) {
         setSecondLayerCellIconId(cellPos, android.R.color.transparent);
         setFirstLayerCellIconId(cellPos, cellsTheme.getEmptyCellIconId());
     }
 
-    private void setFirstLayerCellIconId(Position cellPos, int resId) {
+    private void setFirstLayerCellIconId(com.gmail.landanurm.matrix.Position cellPos, int resId) {
         cells.get(cellPos).setBackgroundResource(resId);
         firstLayerCellsIconsIds.set(cellPos, resId);
     }
 
-    private void setSecondLayerCellIconId(Position cellPos, int resId) {
+    private void setSecondLayerCellIconId(com.gmail.landanurm.matrix.Position cellPos, int resId) {
         cells.get(cellPos).setImageResource(resId);
         secondLayerCellsIconsIds.set(cellPos, resId);
     }
@@ -138,20 +137,20 @@ class GameBoardViewAndroidImpl implements GameBoardView {
     private void updateAllCellViews() {
         secondLayerCellsIconsIds.forEach(new OnEachHandler<Integer>() {
             @Override
-            public void handle(Position pos, Integer each) {
+            public void handle(com.gmail.landanurm.matrix.Position pos, Integer each) {
                 updateCell(pos);
             }
         });
     }
 
-    private void updateCell(Position pos) {
+    private void updateCell(com.gmail.landanurm.matrix.Position pos) {
         setSecondLayerCellIconId(pos, secondLayerCellsIconsIds.get(pos));
         setFirstLayerCellIconId(pos, firstLayerCellsIconsIds.get(pos));
     }
 
     @Override
-    public void showMove(Position pos, Player.Id playerId) {
-        if (playerId == Player.Id.FIRST_PLAYER) {
+    public void showMove(com.gmail.landanurm.matrix.Position pos, Player.Position playerPosition) {
+        if (playerPosition == Player.Position.FIRST) {
             setFirstLayerCellIconId(pos, cellsTheme.getFirstPlayerMoveIconId());
         } else {
             setFirstLayerCellIconId(pos, cellsTheme.getSecondPlayerMoveIconId());
@@ -167,8 +166,8 @@ class GameBoardViewAndroidImpl implements GameBoardView {
 
     private void showFireLine(FireLine fireLine) {
         FireLine.Type fireLineType = fireLine.getFireLineType();
-        Collection<Position> cellsPositions = fireLine.getCellsPositions();
-        for (Position pos : cellsPositions) {
+        Collection<com.gmail.landanurm.matrix.Position> cellsPositions = fireLine.getCellsPositions();
+        for (com.gmail.landanurm.matrix.Position pos : cellsPositions) {
             setSecondLayerCellIconId(pos, cellsTheme.getFireIconId(fireLineType));
         }
     }

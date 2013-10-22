@@ -33,12 +33,12 @@ class MoveProgressBarAndroidImpl implements MoveProgressBar {
     private MoveProgressBarAndroidImpl(Activity activity, int firstVisibility, int secondVisibility) {
         firstPlayerProgressBar = (ProgressBar) activity.findViewById(R.id.firstPlayerProgressBar);
         secondPlayerProgressBar = (ProgressBar) activity.findViewById(R.id.secondPlayerProgressBar);
-        setVisibility(Player.Id.FIRST_PLAYER, firstVisibility);
-        setVisibility(Player.Id.SECOND_PLAYER, secondVisibility);
+        setVisibility(Player.Position.FIRST, firstVisibility);
+        setVisibility(Player.Position.SECOND, secondVisibility);
     }
 
-    private void setVisibility(Player.Id playerId, int visibility) {
-        if (playerId == Player.Id.FIRST_PLAYER) {
+    private void setVisibility(Player.Position playerPosition, int visibility) {
+        if (playerPosition == Player.Position.FIRST) {
             firstPlayerProgressBar.setVisibility(visibility);
             firstVisibility = visibility;
         } else {
@@ -58,14 +58,14 @@ class MoveProgressBarAndroidImpl implements MoveProgressBar {
     }
 
     @Override
-    public void show(Player.Id playerId) {
+    public void show(Player.Position playerPosition) {
         hide();
-        setVisibility(playerId, View.VISIBLE);
+        setVisibility(playerPosition, View.VISIBLE);
     }
 
     @Override
     public void hide() {
-        setVisibility(Player.Id.FIRST_PLAYER, View.INVISIBLE);
-        setVisibility(Player.Id.SECOND_PLAYER, View.INVISIBLE);
+        setVisibility(Player.Position.FIRST, View.INVISIBLE);
+        setVisibility(Player.Position.SECOND, View.INVISIBLE);
     }
 }

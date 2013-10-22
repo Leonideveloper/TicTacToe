@@ -1,7 +1,6 @@
 package com.gmail.landanurm.tictactoe.game.model_view.view;
 
 
-import com.gmail.landanurm.matrix.Position;
 import com.gmail.landanurm.tictactoe.game.model_view.model.TicTacToeModel;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeResult;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnGameFinishedListener;
@@ -11,23 +10,21 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnNewGameSt
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnScoreChangedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Leonid on 26.07.13.
  */
-public class TicTacToeViewImpl implements TicTacToeView, Serializable,
-                OnCellClickListener, OnNewGameStartedListener, OnNeedToShowMoveListener,
-                OnGameFinishedListener, OnScoreChangedListener, OnMovePlayerChangedListener,
-                OnNeedToStartNewGameListener {
+public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
+                OnNeedToShowMoveListener, OnScoreChangedListener, OnMovePlayerChangedListener,
+                OnGameFinishedListener, OnNeedToStartNewGameListener, OnNewGameStartedListener {
 
-    private transient final GameBoardView gameBoardView;
-    private transient final MoveProgressBar moveProgressBar;
-    private transient final ResultDisplay resultDisplay;
-    private transient final ScoreDisplay scoreDisplay;
-    private transient final StartNewGameRequestor startNewGameRequestor;
+    private final GameBoardView gameBoardView;
+    private final MoveProgressBar moveProgressBar;
+    private final ResultDisplay resultDisplay;
+    private final ScoreDisplay scoreDisplay;
+    private final StartNewGameRequestor startNewGameRequestor;
 
     private final List<OnCellClickListener> onCellClickListeners;
     private final TicTacToeModel model;
@@ -51,11 +48,11 @@ public class TicTacToeViewImpl implements TicTacToeView, Serializable,
         onCellClickListeners = new ArrayList<OnCellClickListener>();
 
         this.model = model;
-        model.setOnNewGameStartedListener(this);
-        model.setOnGameFinishedListener(this);
-        model.setOnScoreChangedListener(this);
-        model.setOnNeedToShowMoveListener(this);
-        model.setOnMovePlayerChangedListener(this);
+        model.addOnNewGameStartedListener(this);
+        model.addOnGameFinishedListener(this);
+        model.addOnScoreChangedListener(this);
+        model.addOnNeedToShowMoveListener(this);
+        model.addOnMovePlayerChangedListener(this);
 
         ConnectorPlayersToView connectorPlayersToView = new ConnectorPlayersToView(this, model);
         connectorPlayersToView.connect();
@@ -67,31 +64,31 @@ public class TicTacToeViewImpl implements TicTacToeView, Serializable,
     }
 
     @Override
-    public void onCellClick(Position cellPos) {
+    public void onCellClick(com.gmail.landanurm.matrix.Position cellPos) {
         gameBoardView.blockMoves();
         notifyOnCellClickListeners(cellPos);
         gameBoardView.unblockMoves();
     }
 
-    private void notifyOnCellClickListeners(Position cellPos) {
+    private void notifyOnCellClickListeners(com.gmail.landanurm.matrix.Position cellPos) {
         for (OnCellClickListener each : onCellClickListeners) {
             each.onCellClick(cellPos);
         }
     }
 
     @Override
-    public void onNeedToShowMove(Position pos, Player.Id playerId) {
-        gameBoardView.showMove(pos, playerId);
-    }
-
-    @Override
-    public void onMovePlayerChanged(Player.Id playerId) {
-        moveProgressBar.show(playerId);
+    public void onNeedToShowMove(com.gmail.landanurm.matrix.Position pos, Player.Position playerPosition) {
+        gameBoardView.showMove(pos, playerPosition);
     }
 
     @Override
     public void onScoreChanged() {
         scoreDisplay.showScore(model.getScore());
+    }
+
+    @Override
+    public void onMovePlayerChanged(Player.Position playerPosition) {
+        moveProgressBar.show(playerPosition);
     }
 
     @Override

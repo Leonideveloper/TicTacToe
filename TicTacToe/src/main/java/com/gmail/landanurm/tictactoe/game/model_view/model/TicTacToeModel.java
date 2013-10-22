@@ -1,6 +1,5 @@
 package com.gmail.landanurm.tictactoe.game.model_view.model;
 
-import com.gmail.landanurm.matrix.Position;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnGameFinishedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnMovePlayerChangedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnNeedToShowMoveListener;
@@ -12,19 +11,14 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
  * Created by Leonid on 07.09.13.
  */
 public interface TicTacToeModel {
-
+    void startGame();
     Player getFirstPlayer();
     Player getSecondPlayer();
-    ReadOnlyGameBoard getGameBoard();
     Score getScore();
 
-    void onMove(Position movePos, Player player);
-
-    void startGame();
-
-    void setOnNewGameStartedListener(OnNewGameStartedListener listener);
-    void setOnGameFinishedListener(OnGameFinishedListener listener);
-    void setOnScoreChangedListener(OnScoreChangedListener listener);
-    void setOnNeedToShowMoveListener(OnNeedToShowMoveListener listener);
-    void setOnMovePlayerChangedListener(OnMovePlayerChangedListener listener);
+    void addOnNewGameStartedListener(OnNewGameStartedListener listener);
+    void addOnGameFinishedListener(OnGameFinishedListener listener);
+    void addOnScoreChangedListener(OnScoreChangedListener listener);
+    void addOnNeedToShowMoveListener(OnNeedToShowMoveListener listener);
+    void addOnMovePlayerChangedListener(OnMovePlayerChangedListener listener);
 }
