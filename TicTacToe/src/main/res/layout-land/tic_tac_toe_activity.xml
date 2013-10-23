@@ -127,26 +127,23 @@
 
     </RelativeLayout>
 
-    <ImageView
-            android:layout_width="@dimen/separatorWidth"
-            android:layout_height="match_parent"
-            android:id="@+id/separator"
-            android:src="@android:color/black"
-            android:scaleType="centerCrop"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/scorePanelLayout"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/adTextView"
+        android:layout_toRightOf="@+id/scorePanelLayout">
 
-    <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/gameBoardFrameLayout"
-            android:background="@color/light_green"
-            android:layout_toLeftOf="@+id/adTextView"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/separator">
-    </FrameLayout>
+        <com.gmail.landanurm.tictactoe.game.SquareFrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/gameBoardFrameLayout"
+                android:background="@color/light_green"
+                android:layout_centerInParent="true">
+        </com.gmail.landanurm.tictactoe.game.SquareFrameLayout>
+
+    </RelativeLayout>
 
     <TextView
             android:layout_width="wrap_content"

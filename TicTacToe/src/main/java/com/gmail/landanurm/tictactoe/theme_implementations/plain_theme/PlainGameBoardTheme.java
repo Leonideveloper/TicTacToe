@@ -12,7 +12,7 @@ class PlainGameBoardTheme implements GameBoardTheme {
 
     @Override
     public int getBackgroundIconId() {
-        return R.drawable.game_board_background;
+        return R.color.light_green;
     }
 
     @Override

@@ -5,7 +5,6 @@ package com.gmail.landanurm.tictactoe.theme;
  */
 public interface GameTheme {
     int getScreenBackgroundIconId();
-    int getSeparatorIconId();
     GameBoardTheme getGameBoardTheme();
     ScorePanelTheme getScorePanelTheme();
 }

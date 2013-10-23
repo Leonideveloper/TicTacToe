@@ -19,11 +19,6 @@ class PlainGameTheme implements GameTheme {
     }
 
     @Override
-    public int getSeparatorIconId() {
-        return R.drawable.separator;
-    }
-
-    @Override
     public GameBoardTheme getGameBoardTheme() {
         return gameBoardTheme;
     }

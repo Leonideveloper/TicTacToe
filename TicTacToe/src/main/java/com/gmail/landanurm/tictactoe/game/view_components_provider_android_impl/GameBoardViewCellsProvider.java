@@ -36,8 +36,11 @@ class GameBoardViewCellsProvider {
     }
 
     Matrix<ImageView> prepareCells(final int gameBoardDimension) {
-        Matrix<ImageView> cells = new SquareMatrix<ImageView>(gameBoardDimension);
+        FrameLayout gameBoardFrameLayout =
+                (FrameLayout) activity.findViewById(R.id.gameBoardFrameLayout);
         LinearLayout rowsContainerLayout = prepareRowsContainerLayout(gameBoardDimension);
+        gameBoardFrameLayout.addView(rowsContainerLayout);
+        Matrix<ImageView> cells = new SquareMatrix<ImageView>(gameBoardDimension);
         for (int row = 0; row < gameBoardDimension; ++row) {
             LinearLayout rowLayout = prepareRowLayout(gameBoardDimension);
             for (int column = 0; column < gameBoardDimension; ++column) {
@@ -47,9 +50,6 @@ class GameBoardViewCellsProvider {
             }
             rowsContainerLayout.addView(rowLayout);
         }
-        FrameLayout gameBoardFrameLayout =
-                (FrameLayout) activity.findViewById(R.id.gameBoardFrameLayout);
-        gameBoardFrameLayout.addView(rowsContainerLayout);
         return cells;
     }
 
@@ -65,11 +65,11 @@ class GameBoardViewCellsProvider {
         LinearLayout layout = new LinearLayout(activity);
         layout.setWeightSum(weightSum);
         layout.setOrientation(orientation);
-        layout.setLayoutParams(prepareParams());
+        layout.setLayoutParams(createParams());
         return layout;
     }
 
-    private LinearLayout.LayoutParams prepareParams() {
+    private LinearLayout.LayoutParams createParams() {
         return new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f
         );
@@ -83,11 +83,11 @@ class GameBoardViewCellsProvider {
     }
 
     private LinearLayout.LayoutParams prepareCellParams(int row, int column) {
+        LinearLayout.LayoutParams params = createParams();
         int left = (column == 0) ? distanceBetweenCells : 0;
         int top = (row == 0) ? distanceBetweenCells : 0;
         int right = distanceBetweenCells;
         int bottom = distanceBetweenCells;
-        LinearLayout.LayoutParams params = prepareParams();
         params.setMargins(left, top, right, bottom);
         return params;
     }

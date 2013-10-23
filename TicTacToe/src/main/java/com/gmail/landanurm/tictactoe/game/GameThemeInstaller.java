@@ -21,7 +21,6 @@ class GameThemeInstaller {
     private final ImageView versusIcon;
     private final TextView firstPlayerScore;
     private final TextView secondPlayerScore;
-    private final ImageView separator;
     private final FrameLayout gameBoard;
 
     GameThemeInstaller(Activity activity) {
@@ -32,7 +31,6 @@ class GameThemeInstaller {
         versusIcon = (ImageView) activity.findViewById(R.id.versusImageView);
         firstPlayerScore = (TextView) activity.findViewById(R.id.firstPlayerScore);
         secondPlayerScore = (TextView) activity.findViewById(R.id.secondPlayerScore);
-        separator = (ImageView) activity.findViewById(R.id.separator);
         gameBoard = (FrameLayout) activity.findViewById(R.id.gameBoardFrameLayout);
     }
 
@@ -47,8 +45,6 @@ class GameThemeInstaller {
         versusIcon.setImageResource(scorePanelTheme.getVersusIconId());
         firstPlayerScore.setTextColor(scorePanelTheme.getFirstPlayerScoreColor());
         secondPlayerScore.setTextColor(scorePanelTheme.getSecondPlayerScoreColor());
-
-        separator.setImageResource(gameTheme.getSeparatorIconId());
 
         gameBoard.setBackgroundResource(gameTheme.getGameBoardTheme().getBackgroundIconId());
     }
