@@ -12,34 +12,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6aa5c58e-013a-456e-a510-94e2c52418c0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewAndroidImpl2.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/LayerDrawableProvider.java" />
-      <change type="DELETED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\all\debug\drawable\separator.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\separator.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/fire_1.png" afterPath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/fire_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/fire_1.png" afterPath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/fire_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/fire_2.png" afterPath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/fire_2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/fire_2.png" afterPath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/fire_2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/fire_3.png" afterPath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/fire_3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/fire_3.png" afterPath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/fire_3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/fire_4.png" afterPath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/fire_4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/fire_4.png" afterPath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/fire_4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/fire_5.png" afterPath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/fire_5.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/fire_5.png" afterPath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/fire_5.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/fire_6.png" afterPath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/fire_6.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/fire_6.png" afterPath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/fire_6.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/first_player_move_1.png" afterPath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/first_player_move_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/first_player_move_1.png" afterPath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/first_player_move_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/first_player_move_2.png" afterPath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/first_player_move_2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/first_player_move_2.png" afterPath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/first_player_move_2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/first_player_move_3.png" afterPath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/first_player_move_3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/first_player_move_3.png" afterPath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/first_player_move_3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/second_player_move_1.png" afterPath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/second_player_move_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/second_player_move_1.png" afterPath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/second_player_move_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/second_player_move_2.png" afterPath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/second_player_move_2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/second_player_move_2.png" afterPath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/second_player_move_2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/second_player_move_3.png" afterPath="$PROJECT_DIR$/TicTacToe/build/res/all/debug/drawable/second_player_move_3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/second_player_move_3.png" afterPath="$PROJECT_DIR$/TicTacToe/src/main/res/drawable/second_player_move_3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewTwoLayerImpl.java" />
+      <change type="DELETED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\landanurm\tictactoe\game\view_components_provider_android_impl\GameBoardViewAndroidImpl.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\landanurm\tictactoe\game\view_components_provider_android_impl\StartNewGameRequestorAndroidImpl.java" afterPath="" />
+      <change type="MOVED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\landanurm\tictactoe\game\view_components_provider_android_impl\GameBoardViewAndroidImpl2.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewThreeLayerImpl.java" />
+      <change type="MOVED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\landanurm\tictactoe\game\view_components_provider_android_impl\LayerDrawableProvider.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/CellDrawableProvider.java" />
+      <change type="MOVED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\landanurm\tictactoe\game\view_components_provider_android_impl\MoveProgressBarAndroidImpl.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/MoveProgressBarImpl.java" />
+      <change type="MOVED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\landanurm\tictactoe\game\view_components_provider_android_impl\ResultDisplayAndroidImpl.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/ResultDisplayImpl.java" />
+      <change type="MOVED" beforePath="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\java\com\gmail\landanurm\tictactoe\game\view_components_provider_android_impl\ScoreDisplayAndroidImpl.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/ScoreDisplayImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/ViewComponentsProviderAndroidImpl.java" afterPath="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/ViewComponentsProviderAndroidImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -59,6 +39,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -95,7 +76,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -105,32 +85,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GameBoardViewAndroidImpl2.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewAndroidImpl2.java">
+      <file leaf-file-name="GameBoardViewThreeLayerImpl.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewThreeLayerImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="0" selection-start="1654" selection-end="1654" vertical-scroll-proportion="0.0" vertical-offset="2712" max-vertical-offset="3128">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3707#3716#0" expanded="true" />
-                <element signature="e#3758#3971#0" expanded="true" />
-                <element signature="e#3960#3961#0" expanded="true" />
-                <element signature="e#4128#4137#0" expanded="true" />
-                <element signature="e#4288#4525#0" expanded="true" />
-                <element signature="e#4514#4515#0" expanded="true" />
-                <element signature="e#5991#6306#0" expanded="true" />
-                <element signature="e#6295#6296#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LayerDrawableProvider.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/LayerDrawableProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="17" selection-start="1425" selection-end="1425" vertical-scroll-proportion="0.6730769" vertical-offset="434" max-vertical-offset="918">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="44" column="50" selection-start="1985" selection-end="1985" vertical-scroll-proportion="0.40865386" vertical-offset="238" max-vertical-offset="2686">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -184,11 +143,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/res/layout/cell_image_view.xml" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/SquareFrameLayout.java" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/TicTacToeController.java" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/TicTacToe/src/main/res/values-v11/styles.xml" />
         <option value="$PROJECT_DIR$/TicTacToe/src/main/res/values-v14/styles.xml" />
         <option value="$PROJECT_DIR$/TicTacToe/src/main/res/layout/tic_tac_toe_activity.xml" />
@@ -197,9 +151,14 @@
         <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewCellsProvider.java" />
         <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewAndroidImpl.java" />
         <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/DrawablesProvider.java" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/ViewComponentsProviderAndroidImpl.java" />
-        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewAndroidImpl2.java" />
         <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/LayerDrawableProvider.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/CellDrawableProvider.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewAndroidImpl2.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewAndroidTwoLayerImpl.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewAndroid.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewAndroidVersion.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/ViewComponentsProviderAndroidImpl.java" />
+        <option value="$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewThreeLayerImpl.java" />
       </list>
     </option>
   </component>
@@ -235,8 +194,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -485,15 +444,15 @@
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="015d24bcc02c0209" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="2.7_QVGA_240x320_ldpi_And2.3.3" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="2.7_QVGA_240x320_ldpi_And2.3.3" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
@@ -720,6 +679,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
@@ -740,7 +700,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21016692" sideWeight="0.75468487" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -805,13 +764,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/GameThemeInstaller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="39" selection-start="1583" selection-end="1583" vertical-scroll-proportion="0.7589286" vertical-offset="51" max-vertical-offset="833">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/TicTacToeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="5" selection-start="982" selection-end="982" vertical-scroll-proportion="0.85" vertical-offset="0" max-vertical-offset="714">
@@ -886,13 +838,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewAndroidImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="70" selection-start="1160" selection-end="1233" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2244">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/theme_implementations/plain_theme/PlainCellsTheme.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="6" selection-start="319" selection-end="319" vertical-scroll-proportion="-1.1850961" vertical-offset="612" max-vertical-offset="1088">
@@ -900,36 +845,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/ViewComponentsProviderAndroidImpl.java">
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewTwoLayerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="37" selection-start="2735" selection-end="2735" vertical-scroll-proportion="1.4903846" vertical-offset="298" max-vertical-offset="1241">
+        <state line="31" column="0" selection-start="1315" selection-end="1315" vertical-scroll-proportion="0.28605768" vertical-offset="102" max-vertical-offset="2244">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewAndroidImpl2.java">
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/ViewComponentsProviderAndroidImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="1654" selection-end="1654" vertical-scroll-proportion="0.0" vertical-offset="2712" max-vertical-offset="3128">
+        <state line="65" column="37" selection-start="2657" selection-end="2657" vertical-scroll-proportion="0.36778846" vertical-offset="765" max-vertical-offset="1241">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/CellDrawableProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="616" selection-end="616" vertical-scroll-proportion="-0.6754808" vertical-offset="655" max-vertical-offset="1071">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3707#3716#0" expanded="true" />
-            <element signature="e#3758#3971#0" expanded="true" />
-            <element signature="e#3960#3961#0" expanded="true" />
-            <element signature="e#4128#4137#0" expanded="true" />
-            <element signature="e#4288#4525#0" expanded="true" />
-            <element signature="e#4514#4515#0" expanded="true" />
-            <element signature="e#5991#6306#0" expanded="true" />
-            <element signature="e#6295#6296#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/LayerDrawableProvider.java">
+    <entry file="file://$PROJECT_DIR$/TicTacToe/src/main/java/com/gmail/landanurm/tictactoe/game/view_components_provider_android_impl/GameBoardViewThreeLayerImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="17" selection-start="1425" selection-end="1425" vertical-scroll-proportion="0.6730769" vertical-offset="434" max-vertical-offset="918">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="44" column="50" selection-start="1985" selection-end="1985" vertical-scroll-proportion="0.40865386" vertical-offset="238" max-vertical-offset="2686">
+          <folding />
         </state>
       </provider>
     </entry>

@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * Created by Leonid on 21.10.13.
  */
-class StartNewGameRequestorAndroidImpl implements StartNewGameRequestor {
+class StartNewGameRequestorImpl implements StartNewGameRequestor {
 
     private static class MapKeys {
         final static String requested = "StartNewGameRequestor.requested";
@@ -25,7 +25,7 @@ class StartNewGameRequestorAndroidImpl implements StartNewGameRequestor {
     private final View startNewGameButton;
     private boolean requested;
 
-    StartNewGameRequestorAndroidImpl(Activity activity) {
+    StartNewGameRequestorImpl(Activity activity) {
         onNeedToStartNewGameListeners = new ArrayList<OnNeedToStartNewGameListener>();
         startNewGameButton = activity.findViewById(R.id.startNewGameButton);
         startNewGameButton.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +43,7 @@ class StartNewGameRequestorAndroidImpl implements StartNewGameRequestor {
         }
     }
 
-    StartNewGameRequestorAndroidImpl(Activity activity, Map<String, Serializable> savedState) {
+    StartNewGameRequestorImpl(Activity activity, Map<String, Serializable> savedState) {
         this(activity);
         Boolean needToRequest = (Boolean) savedState.get(MapKeys.requested);
         if (needToRequest) {

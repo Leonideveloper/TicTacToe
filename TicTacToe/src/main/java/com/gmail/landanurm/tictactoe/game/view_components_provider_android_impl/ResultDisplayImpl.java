@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Created by Leonid on 19.07.13.
  */
-class ResultDisplayAndroidImpl implements ResultDisplay {
+class ResultDisplayImpl implements ResultDisplay {
 
     private static class MapKeys {
         final static String displayed = "ResultDisplay.displayed";
@@ -27,7 +27,7 @@ class ResultDisplayAndroidImpl implements ResultDisplay {
     private Boolean displayed;
     private GameState gameState;
 
-    ResultDisplayAndroidImpl(Activity activity) {
+    ResultDisplayImpl(Activity activity) {
         winnerFirstPlayer = activity.findViewById(R.id.winnerFirstPlayerImageView);
         winnerSecondPlayer = activity.findViewById(R.id.winnerSecondPlayerImageView);
         loserFirstPlayer = activity.findViewById(R.id.loserFirstPlayerImageView);
@@ -35,7 +35,7 @@ class ResultDisplayAndroidImpl implements ResultDisplay {
         hide();
     }
 
-    ResultDisplayAndroidImpl(Activity activity, Map<String, Serializable> savedState) {
+    ResultDisplayImpl(Activity activity, Map<String, Serializable> savedState) {
         this(activity);
         Boolean needToDisplay = (Boolean) savedState.get(MapKeys.displayed);
         if (needToDisplay) {

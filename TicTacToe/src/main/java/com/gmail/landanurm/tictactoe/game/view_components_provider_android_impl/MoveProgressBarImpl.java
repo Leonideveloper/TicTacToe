@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Created by Leonid on 04.08.13.
  */
-class MoveProgressBarAndroidImpl implements MoveProgressBar {
+class MoveProgressBarImpl implements MoveProgressBar {
 
     private static class MapKeys {
         final static String displayed = "MoveProgressBar.displayed";
@@ -25,13 +25,13 @@ class MoveProgressBarAndroidImpl implements MoveProgressBar {
     private boolean displayed;
     private Player.Id movePlayerId;
 
-    MoveProgressBarAndroidImpl(Activity activity) {
+    MoveProgressBarImpl(Activity activity) {
         firstPlayerProgressBar = activity.findViewById(R.id.firstPlayerProgressBar);
         secondPlayerProgressBar = activity.findViewById(R.id.secondPlayerProgressBar);
         hide();
     }
 
-    MoveProgressBarAndroidImpl(Activity activity, Map<String, Serializable> savedState) {
+    MoveProgressBarImpl(Activity activity, Map<String, Serializable> savedState) {
         this(activity);
         Boolean needToDisplay = (Boolean) savedState.get(MapKeys.displayed);
         if (needToDisplay) {

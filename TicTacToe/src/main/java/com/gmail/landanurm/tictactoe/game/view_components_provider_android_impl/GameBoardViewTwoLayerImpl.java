@@ -20,7 +20,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 
-class GameBoardViewAndroidImpl implements GameBoardView {
+class GameBoardViewTwoLayerImpl implements GameBoardView {
 
     private static class MapKeys {
         final static String firstLayer = "GameBoardView.firstLayer";
@@ -40,7 +40,7 @@ class GameBoardViewAndroidImpl implements GameBoardView {
     private final Matrix<Integer> secondLayerCellsIconsIds;
     private boolean movesBlocked;
 
-    GameBoardViewAndroidImpl(Activity activity, int gameBoardDimension) {
+    GameBoardViewTwoLayerImpl(Activity activity, int gameBoardDimension) {
         cells = GameBoardViewCellsProvider.prepareCells(activity, gameBoardDimension);
         firstLayerCellsIconsIds = new SquareMatrix<Integer>(gameBoardDimension);
         secondLayerCellsIconsIds = new SquareMatrix<Integer>(gameBoardDimension);
@@ -48,8 +48,8 @@ class GameBoardViewAndroidImpl implements GameBoardView {
         clear();
     }
 
-    GameBoardViewAndroidImpl(Activity activity, int gameBoardDimension,
-                             Map<String,Serializable> savedState) {
+    GameBoardViewTwoLayerImpl(Activity activity, int gameBoardDimension,
+                              Map<String, Serializable> savedState) {
         cells = GameBoardViewCellsProvider.prepareCells(activity, gameBoardDimension);
         firstLayerCellsIconsIds = (Matrix<Integer>) savedState.get(MapKeys.firstLayer);
         secondLayerCellsIconsIds = (Matrix<Integer>) savedState.get(MapKeys.secondLayer);

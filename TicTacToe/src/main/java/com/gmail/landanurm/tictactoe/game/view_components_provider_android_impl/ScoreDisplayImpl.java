@@ -13,16 +13,16 @@ import java.util.Map;
 /**
  * Created by Leonid on 04.08.13.
  */
-class ScoreDisplayAndroidImpl implements ScoreDisplay {
+class ScoreDisplayImpl implements ScoreDisplay {
     private final TextView firstPlayerScore;
     private final TextView secondPlayerScore;
 
-    ScoreDisplayAndroidImpl(Activity activity) {
+    ScoreDisplayImpl(Activity activity) {
         firstPlayerScore = (TextView) activity.findViewById(R.id.firstPlayerScore);
         secondPlayerScore = (TextView) activity.findViewById(R.id.secondPlayerScore);
     }
 
-    ScoreDisplayAndroidImpl(Activity activity, Map<String, Serializable> savedState) {
+    ScoreDisplayImpl(Activity activity, Map<String, Serializable> savedState) {
         this(activity);
     }
 

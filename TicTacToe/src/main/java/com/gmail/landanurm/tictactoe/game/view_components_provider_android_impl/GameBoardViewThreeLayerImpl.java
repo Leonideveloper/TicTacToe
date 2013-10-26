@@ -22,7 +22,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 
-class GameBoardViewAndroidImpl2 implements GameBoardView {
+class GameBoardViewThreeLayerImpl implements GameBoardView {
 
     private static class MapKeys {
         final static String backgroundIconsIds = "GameBoardView.backgroundIconsIds";
@@ -37,15 +37,18 @@ class GameBoardViewAndroidImpl2 implements GameBoardView {
     }
 
     private final CellsTheme cellsTheme = getCurrentCellsTheme();
-    private final LayerDrawableProvider layerDrawableProvider;
-    private final ReadOnlyMatrix<ImageView> cells;
+
+    private final CellDrawableProvider cellDrawableProvider;
     private final Matrix<Integer> backgroundIconsIds;
     private final Matrix<Integer> moveIconsIds;
     private final Matrix<Integer> fireIconsIds;
+    private final ReadOnlyMatrix<ImageView> cells;
+
     private boolean movesBlocked;
 
-    GameBoardViewAndroidImpl2(Activity activity, int gameBoardDimension) {
-        layerDrawableProvider = new LayerDrawableProvider(activity.getResources());
+
+    GameBoardViewThreeLayerImpl(Activity activity, int gameBoardDimension) {
+        cellDrawableProvider = new CellDrawableProvider(activity.getResources());
         cells = GameBoardViewCellsProvider.prepareCells(activity, gameBoardDimension);
         backgroundIconsIds = prepareCellsBackgroundIconsIds(gameBoardDimension);
         moveIconsIds = prepareTransparentIconsIds(gameBoardDimension);
@@ -54,9 +57,9 @@ class GameBoardViewAndroidImpl2 implements GameBoardView {
         movesBlocked = false;
     }
 
-    GameBoardViewAndroidImpl2(Activity activity, int gameBoardDimension,
-                              Map<String, Serializable> savedState) {
-        layerDrawableProvider = new LayerDrawableProvider(activity.getResources());
+    GameBoardViewThreeLayerImpl(Activity activity, int gameBoardDimension,
+                                Map<String, Serializable> savedState) {
+        cellDrawableProvider = new CellDrawableProvider(activity.getResources());
         cells = GameBoardViewCellsProvider.prepareCells(activity, gameBoardDimension);
         backgroundIconsIds = (Matrix<Integer>) savedState.get(MapKeys.backgroundIconsIds);
         moveIconsIds = (Matrix<Integer>) savedState.get(MapKeys.moveIconsIds);
@@ -108,8 +111,8 @@ class GameBoardViewAndroidImpl2 implements GameBoardView {
         ImageView cell = cells.get(pos);
         int moveIconId = moveIconsIds.get(pos);
         int fireIconId = fireIconsIds.get(pos);
-        Drawable drawable = layerDrawableProvider.getLayerDrawable(moveIconId, fireIconId);
-        cell.setImageDrawable(drawable);
+        Drawable cellDrawable = cellDrawableProvider.getCellDrawable(moveIconId, fireIconId);
+        cell.setImageDrawable(cellDrawable);
     }
 
     @Override

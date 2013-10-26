@@ -1,5 +1,6 @@
 package com.gmail.landanurm.tictactoe.game.view_components_provider_android_impl;
 
+import android.R;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -11,16 +12,24 @@ import java.util.Map;
 /**
  * Created by Leonid on 26.10.13.
  */
-class LayerDrawableProvider {
+class CellDrawableProvider {
     private final Map<Object, Drawable> drawables;
     private final Resources resources;
 
-    LayerDrawableProvider(Resources resources) {
+    CellDrawableProvider(Resources resources) {
         this.resources = resources;
         this.drawables = new HashMap<Object, Drawable>();
     }
 
-    Drawable getLayerDrawable(int moveIconId, int fireIconId) {
+    Drawable getCellDrawable(int moveIconId, int fireIconId) {
+        if (fireIconId == R.color.transparent) {
+            return getDrawable(moveIconId);
+        } else {
+            return getLayerDrawable(moveIconId, fireIconId);
+        }
+    }
+
+    private Drawable getLayerDrawable(int moveIconId, int fireIconId) {
         Object layerDrawableKey = Pair.create(moveIconId, fireIconId);
         Drawable layerDrawable = drawables.get(layerDrawableKey);
         if (layerDrawable == null) {
