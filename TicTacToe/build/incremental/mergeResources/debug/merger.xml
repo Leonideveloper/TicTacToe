@@ -99,11 +99,6 @@
                 qualifiers=""
                 type="drawable" />
             <file
-                name="separator"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\separator.png"
-                qualifiers=""
-                type="drawable" />
-            <file
                 name="versus"
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\versus.png"
                 qualifiers=""
