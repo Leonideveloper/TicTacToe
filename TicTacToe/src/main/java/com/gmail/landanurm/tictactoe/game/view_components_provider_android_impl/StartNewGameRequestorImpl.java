@@ -23,6 +23,7 @@ class StartNewGameRequestorImpl implements StartNewGameRequestor {
 
     private final Collection<OnNeedToStartNewGameListener> onNeedToStartNewGameListeners;
     private final View startNewGameButton;
+
     private boolean requested;
 
     StartNewGameRequestorImpl(Activity activity) {
@@ -56,8 +57,7 @@ class StartNewGameRequestorImpl implements StartNewGameRequestor {
     }
 
     @Override
-    public void setOnNeedToStartNewGameListener(OnNeedToStartNewGameListener listener) {
-        onNeedToStartNewGameListeners.clear();
+    public void addOnNeedToStartNewGameListener(OnNeedToStartNewGameListener listener) {
         onNeedToStartNewGameListeners.add(listener);
     }
 

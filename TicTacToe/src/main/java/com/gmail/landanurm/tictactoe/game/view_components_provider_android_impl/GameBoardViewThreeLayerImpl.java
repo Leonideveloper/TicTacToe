@@ -116,7 +116,7 @@ class GameBoardViewThreeLayerImpl implements GameBoardView {
     }
 
     @Override
-    public void setOnCellClickListener(final OnCellClickListener onCellClickListener) {
+    public void setOnCellClickListener(final OnCellClickListener listener) {
         cells.forEach(new OnEachHandler<ImageView>() {
             @Override
             public void handle(final Position pos, ImageView elem) {
@@ -125,7 +125,7 @@ class GameBoardViewThreeLayerImpl implements GameBoardView {
                     @Override
                     public void onClick(View view) {
                         if (!movesBlocked()) {
-                            onCellClickListener.onCellClick(pos);
+                            listener.onCellClick(pos);
                         }
                     }
                 });

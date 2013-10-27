@@ -44,7 +44,7 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
         scoreDisplay.showScore(model.getScore());
 
         startNewGameRequestor = viewComponentsProvider.getStartNewGameRequestor();
-        startNewGameRequestor.setOnNeedToStartNewGameListener(this);
+        startNewGameRequestor.addOnNeedToStartNewGameListener(this);
 
         onCellClickListeners = new ArrayList<OnCellClickListener>();
 

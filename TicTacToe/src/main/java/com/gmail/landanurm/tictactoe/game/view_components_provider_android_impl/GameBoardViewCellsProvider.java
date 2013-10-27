@@ -36,10 +36,7 @@ class GameBoardViewCellsProvider {
     }
 
     Matrix<ImageView> prepareCells(final int gameBoardDimension) {
-        FrameLayout gameBoardFrameLayout =
-                (FrameLayout) activity.findViewById(R.id.gameBoardFrameLayout);
         LinearLayout rowsContainerLayout = prepareRowsContainerLayout(gameBoardDimension);
-        gameBoardFrameLayout.addView(rowsContainerLayout);
         Matrix<ImageView> cells = new SquareMatrix<ImageView>(gameBoardDimension);
         for (int row = 0; row < gameBoardDimension; ++row) {
             LinearLayout rowLayout = prepareRowLayout(gameBoardDimension);
@@ -50,20 +47,22 @@ class GameBoardViewCellsProvider {
             }
             rowsContainerLayout.addView(rowLayout);
         }
+        FrameLayout gameBoardLayout = (FrameLayout) activity.findViewById(R.id.gameBoardLayout);
+        gameBoardLayout.addView(rowsContainerLayout);
         return cells;
     }
 
     private LinearLayout prepareRowsContainerLayout(int numberOfRows) {
-        return prepareLinearLayout(LinearLayout.VERTICAL, numberOfRows);
+        return prepareLinearLayout(numberOfRows, LinearLayout.VERTICAL);
     }
 
-    private LinearLayout prepareRowLayout(int numberOfColumns) {
-        return prepareLinearLayout(LinearLayout.HORIZONTAL, numberOfColumns);
+    private LinearLayout prepareRowLayout(int numberOfCellsPerRow) {
+        return prepareLinearLayout(numberOfCellsPerRow, LinearLayout.HORIZONTAL);
     }
 
-    private LinearLayout prepareLinearLayout(int orientation, int weightSum) {
+    private LinearLayout prepareLinearLayout(int numberOfChildElements, int orientation) {
         LinearLayout layout = new LinearLayout(activity);
-        layout.setWeightSum(weightSum);
+        layout.setWeightSum(numberOfChildElements);
         layout.setOrientation(orientation);
         layout.setLayoutParams(createParams());
         return layout;

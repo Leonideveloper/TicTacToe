@@ -89,7 +89,6 @@ class ResultDisplayImpl implements ResultDisplay {
     @Override
     public void hide() {
         this.displayed = false;
-        this.gameState = null;
         hide(winnerFirstPlayer, winnerSecondPlayer, loserFirstPlayer, loserSecondPlayer);
     }
 }

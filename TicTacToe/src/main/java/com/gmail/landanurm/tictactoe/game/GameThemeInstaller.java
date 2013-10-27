@@ -31,7 +31,7 @@ class GameThemeInstaller {
         versusIcon = (ImageView) activity.findViewById(R.id.versusImageView);
         firstPlayerScore = (TextView) activity.findViewById(R.id.firstPlayerScore);
         secondPlayerScore = (TextView) activity.findViewById(R.id.secondPlayerScore);
-        gameBoard = (FrameLayout) activity.findViewById(R.id.gameBoardFrameLayout);
+        gameBoard = (FrameLayout) activity.findViewById(R.id.gameBoardLayout);
     }
 
     void install(GameTheme gameTheme) {
