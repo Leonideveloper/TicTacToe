@@ -19,7 +19,7 @@ import java.io.Serializable;
 class TicTacToeController {
     private static final Integer gameBoardDimension = 5;
     private static final String firstPlayerType = PlayerTypes.HUMAN;
-    private static final String secondPlayerType = PlayerTypes.HUMAN;
+    private static final String secondPlayerType = PlayerTypes.AI.NORMAL;
 
     private final Activity activity;
     private TicTacToeModel model;

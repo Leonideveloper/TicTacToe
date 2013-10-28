@@ -17,14 +17,14 @@ import java.util.Map;
  * Created by Leonid on 28.09.13.
  */
 public class ViewComponentsProviderAndroidImpl implements TicTacToeView.ComponentsProvider {
-    private final GameBoardViewThreeLayerImpl gameBoardView;
+    private final GameBoardViewImpl gameBoardView;
     private final MoveProgressBarImpl moveProgressBar;
     private final ResultDisplayImpl resultDisplay;
     private final ScoreDisplayImpl scoreDisplay;
     private final StartNewGameRequestorImpl startNewGameRequestor;
 
     public ViewComponentsProviderAndroidImpl(Activity activity, int gameBoardDimension) {
-        gameBoardView = new GameBoardViewThreeLayerImpl(activity, gameBoardDimension);
+        gameBoardView = new GameBoardViewImpl(activity, gameBoardDimension);
         moveProgressBar = new MoveProgressBarImpl(activity);
         resultDisplay = new ResultDisplayImpl(activity);
         scoreDisplay = new ScoreDisplayImpl(activity);
@@ -34,7 +34,7 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
     public ViewComponentsProviderAndroidImpl(Activity activity, int gameBoardDimension,
                                              Serializable viewComponentsState) {
         Map<String, Serializable> savedState = (Map<String, Serializable>) viewComponentsState;
-        gameBoardView = new GameBoardViewThreeLayerImpl(activity, gameBoardDimension, savedState);
+        gameBoardView = new GameBoardViewImpl(activity, gameBoardDimension, savedState);
         moveProgressBar = new MoveProgressBarImpl(activity, savedState);
         resultDisplay = new ResultDisplayImpl(activity, savedState);
         scoreDisplay = new ScoreDisplayImpl(activity, savedState);

@@ -57,7 +57,7 @@ public final class R {
         public static final int firstPlayerFaceImageView=0x7f090006;
         public static final int firstPlayerProgressBar=0x7f09000d;
         public static final int firstPlayerScore=0x7f09000a;
-        public static final int gameBoardLayout =0x7f090010;
+        public static final int gameBoardLayout=0x7f090010;
         public static final int loserFirstPlayerImageView=0x7f090003;
         public static final int loserSecondPlayerImageView=0x7f090005;
         public static final int scorePanelLayout=0x7f090001;
