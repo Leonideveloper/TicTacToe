@@ -14,12 +14,10 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Leonid on 26.07.13.
- */
+
 public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
                 OnNeedToShowMoveListener, OnScoreChangedListener, OnMovePlayerChangedListener,
-                OnGameFinishedListener, OnNeedToStartNewGameListener, OnNewGameStartedListener {
+                OnGameFinishedListener, OnUserWantsToStartNewGameListener, OnNewGameStartedListener {
 
     private final GameBoardView gameBoardView;
     private final MoveProgressBar moveProgressBar;
@@ -33,20 +31,16 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
 
     public TicTacToeViewImpl(ComponentsProvider viewComponentsProvider, TicTacToeModel model) {
 
+        onCellClickListeners = new ArrayList<OnCellClickListener>();
+
         gameBoardView = viewComponentsProvider.getGameBoardView();
         gameBoardView.setOnCellClickListener(this);
-
         moveProgressBar = viewComponentsProvider.getMoveProgressBar();
-
         resultDisplay = viewComponentsProvider.getResultDisplay();
-
         scoreDisplay = viewComponentsProvider.getScoreDisplay();
         scoreDisplay.showScore(model.getScore());
-
         startNewGameRequestor = viewComponentsProvider.getStartNewGameRequestor();
-        startNewGameRequestor.addOnNeedToStartNewGameListener(this);
-
-        onCellClickListeners = new ArrayList<OnCellClickListener>();
+        startNewGameRequestor.addOnUserWantsToStartNewGameListener(this);
 
         this.model = model;
         model.addOnNewGameStartedListener(this);
@@ -54,9 +48,6 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
         model.addOnScoreChangedListener(this);
         model.addOnNeedToShowMoveListener(this);
         model.addOnMovePlayerChangedListener(this);
-
-        ConnectorPlayersToView connectorPlayersToView = new ConnectorPlayersToView(this, model);
-        connectorPlayersToView.connect();
     }
 
     @Override
@@ -101,7 +92,7 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
     }
 
     @Override
-    public void onNeedToStartNewGame() {
+    public void onUserWantsToStartNewGame() {
         model.startGame();
     }
 

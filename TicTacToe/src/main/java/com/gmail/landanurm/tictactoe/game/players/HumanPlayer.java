@@ -12,15 +12,15 @@ import java.io.Serializable;
  * Created by Leonid on 06.09.13.
  */
 class HumanPlayer implements Player, OnCellClickListener, Serializable {
+    private final Id id;
     private final OnMoveListener onMoveListener;
     private final ReadOnlyGameBoard gameBoard;
-    private final Id id;
     private boolean movesEnabled;
 
     HumanPlayer(Id id, ReadOnlyGameBoard gameBoard, OnMoveListener onMoveListener) {
         this.id = id;
-        this.gameBoard = gameBoard;
         this.onMoveListener = onMoveListener;
+        this.gameBoard = gameBoard;
         this.movesEnabled = false;
     }
 

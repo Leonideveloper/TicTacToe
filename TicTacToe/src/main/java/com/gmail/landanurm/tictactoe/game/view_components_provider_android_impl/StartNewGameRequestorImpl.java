@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.view.View;
 
 import com.gmail.landanurm.tictactoe.R;
-import com.gmail.landanurm.tictactoe.game.model_view.view.OnNeedToStartNewGameListener;
+import com.gmail.landanurm.tictactoe.game.model_view.view.OnUserWantsToStartNewGameListener;
 import com.gmail.landanurm.tictactoe.game.model_view.view.StartNewGameRequestor;
 
 import java.io.Serializable;
@@ -21,13 +21,13 @@ class StartNewGameRequestorImpl implements StartNewGameRequestor {
         final static String requested = "StartNewGameRequestor.requested";
     }
 
-    private final Collection<OnNeedToStartNewGameListener> onNeedToStartNewGameListeners;
+    private final Collection<OnUserWantsToStartNewGameListener> onUserWantsToStartNewGameListeners;
     private final View startNewGameButton;
 
     private boolean requested;
 
     StartNewGameRequestorImpl(Activity activity) {
-        onNeedToStartNewGameListeners = new ArrayList<OnNeedToStartNewGameListener>();
+        onUserWantsToStartNewGameListeners = new ArrayList<OnUserWantsToStartNewGameListener>();
         startNewGameButton = activity.findViewById(R.id.startNewGameButton);
         startNewGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,8 +39,8 @@ class StartNewGameRequestorImpl implements StartNewGameRequestor {
     }
 
     private void notifyOnNeedToStartNewGameListeners() {
-        for (OnNeedToStartNewGameListener each : onNeedToStartNewGameListeners) {
-            each.onNeedToStartNewGame();
+        for (OnUserWantsToStartNewGameListener each : onUserWantsToStartNewGameListeners) {
+            each.onUserWantsToStartNewGame();
         }
     }
 
@@ -57,8 +57,8 @@ class StartNewGameRequestorImpl implements StartNewGameRequestor {
     }
 
     @Override
-    public void addOnNeedToStartNewGameListener(OnNeedToStartNewGameListener listener) {
-        onNeedToStartNewGameListeners.add(listener);
+    public void addOnUserWantsToStartNewGameListener(OnUserWantsToStartNewGameListener listener) {
+        onUserWantsToStartNewGameListeners.add(listener);
     }
 
     @Override

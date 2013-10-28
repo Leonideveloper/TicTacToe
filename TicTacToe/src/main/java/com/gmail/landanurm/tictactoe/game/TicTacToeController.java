@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.gmail.landanurm.tictactoe.game.model_view.model.TicTacToeModel;
 import com.gmail.landanurm.tictactoe.game.model_view.model.TicTacToeModelImpl;
+import com.gmail.landanurm.tictactoe.game.model_view.view.OnCellClickListener;
 import com.gmail.landanurm.tictactoe.game.model_view.view.TicTacToeView;
 import com.gmail.landanurm.tictactoe.game.model_view.view.TicTacToeViewImpl;
 import com.gmail.landanurm.tictactoe.game.players.PlayerTypes;
@@ -48,7 +49,18 @@ class TicTacToeController {
     }
 
     private TicTacToeView createView() {
-        return new TicTacToeViewImpl(viewComponentsProvider, model);
+        TicTacToeView view = new TicTacToeViewImpl(viewComponentsProvider, model);
+        connectHumanPlayersToView(view);
+        return view;
+    }
+
+    private void connectHumanPlayersToView(TicTacToeView view) {
+        if (firstPlayerType == PlayerTypes.HUMAN) {
+            view.addOnCellClickListener((OnCellClickListener) model.getFirstPlayer());
+        }
+        if (secondPlayerType == PlayerTypes.HUMAN) {
+            view.addOnCellClickListener((OnCellClickListener) model.getSecondPlayer());
+        }
     }
 
     private static class BundleKeys {

@@ -10,10 +10,10 @@ import java.util.Collection;
  * Created by Leonid on 26.07.13.
  */
 public interface GameBoardView {
-    void setOnCellClickListener(OnCellClickListener onCellClickListener);
     void blockMoves();
     void unblockMoves();
     void clear();
     void showMove(Position pos, Player.Id playerId);
     void showFireLines(Collection<FireLine> fireLines);
+    void setOnCellClickListener(OnCellClickListener onCellClickListener);
 }

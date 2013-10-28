@@ -1,11 +1,7 @@
 package com.gmail.landanurm.tictactoe.game.view_components_provider_android_impl;
 
-import android.R;
 import android.app.Activity;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
-import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -24,7 +20,6 @@ import com.gmail.landanurm.tictactoe.theme.TicTacToeTheme;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 
 class GameBoardViewImpl implements GameBoardView {
@@ -43,7 +38,7 @@ class GameBoardViewImpl implements GameBoardView {
 
     private final CellsTheme cellsTheme = getCurrentCellsTheme();
 
-    private final CellDrawableProvider cellDrawableProvider;
+    private final CellDrawablesProvider cellDrawablesProvider;
     private final Matrix<Integer> backgroundIconsIds;
     private final Matrix<Integer> moveIconsIds;
     private final Matrix<Integer> fireIconsIds;
@@ -53,7 +48,7 @@ class GameBoardViewImpl implements GameBoardView {
 
 
     GameBoardViewImpl(Activity activity, int gameBoardDimension) {
-        cellDrawableProvider = new CellDrawableProvider(activity.getResources());
+        cellDrawablesProvider = new CellDrawablesProvider(activity);
         cells = GameBoardViewCellsProvider.prepareCells(activity, gameBoardDimension);
         backgroundIconsIds = prepareCellsBackgroundIconsIds(gameBoardDimension);
         moveIconsIds = prepareTransparentIconsIds(gameBoardDimension);
@@ -64,7 +59,7 @@ class GameBoardViewImpl implements GameBoardView {
 
     GameBoardViewImpl(Activity activity, int gameBoardDimension,
                       Map<String, Serializable> savedState) {
-        cellDrawableProvider = new CellDrawableProvider(activity.getResources());
+        cellDrawablesProvider = new CellDrawablesProvider(activity);
         cells = GameBoardViewCellsProvider.prepareCells(activity, gameBoardDimension);
         backgroundIconsIds = (Matrix<Integer>) savedState.get(MapKeys.backgroundIconsIds);
         moveIconsIds = (Matrix<Integer>) savedState.get(MapKeys.moveIconsIds);
@@ -116,7 +111,7 @@ class GameBoardViewImpl implements GameBoardView {
         ImageView cell = cells.get(pos);
         int moveIconId = moveIconsIds.get(pos);
         int fireIconId = fireIconsIds.get(pos);
-        Drawable cellDrawable = cellDrawableProvider.getCellDrawable(moveIconId, fireIconId);
+        Drawable cellDrawable = cellDrawablesProvider.getCellDrawable(moveIconId, fireIconId);
         cell.setImageDrawable(cellDrawable);
     }
 
@@ -187,51 +182,6 @@ class GameBoardViewImpl implements GameBoardView {
         for (Position pos : cellsPositions) {
             fireIconsIds.set(pos, cellsTheme.getFireIconId(fireLineType));
             updateCellImage(pos);
-        }
-    }
-
-
-    private static class CellDrawableProvider {
-        private final Map<Object, Drawable> drawablesCache;
-        private final Resources resources;
-
-        CellDrawableProvider(Resources resources) {
-            this.resources = resources;
-            this.drawablesCache = new HashMap<Object, Drawable>();
-        }
-
-        Drawable getCellDrawable(int moveIconId, int fireIconId) {
-            if (fireIconId == R.color.transparent) {
-                return getDrawable(moveIconId);
-            } else {
-                return getLayerDrawable(moveIconId, fireIconId);
-            }
-        }
-
-        private Drawable getLayerDrawable(int moveIconId, int fireIconId) {
-            Object layerDrawableKey = Pair.create(moveIconId, fireIconId);
-            Drawable layerDrawable = drawablesCache.get(layerDrawableKey);
-            if (layerDrawable == null) {
-                layerDrawable = createLayerDrawable(moveIconId, fireIconId);
-                drawablesCache.put(layerDrawableKey, layerDrawable);
-            }
-            return layerDrawable;
-        }
-
-        private Drawable createLayerDrawable(int moveIconId, int fireIconId) {
-            Drawable[] layers = new Drawable[2];
-            layers[0] = getDrawable(moveIconId);
-            layers[1] = getDrawable(fireIconId);
-            return new LayerDrawable(layers);
-        }
-
-        private Drawable getDrawable(int iconId) {
-            Drawable drawable = drawablesCache.get(iconId);
-            if (drawable == null) {
-                drawable = resources.getDrawable(iconId);
-                drawablesCache.put(iconId, drawable);
-            }
-            return drawable;
         }
     }
 }
