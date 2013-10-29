@@ -7,7 +7,7 @@ import com.gmail.landanurm.tictactoe.CurrentThemeProvider;
 import com.gmail.landanurm.tictactoe.R;
 
 
-public class TicTacToeActivity extends Activity {
+public class TicTacToeGameActivity extends Activity {
 
     private TicTacToeController controller;
 

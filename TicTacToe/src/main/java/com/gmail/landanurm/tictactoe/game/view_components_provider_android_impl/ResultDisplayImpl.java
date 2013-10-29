@@ -52,43 +52,43 @@ class ResultDisplayImpl implements ResultDisplay {
     }
 
     @Override
-    public void show(GameState gameState) {
-        this.gameState = gameState;
-        this.displayed = true;
+    public void hide() {
+        this.displayed = false;
+        hideViews(winnerFirstPlayer, winnerSecondPlayer, loserFirstPlayer, loserSecondPlayer);
+    }
 
-        hide(winnerFirstPlayer, winnerSecondPlayer, loserFirstPlayer, loserSecondPlayer);
+    @Override
+    public void show(GameState gameState) {
+        this.displayed = true;
+        this.gameState = gameState;
+
+        hideViews(winnerFirstPlayer, winnerSecondPlayer, loserFirstPlayer, loserSecondPlayer);
         switch (gameState) {
         case FIRST_PLAYER_WINS:
-            show(winnerFirstPlayer, loserSecondPlayer);
+            showViews(winnerFirstPlayer, loserSecondPlayer);
             break;
         case SECOND_PLAYER_WINS:
-            show(winnerSecondPlayer, loserFirstPlayer);
+            showViews(winnerSecondPlayer, loserFirstPlayer);
             break;
         case DRAW:
-            show(loserFirstPlayer, loserSecondPlayer);
+            showViews(loserFirstPlayer, loserSecondPlayer);
             break;
         default:
             throw new IllegalArgumentException("Unknown gameState: " + gameState);
         }
     }
 
-    private void hide(View... views) {
-        setVisibilityForViews(View.INVISIBLE, views);
+    private void hideViews(View... views) {
+        changeVisibilityOfViews(View.INVISIBLE, views);
     }
 
-    private void show(View... views) {
-        setVisibilityForViews(View.VISIBLE, views);
+    private void showViews(View... views) {
+        changeVisibilityOfViews(View.VISIBLE, views);
     }
 
-    private void setVisibilityForViews(int visibility, View... views) {
-        for (View each : views) {
+    private void changeVisibilityOfViews(int visibility, View... viewsToChangeVisibility) {
+        for (View each : viewsToChangeVisibility) {
             each.setVisibility(visibility);
         }
-    }
-
-    @Override
-    public void hide() {
-        this.displayed = false;
-        hide(winnerFirstPlayer, winnerSecondPlayer, loserFirstPlayer, loserSecondPlayer);
     }
 }

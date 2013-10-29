@@ -19,11 +19,24 @@ class CellDrawablesProvider {
     }
 
     Drawable getCellDrawable(int moveIconId, int fireIconId) {
-        if (fireIconId == android.R.color.transparent) {
+        if (transparentDrawableId(fireIconId)) {
             return getDrawable(moveIconId);
         } else {
             return getLayerDrawable(moveIconId, fireIconId);
         }
+    }
+
+    private boolean transparentDrawableId(int iconId) {
+        return (iconId == android.R.color.transparent);
+    }
+
+    private Drawable getDrawable(int iconId) {
+        Drawable drawable = drawablesCache.get(iconId);
+        if (drawable == null) {
+            drawable = resources.getDrawable(iconId);
+            drawablesCache.put(iconId, drawable);
+        }
+        return drawable;
     }
 
     private Drawable getLayerDrawable(int moveIconId, int fireIconId) {
@@ -41,14 +54,5 @@ class CellDrawablesProvider {
         layers[0] = getDrawable(moveIconId);
         layers[1] = getDrawable(fireIconId);
         return new LayerDrawable(layers);
-    }
-
-    private Drawable getDrawable(int iconId) {
-        Drawable drawable = drawablesCache.get(iconId);
-        if (drawable == null) {
-            drawable = resources.getDrawable(iconId);
-            drawablesCache.put(iconId, drawable);
-        }
-        return drawable;
     }
 }

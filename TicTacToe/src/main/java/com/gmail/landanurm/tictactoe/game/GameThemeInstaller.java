@@ -14,14 +14,14 @@ import com.gmail.landanurm.tictactoe.theme.ScorePanelTheme;
  * Created by Leonid on 18.10.13.
  */
 class GameThemeInstaller {
-    private final RelativeLayout mainLayout;
-    private final RelativeLayout scorePanel;
+    private final FrameLayout gameBoard;
     private final ImageView firstPlayerFace;
     private final ImageView secondPlayerFace;
     private final ImageView versusIcon;
+    private final RelativeLayout mainLayout;
+    private final RelativeLayout scorePanel;
     private final TextView firstPlayerScore;
     private final TextView secondPlayerScore;
-    private final FrameLayout gameBoard;
 
     GameThemeInstaller(Activity activity) {
         mainLayout = (RelativeLayout) activity.findViewById(R.id.tic_tac_toe_game_activity_layout);
@@ -35,8 +35,8 @@ class GameThemeInstaller {
     }
 
     void install(GameTheme gameTheme) {
-
         mainLayout.setBackgroundResource(gameTheme.getScreenBackgroundIconId());
+        gameBoard.setBackgroundResource(gameTheme.getGameBoardTheme().getBackgroundIconId());
 
         ScorePanelTheme scorePanelTheme = gameTheme.getScorePanelTheme();
         scorePanel.setBackgroundResource(scorePanelTheme.getBackgroundIconId());
@@ -45,7 +45,5 @@ class GameThemeInstaller {
         versusIcon.setImageResource(scorePanelTheme.getVersusIconId());
         firstPlayerScore.setTextColor(scorePanelTheme.getFirstPlayerScoreColor());
         secondPlayerScore.setTextColor(scorePanelTheme.getSecondPlayerScoreColor());
-
-        gameBoard.setBackgroundResource(gameTheme.getGameBoardTheme().getBackgroundIconId());
     }
 }

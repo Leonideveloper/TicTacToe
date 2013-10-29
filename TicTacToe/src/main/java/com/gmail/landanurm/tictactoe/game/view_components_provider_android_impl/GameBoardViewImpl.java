@@ -28,7 +28,7 @@ class GameBoardViewImpl implements GameBoardView {
         final static String backgroundIconsIds = "GameBoardView.backgroundIconsIds";
         final static String moveIconsIds = "GameBoardView.moveIconsIds";
         final static String fireIconsIds = "GameBoardView.fireIconsIds";
-        final static String movesBlocked = "GameBoardView.movesBlocked";
+        final static String movesAreBlocked = "GameBoardView.movesAreBlocked";
     }
 
     private static CellsTheme getCurrentCellsTheme() {
@@ -44,7 +44,7 @@ class GameBoardViewImpl implements GameBoardView {
     private final Matrix<Integer> fireIconsIds;
     private final ReadOnlyMatrix<ImageView> cells;
 
-    private boolean movesBlocked;
+    private Boolean movesAreBlocked;
 
 
     GameBoardViewImpl(Activity activity, int gameBoardDimension) {
@@ -54,25 +54,7 @@ class GameBoardViewImpl implements GameBoardView {
         moveIconsIds = prepareTransparentIconsIds(gameBoardDimension);
         fireIconsIds = prepareTransparentIconsIds(gameBoardDimension);
         updateCells();
-        movesBlocked = false;
-    }
-
-    GameBoardViewImpl(Activity activity, int gameBoardDimension,
-                      Map<String, Serializable> savedState) {
-        cellDrawablesProvider = new CellDrawablesProvider(activity);
-        cells = GameBoardViewCellsProvider.prepareCells(activity, gameBoardDimension);
-        backgroundIconsIds = (Matrix<Integer>) savedState.get(MapKeys.backgroundIconsIds);
-        moveIconsIds = (Matrix<Integer>) savedState.get(MapKeys.moveIconsIds);
-        fireIconsIds = (Matrix<Integer>) savedState.get(MapKeys.fireIconsIds);
-        updateCells();
-        movesBlocked = (Boolean) savedState.get(MapKeys.movesBlocked);
-    }
-
-    void saveStateInto(Map<String, Serializable> outState) {
-        outState.put(MapKeys.backgroundIconsIds, (Serializable) backgroundIconsIds);
-        outState.put(MapKeys.moveIconsIds, (Serializable) moveIconsIds);
-        outState.put(MapKeys.fireIconsIds, (Serializable) fireIconsIds);
-        outState.put(MapKeys.movesBlocked, movesBlocked);
+        movesAreBlocked = false;
     }
 
     private Matrix<Integer> prepareCellsBackgroundIconsIds(int gameBoardDimension) {
@@ -80,7 +62,7 @@ class GameBoardViewImpl implements GameBoardView {
         ids.forEach(new OnEachHandler<Integer>() {
             @Override
             public void handle(Position position, Integer integer) {
-                ids.set(position, cellsTheme.getEmptyCellIconId());
+                ids.set(position, cellsTheme.getCellBackgroundIconId());
             }
         });
         return ids;
@@ -115,6 +97,24 @@ class GameBoardViewImpl implements GameBoardView {
         cell.setImageDrawable(cellDrawable);
     }
 
+    GameBoardViewImpl(Activity activity, int gameBoardDimension,
+                      Map<String, Serializable> savedState) {
+        cellDrawablesProvider = new CellDrawablesProvider(activity);
+        cells = GameBoardViewCellsProvider.prepareCells(activity, gameBoardDimension);
+        backgroundIconsIds = (Matrix<Integer>) savedState.get(MapKeys.backgroundIconsIds);
+        moveIconsIds = (Matrix<Integer>) savedState.get(MapKeys.moveIconsIds);
+        fireIconsIds = (Matrix<Integer>) savedState.get(MapKeys.fireIconsIds);
+        updateCells();
+        movesAreBlocked = (Boolean) savedState.get(MapKeys.movesAreBlocked);
+    }
+
+    void saveStateInto(Map<String, Serializable> outState) {
+        outState.put(MapKeys.backgroundIconsIds, (Serializable) backgroundIconsIds);
+        outState.put(MapKeys.moveIconsIds, (Serializable) moveIconsIds);
+        outState.put(MapKeys.fireIconsIds, (Serializable) fireIconsIds);
+        outState.put(MapKeys.movesAreBlocked, movesAreBlocked);
+    }
+
     @Override
     public void setOnCellClickListener(final OnCellClickListener listener) {
         cells.forEach(new OnEachHandler<ImageView>() {
@@ -124,7 +124,7 @@ class GameBoardViewImpl implements GameBoardView {
                 cell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (!movesBlocked()) {
+                        if (!movesAreBlocked()) {
                             listener.onCellClick(pos);
                         }
                     }
@@ -133,18 +133,18 @@ class GameBoardViewImpl implements GameBoardView {
         });
     }
 
-    private boolean movesBlocked() {
-        return movesBlocked;
+    private boolean movesAreBlocked() {
+        return movesAreBlocked;
     }
 
     @Override
     public void blockMoves() {
-        movesBlocked = true;
+        movesAreBlocked = true;
     }
 
     @Override
     public void unblockMoves() {
-        movesBlocked = false;
+        movesAreBlocked = false;
     }
 
     @Override

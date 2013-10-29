@@ -32,13 +32,13 @@ class StartNewGameRequestorImpl implements StartNewGameRequestor {
         startNewGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                notifyOnNeedToStartNewGameListeners();
+                notifyOnUserWantsToStartNewGameListeners();
             }
         });
         hideRequest();
     }
 
-    private void notifyOnNeedToStartNewGameListeners() {
+    private void notifyOnUserWantsToStartNewGameListeners() {
         for (OnUserWantsToStartNewGameListener each : onUserWantsToStartNewGameListeners) {
             each.onUserWantsToStartNewGame();
         }

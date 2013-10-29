@@ -20,6 +20,7 @@ import com.gmail.landanurm.tictactoe.theme.TicTacToeTheme;
 class GameBoardViewCellsProvider {
     private final Activity activity;
     private final Integer distanceBetweenCells;
+    private Integer gameBoardDimension;
 
     static Matrix<ImageView> prepareCells(Activity activity, int gameBoardDimension) {
         return new GameBoardViewCellsProvider(activity).prepareCells(gameBoardDimension);
@@ -36,10 +37,11 @@ class GameBoardViewCellsProvider {
     }
 
     Matrix<ImageView> prepareCells(final int gameBoardDimension) {
-        LinearLayout rowsContainerLayout = prepareRowsContainerLayout(gameBoardDimension);
+        this.gameBoardDimension = gameBoardDimension;
+        LinearLayout rowsContainerLayout = prepareRowsContainerLayout();
         Matrix<ImageView> cells = new SquareMatrix<ImageView>(gameBoardDimension);
         for (int row = 0; row < gameBoardDimension; ++row) {
-            LinearLayout rowLayout = prepareRowLayout(gameBoardDimension);
+            LinearLayout rowLayout = prepareRowLayout();
             for (int column = 0; column < gameBoardDimension; ++column) {
                 ImageView cell = prepareCell(row, column);
                 rowLayout.addView(cell);
@@ -52,17 +54,17 @@ class GameBoardViewCellsProvider {
         return cells;
     }
 
-    private LinearLayout prepareRowsContainerLayout(int numberOfRows) {
-        return prepareLinearLayout(numberOfRows, LinearLayout.VERTICAL);
+    private LinearLayout prepareRowsContainerLayout() {
+        return prepareLinearLayout(LinearLayout.VERTICAL);
     }
 
-    private LinearLayout prepareRowLayout(int numberOfCellsPerRow) {
-        return prepareLinearLayout(numberOfCellsPerRow, LinearLayout.HORIZONTAL);
+    private LinearLayout prepareRowLayout() {
+        return prepareLinearLayout(LinearLayout.HORIZONTAL);
     }
 
-    private LinearLayout prepareLinearLayout(int numberOfChildElements, int orientation) {
+    private LinearLayout prepareLinearLayout(int orientation) {
         LinearLayout layout = new LinearLayout(activity);
-        layout.setWeightSum(numberOfChildElements);
+        layout.setWeightSum(gameBoardDimension);
         layout.setOrientation(orientation);
         layout.setLayoutParams(createParams());
         return layout;

@@ -1,4 +1,4 @@
-package com.gmail.landanurm.tictactoe.theme_implementations.plain_theme;
+package com.gmail.landanurm.tictactoe.theme_implementations.xo_theme;
 
 import android.graphics.Color;
 
@@ -8,7 +8,7 @@ import com.gmail.landanurm.tictactoe.theme.ScorePanelTheme;
 /**
  * Created by Leonid on 17.10.13.
  */
-class PlainScorePanelTheme implements ScorePanelTheme {
+class XOScorePanelTheme implements ScorePanelTheme {
     @Override
     public int getBackgroundIconId() {
         return R.drawable.score_panel_background;

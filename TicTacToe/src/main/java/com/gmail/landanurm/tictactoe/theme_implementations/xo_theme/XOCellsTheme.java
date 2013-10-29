@@ -1,4 +1,4 @@
-package com.gmail.landanurm.tictactoe.theme_implementations.plain_theme;
+package com.gmail.landanurm.tictactoe.theme_implementations.xo_theme;
 
 import com.gmail.landanurm.tictactoe.R;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.FireLine;
@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * Created by Leonid on 17.10.13.
  */
-class PlainCellsTheme implements CellsTheme {
+class XOCellsTheme implements CellsTheme {
 
     private static final int[] FIRST_PLAYER_MOVE_ICONS_IDS = {
             R.drawable.first_player_move_1,
@@ -29,7 +29,7 @@ class PlainCellsTheme implements CellsTheme {
     };
 
     @Override
-    public int getEmptyCellIconId() {
+    public int getCellBackgroundIconId() {
         return R.drawable.empty_cell;
     }
 

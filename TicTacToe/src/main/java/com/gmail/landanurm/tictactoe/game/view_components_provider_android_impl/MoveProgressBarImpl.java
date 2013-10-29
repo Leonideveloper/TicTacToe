@@ -22,7 +22,7 @@ class MoveProgressBarImpl implements MoveProgressBar {
 
     private final View firstPlayerProgressBar;
     private final View secondPlayerProgressBar;
-    private boolean displayed;
+    private Boolean displayed;
     private Player.Id movePlayerId;
 
     MoveProgressBarImpl(Activity activity) {
@@ -52,18 +52,20 @@ class MoveProgressBarImpl implements MoveProgressBar {
         displayed = true;
         movePlayerId = playerId;
         if (playerId == Player.Id.FIRST_PLAYER) {
-            firstPlayerProgressBar.setVisibility(View.VISIBLE);
-            secondPlayerProgressBar.setVisibility(View.INVISIBLE);
+            setVisibility(View.VISIBLE, View.INVISIBLE);
         } else {
-            firstPlayerProgressBar.setVisibility(View.INVISIBLE);
-            secondPlayerProgressBar.setVisibility(View.VISIBLE);
+            setVisibility(View.INVISIBLE, View.VISIBLE);
         }
     }
 
     @Override
     public void hide() {
         displayed = false;
-        firstPlayerProgressBar.setVisibility(View.INVISIBLE);
-        secondPlayerProgressBar.setVisibility(View.INVISIBLE);
+        setVisibility(View.INVISIBLE, View.INVISIBLE);
+    }
+
+    private void setVisibility(int firstPlayerVisibility, int secondPlayerVisibility) {
+        firstPlayerProgressBar.setVisibility(firstPlayerVisibility);
+        secondPlayerProgressBar.setVisibility(secondPlayerVisibility);
     }
 }

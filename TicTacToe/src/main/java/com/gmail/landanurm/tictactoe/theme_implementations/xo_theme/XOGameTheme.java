@@ -1,4 +1,4 @@
-package com.gmail.landanurm.tictactoe.theme_implementations.plain_theme;
+package com.gmail.landanurm.tictactoe.theme_implementations.xo_theme;
 
 
 import com.gmail.landanurm.tictactoe.R;
@@ -9,9 +9,9 @@ import com.gmail.landanurm.tictactoe.theme.ScorePanelTheme;
 /**
  * Created by Leonid on 17.10.13.
  */
-class PlainGameTheme implements GameTheme {
-    private static final GameBoardTheme gameBoardTheme = new PlainGameBoardTheme();
-    private static final ScorePanelTheme scorePanelTheme = new PlainScorePanelTheme();
+class XOGameTheme implements GameTheme {
+    private static final GameBoardTheme gameBoardTheme = new XOGameBoardTheme();
+    private static final ScorePanelTheme scorePanelTheme = new XOScorePanelTheme();
 
     @Override
     public int getScreenBackgroundIconId() {
