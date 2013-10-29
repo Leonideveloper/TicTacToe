@@ -15,13 +15,13 @@ class HumanPlayer implements Player, OnCellClickListener, Serializable {
     private final Id id;
     private final OnMoveListener onMoveListener;
     private final ReadOnlyGameBoard gameBoard;
-    private boolean movesEnabled;
+    private Boolean movesAreEnabled;
 
     HumanPlayer(Id id, ReadOnlyGameBoard gameBoard, OnMoveListener onMoveListener) {
         this.id = id;
         this.onMoveListener = onMoveListener;
         this.gameBoard = gameBoard;
-        this.movesEnabled = false;
+        this.movesAreEnabled = false;
     }
 
     @Override
@@ -31,17 +31,17 @@ class HumanPlayer implements Player, OnCellClickListener, Serializable {
 
     @Override
     public void enableMoves() {
-        movesEnabled = true;
+        movesAreEnabled = true;
     }
 
     @Override
     public void disableMoves() {
-        movesEnabled = false;
+        movesAreEnabled = false;
     }
 
     @Override
     public void onCellClick(Position pos) {
-        if (movesEnabled && gameBoard.cellIsEmpty(pos)) {
+        if (movesAreEnabled && gameBoard.cellIsEmpty(pos)) {
             onMoveListener.onMove(pos, this);
         }
     }

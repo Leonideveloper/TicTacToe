@@ -7,9 +7,9 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeJudge;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeJudgeImpl;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeResult;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnGameFinishedListener;
+import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnGameStartedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnMovePlayerChangedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnNeedToShowMoveListener;
-import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnNewGameStartedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnScoreChangedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.PlayersFactory;
@@ -23,15 +23,15 @@ import java.util.List;
  */
 public class TicTacToeModelImpl implements TicTacToeModel, OnMoveListener, Serializable {
 
-    private transient final List<OnNewGameStartedListener> onNewGameStartedListeners =
-                                                  new ArrayList<OnNewGameStartedListener>();
-    private transient final List<OnGameFinishedListener> onGameFinishedListeners =
+    transient private final List<OnGameStartedListener> onGameStartedListeners =
+                                                  new ArrayList<OnGameStartedListener>();
+    transient private final List<OnGameFinishedListener> onGameFinishedListeners =
                                                   new ArrayList<OnGameFinishedListener>();
-    private transient final List<OnScoreChangedListener> onScoreChangedListeners =
+    transient private final List<OnScoreChangedListener> onScoreChangedListeners =
                                                   new ArrayList<OnScoreChangedListener>();
-    private transient final List<OnNeedToShowMoveListener> onNeedToShowMoveListeners =
+    transient private final List<OnNeedToShowMoveListener> onNeedToShowMoveListeners =
                                                   new ArrayList<OnNeedToShowMoveListener>();
-    private transient final List<OnMovePlayerChangedListener> onMovePlayerChangedListeners =
+    transient private final List<OnMovePlayerChangedListener> onMovePlayerChangedListeners =
                                                   new ArrayList<OnMovePlayerChangedListener>();
 
     private final GameBoard gameBoard;
@@ -59,14 +59,14 @@ public class TicTacToeModelImpl implements TicTacToeModel, OnMoveListener, Seria
     @Override
     public void startGame() {
         gameBoard.clear();
-        notifyOnNewGameStartedListeners();
+        notifyOnGameStartedListeners();
         notifyOnMovePlayerChangedListeners();
         movePlayer.enableMoves();
     }
 
-    private void notifyOnNewGameStartedListeners() {
-        for (OnNewGameStartedListener each : onNewGameStartedListeners) {
-            each.onNewGameStarted();
+    private void notifyOnGameStartedListeners() {
+        for (OnGameStartedListener each : onGameStartedListeners) {
+            each.onGameStarted();
         }
     }
 
@@ -92,8 +92,8 @@ public class TicTacToeModelImpl implements TicTacToeModel, OnMoveListener, Seria
     }
 
     @Override
-    public void addOnNewGameStartedListener(OnNewGameStartedListener listener) {
-        onNewGameStartedListeners.add(listener);
+    public void addOnGameStartedListener(OnGameStartedListener listener) {
+        onGameStartedListeners.add(listener);
     }
 
     @Override
@@ -165,14 +165,14 @@ public class TicTacToeModelImpl implements TicTacToeModel, OnMoveListener, Seria
 
     private Player defineNextMovePlayer(GameState gameState) {
         switch (gameState) {
-            case FIRST_PLAYER_WINS:
-                return firstPlayer;
-            case SECOND_PLAYER_WINS:
-                return secondPlayer;
-            case DRAW:
-                return movePlayer;
+        case FIRST_PLAYER_WINS:
+            return firstPlayer;
+        case SECOND_PLAYER_WINS:
+            return secondPlayer;
+        case DRAW:
+            return movePlayer;
         }
-        throw new IllegalArgumentException("unknown gameState: " + gameState);
+        throw new IllegalArgumentException("Unknown gameState: " + gameState);
     }
 
     private void changeMovePlayer() {

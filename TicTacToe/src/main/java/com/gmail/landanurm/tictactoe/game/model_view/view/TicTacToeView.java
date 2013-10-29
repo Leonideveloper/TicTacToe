@@ -8,10 +8,10 @@ public interface TicTacToeView {
     void addOnCellClickListener(OnCellClickListener listener);
 
     public static interface ComponentsProvider {
-        StartNewGameRequestor getStartNewGameRequestor();
         GameBoardView getGameBoardView();
+        MoveProgressBar getMoveProgressBar();
         ResultDisplay getResultDisplay();
         ScoreDisplay getScoreDisplay();
-        MoveProgressBar getMoveProgressBar();
+        StartNewGameRequestor getStartNewGameRequestor();
     }
 }

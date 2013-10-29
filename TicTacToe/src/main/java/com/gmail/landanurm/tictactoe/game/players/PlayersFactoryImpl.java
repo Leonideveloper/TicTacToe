@@ -10,6 +10,10 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.player.PlayersFactory
  */
 public class PlayersFactoryImpl implements PlayersFactory {
 
+    private OnMoveListener onMoveListener;
+    private Player.Id playerId;
+    private ReadOnlyGameBoard gameBoard;
+
     @Override
     public Player createFirstPlayer(String playerType, ReadOnlyGameBoard gameBoard,
                                     OnMoveListener onMoveListener) {
@@ -24,14 +28,29 @@ public class PlayersFactoryImpl implements PlayersFactory {
 
     private Player createPlayer(String playerType, ReadOnlyGameBoard gameBoard,
                                 OnMoveListener onMoveListener, Player.Id playerId) {
+        this.gameBoard = gameBoard;
+        this.onMoveListener = onMoveListener;
+        this.playerId = playerId;
         if (playerType.equals(PlayerTypes.HUMAN)) {
-            return new HumanPlayer(playerId, gameBoard, onMoveListener);
+            return createHumanPlayer();
         } else if (playerType.equals(PlayerTypes.AI.NORMAL)) {
-            return new AIPlayer(playerId, onMoveListener, new NormalAIMoveCalculator(gameBoard));
+            return createNormalAIPlayer();
         } else if (playerType.equals(PlayerTypes.AI.HARD)) {
             throw new PlayerTypeIsNotYetImplementedException(playerType);
         }
         throw new UnknownPlayerTypeException(playerType);
+    }
+
+    private Player createHumanPlayer() {
+        return new HumanPlayer(playerId, gameBoard, onMoveListener);
+    }
+
+    private Player createNormalAIPlayer() {
+        return createAIPlayer(new NormalAIMoveCalculator(gameBoard));
+    }
+
+    private Player createAIPlayer(AIMoveCalculator aiMoveCalculator) {
+        return new AIPlayer(playerId, onMoveListener, aiMoveCalculator);
     }
 
     private static class PlayerTypeIsNotYetImplementedException extends RuntimeException {

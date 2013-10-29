@@ -5,9 +5,9 @@ import com.gmail.landanurm.matrix.Position;
 import com.gmail.landanurm.tictactoe.game.model_view.model.TicTacToeModel;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeResult;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnGameFinishedListener;
+import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnGameStartedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnMovePlayerChangedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnNeedToShowMoveListener;
-import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnNewGameStartedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnScoreChangedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 
@@ -17,7 +17,7 @@ import java.util.List;
 
 public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
                 OnNeedToShowMoveListener, OnScoreChangedListener, OnMovePlayerChangedListener,
-                OnGameFinishedListener, OnUserWantsToStartNewGameListener, OnNewGameStartedListener {
+                OnGameFinishedListener, OnUserWantsToStartNewGameListener, OnGameStartedListener {
 
     private final GameBoardView gameBoardView;
     private final MoveProgressBar moveProgressBar;
@@ -42,12 +42,12 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
         startNewGameRequestor = viewComponentsProvider.getStartNewGameRequestor();
         startNewGameRequestor.addOnUserWantsToStartNewGameListener(this);
 
-        this.model = model;
-        model.addOnNewGameStartedListener(this);
+        model.addOnGameStartedListener(this);
         model.addOnGameFinishedListener(this);
         model.addOnScoreChangedListener(this);
         model.addOnNeedToShowMoveListener(this);
         model.addOnMovePlayerChangedListener(this);
+        this.model = model;
     }
 
     @Override
@@ -97,7 +97,7 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
     }
 
     @Override
-    public void onNewGameStarted() {
+    public void onGameStarted() {
         gameBoardView.clear();
         resultDisplay.hide();
         startNewGameRequestor.hideRequest();
