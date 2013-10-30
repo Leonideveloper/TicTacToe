@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.gmail.landanurm.tictactoe.R;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
-import com.gmail.landanurm.tictactoe.game.model_view.view.MoveProgressBar;
+import com.gmail.landanurm.tictactoe.game.model_view.view.NextMoveProgressBar;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -13,11 +13,11 @@ import java.util.Map;
 /**
  * Created by Leonid on 04.08.13.
  */
-class MoveProgressBarImpl implements MoveProgressBar {
+class NextMoveProgressBarImpl implements NextMoveProgressBar {
 
     private static class MapKeys {
-        final static String displayed = "MoveProgressBar.displayed";
-        final static String movePlayerId = "MoveProgressBar.movePlayerId";
+        final static String displayed = "NextMoveProgressBar.displayed";
+        final static String movePlayerId = "NextMoveProgressBar.movePlayerId";
     }
 
     private final View firstPlayerProgressBar;
@@ -25,13 +25,13 @@ class MoveProgressBarImpl implements MoveProgressBar {
     private Boolean displayed;
     private Player.Id movePlayerId;
 
-    MoveProgressBarImpl(Activity activity) {
+    NextMoveProgressBarImpl(Activity activity) {
         firstPlayerProgressBar = activity.findViewById(R.id.firstPlayerProgressBar);
         secondPlayerProgressBar = activity.findViewById(R.id.secondPlayerProgressBar);
         hide();
     }
 
-    MoveProgressBarImpl(Activity activity, Map<String, Serializable> savedState) {
+    NextMoveProgressBarImpl(Activity activity, Map<String, Serializable> savedState) {
         this(activity);
         Boolean needToDisplay = (Boolean) savedState.get(MapKeys.displayed);
         if (needToDisplay) {

@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.gmail.landanurm.tictactoe.game.model_view.view.StartNewGameRequestor;
 import com.gmail.landanurm.tictactoe.game.model_view.view.GameBoardView;
-import com.gmail.landanurm.tictactoe.game.model_view.view.MoveProgressBar;
+import com.gmail.landanurm.tictactoe.game.model_view.view.NextMoveProgressBar;
 import com.gmail.landanurm.tictactoe.game.model_view.view.ResultDisplay;
 import com.gmail.landanurm.tictactoe.game.model_view.view.ScoreDisplay;
 import com.gmail.landanurm.tictactoe.game.model_view.view.TicTacToeView;
@@ -18,14 +18,14 @@ import java.util.Map;
  */
 public class ViewComponentsProviderAndroidImpl implements TicTacToeView.ComponentsProvider {
     private final GameBoardViewImpl gameBoardView;
-    private final MoveProgressBarImpl moveProgressBar;
+    private final NextMoveProgressBarImpl moveProgressBar;
     private final ResultDisplayImpl resultDisplay;
     private final ScoreDisplayImpl scoreDisplay;
     private final StartNewGameRequestorImpl startNewGameRequestor;
 
     public ViewComponentsProviderAndroidImpl(Activity activity, int gameBoardDimension) {
         gameBoardView = new GameBoardViewImpl(activity, gameBoardDimension);
-        moveProgressBar = new MoveProgressBarImpl(activity);
+        moveProgressBar = new NextMoveProgressBarImpl(activity);
         resultDisplay = new ResultDisplayImpl(activity);
         scoreDisplay = new ScoreDisplayImpl(activity);
         startNewGameRequestor = new StartNewGameRequestorImpl(activity);
@@ -35,7 +35,7 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
                                              Serializable viewComponentsState) {
         Map<String, Serializable> savedState = (Map<String, Serializable>) viewComponentsState;
         gameBoardView = new GameBoardViewImpl(activity, gameBoardDimension, savedState);
-        moveProgressBar = new MoveProgressBarImpl(activity, savedState);
+        moveProgressBar = new NextMoveProgressBarImpl(activity, savedState);
         resultDisplay = new ResultDisplayImpl(activity, savedState);
         scoreDisplay = new ScoreDisplayImpl(activity, savedState);
         startNewGameRequestor = new StartNewGameRequestorImpl(activity, savedState);
@@ -47,7 +47,7 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
     }
 
     @Override
-    public MoveProgressBar getMoveProgressBar() {
+    public NextMoveProgressBar getNextMoveProgressBar() {
         return moveProgressBar;
     }
 

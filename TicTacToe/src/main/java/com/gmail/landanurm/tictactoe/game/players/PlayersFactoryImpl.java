@@ -1,7 +1,7 @@
 package com.gmail.landanurm.tictactoe.game.players;
 
-import com.gmail.landanurm.tictactoe.game.model_view.model.game_board.ReadOnlyGameBoard;
-import com.gmail.landanurm.tictactoe.game.model_view.model.OnMoveListener;
+import com.gmail.landanurm.tictactoe.game.model_view.model.ReadOnlyGameBoard;
+import com.gmail.landanurm.tictactoe.game.model_view.model.TicTacToeModel;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.PlayersFactory;
 
@@ -10,27 +10,31 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.player.PlayersFactory
  */
 public class PlayersFactoryImpl implements PlayersFactory {
 
-    private OnMoveListener onMoveListener;
     private Player.Id playerId;
     private ReadOnlyGameBoard gameBoard;
+    private String playerType;
+    private TicTacToeModel model;
 
     @Override
-    public Player createFirstPlayer(String playerType, ReadOnlyGameBoard gameBoard,
-                                    OnMoveListener onMoveListener) {
-        return createPlayer(playerType, gameBoard, onMoveListener, Player.Id.FIRST_PLAYER);
+    public Player createFirstPlayer(String playerType, ReadOnlyGameBoard gameBoard, TicTacToeModel model) {
+        return createPlayer(playerType, gameBoard, model, Player.Id.FIRST_PLAYER);
     }
 
     @Override
-    public Player createSecondPlayer(String playerType, ReadOnlyGameBoard gameBoard,
-                                     OnMoveListener onMoveListener) {
-        return createPlayer(playerType, gameBoard, onMoveListener, Player.Id.SECOND_PLAYER);
+    public Player createSecondPlayer(String playerType, ReadOnlyGameBoard gameBoard, TicTacToeModel model) {
+        return createPlayer(playerType, gameBoard, model, Player.Id.SECOND_PLAYER);
     }
 
     private Player createPlayer(String playerType, ReadOnlyGameBoard gameBoard,
-                                OnMoveListener onMoveListener, Player.Id playerId) {
-        this.gameBoard = gameBoard;
-        this.onMoveListener = onMoveListener;
+                                TicTacToeModel model, Player.Id playerId) {
+        this.playerType = playerType;
         this.playerId = playerId;
+        this.gameBoard = gameBoard;
+        this.model = model;
+        return createPlayer();
+    }
+
+    private Player createPlayer() {
         if (playerType.equals(PlayerTypes.HUMAN)) {
             return createHumanPlayer();
         } else if (playerType.equals(PlayerTypes.AI.NORMAL)) {
@@ -42,7 +46,7 @@ public class PlayersFactoryImpl implements PlayersFactory {
     }
 
     private Player createHumanPlayer() {
-        return new HumanPlayer(playerId, gameBoard, onMoveListener);
+        return new HumanPlayer(playerId, gameBoard, model);
     }
 
     private Player createNormalAIPlayer() {
@@ -50,7 +54,7 @@ public class PlayersFactoryImpl implements PlayersFactory {
     }
 
     private Player createAIPlayer(AIMoveCalculator aiMoveCalculator) {
-        return new AIPlayer(playerId, onMoveListener, aiMoveCalculator);
+        return new AIPlayer(playerId, model, aiMoveCalculator);
     }
 
     private static class PlayerTypeIsNotYetImplementedException extends RuntimeException {

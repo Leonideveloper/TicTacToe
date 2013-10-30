@@ -1,7 +1,7 @@
 package com.gmail.landanurm.tictactoe.game.players;
 
 import com.gmail.landanurm.matrix.Position;
-import com.gmail.landanurm.tictactoe.game.model_view.model.game_board.ReadOnlyGameBoard;
+import com.gmail.landanurm.tictactoe.game.model_view.model.ReadOnlyGameBoard;
 
 import java.io.Serializable;
 

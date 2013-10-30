@@ -6,8 +6,8 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.TicTacToeModel;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeResult;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnGameFinishedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnGameStartedListener;
-import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnMovePlayerChangedListener;
-import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnNeedToShowMoveListener;
+import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnPlayerWhoShouldMoveNextChangedListener;
+import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnPlayerMovedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnScoreChangedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 
@@ -16,11 +16,11 @@ import java.util.List;
 
 
 public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
-                OnNeedToShowMoveListener, OnScoreChangedListener, OnMovePlayerChangedListener,
-                OnGameFinishedListener, OnUserWantsToStartNewGameListener, OnGameStartedListener {
+        OnPlayerMovedListener, OnScoreChangedListener, OnPlayerWhoShouldMoveNextChangedListener,
+        OnGameFinishedListener, OnUserWantsToStartNewGameListener, OnGameStartedListener {
 
     private final GameBoardView gameBoardView;
-    private final MoveProgressBar moveProgressBar;
+    private final NextMoveProgressBar nextMoveProgressBar;
     private final ResultDisplay resultDisplay;
     private final ScoreDisplay scoreDisplay;
     private final StartNewGameRequestor startNewGameRequestor;
@@ -35,7 +35,7 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
 
         gameBoardView = viewComponentsProvider.getGameBoardView();
         gameBoardView.setOnCellClickListener(this);
-        moveProgressBar = viewComponentsProvider.getMoveProgressBar();
+        nextMoveProgressBar = viewComponentsProvider.getNextMoveProgressBar();
         resultDisplay = viewComponentsProvider.getResultDisplay();
         scoreDisplay = viewComponentsProvider.getScoreDisplay();
         scoreDisplay.showScore(model.getScore());
@@ -45,8 +45,8 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
         model.addOnGameStartedListener(this);
         model.addOnGameFinishedListener(this);
         model.addOnScoreChangedListener(this);
-        model.addOnNeedToShowMoveListener(this);
-        model.addOnMovePlayerChangedListener(this);
+        model.addOnPlayerMovedListener(this);
+        model.addOnPlayerWhoShouldMoveNextChangedListener(this);
         this.model = model;
     }
 
@@ -69,7 +69,7 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
     }
 
     @Override
-    public void onNeedToShowMove(Position pos, Player.Id playerId) {
+    public void onPlayerMoved(Position pos, Player.Id playerId) {
         gameBoardView.showMove(pos, playerId);
     }
 
@@ -79,15 +79,15 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
     }
 
     @Override
-    public void onMovePlayerChanged(Player.Id playerId) {
-        moveProgressBar.show(playerId);
+    public void onPlayerWhoShouldMoveNextChanged(Player.Id playerWhoShouldMoveNextId) {
+        nextMoveProgressBar.show(playerWhoShouldMoveNextId);
     }
 
     @Override
     public void onGameFinished(TicTacToeResult result) {
         gameBoardView.showFireLines(result.getFireLines());
         resultDisplay.show(result.getGameState());
-        moveProgressBar.hide();
+        nextMoveProgressBar.hide();
         startNewGameRequestor.requestToStartNewGame();
     }
 

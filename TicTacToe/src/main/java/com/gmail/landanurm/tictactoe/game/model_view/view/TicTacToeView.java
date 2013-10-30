@@ -9,7 +9,7 @@ public interface TicTacToeView {
 
     public static interface ComponentsProvider {
         GameBoardView getGameBoardView();
-        MoveProgressBar getMoveProgressBar();
+        NextMoveProgressBar getNextMoveProgressBar();
         ResultDisplay getResultDisplay();
         ScoreDisplay getScoreDisplay();
         StartNewGameRequestor getStartNewGameRequestor();
