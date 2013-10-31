@@ -18,14 +18,14 @@ import java.util.Map;
  */
 public class ViewComponentsProviderAndroidImpl implements TicTacToeView.ComponentsProvider {
     private final GameBoardViewImpl gameBoardView;
-    private final NextMoveProgressBarImpl moveProgressBar;
+    private final NextMoveProgressBarImpl nextMoveProgressBar;
     private final ResultDisplayImpl resultDisplay;
     private final ScoreDisplayImpl scoreDisplay;
     private final StartNewGameRequestorImpl startNewGameRequestor;
 
     public ViewComponentsProviderAndroidImpl(Activity activity, int gameBoardDimension) {
         gameBoardView = new GameBoardViewImpl(activity, gameBoardDimension);
-        moveProgressBar = new NextMoveProgressBarImpl(activity);
+        nextMoveProgressBar = new NextMoveProgressBarImpl(activity);
         resultDisplay = new ResultDisplayImpl(activity);
         scoreDisplay = new ScoreDisplayImpl(activity);
         startNewGameRequestor = new StartNewGameRequestorImpl(activity);
@@ -35,7 +35,7 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
                                              Serializable viewComponentsState) {
         Map<String, Serializable> savedState = (Map<String, Serializable>) viewComponentsState;
         gameBoardView = new GameBoardViewImpl(activity, gameBoardDimension, savedState);
-        moveProgressBar = new NextMoveProgressBarImpl(activity, savedState);
+        nextMoveProgressBar = new NextMoveProgressBarImpl(activity, savedState);
         resultDisplay = new ResultDisplayImpl(activity, savedState);
         scoreDisplay = new ScoreDisplayImpl(activity, savedState);
         startNewGameRequestor = new StartNewGameRequestorImpl(activity, savedState);
@@ -48,7 +48,7 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
 
     @Override
     public NextMoveProgressBar getNextMoveProgressBar() {
-        return moveProgressBar;
+        return nextMoveProgressBar;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class ViewComponentsProviderAndroidImpl implements TicTacToeView.Componen
     public Serializable getState() {
         HashMap<String, Serializable> viewComponentsState = new HashMap<String, Serializable>();
         gameBoardView.saveStateInto(viewComponentsState);
-        moveProgressBar.saveStateInto(viewComponentsState);
+        nextMoveProgressBar.saveStateInto(viewComponentsState);
         resultDisplay.saveStateInto(viewComponentsState);
         scoreDisplay.saveStateInto(viewComponentsState);
         startNewGameRequestor.saveStateInto(viewComponentsState);

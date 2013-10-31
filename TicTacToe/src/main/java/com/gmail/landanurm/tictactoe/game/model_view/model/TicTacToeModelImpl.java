@@ -76,7 +76,8 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
     }
 
     @Override
-    public void addOnPlayerWhoShouldMoveNextChangedListener(OnPlayerWhoShouldMoveNextChangedListener listener) {
+    public void addOnPlayerWhoShouldMoveNextChangedListener(
+                   OnPlayerWhoShouldMoveNextChangedListener listener) {
         onPlayerWhoShouldMoveNextChangedListeners.add(listener);
     }
 

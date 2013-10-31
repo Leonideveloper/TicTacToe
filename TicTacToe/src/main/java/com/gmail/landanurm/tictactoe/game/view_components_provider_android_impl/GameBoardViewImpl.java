@@ -38,7 +38,7 @@ class GameBoardViewImpl implements GameBoardView {
 
     private final CellsTheme cellsTheme = getCurrentCellsTheme();
 
-    private final CellDrawablesProvider cellDrawablesProvider;
+    private final CombinedDrawablesProvider combinedDrawablesProvider;
     private final Matrix<Integer> backgroundIconsIds;
     private final Matrix<Integer> moveIconsIds;
     private final Matrix<Integer> fireIconsIds;
@@ -48,7 +48,7 @@ class GameBoardViewImpl implements GameBoardView {
 
 
     GameBoardViewImpl(Activity activity, int gameBoardDimension) {
-        cellDrawablesProvider = new CellDrawablesProvider(activity);
+        combinedDrawablesProvider = new CombinedDrawablesProvider(activity);
         cells = GameBoardViewCellsProvider.prepareCells(activity, gameBoardDimension);
         backgroundIconsIds = prepareCellsBackgroundIconsIds(gameBoardDimension);
         moveIconsIds = prepareTransparentIconsIds(gameBoardDimension);
@@ -93,13 +93,13 @@ class GameBoardViewImpl implements GameBoardView {
         ImageView cell = cells.get(pos);
         int moveIconId = moveIconsIds.get(pos);
         int fireIconId = fireIconsIds.get(pos);
-        Drawable cellDrawable = cellDrawablesProvider.getCellDrawable(moveIconId, fireIconId);
+        Drawable cellDrawable = combinedDrawablesProvider.getCombinedDrawable(moveIconId, fireIconId);
         cell.setImageDrawable(cellDrawable);
     }
 
     GameBoardViewImpl(Activity activity, int gameBoardDimension,
                       Map<String, Serializable> savedState) {
-        cellDrawablesProvider = new CellDrawablesProvider(activity);
+        combinedDrawablesProvider = new CombinedDrawablesProvider(activity);
         cells = GameBoardViewCellsProvider.prepareCells(activity, gameBoardDimension);
         backgroundIconsIds = (Matrix<Integer>) savedState.get(MapKeys.backgroundIconsIds);
         moveIconsIds = (Matrix<Integer>) savedState.get(MapKeys.moveIconsIds);
@@ -119,8 +119,7 @@ class GameBoardViewImpl implements GameBoardView {
     public void setOnCellClickListener(final OnCellClickListener listener) {
         cells.forEach(new OnEachHandler<ImageView>() {
             @Override
-            public void handle(final Position pos, ImageView elem) {
-                ImageView cell = cells.get(pos);
+            public void handle(final Position pos, ImageView cell) {
                 cell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

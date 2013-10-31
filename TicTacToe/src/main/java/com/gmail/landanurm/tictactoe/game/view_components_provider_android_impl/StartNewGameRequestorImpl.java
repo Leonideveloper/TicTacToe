@@ -23,7 +23,6 @@ class StartNewGameRequestorImpl implements StartNewGameRequestor {
 
     private final Collection<OnUserWantsToStartNewGameListener> onUserWantsToStartNewGameListeners;
     private final View startNewGameButton;
-
     private boolean requested;
 
     StartNewGameRequestorImpl(Activity activity) {
@@ -44,12 +43,24 @@ class StartNewGameRequestorImpl implements StartNewGameRequestor {
         }
     }
 
+    @Override
+    public void hideRequest() {
+        requested = false;
+        startNewGameButton.setVisibility(View.INVISIBLE);
+    }
+
     StartNewGameRequestorImpl(Activity activity, Map<String, Serializable> savedState) {
         this(activity);
         Boolean needToRequest = (Boolean) savedState.get(MapKeys.requested);
         if (needToRequest) {
             requestToStartNewGame();
         }
+    }
+
+    @Override
+    public void requestToStartNewGame() {
+        requested = true;
+        startNewGameButton.setVisibility(View.VISIBLE);
     }
 
     void saveStateInto(Map<String,Serializable> outState) {
@@ -59,17 +70,5 @@ class StartNewGameRequestorImpl implements StartNewGameRequestor {
     @Override
     public void addOnUserWantsToStartNewGameListener(OnUserWantsToStartNewGameListener listener) {
         onUserWantsToStartNewGameListeners.add(listener);
-    }
-
-    @Override
-    public void requestToStartNewGame() {
-        requested = true;
-        startNewGameButton.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideRequest() {
-        requested = false;
-        startNewGameButton.setVisibility(View.INVISIBLE);
     }
 }

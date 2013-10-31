@@ -54,15 +54,15 @@ class ResultDisplayImpl implements ResultDisplay {
     @Override
     public void hide() {
         this.displayed = false;
-        hideViews(winnerFirstPlayer, winnerSecondPlayer, loserFirstPlayer, loserSecondPlayer);
+        hideAllViews();
     }
 
     @Override
     public void show(GameState gameState) {
         this.displayed = true;
         this.gameState = gameState;
+        hideAllViews();
 
-        hideViews(winnerFirstPlayer, winnerSecondPlayer, loserFirstPlayer, loserSecondPlayer);
         switch (gameState) {
         case FIRST_PLAYER_WINS:
             showViews(winnerFirstPlayer, loserSecondPlayer);
@@ -78,8 +78,10 @@ class ResultDisplayImpl implements ResultDisplay {
         }
     }
 
-    private void hideViews(View... views) {
-        changeVisibilityOfViews(View.INVISIBLE, views);
+    private void hideAllViews() {
+        changeVisibilityOfViews(View.INVISIBLE,
+                winnerFirstPlayer, winnerSecondPlayer,
+                loserFirstPlayer, loserSecondPlayer);
     }
 
     private void showViews(View... views) {

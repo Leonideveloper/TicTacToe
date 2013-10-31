@@ -17,13 +17,13 @@ class NextMoveProgressBarImpl implements NextMoveProgressBar {
 
     private static class MapKeys {
         final static String displayed = "NextMoveProgressBar.displayed";
-        final static String movePlayerId = "NextMoveProgressBar.movePlayerId";
+        final static String idOfPlayerWhoShouldMoveNext = "NextMoveProgressBar.playerId";
     }
 
     private final View firstPlayerProgressBar;
     private final View secondPlayerProgressBar;
     private Boolean displayed;
-    private Player.Id movePlayerId;
+    private Player.Id idOfPlayerWhoShouldMoveNext;
 
     NextMoveProgressBarImpl(Activity activity) {
         firstPlayerProgressBar = activity.findViewById(R.id.firstPlayerProgressBar);
@@ -35,7 +35,7 @@ class NextMoveProgressBarImpl implements NextMoveProgressBar {
         this(activity);
         Boolean needToDisplay = (Boolean) savedState.get(MapKeys.displayed);
         if (needToDisplay) {
-            Player.Id playerId = (Player.Id) savedState.get(MapKeys.movePlayerId);
+            Player.Id playerId = (Player.Id) savedState.get(MapKeys.idOfPlayerWhoShouldMoveNext);
             show(playerId);
         }
     }
@@ -43,14 +43,14 @@ class NextMoveProgressBarImpl implements NextMoveProgressBar {
     void saveStateInto(Map<String, Serializable> outState) {
         outState.put(MapKeys.displayed, displayed);
         if (displayed) {
-            outState.put(MapKeys.movePlayerId, movePlayerId);
+            outState.put(MapKeys.idOfPlayerWhoShouldMoveNext, idOfPlayerWhoShouldMoveNext);
         }
     }
 
     @Override
     public void show(Player.Id playerId) {
         displayed = true;
-        movePlayerId = playerId;
+        idOfPlayerWhoShouldMoveNext = playerId;
         if (playerId == Player.Id.FIRST_PLAYER) {
             setVisibility(View.VISIBLE, View.INVISIBLE);
         } else {
