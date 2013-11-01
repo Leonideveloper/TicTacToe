@@ -61,8 +61,8 @@ class GameBoardViewImpl implements GameBoardView {
         final Matrix<Integer> ids = new SquareMatrix<Integer>(gameBoardDimension);
         ids.forEach(new OnEachHandler<Integer>() {
             @Override
-            public void handle(Position position, Integer integer) {
-                ids.set(position, cellsTheme.getCellBackgroundIconId());
+            public void handle(Position pos, Integer elem) {
+                ids.set(pos, cellsTheme.getCellBackgroundIconId());
             }
         });
         return ids;
@@ -77,9 +77,9 @@ class GameBoardViewImpl implements GameBoardView {
     private void updateCells() {
         cells.forEach(new OnEachHandler<ImageView>() {
             @Override
-            public void handle(Position position, ImageView cell) {
-                updateCellBackground(position);
-                updateCellImage(position);
+            public void handle(Position pos, ImageView cell) {
+                updateCellBackground(pos);
+                updateCellImage(pos);
             }
         });
     }
@@ -97,8 +97,7 @@ class GameBoardViewImpl implements GameBoardView {
         cell.setImageDrawable(cellDrawable);
     }
 
-    GameBoardViewImpl(Activity activity, int gameBoardDimension,
-                      Map<String, Serializable> savedState) {
+    GameBoardViewImpl(Activity activity, int gameBoardDimension, Map<String, Serializable> savedState) {
         combinedDrawablesProvider = new CombinedDrawablesProvider(activity);
         cells = GameBoardViewCellsProvider.prepareCells(activity, gameBoardDimension);
         backgroundIconsIds = (Matrix<Integer>) savedState.get(MapKeys.backgroundIconsIds);

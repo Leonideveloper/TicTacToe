@@ -51,6 +51,10 @@ class StartNewGameRequestorImpl implements StartNewGameRequestor {
 
     StartNewGameRequestorImpl(Activity activity, Map<String, Serializable> savedState) {
         this(activity);
+        restoreStateFrom(savedState);
+    }
+
+    private void restoreStateFrom(Map<String, Serializable> savedState) {
         Boolean needToRequest = (Boolean) savedState.get(MapKeys.requested);
         if (needToRequest) {
             requestToStartNewGame();

@@ -35,8 +35,29 @@ class ResultDisplayImpl implements ResultDisplay {
         hide();
     }
 
+    @Override
+    public void hide() {
+        this.displayed = false;
+        hideAllViews();
+    }
+
+    private void hideAllViews() {
+        changeVisibility(View.INVISIBLE,
+                winnerFirstPlayer, winnerSecondPlayer, loserFirstPlayer, loserSecondPlayer);
+    }
+
+    private void changeVisibility(int visibility, View... viewsToChangeVisibility) {
+        for (View each : viewsToChangeVisibility) {
+            each.setVisibility(visibility);
+        }
+    }
+
     ResultDisplayImpl(Activity activity, Map<String, Serializable> savedState) {
         this(activity);
+        restoreStateFrom(savedState);
+    }
+
+    private void restoreStateFrom(Map<String,Serializable> savedState) {
         Boolean needToDisplay = (Boolean) savedState.get(MapKeys.displayed);
         if (needToDisplay) {
             GameState savedGameState = (GameState) savedState.get(MapKeys.gameState);
@@ -44,23 +65,11 @@ class ResultDisplayImpl implements ResultDisplay {
         }
     }
 
-    void saveStateInto(Map<String, Serializable> outState) {
-        outState.put(MapKeys.displayed, displayed);
-        if (displayed) {
-            outState.put(MapKeys.gameState, gameState);
-        }
-    }
-
-    @Override
-    public void hide() {
-        this.displayed = false;
-        hideAllViews();
-    }
-
     @Override
     public void show(GameState gameState) {
         this.displayed = true;
         this.gameState = gameState;
+
         hideAllViews();
 
         switch (gameState) {
@@ -78,19 +87,14 @@ class ResultDisplayImpl implements ResultDisplay {
         }
     }
 
-    private void hideAllViews() {
-        changeVisibilityOfViews(View.INVISIBLE,
-                winnerFirstPlayer, winnerSecondPlayer,
-                loserFirstPlayer, loserSecondPlayer);
-    }
-
     private void showViews(View... views) {
-        changeVisibilityOfViews(View.VISIBLE, views);
+        changeVisibility(View.VISIBLE, views);
     }
 
-    private void changeVisibilityOfViews(int visibility, View... viewsToChangeVisibility) {
-        for (View each : viewsToChangeVisibility) {
-            each.setVisibility(visibility);
+    void saveStateInto(Map<String, Serializable> outState) {
+        outState.put(MapKeys.displayed, displayed);
+        if (displayed) {
+            outState.put(MapKeys.gameState, gameState);
         }
     }
 }

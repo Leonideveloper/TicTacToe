@@ -12,7 +12,7 @@ import java.util.Map;
 
 class CombinedDrawablesProvider {
 
-    private final int transparentId = android.R.color.transparent;
+    private final int transparentDrawableId = android.R.color.transparent;
 
     private final Map<Object, Drawable> drawablesCache;
     private final Resources resources;
@@ -23,35 +23,28 @@ class CombinedDrawablesProvider {
     }
 
     Drawable getCombinedDrawable(int... ids) {
-        List<Integer> notFullyTransparentDrawablesIds = getNotFullyTransparentDrawablesIds(ids);
-        int numberOfNotFullyTransparentDrawables = notFullyTransparentDrawablesIds.size();
-        if (numberOfNotFullyTransparentDrawables == 0) {
-            return getDrawable(transparentId);
-        } else if (numberOfNotFullyTransparentDrawables == 1) {
-            int iconId = notFullyTransparentDrawablesIds.get(0);
-            return getDrawable(iconId);
-        } else {
-            return getLayerDrawable(notFullyTransparentDrawablesIds);
-        }
+        return getCombinedDrawable(getNotFullyTransparentDrawablesIds(ids));
     }
 
-    private List<Integer> getNotFullyTransparentDrawablesIds(int[] ids) {
+    private List<Integer> getNotFullyTransparentDrawablesIds(int... ids) {
         List<Integer> notFullyTransparentDrawablesIds = new ArrayList<Integer>();
         for (int id : ids) {
-            if (id != transparentId) {
+            if (id != transparentDrawableId) {
                 notFullyTransparentDrawablesIds.add(id);
             }
         }
         return notFullyTransparentDrawablesIds;
     }
 
-    private Drawable getDrawable(int iconId) {
-        Drawable drawable = drawablesCache.get(iconId);
-        if (drawable == null) {
-            drawable = resources.getDrawable(iconId);
-            drawablesCache.put(iconId, drawable);
+    private Drawable getCombinedDrawable(List<Integer> ids) {
+        int numberOfDrawables = ids.size();
+        if (numberOfDrawables > 1) {
+            return getLayerDrawable(ids);
+        } else if (numberOfDrawables == 1) {
+            return getDrawable(ids.get(0));
+        } else {
+            return getDrawable(transparentDrawableId);
         }
-        return drawable;
     }
 
     private Drawable getLayerDrawable(List<Integer> ids) {
@@ -70,5 +63,14 @@ class CombinedDrawablesProvider {
             layers[i] = getDrawable(ids.get(i));
         }
         return new LayerDrawable(layers);
+    }
+
+    private Drawable getDrawable(int id) {
+        Drawable drawable = drawablesCache.get(id);
+        if (drawable == null) {
+            drawable = resources.getDrawable(id);
+            drawablesCache.put(id, drawable);
+        }
+        return drawable;
     }
 }

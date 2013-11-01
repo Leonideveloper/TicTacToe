@@ -31,19 +31,27 @@ class NextMoveProgressBarImpl implements NextMoveProgressBar {
         hide();
     }
 
+    @Override
+    public void hide() {
+        displayed = false;
+        setVisibility(View.INVISIBLE, View.INVISIBLE);
+    }
+
+    private void setVisibility(int firstPlayerVisibility, int secondPlayerVisibility) {
+        firstPlayerProgressBar.setVisibility(firstPlayerVisibility);
+        secondPlayerProgressBar.setVisibility(secondPlayerVisibility);
+    }
+
     NextMoveProgressBarImpl(Activity activity, Map<String, Serializable> savedState) {
         this(activity);
+        restoreStateFrom(savedState);
+    }
+
+    private void restoreStateFrom(Map<String,Serializable> savedState) {
         Boolean needToDisplay = (Boolean) savedState.get(MapKeys.displayed);
         if (needToDisplay) {
             Player.Id playerId = (Player.Id) savedState.get(MapKeys.idOfPlayerWhoShouldMoveNext);
             show(playerId);
-        }
-    }
-
-    void saveStateInto(Map<String, Serializable> outState) {
-        outState.put(MapKeys.displayed, displayed);
-        if (displayed) {
-            outState.put(MapKeys.idOfPlayerWhoShouldMoveNext, idOfPlayerWhoShouldMoveNext);
         }
     }
 
@@ -58,14 +66,10 @@ class NextMoveProgressBarImpl implements NextMoveProgressBar {
         }
     }
 
-    @Override
-    public void hide() {
-        displayed = false;
-        setVisibility(View.INVISIBLE, View.INVISIBLE);
-    }
-
-    private void setVisibility(int firstPlayerVisibility, int secondPlayerVisibility) {
-        firstPlayerProgressBar.setVisibility(firstPlayerVisibility);
-        secondPlayerProgressBar.setVisibility(secondPlayerVisibility);
+    void saveStateInto(Map<String, Serializable> outState) {
+        outState.put(MapKeys.displayed, displayed);
+        if (displayed) {
+            outState.put(MapKeys.idOfPlayerWhoShouldMoveNext, idOfPlayerWhoShouldMoveNext);
+        }
     }
 }
