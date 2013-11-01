@@ -22,8 +22,8 @@ class GameBoardViewCellsProvider {
     private final Integer distanceBetweenCells;
     private Integer gameBoardDimension;
 
-    static Matrix<ImageView> prepareCells(Activity activity, int gameBoardDimension) {
-        return new GameBoardViewCellsProvider(activity).prepareCells(gameBoardDimension);
+    static Matrix<ImageView> prepareCells(Activity activity, Matrix<Integer> backgroundIconsIds) {
+        return new GameBoardViewCellsProvider(activity).prepareCells(backgroundIconsIds);
     }
 
     GameBoardViewCellsProvider(Activity activity) {
@@ -36,16 +36,18 @@ class GameBoardViewCellsProvider {
         return theme.getGameTheme().getGameBoardTheme().getDistanceBetweenCells();
     }
 
-    Matrix<ImageView> prepareCells(final int gameBoardDimension) {
-        this.gameBoardDimension = gameBoardDimension;
+    Matrix<ImageView> prepareCells(Matrix<Integer> backgroundIconsIds) {
+        gameBoardDimension = backgroundIconsIds.getDimension().rows;
         LinearLayout rowsContainerLayout = prepareRowsContainerLayout();
         Matrix<ImageView> cells = new SquareMatrix<ImageView>(gameBoardDimension);
         for (int row = 0; row < gameBoardDimension; ++row) {
             LinearLayout rowLayout = prepareRowLayout();
             for (int column = 0; column < gameBoardDimension; ++column) {
-                ImageView cell = prepareCell(row, column);
+                Position pos = new Position(row, column);
+                ImageView cell = prepareCell(pos);
+                cell.setBackgroundResource(backgroundIconsIds.get(pos));
                 rowLayout.addView(cell);
-                cells.set(new Position(row, column), cell);
+                cells.set(pos, cell);
             }
             rowsContainerLayout.addView(rowLayout);
         }
@@ -76,17 +78,17 @@ class GameBoardViewCellsProvider {
         );
     }
 
-    private ImageView prepareCell(int row, int column) {
+    private ImageView prepareCell(Position pos) {
         LayoutInflater inflater = activity.getLayoutInflater();
         ImageView cell = (ImageView) inflater.inflate(R.layout.cell_image_view, null);
-        cell.setLayoutParams(prepareCellParams(row, column));
+        cell.setLayoutParams(prepareCellParams(pos));
         return cell;
     }
 
-    private LinearLayout.LayoutParams prepareCellParams(int row, int column) {
+    private LinearLayout.LayoutParams prepareCellParams(Position pos) {
         LinearLayout.LayoutParams params = createParams();
-        int left = (column == 0) ? distanceBetweenCells : 0;
-        int top = (row == 0) ? distanceBetweenCells : 0;
+        int left = (pos.column == 0) ? distanceBetweenCells : 0;
+        int top = (pos.row == 0) ? distanceBetweenCells : 0;
         int right = distanceBetweenCells;
         int bottom = distanceBetweenCells;
         params.setMargins(left, top, right, bottom);

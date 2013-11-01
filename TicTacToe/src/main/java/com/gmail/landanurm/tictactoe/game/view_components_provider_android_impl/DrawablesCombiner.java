@@ -10,14 +10,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class CombinedDrawablesProvider {
+class DrawablesCombiner {
 
     private final int transparentDrawableId = android.R.color.transparent;
 
     private final Map<Object, Drawable> drawablesCache;
     private final Resources resources;
 
-    CombinedDrawablesProvider(Activity activity) {
+    DrawablesCombiner(Activity activity) {
         drawablesCache = new HashMap<Object, Drawable>();
         resources = activity.getResources();
     }

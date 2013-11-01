@@ -1,7 +1,6 @@
 package com.gmail.landanurm.tictactoe.game.view_components_provider_android_impl;
 
 import android.app.Activity;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -38,7 +37,7 @@ class GameBoardViewImpl implements GameBoardView {
 
     private final CellsTheme cellsTheme = getCurrentCellsTheme();
 
-    private final CombinedDrawablesProvider combinedDrawablesProvider;
+    private final DrawablesCombiner drawablesCombiner;
     private final Matrix<Integer> backgroundIconsIds;
     private final Matrix<Integer> moveIconsIds;
     private final Matrix<Integer> fireIconsIds;
@@ -48,11 +47,11 @@ class GameBoardViewImpl implements GameBoardView {
 
 
     GameBoardViewImpl(Activity activity, int gameBoardDimension) {
-        combinedDrawablesProvider = new CombinedDrawablesProvider(activity);
-        cells = GameBoardViewCellsProvider.prepareCells(activity, gameBoardDimension);
+        drawablesCombiner = new DrawablesCombiner(activity);
         backgroundIconsIds = prepareCellsBackgroundIconsIds(gameBoardDimension);
         moveIconsIds = prepareTransparentIconsIds(gameBoardDimension);
         fireIconsIds = prepareTransparentIconsIds(gameBoardDimension);
+        cells = GameBoardViewCellsProvider.prepareCells(activity, backgroundIconsIds);
         updateCells();
         movesAreBlocked = false;
     }
@@ -78,31 +77,24 @@ class GameBoardViewImpl implements GameBoardView {
         cells.forEach(new OnEachHandler<ImageView>() {
             @Override
             public void handle(Position pos, ImageView cell) {
-                updateCellBackground(pos);
-                updateCellImage(pos);
+                updateCell(pos);
             }
         });
     }
 
-    private void updateCellBackground(Position pos) {
-        ImageView cell = cells.get(pos);
-        cell.setBackgroundResource(backgroundIconsIds.get(pos));
-    }
-
-    private void updateCellImage(Position pos) {
+    private void updateCell(Position pos) {
         ImageView cell = cells.get(pos);
         int moveIconId = moveIconsIds.get(pos);
         int fireIconId = fireIconsIds.get(pos);
-        Drawable cellDrawable = combinedDrawablesProvider.getCombinedDrawable(moveIconId, fireIconId);
-        cell.setImageDrawable(cellDrawable);
+        cell.setImageDrawable(drawablesCombiner.getCombinedDrawable(moveIconId, fireIconId));
     }
 
-    GameBoardViewImpl(Activity activity, int gameBoardDimension, Map<String, Serializable> savedState) {
-        combinedDrawablesProvider = new CombinedDrawablesProvider(activity);
-        cells = GameBoardViewCellsProvider.prepareCells(activity, gameBoardDimension);
+    GameBoardViewImpl(Activity activity, Map<String, Serializable> savedState) {
+        drawablesCombiner = new DrawablesCombiner(activity);
         backgroundIconsIds = (Matrix<Integer>) savedState.get(MapKeys.backgroundIconsIds);
         moveIconsIds = (Matrix<Integer>) savedState.get(MapKeys.moveIconsIds);
         fireIconsIds = (Matrix<Integer>) savedState.get(MapKeys.fireIconsIds);
+        cells = GameBoardViewCellsProvider.prepareCells(activity, backgroundIconsIds);
         updateCells();
         movesAreBlocked = (Boolean) savedState.get(MapKeys.movesAreBlocked);
     }
@@ -152,7 +144,7 @@ class GameBoardViewImpl implements GameBoardView {
             public void handle(Position pos, ImageView cell) {
                 moveIconsIds.set(pos, android.R.color.transparent);
                 fireIconsIds.set(pos, android.R.color.transparent);
-                updateCellImage(pos);
+                updateCell(pos);
             }
         });
     }
@@ -164,7 +156,7 @@ class GameBoardViewImpl implements GameBoardView {
         } else {
             moveIconsIds.set(pos, cellsTheme.getSecondPlayerMoveIconId());
         }
-        updateCellImage(pos);
+        updateCell(pos);
     }
 
     @Override
@@ -179,7 +171,7 @@ class GameBoardViewImpl implements GameBoardView {
         Collection<Position> cellsPositions = fireLine.getCellsPositions();
         for (Position pos : cellsPositions) {
             fireIconsIds.set(pos, cellsTheme.getFireIconId(fireLineType));
-            updateCellImage(pos);
+            updateCell(pos);
         }
     }
 }
