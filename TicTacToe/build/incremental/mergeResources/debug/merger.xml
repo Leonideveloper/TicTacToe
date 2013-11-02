@@ -151,9 +151,9 @@
             <file
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values\colors.xml"
                 qualifiers="" >
-                <color name="light_green" >#5bae28
-                </color>
                 <color name="green" >#ff0a7d0c
+                </color>
+                <color name="light_green" >#5bae28
                 </color>
                 <color name="red" >#ffff0a0c
                 </color>
@@ -161,17 +161,17 @@
             <file
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values\dimens.xml"
                 qualifiers="" >
-                <dimen name="score_icon_height" >28dp
-                </dimen>
                 <dimen name="ad_text_size" >74sp
                 </dimen>
-                <dimen name="activity_horizontal_margin" >12dp
+                <dimen name="score_icon_height" >28dp
                 </dimen>
                 <dimen name="score_text_size" >30sp
                 </dimen>
-                <dimen name="activity_vertical_margin" >12dp
+                <dimen name="activity_horizontal_margin" >12dp
                 </dimen>
                 <dimen name="space_between_face_and_score" >7dp
+                </dimen>
+                <dimen name="activity_vertical_margin" >12dp
                 </dimen>
                 <dimen name="score_icon_width" >28dp
                 </dimen>

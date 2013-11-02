@@ -34,6 +34,7 @@ class NextMoveProgressBarImpl implements NextMoveProgressBar {
     @Override
     public void hide() {
         displayed = false;
+        idOfPlayerWhoShouldMoveNext = null;
         setVisibility(View.INVISIBLE, View.INVISIBLE);
     }
 

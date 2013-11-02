@@ -51,7 +51,7 @@ class GameBoardViewImpl implements GameBoardView {
         backgroundIconsIds = prepareCellsBackgroundIconsIds(gameBoardDimension);
         moveIconsIds = prepareTransparentIconsIds(gameBoardDimension);
         fireIconsIds = prepareTransparentIconsIds(gameBoardDimension);
-        cells = GameBoardViewCellsProvider.prepareCells(activity, backgroundIconsIds);
+        cells = prepareCells(activity);
         updateCells();
         movesAreBlocked = false;
     }
@@ -71,6 +71,11 @@ class GameBoardViewImpl implements GameBoardView {
         Matrix<Integer> ids = new SquareMatrix<Integer>(gameBoardDimension);
         ids.fill(android.R.color.transparent);
         return ids;
+    }
+
+    private ReadOnlyMatrix<ImageView> prepareCells(Activity activity) {
+        GameBoardViewCellsProvider cellsProvider = new GameBoardViewCellsProvider(activity);
+        return cellsProvider.prepareCells(backgroundIconsIds);
     }
 
     private void updateCells() {
@@ -94,7 +99,7 @@ class GameBoardViewImpl implements GameBoardView {
         backgroundIconsIds = (Matrix<Integer>) savedState.get(MapKeys.backgroundIconsIds);
         moveIconsIds = (Matrix<Integer>) savedState.get(MapKeys.moveIconsIds);
         fireIconsIds = (Matrix<Integer>) savedState.get(MapKeys.fireIconsIds);
-        cells = GameBoardViewCellsProvider.prepareCells(activity, backgroundIconsIds);
+        cells = prepareCells(activity);
         updateCells();
         movesAreBlocked = (Boolean) savedState.get(MapKeys.movesAreBlocked);
     }

@@ -14,18 +14,23 @@ import com.gmail.landanurm.tictactoe.game.view_components_provider_android_impl.
 
 import java.io.Serializable;
 
-/**
- * Created by Leonid on 15.10.13.
- */
 class TicTacToeController {
-    private static final Integer gameBoardDimension = 5;
+
+    private static class BundleKeys {
+        final static String model = "Controller.model";
+        final static String viewComponentsState = "Controller.viewComponentsState";
+    }
+
+    private static final int gameBoardDimension = 5;
     private static final String firstPlayerType = PlayerTypes.HUMAN;
     private static final String secondPlayerType = PlayerTypes.AI.NORMAL;
 
     private final Activity activity;
     private TicTacToeModel model;
-    private TicTacToeView view;
     private ViewComponentsProviderAndroidImpl viewComponentsProvider;
+
+    @SuppressWarnings("unused")
+    private TicTacToeView view;
 
 
     TicTacToeController(Activity activity) {
@@ -55,17 +60,12 @@ class TicTacToeController {
     }
 
     private void connectHumanPlayersToView(TicTacToeView view) {
-        if (firstPlayerType == PlayerTypes.HUMAN) {
+        if (firstPlayerType.equals(PlayerTypes.HUMAN)) {
             view.addOnCellClickListener((OnCellClickListener) model.getFirstPlayer());
         }
-        if (secondPlayerType == PlayerTypes.HUMAN) {
+        if (secondPlayerType.equals(PlayerTypes.HUMAN)) {
             view.addOnCellClickListener((OnCellClickListener) model.getSecondPlayer());
         }
-    }
-
-    private static class BundleKeys {
-        final static String model = "Controller.model";
-        final static String viewComponentsState = "Controller.viewComponentsState";
     }
 
     void saveStateInto(Bundle outState) {
@@ -85,6 +85,6 @@ class TicTacToeController {
 
     private ViewComponentsProviderAndroidImpl createViewComponentsProviderFrom(Bundle savedState) {
         Serializable viewComponentsState = savedState.getSerializable(BundleKeys.viewComponentsState);
-        return new ViewComponentsProviderAndroidImpl(activity, gameBoardDimension, viewComponentsState);
+        return new ViewComponentsProviderAndroidImpl(activity, viewComponentsState);
     }
 }

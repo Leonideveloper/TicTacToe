@@ -22,10 +22,6 @@ class GameBoardViewCellsProvider {
     private final Integer distanceBetweenCells;
     private Integer gameBoardDimension;
 
-    static Matrix<ImageView> prepareCells(Activity activity, Matrix<Integer> backgroundIconsIds) {
-        return new GameBoardViewCellsProvider(activity).prepareCells(backgroundIconsIds);
-    }
-
     GameBoardViewCellsProvider(Activity activity) {
         this.activity = activity;
         this.distanceBetweenCells = getDistanceBetweenCells();
