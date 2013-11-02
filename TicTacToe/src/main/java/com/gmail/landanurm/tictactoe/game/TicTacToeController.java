@@ -24,7 +24,7 @@ class TicTacToeController {
 
     private static int gameBoardDimension = 5;
     private static String firstPlayerType = PlayerTypes.HUMAN;
-    private static String secondPlayerType = PlayerTypes.AI.NORMAL;
+    private static String secondPlayerType = PlayerTypes.HUMAN;
 
     private final Activity activity;
     private final PlayersFactory playersFactory;

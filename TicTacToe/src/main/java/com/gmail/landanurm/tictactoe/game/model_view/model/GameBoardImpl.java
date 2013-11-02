@@ -10,6 +10,9 @@ import java.io.Serializable;
  * Created by Leonid on 27.09.13.
  */
 class GameBoardImpl implements GameBoard, Serializable {
+
+    private static final Player.Id EMPTY_CELL = null;
+
     private final Matrix<Player.Id> cells;
 
     GameBoardImpl(int gameBoardDimension) {
@@ -18,12 +21,12 @@ class GameBoardImpl implements GameBoard, Serializable {
 
     @Override
     public boolean cellIsEmpty(Position pos) {
-        return (cells.get(pos) == null);
+        return (cells.get(pos) == EMPTY_CELL);
     }
 
     @Override
     public boolean containsEmptyCell() {
-        return cells.contains(null);
+        return cells.contains(EMPTY_CELL);
     }
 
     @Override
@@ -38,7 +41,7 @@ class GameBoardImpl implements GameBoard, Serializable {
 
     @Override
     public void clear() {
-        cells.fill(null);
+        cells.fill(EMPTY_CELL);
     }
 
     @Override

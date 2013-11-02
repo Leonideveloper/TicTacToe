@@ -6,6 +6,6 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 /**
  * Created by Leonid on 07.09.13.
  */
-public interface OnPlayerMovedListener {
-    void onPlayerMoved(Position pos, Player.Id playerId);
+public interface OnMovedListener {
+    void onMoved(Position pos, Player.Id playerId);
 }

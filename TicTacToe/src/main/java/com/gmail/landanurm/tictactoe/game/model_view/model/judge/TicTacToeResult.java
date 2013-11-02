@@ -14,15 +14,15 @@ public class TicTacToeResult {
         this.fireLines = fireLines;
     }
 
+    public boolean isKnown() {
+        return gameState != GameState.UNKNOWN;
+    }
+
     public GameState getGameState() {
         return gameState;
     }
 
     public Collection<FireLine> getFireLines() {
         return fireLines;
-    }
-
-    public boolean isKnown() {
-        return gameState != GameState.UNKNOWN;
     }
 }

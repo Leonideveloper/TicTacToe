@@ -6,8 +6,8 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.TicTacToeModel;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeResult;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnGameFinishedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnGameStartedListener;
+import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnMovedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnPlayerWhoShouldMoveNextChangedListener;
-import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnPlayerMovedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnScoreChangedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 
@@ -16,7 +16,7 @@ import java.util.List;
 
 
 public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
-        OnPlayerMovedListener, OnScoreChangedListener, OnPlayerWhoShouldMoveNextChangedListener,
+        OnMovedListener, OnScoreChangedListener, OnPlayerWhoShouldMoveNextChangedListener,
         OnGameFinishedListener, OnUserWantsToStartNewGameListener, OnGameStartedListener {
 
     private final GameBoardView gameBoardView;
@@ -45,7 +45,7 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
         model.addOnGameStartedListener(this);
         model.addOnGameFinishedListener(this);
         model.addOnScoreChangedListener(this);
-        model.addOnPlayerMovedListener(this);
+        model.addOnMovedListener(this);
         model.addOnPlayerWhoShouldMoveNextChangedListener(this);
         this.model = model;
     }
@@ -69,7 +69,7 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
     }
 
     @Override
-    public void onPlayerMoved(Position pos, Player.Id playerId) {
+    public void onMoved(Position pos, Player.Id playerId) {
         gameBoardView.showMove(pos, playerId);
     }
 

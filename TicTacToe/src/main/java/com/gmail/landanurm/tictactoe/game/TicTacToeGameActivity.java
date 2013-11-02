@@ -15,7 +15,7 @@ public class TicTacToeGameActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tic_tac_toe_activity);
-        installTheme();
+        installGameTheme();
 
         controller = new TicTacToeController(this);
 
@@ -27,7 +27,7 @@ public class TicTacToeGameActivity extends Activity {
         }
     }
 
-    private void installTheme() {
+    private void installGameTheme() {
         GameThemeInstaller gameThemeInstaller = new GameThemeInstaller(this);
         gameThemeInstaller.install(CurrentThemeProvider.getCurrentTheme().getGameTheme());
     }

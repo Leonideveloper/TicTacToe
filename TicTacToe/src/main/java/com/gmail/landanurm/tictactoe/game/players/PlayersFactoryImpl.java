@@ -15,6 +15,7 @@ public class PlayersFactoryImpl implements PlayersFactory {
 
     private Player.Id playerId;
     private ReadOnlyGameBoard gameBoard;
+    private String playerType;
     private TicTacToeModel model;
 
     public PlayersFactoryImpl(String firstPlayerType, String secondPlayerType) {
@@ -34,16 +35,17 @@ public class PlayersFactoryImpl implements PlayersFactory {
 
     private Player createPlayer(Player.Id playerId, ReadOnlyGameBoard gameBoard, TicTacToeModel model) {
         this.playerId = playerId;
+        this.playerType = playerTypeById();
         this.gameBoard = gameBoard;
         this.model = model;
-        return createPlayer(playerTypeById(playerId));
+        return createPlayer();
     }
 
-    private String playerTypeById(Player.Id playerId) {
+    private String playerTypeById() {
         return (playerId == Player.Id.FIRST_PLAYER) ? firstPlayerType : secondPlayerType;
     }
 
-    private Player createPlayer(String playerType) {
+    private Player createPlayer() {
         if (playerType.equals(PlayerTypes.HUMAN)) {
             return createHumanPlayer();
         } else if (playerType.equals(PlayerTypes.AI.NORMAL)) {
