@@ -17,9 +17,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Leonid on 07.09.13.
- */
 public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
 
     transient private final List<OnGameStartedListener> onGameStartedListeners =
@@ -42,15 +39,14 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
     private Player playerWhoShouldMoveNext;
 
 
-    public TicTacToeModelImpl(int gameBoardDimension, PlayersFactory playersFactory,
-                              String firstPlayerType, String secondPlayerType) {
+    public TicTacToeModelImpl(int gameBoardDimension, PlayersFactory playersFactory) {
 
         gameBoard = new GameBoardImpl(gameBoardDimension);
         judge = new TicTacToeJudgeImpl(gameBoard);
         score = new Score();
 
-        firstPlayer = playersFactory.createFirstPlayer(firstPlayerType, gameBoard, this);
-        secondPlayer = playersFactory.createSecondPlayer(secondPlayerType, gameBoard, this);
+        firstPlayer = playersFactory.createFirstPlayer(gameBoard, this);
+        secondPlayer = playersFactory.createSecondPlayer(gameBoard, this);
 
         playerWhoShouldMoveNext = firstPlayer;
     }

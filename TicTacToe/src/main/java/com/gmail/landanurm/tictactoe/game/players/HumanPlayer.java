@@ -15,7 +15,7 @@ class HumanPlayer implements Player, OnCellClickListener, Serializable {
     private final Id id;
     private final ReadOnlyGameBoard gameBoard;
     private final TicTacToeModel model;
-    private Boolean movesAreEnabled;
+    private boolean movesAreEnabled;
 
     HumanPlayer(Id id, ReadOnlyGameBoard gameBoard, TicTacToeModel model) {
         this.id = id;

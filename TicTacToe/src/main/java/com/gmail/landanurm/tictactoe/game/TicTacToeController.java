@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.gmail.landanurm.tictactoe.game.model_view.model.TicTacToeModel;
 import com.gmail.landanurm.tictactoe.game.model_view.model.TicTacToeModelImpl;
+import com.gmail.landanurm.tictactoe.game.model_view.model.player.PlayersFactory;
 import com.gmail.landanurm.tictactoe.game.model_view.view.OnCellClickListener;
 import com.gmail.landanurm.tictactoe.game.model_view.view.TicTacToeView;
 import com.gmail.landanurm.tictactoe.game.model_view.view.TicTacToeViewImpl;
@@ -21,11 +22,13 @@ class TicTacToeController {
         final static String viewComponentsState = "Controller.viewComponentsState";
     }
 
-    private static final int gameBoardDimension = 5;
-    private static final String firstPlayerType = PlayerTypes.HUMAN;
-    private static final String secondPlayerType = PlayerTypes.AI.NORMAL;
+    private static int gameBoardDimension = 5;
+    private static String firstPlayerType = PlayerTypes.HUMAN;
+    private static String secondPlayerType = PlayerTypes.AI.NORMAL;
 
     private final Activity activity;
+    private final PlayersFactory playersFactory;
+
     private TicTacToeModel model;
     private ViewComponentsProviderAndroidImpl viewComponentsProvider;
 
@@ -35,6 +38,7 @@ class TicTacToeController {
 
     TicTacToeController(Activity activity) {
         this.activity = activity;
+        this.playersFactory = new PlayersFactoryImpl(firstPlayerType, secondPlayerType);
     }
 
     void startGame() {
@@ -45,8 +49,7 @@ class TicTacToeController {
     }
 
     private TicTacToeModel createModel() {
-        return new TicTacToeModelImpl(gameBoardDimension, new PlayersFactoryImpl(),
-                                      firstPlayerType, secondPlayerType);
+        return new TicTacToeModelImpl(gameBoardDimension, playersFactory);
     }
 
     private ViewComponentsProviderAndroidImpl createViewComponentsProvider() {

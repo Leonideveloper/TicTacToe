@@ -10,31 +10,40 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.player.PlayersFactory
  */
 public class PlayersFactoryImpl implements PlayersFactory {
 
+    private final String firstPlayerType;
+    private final String secondPlayerType;
+
     private Player.Id playerId;
     private ReadOnlyGameBoard gameBoard;
-    private String playerType;
     private TicTacToeModel model;
 
-    @Override
-    public Player createFirstPlayer(String playerType, ReadOnlyGameBoard gameBoard, TicTacToeModel model) {
-        return createPlayer(playerType, gameBoard, model, Player.Id.FIRST_PLAYER);
+    public PlayersFactoryImpl(String firstPlayerType, String secondPlayerType) {
+        this.firstPlayerType = firstPlayerType;
+        this.secondPlayerType = secondPlayerType;
     }
 
     @Override
-    public Player createSecondPlayer(String playerType, ReadOnlyGameBoard gameBoard, TicTacToeModel model) {
-        return createPlayer(playerType, gameBoard, model, Player.Id.SECOND_PLAYER);
+    public Player createFirstPlayer(ReadOnlyGameBoard gameBoard, TicTacToeModel model) {
+        return createPlayer(Player.Id.FIRST_PLAYER, gameBoard, model);
     }
 
-    private Player createPlayer(String playerType, ReadOnlyGameBoard gameBoard,
-                                TicTacToeModel model, Player.Id playerId) {
-        this.playerType = playerType;
+    @Override
+    public Player createSecondPlayer(ReadOnlyGameBoard gameBoard, TicTacToeModel model) {
+        return createPlayer(Player.Id.SECOND_PLAYER, gameBoard, model);
+    }
+
+    private Player createPlayer(Player.Id playerId, ReadOnlyGameBoard gameBoard, TicTacToeModel model) {
         this.playerId = playerId;
         this.gameBoard = gameBoard;
         this.model = model;
-        return createPlayer();
+        return createPlayer(playerTypeById(playerId));
     }
 
-    private Player createPlayer() {
+    private String playerTypeById(Player.Id playerId) {
+        return (playerId == Player.Id.FIRST_PLAYER) ? firstPlayerType : secondPlayerType;
+    }
+
+    private Player createPlayer(String playerType) {
         if (playerType.equals(PlayerTypes.HUMAN)) {
             return createHumanPlayer();
         } else if (playerType.equals(PlayerTypes.AI.NORMAL)) {
