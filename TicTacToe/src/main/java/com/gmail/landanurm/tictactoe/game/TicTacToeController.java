@@ -24,7 +24,7 @@ class TicTacToeController {
 
     private static int gameBoardDimension = 5;
     private static String firstPlayerType = PlayerTypes.HUMAN;
-    private static String secondPlayerType = PlayerTypes.HUMAN;
+    private static String secondPlayerType = PlayerTypes.AI.NORMAL;
 
     private final Activity activity;
     private final PlayersFactory playersFactory;
@@ -36,12 +36,12 @@ class TicTacToeController {
     private TicTacToeView view;
 
 
-    TicTacToeController(Activity activity) {
+    public TicTacToeController(Activity activity) {
         this.activity = activity;
         this.playersFactory = new PlayersFactoryImpl(firstPlayerType, secondPlayerType);
     }
 
-    void startGame() {
+    public void startGame() {
         model = createModel();
         viewComponentsProvider = createViewComponentsProvider();
         view = createView();
@@ -71,12 +71,12 @@ class TicTacToeController {
         }
     }
 
-    void saveStateInto(Bundle outState) {
+    public void saveStateInto(Bundle outState) {
         outState.putSerializable(BundleKeys.model, (Serializable) model);
         outState.putSerializable(BundleKeys.viewComponentsState, viewComponentsProvider.getState());
     }
 
-    void restoreStateFrom(Bundle savedState) {
+    public void restoreStateFrom(Bundle savedState) {
         model = getModelRestoredFrom(savedState);
         viewComponentsProvider = createViewComponentsProviderFrom(savedState);
         view = createView();

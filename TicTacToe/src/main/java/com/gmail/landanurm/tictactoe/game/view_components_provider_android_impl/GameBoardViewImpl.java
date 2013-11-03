@@ -52,7 +52,6 @@ class GameBoardViewImpl implements GameBoardView {
         moveIconsIds = prepareTransparentIconsIds(gameBoardDimension);
         fireIconsIds = prepareTransparentIconsIds(gameBoardDimension);
         cells = prepareCells(activity);
-        updateCells();
         movesAreBlocked = false;
     }
 
@@ -78,6 +77,16 @@ class GameBoardViewImpl implements GameBoardView {
         return cellsProvider.prepareCells(backgroundIconsIds);
     }
 
+    GameBoardViewImpl(Activity activity, Map<String, Serializable> savedState) {
+        drawablesCombiner = new DrawablesCombiner(activity);
+        backgroundIconsIds = (Matrix<Integer>) savedState.get(MapKeys.backgroundIconsIds);
+        moveIconsIds = (Matrix<Integer>) savedState.get(MapKeys.moveIconsIds);
+        fireIconsIds = (Matrix<Integer>) savedState.get(MapKeys.fireIconsIds);
+        cells = prepareCells(activity);
+        movesAreBlocked = (Boolean) savedState.get(MapKeys.movesAreBlocked);
+        updateCells();
+    }
+
     private void updateCells() {
         cells.forEach(new OnEachHandler<ImageView>() {
             @Override
@@ -92,16 +101,6 @@ class GameBoardViewImpl implements GameBoardView {
         int moveIconId = moveIconsIds.get(pos);
         int fireIconId = fireIconsIds.get(pos);
         cell.setImageDrawable(drawablesCombiner.getCombinedDrawable(moveIconId, fireIconId));
-    }
-
-    GameBoardViewImpl(Activity activity, Map<String, Serializable> savedState) {
-        drawablesCombiner = new DrawablesCombiner(activity);
-        backgroundIconsIds = (Matrix<Integer>) savedState.get(MapKeys.backgroundIconsIds);
-        moveIconsIds = (Matrix<Integer>) savedState.get(MapKeys.moveIconsIds);
-        fireIconsIds = (Matrix<Integer>) savedState.get(MapKeys.fireIconsIds);
-        cells = prepareCells(activity);
-        updateCells();
-        movesAreBlocked = (Boolean) savedState.get(MapKeys.movesAreBlocked);
     }
 
     void saveStateInto(Map<String, Serializable> outState) {

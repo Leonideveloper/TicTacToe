@@ -85,8 +85,8 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge, Serializable {
     }
 
     private TicTacToeResult checkRows() {
-        for (int i = 0; i < gameBoardDimension; ++i) {
-            TicTacToeResult result = checkRow(i);
+        for (int row = 0; row < gameBoardDimension; ++row) {
+            TicTacToeResult result = checkRow(row);
             if (result.isKnown()) {
                 return result;
             }
@@ -99,8 +99,8 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge, Serializable {
     }
 
     private TicTacToeResult checkColumns() {
-        for (int i = 0; i < gameBoardDimension; ++i) {
-            TicTacToeResult result = checkColumn(i);
+        for (int column = 0; column < gameBoardDimension; ++column) {
+            TicTacToeResult result = checkColumn(column);
             if (result.isKnown()) {
                 return result;
             }
@@ -137,15 +137,15 @@ public class TicTacToeJudgeImpl implements TicTacToeJudge, Serializable {
         }
         Collection<FireLine> fireLines = new ArrayList<FireLine>();
         fireLines.add(new FireLine(cellsPositions, fireLineType));
-        return new TicTacToeResult(stateByCell(firstCellOnLine), fireLines);
+        return new TicTacToeResult(gameStateByCell(firstCellOnLine), fireLines);
     }
 
-    private GameState stateByCell(Player.Id cell) {
+    private GameState gameStateByCell(Player.Id cell) {
         if (cell == Player.Id.FIRST_PLAYER) {
             return GameState.FIRST_PLAYER_WINS;
         } else if (cell == Player.Id.SECOND_PLAYER) {
             return GameState.SECOND_PLAYER_WINS;
         }
-        throw new IllegalArgumentException("Input cell must be not empty!");
+        throw new IllegalArgumentException("Cell must be not empty!");
     }
 }

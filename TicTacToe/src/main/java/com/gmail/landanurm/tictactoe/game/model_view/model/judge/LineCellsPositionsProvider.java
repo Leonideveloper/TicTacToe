@@ -26,6 +26,18 @@ class LineCellsPositionsProvider implements Serializable {
         });
     }
 
+    private List<Position> positions(PositionByIndexProvider positionByIndexProvider) {
+        List<Position> positions = new ArrayList<Position>();
+        for (int index = 0; index < gameBoardDimension; ++index) {
+            positions.add(positionByIndexProvider.getPositionByIndex(index));
+        }
+        return positions;
+    }
+
+    private static interface PositionByIndexProvider {
+        Position getPositionByIndex(int index);
+    }
+
     List<Position> onColumn(final int column) {
         return positions(new PositionByIndexProvider() {
             @Override
@@ -52,17 +64,5 @@ class LineCellsPositionsProvider implements Serializable {
                 return new Position(index, indexOfLastColumn - index);
             }
         });
-    }
-
-    private List<Position> positions(PositionByIndexProvider positionByIndexProvider) {
-        List<Position> positions = new ArrayList<Position>();
-        for (int index = 0; index < gameBoardDimension; ++index) {
-            positions.add(positionByIndexProvider.getPositionByIndex(index));
-        }
-        return positions;
-    }
-
-    private static interface PositionByIndexProvider {
-        Position getPositionByIndex(int index);
     }
 }

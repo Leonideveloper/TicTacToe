@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.gmail.landanurm.tictactoe.CurrentThemeProvider;
 import com.gmail.landanurm.tictactoe.R;
+import com.gmail.landanurm.tictactoe.theme.GameTheme;
 
 
 public class TicTacToeGameActivity extends Activity {
@@ -28,8 +29,9 @@ public class TicTacToeGameActivity extends Activity {
     }
 
     private void installGameTheme() {
+        GameTheme currentGameTheme = CurrentThemeProvider.getCurrentTheme().getGameTheme();
         GameThemeInstaller gameThemeInstaller = new GameThemeInstaller(this);
-        gameThemeInstaller.install(CurrentThemeProvider.getCurrentTheme().getGameTheme());
+        gameThemeInstaller.install(currentGameTheme);
     }
 
     @Override

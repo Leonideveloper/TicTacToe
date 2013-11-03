@@ -22,7 +22,7 @@ class NextMoveProgressBarImpl implements NextMoveProgressBar {
 
     private final View firstPlayerProgressBar;
     private final View secondPlayerProgressBar;
-    private Boolean displayed;
+    private boolean displayed;
     private Player.Id idOfPlayerWhoShouldMoveNext;
 
     NextMoveProgressBarImpl(Activity activity) {

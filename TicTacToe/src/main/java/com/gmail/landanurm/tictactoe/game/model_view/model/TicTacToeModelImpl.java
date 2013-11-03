@@ -40,14 +40,11 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
 
 
     public TicTacToeModelImpl(int gameBoardDimension, PlayersFactory playersFactory) {
-
         gameBoard = new GameBoardImpl(gameBoardDimension);
         judge = new TicTacToeJudgeImpl(gameBoard);
         score = new Score();
-
         firstPlayer = playersFactory.createFirstPlayer(gameBoard, this);
         secondPlayer = playersFactory.createSecondPlayer(gameBoard, this);
-
         playerWhoShouldMoveNext = firstPlayer;
     }
 

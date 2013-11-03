@@ -25,20 +25,21 @@ public class PlayersFactoryImpl implements PlayersFactory {
 
     @Override
     public Player createFirstPlayer(ReadOnlyGameBoard gameBoard, TicTacToeModel model) {
-        return createPlayer(Player.Id.FIRST_PLAYER, gameBoard, model);
+        init(Player.Id.FIRST_PLAYER, gameBoard, model);
+        return createPlayer();
     }
 
     @Override
     public Player createSecondPlayer(ReadOnlyGameBoard gameBoard, TicTacToeModel model) {
-        return createPlayer(Player.Id.SECOND_PLAYER, gameBoard, model);
+        init(Player.Id.SECOND_PLAYER, gameBoard, model);
+        return createPlayer();
     }
 
-    private Player createPlayer(Player.Id playerId, ReadOnlyGameBoard gameBoard, TicTacToeModel model) {
+    private void init(Player.Id playerId, ReadOnlyGameBoard gameBoard, TicTacToeModel model) {
         this.playerId = playerId;
         this.playerType = playerTypeById();
         this.gameBoard = gameBoard;
         this.model = model;
-        return createPlayer();
     }
 
     private String playerTypeById() {

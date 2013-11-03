@@ -12,20 +12,19 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnScoreChan
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 
 public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
         OnMovedListener, OnScoreChangedListener, OnPlayerWhoShouldMoveNextChangedListener,
         OnGameFinishedListener, OnUserWantsToStartNewGameListener, OnGameStartedListener {
 
+    private final Collection<OnCellClickListener> onCellClickListeners;
     private final GameBoardView gameBoardView;
     private final NextMoveProgressBar nextMoveProgressBar;
     private final ResultDisplay resultDisplay;
     private final ScoreDisplay scoreDisplay;
     private final StartNewGameRequestor startNewGameRequestor;
-
-    private final List<OnCellClickListener> onCellClickListeners;
     private final TicTacToeModel model;
 
 

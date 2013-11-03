@@ -56,11 +56,12 @@ class DrawablesCombiner {
         return layerDrawable;
     }
 
-    private Drawable createLayerDrawable(List<Integer> ids) {
-        int numberOfLayers = ids.size();
+    private Drawable createLayerDrawable(List<Integer> layersIds) {
+        int numberOfLayers = layersIds.size();
         Drawable[] layers = new Drawable[numberOfLayers];
         for (int i = 0; i < numberOfLayers; ++i) {
-            layers[i] = getDrawable(ids.get(i));
+            int layerId = layersIds.get(i);
+            layers[i] = getDrawable(layerId);
         }
         return new LayerDrawable(layers);
     }

@@ -24,7 +24,7 @@ class ResultDisplayImpl implements ResultDisplay {
     private final View winnerSecondPlayer;
     private final View loserFirstPlayer;
     private final View loserSecondPlayer;
-    private Boolean displayed;
+    private boolean displayed;
     private GameState gameState;
 
     ResultDisplayImpl(Activity activity) {
@@ -78,7 +78,7 @@ class ResultDisplayImpl implements ResultDisplay {
             showViews(winnerFirstPlayer, loserSecondPlayer);
             break;
         case SECOND_PLAYER_WINS:
-            showViews(winnerSecondPlayer, loserFirstPlayer);
+            showViews(loserFirstPlayer, winnerSecondPlayer);
             break;
         case DRAW:
             showViews(loserFirstPlayer, loserSecondPlayer);

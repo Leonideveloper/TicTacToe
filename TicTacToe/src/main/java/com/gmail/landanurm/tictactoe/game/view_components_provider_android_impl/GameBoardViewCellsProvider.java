@@ -20,7 +20,7 @@ import com.gmail.landanurm.tictactoe.theme.TicTacToeTheme;
 class GameBoardViewCellsProvider {
     private final Activity activity;
     private final Integer distanceBetweenCells;
-    private Integer gameBoardDimension;
+    private int gameBoardDimension;
 
     GameBoardViewCellsProvider(Activity activity) {
         this.activity = activity;
@@ -28,8 +28,8 @@ class GameBoardViewCellsProvider {
     }
 
     private static int getDistanceBetweenCells() {
-        TicTacToeTheme theme = CurrentThemeProvider.getCurrentTheme();
-        return theme.getGameTheme().getGameBoardTheme().getDistanceBetweenCells();
+        TicTacToeTheme currentTheme = CurrentThemeProvider.getCurrentTheme();
+        return currentTheme.getGameTheme().getGameBoardTheme().getDistanceBetweenCells();
     }
 
     Matrix<ImageView> prepareCells(Matrix<Integer> backgroundIconsIds) {
@@ -40,8 +40,9 @@ class GameBoardViewCellsProvider {
             LinearLayout rowLayout = prepareRowLayout();
             for (int column = 0; column < gameBoardDimension; ++column) {
                 Position pos = new Position(row, column);
+                int cellBackgroundIconId = backgroundIconsIds.get(pos);
                 ImageView cell = prepareCell(pos);
-                cell.setBackgroundResource(backgroundIconsIds.get(pos));
+                cell.setBackgroundResource(cellBackgroundIconId);
                 rowLayout.addView(cell);
                 cells.set(pos, cell);
             }
