@@ -7,7 +7,7 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeJudgeI
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeResult;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnGameFinishedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnGameStartedListener;
-import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnMovedListener;
+import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnPlayerMovedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnPlayerWhoShouldMoveNextChangedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnScoreChangedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
@@ -15,19 +15,19 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.player.PlayersFactory
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
 
-    transient private final List<OnGameStartedListener> onGameStartedListeners =
+    transient private final Collection<OnGameStartedListener> onGameStartedListeners =
                                                   new ArrayList<OnGameStartedListener>();
-    transient private final List<OnGameFinishedListener> onGameFinishedListeners =
+    transient private final Collection<OnGameFinishedListener> onGameFinishedListeners =
                                                   new ArrayList<OnGameFinishedListener>();
-    transient private final List<OnScoreChangedListener> onScoreChangedListeners =
+    transient private final Collection<OnScoreChangedListener> onScoreChangedListeners =
                                                   new ArrayList<OnScoreChangedListener>();
-    transient private final List<OnMovedListener> onMovedListeners =
-                                                  new ArrayList<OnMovedListener>();
-    transient private final List<OnPlayerWhoShouldMoveNextChangedListener>
+    transient private final Collection<OnPlayerMovedListener> onPlayerMovedListeners =
+                                                  new ArrayList<OnPlayerMovedListener>();
+    transient private final Collection<OnPlayerWhoShouldMoveNextChangedListener>
                                  onPlayerWhoShouldMoveNextChangedListeners = new ArrayList<OnPlayerWhoShouldMoveNextChangedListener>();
 
     private final GameBoard gameBoard;
@@ -35,7 +35,6 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
     private final Player secondPlayer;
     private final Score score;
     private final TicTacToeJudge judge;
-
     private Player playerWhoShouldMoveNext;
 
 
@@ -59,8 +58,8 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
     }
 
     @Override
-    public void addOnMovedListener(OnMovedListener listener) {
-        onMovedListeners.add(listener);
+    public void addOnPlayerMovedListener(OnPlayerMovedListener listener) {
+        onPlayerMovedListeners.add(listener);
     }
 
     @Override
@@ -98,7 +97,7 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
     public void onMove(Position movePos, Player player) {
         player.disableMoves();
         gameBoard.set(movePos, player.getId());
-        notifyOnMovedListeners(movePos, player.getId());
+        notifyOnPlayerMovedListeners(movePos, player.getId());
         TicTacToeResult result = judge.getResult();
         if (result.isKnown()) {
             onGameFinished(result);
@@ -107,9 +106,9 @@ public class TicTacToeModelImpl implements TicTacToeModel, Serializable {
         }
     }
 
-    private void notifyOnMovedListeners(Position pos, Player.Id playerId) {
-        for (OnMovedListener each : onMovedListeners) {
-            each.onMoved(pos, playerId);
+    private void notifyOnPlayerMovedListeners(Position pos, Player.Id playerId) {
+        for (OnPlayerMovedListener each : onPlayerMovedListeners) {
+            each.onPlayerMoved(pos, playerId);
         }
     }
 

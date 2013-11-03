@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.gmail.landanurm.tictactoe.CurrentThemeProvider;
 import com.gmail.landanurm.tictactoe.R;
-import com.gmail.landanurm.tictactoe.theme.GameTheme;
+import com.gmail.landanurm.tictactoe.theme.game_theme.GameTheme;
 
 
 public class TicTacToeGameActivity extends Activity {

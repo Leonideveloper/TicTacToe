@@ -2,9 +2,9 @@ package com.gmail.landanurm.tictactoe.theme_implementations.xo_theme;
 
 
 import com.gmail.landanurm.tictactoe.R;
-import com.gmail.landanurm.tictactoe.theme.GameBoardTheme;
-import com.gmail.landanurm.tictactoe.theme.GameTheme;
-import com.gmail.landanurm.tictactoe.theme.ScorePanelTheme;
+import com.gmail.landanurm.tictactoe.theme.game_theme.GameBoardTheme;
+import com.gmail.landanurm.tictactoe.theme.game_theme.GameTheme;
+import com.gmail.landanurm.tictactoe.theme.game_theme.ScorePanelTheme;
 
 /**
  * Created by Leonid on 17.10.13.

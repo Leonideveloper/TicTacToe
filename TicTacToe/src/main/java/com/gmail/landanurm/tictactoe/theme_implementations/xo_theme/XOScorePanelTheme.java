@@ -3,7 +3,7 @@ package com.gmail.landanurm.tictactoe.theme_implementations.xo_theme;
 import android.graphics.Color;
 
 import com.gmail.landanurm.tictactoe.R;
-import com.gmail.landanurm.tictactoe.theme.ScorePanelTheme;
+import com.gmail.landanurm.tictactoe.theme.game_theme.ScorePanelTheme;
 
 /**
  * Created by Leonid on 17.10.13.

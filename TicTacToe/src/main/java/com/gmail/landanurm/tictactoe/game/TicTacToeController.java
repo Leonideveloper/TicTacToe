@@ -11,7 +11,7 @@ import com.gmail.landanurm.tictactoe.game.model_view.view.TicTacToeView;
 import com.gmail.landanurm.tictactoe.game.model_view.view.TicTacToeViewImpl;
 import com.gmail.landanurm.tictactoe.game.players.PlayerTypes;
 import com.gmail.landanurm.tictactoe.game.players.PlayersFactoryImpl;
-import com.gmail.landanurm.tictactoe.game.view_components_provider_android_impl.ViewComponentsProviderAndroidImpl;
+import com.gmail.landanurm.tictactoe.game.android_view_components_provider.ViewComponentsProviderAndroidImpl;
 
 import java.io.Serializable;
 

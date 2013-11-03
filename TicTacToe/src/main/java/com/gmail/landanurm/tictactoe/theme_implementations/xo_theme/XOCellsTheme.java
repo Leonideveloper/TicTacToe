@@ -2,7 +2,7 @@ package com.gmail.landanurm.tictactoe.theme_implementations.xo_theme;
 
 import com.gmail.landanurm.tictactoe.R;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.FireLine;
-import com.gmail.landanurm.tictactoe.theme.CellsTheme;
+import com.gmail.landanurm.tictactoe.theme.game_theme.CellsTheme;
 
 import java.util.Random;
 

@@ -6,7 +6,7 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.TicTacToeModel;
 import com.gmail.landanurm.tictactoe.game.model_view.model.judge.TicTacToeResult;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnGameFinishedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnGameStartedListener;
-import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnMovedListener;
+import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnPlayerMovedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnPlayerWhoShouldMoveNextChangedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnScoreChangedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
@@ -16,7 +16,7 @@ import java.util.Collection;
 
 
 public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
-        OnMovedListener, OnScoreChangedListener, OnPlayerWhoShouldMoveNextChangedListener,
+        OnPlayerMovedListener, OnScoreChangedListener, OnPlayerWhoShouldMoveNextChangedListener,
         OnGameFinishedListener, OnUserWantsToStartNewGameListener, OnGameStartedListener {
 
     private final Collection<OnCellClickListener> onCellClickListeners;
@@ -44,7 +44,7 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
         model.addOnGameStartedListener(this);
         model.addOnGameFinishedListener(this);
         model.addOnScoreChangedListener(this);
-        model.addOnMovedListener(this);
+        model.addOnPlayerMovedListener(this);
         model.addOnPlayerWhoShouldMoveNextChangedListener(this);
         this.model = model;
     }
@@ -55,31 +55,10 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
     }
 
     @Override
-    public void onCellClick(Position cellPos) {
-        gameBoardView.blockMoves();
-        notifyOnCellClickListeners(cellPos);
-        gameBoardView.unblockMoves();
-    }
-
-    private void notifyOnCellClickListeners(Position cellPos) {
-        for (OnCellClickListener each : onCellClickListeners) {
-            each.onCellClick(cellPos);
-        }
-    }
-
-    @Override
-    public void onMoved(Position pos, Player.Id playerId) {
-        gameBoardView.showMove(pos, playerId);
-    }
-
-    @Override
-    public void onScoreChanged() {
-        scoreDisplay.showScore(model.getScore());
-    }
-
-    @Override
-    public void onPlayerWhoShouldMoveNextChanged(Player.Id playerWhoShouldMoveNextId) {
-        nextMoveProgressBar.show(playerWhoShouldMoveNextId);
+    public void onGameStarted() {
+        gameBoardView.clear();
+        resultDisplay.hide();
+        startNewGameRequestor.hideRequest();
     }
 
     @Override
@@ -96,9 +75,30 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
     }
 
     @Override
-    public void onGameStarted() {
-        gameBoardView.clear();
-        resultDisplay.hide();
-        startNewGameRequestor.hideRequest();
+    public void onCellClick(Position cellPos) {
+        gameBoardView.blockMoves();
+        notifyOnCellClickListeners(cellPos);
+        gameBoardView.unblockMoves();
+    }
+
+    private void notifyOnCellClickListeners(Position cellPos) {
+        for (OnCellClickListener each : onCellClickListeners) {
+            each.onCellClick(cellPos);
+        }
+    }
+
+    @Override
+    public void onPlayerMoved(Position pos, Player.Id playerId) {
+        gameBoardView.showMove(pos, playerId);
+    }
+
+    @Override
+    public void onScoreChanged() {
+        scoreDisplay.showScore(model.getScore());
+    }
+
+    @Override
+    public void onPlayerWhoShouldMoveNextChanged(Player.Id playerWhoShouldMoveNextId) {
+        nextMoveProgressBar.show(playerWhoShouldMoveNextId);
     }
 }

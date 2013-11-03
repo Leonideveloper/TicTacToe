@@ -1,6 +1,6 @@
 package com.gmail.landanurm.tictactoe.theme_implementations.xo_theme;
 
-import com.gmail.landanurm.tictactoe.theme.GameTheme;
+import com.gmail.landanurm.tictactoe.theme.game_theme.GameTheme;
 import com.gmail.landanurm.tictactoe.theme.TicTacToeTheme;
 
 /**

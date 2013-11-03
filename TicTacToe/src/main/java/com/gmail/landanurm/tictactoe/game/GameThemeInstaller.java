@@ -7,8 +7,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.gmail.landanurm.tictactoe.R;
-import com.gmail.landanurm.tictactoe.theme.GameTheme;
-import com.gmail.landanurm.tictactoe.theme.ScorePanelTheme;
+import com.gmail.landanurm.tictactoe.theme.game_theme.GameTheme;
+import com.gmail.landanurm.tictactoe.theme.game_theme.ScorePanelTheme;
 
 /**
  * Created by Leonid on 18.10.13.

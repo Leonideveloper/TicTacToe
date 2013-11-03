@@ -1,8 +1,8 @@
 package com.gmail.landanurm.tictactoe.theme_implementations.xo_theme;
 
 import com.gmail.landanurm.tictactoe.R;
-import com.gmail.landanurm.tictactoe.theme.CellsTheme;
-import com.gmail.landanurm.tictactoe.theme.GameBoardTheme;
+import com.gmail.landanurm.tictactoe.theme.game_theme.CellsTheme;
+import com.gmail.landanurm.tictactoe.theme.game_theme.GameBoardTheme;
 
 /**
  * Created by Leonid on 17.10.13.
