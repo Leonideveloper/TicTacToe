@@ -1,6 +1,7 @@
 package com.gmail.landanurm.tictactoe.game.android_view_components_provider;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -14,10 +15,11 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.judge.FireLine;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 import com.gmail.landanurm.tictactoe.game.model_view.view.GameBoardView;
 import com.gmail.landanurm.tictactoe.game.model_view.view.OnCellClickListener;
-import com.gmail.landanurm.tictactoe.theme.game_theme.CellsTheme;
 import com.gmail.landanurm.tictactoe.theme.TicTacToeTheme;
+import com.gmail.landanurm.tictactoe.theme.game_theme.CellsTheme;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
@@ -36,17 +38,19 @@ class GameBoardViewImpl implements GameBoardView {
     }
 
     private final CellsTheme cellsTheme = getCurrentCellsTheme();
+
+    private final Collection<OnCellClickListener> onCellClickListeners;
     private final DrawablesCombiner drawablesCombiner;
     private final Matrix<Integer> backgroundIconsIds;
     private final Matrix<Integer> moveIconsIds;
     private final Matrix<Integer> fireIconsIds;
     private final ReadOnlyMatrix<ImageView> cells;
-
-    private Boolean movesAreBlocked;
+    private boolean movesAreBlocked;
 
 
     GameBoardViewImpl(Activity activity, int gameBoardDimension) {
         drawablesCombiner = new DrawablesCombiner(activity);
+        onCellClickListeners = new ArrayList<OnCellClickListener>();
         backgroundIconsIds = prepareCellsBackgroundIconsIds(gameBoardDimension);
         moveIconsIds = prepareTransparentIconsIds(gameBoardDimension);
         fireIconsIds = prepareTransparentIconsIds(gameBoardDimension);
@@ -73,11 +77,46 @@ class GameBoardViewImpl implements GameBoardView {
 
     private ReadOnlyMatrix<ImageView> prepareCells(Activity activity) {
         GameBoardViewCellsProvider cellsProvider = new GameBoardViewCellsProvider(activity);
-        return cellsProvider.prepareCells(backgroundIconsIds);
+        Matrix<ImageView> preparedCells = cellsProvider.prepareCells(backgroundIconsIds);
+        preparedCells.forEach(new OnEachHandler<ImageView>() {
+            @Override
+            public void handle(final Position pos, ImageView cell) {
+                cell.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (!movesAreBlocked()) {
+                            blockMoves();
+                            notifyOnCellClickListener(pos);
+                            unblockMoves();
+                        }
+                    }
+                });
+            }
+        });
+        return preparedCells;
+    }
+
+    private boolean movesAreBlocked() {
+        return movesAreBlocked;
+    }
+
+    private void blockMoves() {
+        movesAreBlocked = true;
+    }
+
+    private void unblockMoves() {
+        movesAreBlocked = false;
+    }
+
+    private void notifyOnCellClickListener(Position pos) {
+        for (OnCellClickListener each : onCellClickListeners) {
+            each.onCellClick(pos);
+        }
     }
 
     GameBoardViewImpl(Activity activity, Map<String, Serializable> savedState) {
         drawablesCombiner = new DrawablesCombiner(activity);
+        onCellClickListeners = new ArrayList<OnCellClickListener>();
         backgroundIconsIds = (Matrix<Integer>) savedState.get(MapKeys.backgroundIconsIds);
         moveIconsIds = (Matrix<Integer>) savedState.get(MapKeys.moveIconsIds);
         fireIconsIds = (Matrix<Integer>) savedState.get(MapKeys.fireIconsIds);
@@ -99,7 +138,8 @@ class GameBoardViewImpl implements GameBoardView {
         ImageView cell = cells.get(pos);
         int moveIconId = moveIconsIds.get(pos);
         int fireIconId = fireIconsIds.get(pos);
-        cell.setImageDrawable(drawablesCombiner.getCombinedDrawable(moveIconId, fireIconId));
+        Drawable cellDrawable = drawablesCombiner.getCombinedDrawable(moveIconId, fireIconId);
+        cell.setImageDrawable(cellDrawable);
     }
 
     void saveStateInto(Map<String, Serializable> outState) {
@@ -110,34 +150,8 @@ class GameBoardViewImpl implements GameBoardView {
     }
 
     @Override
-    public void setOnCellClickListener(final OnCellClickListener listener) {
-        cells.forEach(new OnEachHandler<ImageView>() {
-            @Override
-            public void handle(final Position pos, ImageView cell) {
-                cell.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (!movesAreBlocked()) {
-                            listener.onCellClick(pos);
-                        }
-                    }
-                });
-            }
-        });
-    }
-
-    private boolean movesAreBlocked() {
-        return movesAreBlocked;
-    }
-
-    @Override
-    public void blockMoves() {
-        movesAreBlocked = true;
-    }
-
-    @Override
-    public void unblockMoves() {
-        movesAreBlocked = false;
+    public void addOnCellClickListener(OnCellClickListener listener) {
+        onCellClickListeners.add(listener);
     }
 
     @Override

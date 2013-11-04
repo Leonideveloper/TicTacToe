@@ -11,15 +11,11 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnPlayerWho
 import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnScoreChangedListener;
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 
-import java.util.ArrayList;
-import java.util.Collection;
 
-
-public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
-        OnPlayerMovedListener, OnScoreChangedListener, OnPlayerWhoShouldMoveNextChangedListener,
+public class TicTacToeViewImpl implements TicTacToeView, OnPlayerMovedListener,
+        OnScoreChangedListener, OnPlayerWhoShouldMoveNextChangedListener,
         OnGameFinishedListener, OnUserWantsToStartNewGameListener, OnGameStartedListener {
 
-    private final Collection<OnCellClickListener> onCellClickListeners;
     private final GameBoardView gameBoardView;
     private final NextMoveProgressBar nextMoveProgressBar;
     private final ResultDisplay resultDisplay;
@@ -29,11 +25,7 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
 
 
     public TicTacToeViewImpl(ComponentsProvider viewComponentsProvider, TicTacToeModel model) {
-
-        onCellClickListeners = new ArrayList<OnCellClickListener>();
-
         gameBoardView = viewComponentsProvider.getGameBoardView();
-        gameBoardView.setOnCellClickListener(this);
         nextMoveProgressBar = viewComponentsProvider.getNextMoveProgressBar();
         resultDisplay = viewComponentsProvider.getResultDisplay();
         scoreDisplay = viewComponentsProvider.getScoreDisplay();
@@ -51,7 +43,7 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
 
     @Override
     public void addOnCellClickListener(OnCellClickListener listener) {
-        onCellClickListeners.add(listener);
+        gameBoardView.addOnCellClickListener(listener);
     }
 
     @Override
@@ -72,19 +64,6 @@ public class TicTacToeViewImpl implements TicTacToeView, OnCellClickListener,
     @Override
     public void onUserWantsToStartNewGame() {
         model.startGame();
-    }
-
-    @Override
-    public void onCellClick(Position cellPos) {
-        gameBoardView.blockMoves();
-        notifyOnCellClickListeners(cellPos);
-        gameBoardView.unblockMoves();
-    }
-
-    private void notifyOnCellClickListeners(Position cellPos) {
-        for (OnCellClickListener each : onCellClickListeners) {
-            each.onCellClick(cellPos);
-        }
     }
 
     @Override
