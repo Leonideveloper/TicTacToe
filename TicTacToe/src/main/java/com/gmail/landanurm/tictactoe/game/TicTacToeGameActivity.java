@@ -29,8 +29,8 @@ public class TicTacToeGameActivity extends Activity {
     }
 
     private void installGameTheme() {
-        GameTheme currentGameTheme = CurrentThemeProvider.getCurrentTheme().getGameTheme();
         GameThemeInstaller gameThemeInstaller = new GameThemeInstaller(this);
+        GameTheme currentGameTheme = CurrentThemeProvider.getCurrentTheme().getGameTheme();
         gameThemeInstaller.install(currentGameTheme);
     }
 

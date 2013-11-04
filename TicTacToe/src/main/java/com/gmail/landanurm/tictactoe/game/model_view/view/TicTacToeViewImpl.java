@@ -12,9 +12,14 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.listeners.OnScoreChan
 import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 
 
-public class TicTacToeViewImpl implements TicTacToeView, OnPlayerMovedListener,
-        OnScoreChangedListener, OnPlayerWhoShouldMoveNextChangedListener,
-        OnGameFinishedListener, OnUserWantsToStartNewGameListener, OnGameStartedListener {
+public class TicTacToeViewImpl implements TicTacToeView,
+                                          OnGameStartedListener,
+                                          OnGameFinishedListener,
+                                          OnUserWantsToStartNewGameListener,
+                                          OnScoreChangedListener,
+                                          OnPlayerMovedListener,
+                                          OnPlayerWhoShouldMoveNextChangedListener {
+
 
     private final GameBoardView gameBoardView;
     private final NextMoveProgressBar nextMoveProgressBar;
@@ -67,13 +72,13 @@ public class TicTacToeViewImpl implements TicTacToeView, OnPlayerMovedListener,
     }
 
     @Override
-    public void onPlayerMoved(Position pos, Player.Id playerId) {
-        gameBoardView.showMove(pos, playerId);
+    public void onScoreChanged() {
+        scoreDisplay.showScore(model.getScore());
     }
 
     @Override
-    public void onScoreChanged() {
-        scoreDisplay.showScore(model.getScore());
+    public void onPlayerMoved(Position pos, Player.Id playerId) {
+        gameBoardView.showMove(pos, playerId);
     }
 
     @Override
