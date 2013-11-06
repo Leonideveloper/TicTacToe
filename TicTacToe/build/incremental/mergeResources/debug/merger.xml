@@ -4,108 +4,113 @@
     <dataSet config="main" >
         <source path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res" >
             <file
-                name="empty_cell"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\empty_cell.png"
+                name="nexus_cell_background"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_cell_background.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="fire_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_1.png"
+                name="nexus_cross_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_cross_1.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="fire_2"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_2.png"
+                name="nexus_cross_2"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_cross_2.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="fire_3"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_3.png"
+                name="nexus_cross_3"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_cross_3.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="fire_4"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_4.png"
+                name="nexus_cross_4"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_cross_4.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="fire_5"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_5.png"
+                name="nexus_cross_5"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_cross_5.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="fire_6"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\fire_6.png"
+                name="nexus_fire_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_fire_1.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="first_player_face"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\first_player_face.png"
+                name="nexus_fire_2"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_fire_2.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="first_player_move_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\first_player_move_1.png"
+                name="nexus_fire_3"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_fire_3.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="first_player_move_2"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\first_player_move_2.png"
+                name="nexus_fire_4"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_fire_4.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="first_player_move_3"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\first_player_move_3.png"
+                name="nexus_fire_5"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_fire_5.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="game_board_background"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\game_board_background.png"
+                name="nexus_fire_6"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_fire_6.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="game_screen_background"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\game_screen_background.png"
+                name="nexus_fire_7"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_fire_7.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="loser"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\loser.png"
+                name="nexus_game_board_background"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_game_board_background.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="score_panel_background"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\score_panel_background.png"
+                name="nexus_game_screen_background"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_game_screen_background.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="second_player_face"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\second_player_face.png"
+                name="nexus_nought_1"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_nought_1.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="second_player_move_1"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\second_player_move_1.png"
+                name="nexus_nought_2"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_nought_2.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="second_player_move_2"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\second_player_move_2.png"
+                name="nexus_nought_3"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_nought_3.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="second_player_move_3"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\second_player_move_3.png"
+                name="nexus_nought_4"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_nought_4.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="versus"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\versus.png"
+                name="nexus_nought_5"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_nought_5.png"
                 qualifiers=""
                 type="drawable" />
             <file
-                name="winner"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\winner.png"
+                name="nexus_score_panel_background"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_score_panel_background.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="nexus_versus"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\nexus_versus.png"
                 qualifiers=""
                 type="drawable" />
             <file
@@ -114,8 +119,13 @@
                 qualifiers="hdpi"
                 type="drawable" />
             <file
-                name="separator"
-                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable-land\separator.png"
+                name="nexus_game_screen_background"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable-land\nexus_game_screen_background.png"
+                qualifiers="land"
+                type="drawable" />
+            <file
+                name="nexus_score_panel_background"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable-land\nexus_score_panel_background.png"
                 qualifiers="land"
                 type="drawable" />
             <file
@@ -151,9 +161,9 @@
             <file
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values\colors.xml"
                 qualifiers="" >
-                <color name="green" >#ff0a7d0c
-                </color>
                 <color name="light_green" >#5bae28
+                </color>
+                <color name="green" >#ff0a7d0c
                 </color>
                 <color name="red" >#ffff0a0c
                 </color>
@@ -161,17 +171,17 @@
             <file
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values\dimens.xml"
                 qualifiers="" >
-                <dimen name="ad_text_size" >74sp
-                </dimen>
                 <dimen name="score_icon_height" >28dp
                 </dimen>
-                <dimen name="score_text_size" >30sp
+                <dimen name="ad_text_size" >74sp
                 </dimen>
                 <dimen name="activity_horizontal_margin" >12dp
                 </dimen>
-                <dimen name="space_between_face_and_score" >7dp
+                <dimen name="score_text_size" >30sp
                 </dimen>
                 <dimen name="activity_vertical_margin" >12dp
+                </dimen>
+                <dimen name="space_between_face_and_score" >7dp
                 </dimen>
                 <dimen name="score_icon_width" >28dp
                 </dimen>
@@ -237,6 +247,28 @@
                     <!-- API 14 theme customizations can go here. -->
                 </style>
             </file>
+            <file
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\values\integer.xml"
+                qualifiers="" >
+                <integer name="distance_between_cells" >
+11
+                </integer>
+            </file>
+            <file
+                name="common_icons_replay"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\common_icons_replay.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="common_icons_replay_unpressed"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\common_icons_replay_unpressed.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="common_icons_replay_pressed"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\common_icons_replay_pressed.png"
+                qualifiers=""
+                type="drawable" />
         </source>
         <source path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\rs\debug" />
     </dataSet>

@@ -32,13 +32,7 @@ class GameBoardViewImpl implements GameBoardView {
         final static String movesAreBlocked = "GameBoardView.movesAreBlocked";
     }
 
-    private static CellsTheme getCurrentCellsTheme() {
-        TicTacToeTheme currentTheme = CurrentThemeProvider.getCurrentTheme();
-        return currentTheme.getGameTheme().getGameBoardTheme().getCellsTheme();
-    }
-
-    private final CellsTheme cellsTheme = getCurrentCellsTheme();
-
+    private final CellIconIdsProvider cellIconIdsProvider;
     private final Collection<OnCellClickListener> onCellClickListeners;
     private final DrawablesCombiner drawablesCombiner;
     private final Matrix<Integer> backgroundIconsIds;
@@ -49,8 +43,9 @@ class GameBoardViewImpl implements GameBoardView {
 
 
     GameBoardViewImpl(Activity activity, int gameBoardDimension) {
-        drawablesCombiner = new DrawablesCombiner(activity);
+        cellIconIdsProvider = new RandomCellIconIdsProvider(getCurrentCellsTheme());
         onCellClickListeners = new ArrayList<OnCellClickListener>();
+        drawablesCombiner = new DrawablesCombiner(activity);
         backgroundIconsIds = prepareCellsBackgroundIconsIds(gameBoardDimension);
         moveIconsIds = prepareTransparentIconsIds(gameBoardDimension);
         fireIconsIds = prepareTransparentIconsIds(gameBoardDimension);
@@ -58,12 +53,17 @@ class GameBoardViewImpl implements GameBoardView {
         movesAreBlocked = false;
     }
 
+    private static CellsTheme getCurrentCellsTheme() {
+        TicTacToeTheme currentTheme = CurrentThemeProvider.getCurrentTheme();
+        return currentTheme.getGameTheme().getGameBoardTheme().getCellsTheme();
+    }
+
     private Matrix<Integer> prepareCellsBackgroundIconsIds(int gameBoardDimension) {
         final Matrix<Integer> ids = new SquareMatrix<Integer>(gameBoardDimension);
         ids.forEach(new OnEachHandler<Integer>() {
             @Override
             public void handle(Position pos, Integer elem) {
-                ids.set(pos, cellsTheme.getCellBackgroundIconId());
+                ids.set(pos, cellIconIdsProvider.getCellBackgroundIconId());
             }
         });
         return ids;
@@ -115,8 +115,9 @@ class GameBoardViewImpl implements GameBoardView {
     }
 
     GameBoardViewImpl(Activity activity, Map<String, Serializable> savedState) {
-        drawablesCombiner = new DrawablesCombiner(activity);
+        cellIconIdsProvider = new RandomCellIconIdsProvider(getCurrentCellsTheme());
         onCellClickListeners = new ArrayList<OnCellClickListener>();
+        drawablesCombiner = new DrawablesCombiner(activity);
         backgroundIconsIds = (Matrix<Integer>) savedState.get(MapKeys.backgroundIconsIds);
         moveIconsIds = (Matrix<Integer>) savedState.get(MapKeys.moveIconsIds);
         fireIconsIds = (Matrix<Integer>) savedState.get(MapKeys.fireIconsIds);
@@ -169,9 +170,9 @@ class GameBoardViewImpl implements GameBoardView {
     @Override
     public void showMove(Position pos, Player.Id playerId) {
         if (playerId == Player.Id.FIRST_PLAYER) {
-            moveIconsIds.set(pos, cellsTheme.getFirstPlayerMoveIconId());
+            moveIconsIds.set(pos, cellIconIdsProvider.getFirstPlayerMoveIconId());
         } else {
-            moveIconsIds.set(pos, cellsTheme.getSecondPlayerMoveIconId());
+            moveIconsIds.set(pos, cellIconIdsProvider.getSecondPlayerMoveIconId());
         }
         updateCell(pos);
     }
@@ -184,10 +185,9 @@ class GameBoardViewImpl implements GameBoardView {
     }
 
     private void showFireLine(FireLine fireLine) {
-        FireLine.Type fireLineType = fireLine.getFireLineType();
         Collection<Position> cellsPositions = fireLine.getCellsPositions();
         for (Position pos : cellsPositions) {
-            fireIconsIds.set(pos, cellsTheme.getFireIconId(fireLineType));
+            fireIconsIds.set(pos, cellIconIdsProvider.getFireIconId());
             updateCell(pos);
         }
     }

@@ -4,9 +4,7 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.judge.GameState;
 
 import java.io.Serializable;
 
-/**
- * Created by Leonid on 29.07.13.
- */
+
 public class Score implements Serializable {
     private int firstPlayerScore;
     private int secondPlayerScore;

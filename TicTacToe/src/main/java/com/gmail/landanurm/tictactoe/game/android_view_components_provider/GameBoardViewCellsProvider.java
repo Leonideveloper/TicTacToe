@@ -71,7 +71,7 @@ class GameBoardViewCellsProvider {
 
     private LinearLayout.LayoutParams createParams() {
         return new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT, 1.0f
         );
     }
 

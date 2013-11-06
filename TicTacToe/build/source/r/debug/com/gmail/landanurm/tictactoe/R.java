@@ -27,29 +27,31 @@ public final class R {
         public static final int space_between_face_and_score=0x7f050008;
     }
     public static final class drawable {
-        public static final int empty_cell=0x7f020000;
-        public static final int fire_1=0x7f020001;
-        public static final int fire_2=0x7f020002;
-        public static final int fire_3=0x7f020003;
-        public static final int fire_4=0x7f020004;
-        public static final int fire_5=0x7f020005;
-        public static final int fire_6=0x7f020006;
-        public static final int first_player_face=0x7f020007;
-        public static final int first_player_move_1=0x7f020008;
-        public static final int first_player_move_2=0x7f020009;
-        public static final int first_player_move_3=0x7f02000a;
-        public static final int game_board_background=0x7f02000b;
-        public static final int game_screen_background=0x7f02000c;
-        public static final int ic_launcher=0x7f02000d;
-        public static final int loser=0x7f02000e;
-        public static final int score_panel_background=0x7f02000f;
-        public static final int second_player_face=0x7f020010;
-        public static final int second_player_move_1=0x7f020011;
-        public static final int second_player_move_2=0x7f020012;
-        public static final int second_player_move_3=0x7f020013;
-        public static final int separator=0x7f020014;
-        public static final int versus=0x7f020015;
-        public static final int winner=0x7f020016;
+        public static final int common_icons_replay=0x7f020000;
+        public static final int common_icons_replay_pressed=0x7f020001;
+        public static final int common_icons_replay_unpressed=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int nexus_cell_background=0x7f020004;
+        public static final int nexus_cross_1=0x7f020005;
+        public static final int nexus_cross_2=0x7f020006;
+        public static final int nexus_cross_3=0x7f020007;
+        public static final int nexus_cross_4=0x7f020008;
+        public static final int nexus_cross_5=0x7f020009;
+        public static final int nexus_fire_1=0x7f02000a;
+        public static final int nexus_fire_2=0x7f02000b;
+        public static final int nexus_fire_3=0x7f02000c;
+        public static final int nexus_fire_4=0x7f02000d;
+        public static final int nexus_fire_5=0x7f02000e;
+        public static final int nexus_fire_6=0x7f02000f;
+        public static final int nexus_game_board_background=0x7f020010;
+        public static final int nexus_game_screen_background=0x7f020011;
+        public static final int nexus_nought_1=0x7f020012;
+        public static final int nexus_nought_2=0x7f020013;
+        public static final int nexus_nought_3=0x7f020014;
+        public static final int nexus_nought_4=0x7f020015;
+        public static final int nexus_nought_5=0x7f020016;
+        public static final int nexus_score_panel_background=0x7f020017;
+        public static final int nexus_versus=0x7f020018;
     }
     public static final class id {
         public static final int action_settings=0x7f090012;

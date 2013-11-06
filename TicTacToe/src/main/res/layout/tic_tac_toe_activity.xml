@@ -22,7 +22,6 @@
                 android:layout_width="@dimen/score_icon_width"
                 android:layout_height="@dimen/score_icon_height"
                 android:id="@+id/winnerFirstPlayerImageView"
-                android:src="@drawable/winner"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"/>
 
@@ -30,7 +29,6 @@
                 android:layout_width="@dimen/score_icon_width"
                 android:layout_height="@dimen/score_icon_height"
                 android:id="@+id/loserFirstPlayerImageView"
-                android:src="@drawable/loser"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"/>
 
@@ -38,7 +36,6 @@
                 android:layout_width="@dimen/score_icon_width"
                 android:layout_height="@dimen/score_icon_height"
                 android:id="@+id/winnerSecondPlayerImageView"
-                android:src="@drawable/winner"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"/>
 
@@ -46,7 +43,6 @@
                 android:layout_width="@dimen/score_icon_width"
                 android:layout_height="@dimen/score_icon_height"
                 android:id="@+id/loserSecondPlayerImageView"
-                android:src="@drawable/loser"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"/>
 
@@ -152,11 +148,11 @@
             android:layout_alignParentBottom="true"
             android:textSize="@dimen/ad_text_size"/>
 
-    <Button
+    <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start New Game"
             android:id="@+id/startNewGameButton"
+            android:background="@drawable/common_icons_replay"
             android:layout_centerInParent="true"/>
 
 </RelativeLayout>
