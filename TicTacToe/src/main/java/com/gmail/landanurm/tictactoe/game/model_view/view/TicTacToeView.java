@@ -6,9 +6,9 @@ public interface TicTacToeView {
 
     public static interface ComponentsProvider {
         GameBoardView getGameBoardView();
+        NeedToRestartGameRequestor getNeedToRestartGameRequestor();
         NextMoveProgressBar getNextMoveProgressBar();
         ResultDisplay getResultDisplay();
         ScoreDisplay getScoreDisplay();
-        StartNewGameRequestor getStartNewGameRequestor();
     }
 }

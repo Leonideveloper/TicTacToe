@@ -27,9 +27,9 @@ public final class R {
         public static final int space_between_face_and_score=0x7f050008;
     }
     public static final class drawable {
-        public static final int common_icons_replay=0x7f020000;
-        public static final int common_icons_replay_pressed=0x7f020001;
-        public static final int common_icons_replay_unpressed=0x7f020002;
+        public static final int common_icons_restart_game=0x7f020000;
+        public static final int common_icons_restart_game_normal=0x7f020001;
+        public static final int common_icons_restart_game_pressed=0x7f020002;
         public static final int ic_launcher=0x7f020003;
         public static final int nexus_cell_background=0x7f020004;
         public static final int nexus_cross_1=0x7f020005;
@@ -62,13 +62,13 @@ public final class R {
         public static final int gameBoardLayout=0x7f090010;
         public static final int loserFirstPlayerImageView=0x7f090003;
         public static final int loserSecondPlayerImageView=0x7f090005;
+        public static final int restartGameButton=0x7f090011;
         public static final int scorePanelLayout=0x7f090001;
         public static final int secondPlayerFaceImageView=0x7f090008;
         public static final int secondPlayerProgressBar=0x7f09000e;
         public static final int secondPlayerScore=0x7f09000c;
         public static final int spaceBetweenFaceAndScore_1=0x7f090009;
         public static final int spaceBetweenFaceAndScore_2=0x7f09000b;
-        public static final int startNewGameButton=0x7f090011;
         public static final int tic_tac_toe_game_activity_layout=0x7f090000;
         public static final int versusImageView=0x7f090007;
         public static final int winnerFirstPlayerImageView=0x7f090002;

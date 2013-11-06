@@ -1,9 +1,9 @@
-package com.gmail.landanurm.tictactoe.game.android_view_components_provider;
+package com.gmail.landanurm.tictactoe.theme.game_theme;
 
 /**
  * Created by Leonid on 05.11.13.
  */
-interface CellIconIdsProvider {
+public interface CellIconIdsProvider {
     int getCellBackgroundIconId();
     int getFirstPlayerMoveIconId();
     int getSecondPlayerMoveIconId();

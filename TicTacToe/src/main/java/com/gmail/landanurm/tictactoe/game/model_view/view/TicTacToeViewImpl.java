@@ -15,28 +15,28 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 public class TicTacToeViewImpl implements TicTacToeView,
                                           OnGameStartedListener,
                                           OnGameFinishedListener,
-                                          OnUserWantsToStartNewGameListener,
+                                          OnUserWantsToRestartGameListener,
                                           OnScoreChangedListener,
                                           OnPlayerMovedListener,
                                           OnPlayerWhoShouldMoveNextChangedListener {
 
 
     private final GameBoardView gameBoardView;
+    private final NeedToRestartGameRequestor needToRestartGameRequestor;
     private final NextMoveProgressBar nextMoveProgressBar;
     private final ResultDisplay resultDisplay;
     private final ScoreDisplay scoreDisplay;
-    private final StartNewGameRequestor startNewGameRequestor;
     private final TicTacToeModel model;
 
 
     public TicTacToeViewImpl(ComponentsProvider viewComponentsProvider, TicTacToeModel model) {
         gameBoardView = viewComponentsProvider.getGameBoardView();
+        needToRestartGameRequestor = viewComponentsProvider.getNeedToRestartGameRequestor();
+        needToRestartGameRequestor.addOnUserWantsToRestartGameListener(this);
         nextMoveProgressBar = viewComponentsProvider.getNextMoveProgressBar();
         resultDisplay = viewComponentsProvider.getResultDisplay();
         scoreDisplay = viewComponentsProvider.getScoreDisplay();
         scoreDisplay.showScore(model.getScore());
-        startNewGameRequestor = viewComponentsProvider.getStartNewGameRequestor();
-        startNewGameRequestor.addOnUserWantsToStartNewGameListener(this);
 
         model.addOnGameStartedListener(this);
         model.addOnGameFinishedListener(this);
@@ -55,7 +55,7 @@ public class TicTacToeViewImpl implements TicTacToeView,
     public void onGameStarted() {
         gameBoardView.clear();
         resultDisplay.hide();
-        startNewGameRequestor.hideRequest();
+        needToRestartGameRequestor.hideRequest();
     }
 
     @Override
@@ -63,11 +63,11 @@ public class TicTacToeViewImpl implements TicTacToeView,
         gameBoardView.showFireLines(result.getFireLines());
         resultDisplay.show(result.getGameState());
         nextMoveProgressBar.hide();
-        startNewGameRequestor.requestToStartNewGame();
+        needToRestartGameRequestor.requestNeedToRestartGame();
     }
 
     @Override
-    public void onUserWantsToStartNewGame() {
+    public void onUserWantsToRestartGame() {
         model.startGame();
     }
 

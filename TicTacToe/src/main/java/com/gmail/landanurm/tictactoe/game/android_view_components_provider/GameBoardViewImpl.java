@@ -16,7 +16,9 @@ import com.gmail.landanurm.tictactoe.game.model_view.model.player.Player;
 import com.gmail.landanurm.tictactoe.game.model_view.view.GameBoardView;
 import com.gmail.landanurm.tictactoe.game.model_view.view.OnCellClickListener;
 import com.gmail.landanurm.tictactoe.theme.TicTacToeTheme;
+import com.gmail.landanurm.tictactoe.theme.game_theme.CellIconIdsProvider;
 import com.gmail.landanurm.tictactoe.theme.game_theme.CellsTheme;
+import com.gmail.landanurm.tictactoe.theme.game_theme.RandomCellIconIdsProvider;
 
 import java.io.Serializable;
 import java.util.ArrayList;

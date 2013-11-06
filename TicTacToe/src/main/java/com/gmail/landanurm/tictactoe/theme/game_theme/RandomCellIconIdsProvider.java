@@ -1,17 +1,15 @@
-package com.gmail.landanurm.tictactoe.game.android_view_components_provider;
-
-import com.gmail.landanurm.tictactoe.theme.game_theme.CellsTheme;
+package com.gmail.landanurm.tictactoe.theme.game_theme;
 
 import java.util.Random;
 
 /**
  * Created by Leonid on 05.11.13.
  */
-class RandomCellIconIdsProvider implements CellIconIdsProvider {
+public class RandomCellIconIdsProvider implements CellIconIdsProvider {
 
     private final CellsTheme cellsTheme;
 
-    RandomCellIconIdsProvider(CellsTheme cellsTheme) {
+    public RandomCellIconIdsProvider(CellsTheme cellsTheme) {
         this.cellsTheme = cellsTheme;
     }
 

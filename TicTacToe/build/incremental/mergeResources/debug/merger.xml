@@ -269,6 +269,21 @@
                 path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\common_icons_replay_pressed.png"
                 qualifiers=""
                 type="drawable" />
+            <file
+                name="common_icons_restart_game"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\common_icons_restart_game.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="common_icons_restart_game_normal"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\common_icons_restart_game_normal.png"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="common_icons_restart_game_pressed"
+                path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\src\main\res\drawable\common_icons_restart_game_pressed.png"
+                qualifiers=""
+                type="drawable" />
         </source>
         <source path="C:\Users\Leonid\AndroidStudioProjects\TicTacToe\TicTacToe\build\res\rs\debug" />
     </dataSet>
