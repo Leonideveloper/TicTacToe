@@ -149,10 +149,10 @@
             android:textSize="@dimen/ad_text_size"/>
 
     <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/restart_button_side_length"
+            android:layout_height="@dimen/restart_button_side_length"
             android:id="@+id/restartGameButton"
-            android:background="@drawable/common_icons_restart_game"
+            android:background="@drawable/common_icons_restart"
             android:layout_centerInParent="true"/>
 
 </RelativeLayout>

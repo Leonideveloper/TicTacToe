@@ -7,4 +7,5 @@
     <dimen name="score_icon_height">28dp</dimen>
     <dimen name="space_between_face_and_score">7dp</dimen>
     <dimen name="ad_text_size">74sp</dimen>
+    <dimen name="restart_button_side_length">150dp</dimen>
 </resources>

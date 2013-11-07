@@ -8,12 +8,13 @@
     <dimen name="activity_horizontal_margin">12dp</dimen>
     <dimen name="activity_vertical_margin">12dp</dimen>
     <dimen name="ad_text_size">74sp</dimen>
+    <dimen name="restart_button_side_length">150dp</dimen>
     <dimen name="score_icon_height">28dp</dimen>
     <dimen name="score_icon_width">28dp</dimen>
     <dimen name="score_text_size">30sp</dimen>
-    <dimen name="separatorHeight">18dp</dimen>
-    <dimen name="separatorWidth">20dp</dimen>
     <dimen name="space_between_face_and_score">7dp</dimen>
+
+    <integer name="distance_between_cells">11</integer>
 
     <string name="action_settings">Settings</string>
     <string name="app_name">TicTacToe</string>

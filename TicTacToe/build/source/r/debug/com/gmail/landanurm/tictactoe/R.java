@@ -19,17 +19,16 @@ public final class R {
         public static final int activity_horizontal_margin=0x7f050000;
         public static final int activity_vertical_margin=0x7f050001;
         public static final int ad_text_size=0x7f050002;
-        public static final int score_icon_height=0x7f050003;
-        public static final int score_icon_width=0x7f050004;
-        public static final int score_text_size=0x7f050005;
-        public static final int separatorHeight=0x7f050006;
-        public static final int separatorWidth=0x7f050007;
-        public static final int space_between_face_and_score=0x7f050008;
+        public static final int restart_button_side_length=0x7f050003;
+        public static final int score_icon_height=0x7f050004;
+        public static final int score_icon_width=0x7f050005;
+        public static final int score_text_size=0x7f050006;
+        public static final int space_between_face_and_score=0x7f050007;
     }
     public static final class drawable {
-        public static final int common_icons_restart_game=0x7f020000;
-        public static final int common_icons_restart_game_normal=0x7f020001;
-        public static final int common_icons_restart_game_pressed=0x7f020002;
+        public static final int common_icons_restart=0x7f020000;
+        public static final int common_icons_restart_normal=0x7f020001;
+        public static final int common_icons_restart_pressed=0x7f020002;
         public static final int ic_launcher=0x7f020003;
         public static final int nexus_cell_background=0x7f020004;
         public static final int nexus_cross_1=0x7f020005;
@@ -54,37 +53,40 @@ public final class R {
         public static final int nexus_versus=0x7f020018;
     }
     public static final class id {
-        public static final int action_settings=0x7f090012;
-        public static final int adTextView=0x7f09000f;
-        public static final int firstPlayerFaceImageView=0x7f090006;
-        public static final int firstPlayerProgressBar=0x7f09000d;
-        public static final int firstPlayerScore=0x7f09000a;
-        public static final int gameBoardLayout=0x7f090010;
-        public static final int loserFirstPlayerImageView=0x7f090003;
-        public static final int loserSecondPlayerImageView=0x7f090005;
-        public static final int restartGameButton=0x7f090011;
-        public static final int scorePanelLayout=0x7f090001;
-        public static final int secondPlayerFaceImageView=0x7f090008;
-        public static final int secondPlayerProgressBar=0x7f09000e;
-        public static final int secondPlayerScore=0x7f09000c;
-        public static final int spaceBetweenFaceAndScore_1=0x7f090009;
-        public static final int spaceBetweenFaceAndScore_2=0x7f09000b;
-        public static final int tic_tac_toe_game_activity_layout=0x7f090000;
-        public static final int versusImageView=0x7f090007;
-        public static final int winnerFirstPlayerImageView=0x7f090002;
-        public static final int winnerSecondPlayerImageView=0x7f090004;
+        public static final int action_settings=0x7f0a0012;
+        public static final int adTextView=0x7f0a000f;
+        public static final int firstPlayerFaceImageView=0x7f0a0006;
+        public static final int firstPlayerProgressBar=0x7f0a000d;
+        public static final int firstPlayerScore=0x7f0a000a;
+        public static final int gameBoardLayout=0x7f0a0010;
+        public static final int loserFirstPlayerImageView=0x7f0a0003;
+        public static final int loserSecondPlayerImageView=0x7f0a0005;
+        public static final int restartGameButton=0x7f0a0011;
+        public static final int scorePanelLayout=0x7f0a0001;
+        public static final int secondPlayerFaceImageView=0x7f0a0008;
+        public static final int secondPlayerProgressBar=0x7f0a000e;
+        public static final int secondPlayerScore=0x7f0a000c;
+        public static final int spaceBetweenFaceAndScore_1=0x7f0a0009;
+        public static final int spaceBetweenFaceAndScore_2=0x7f0a000b;
+        public static final int tic_tac_toe_game_activity_layout=0x7f0a0000;
+        public static final int versusImageView=0x7f0a0007;
+        public static final int winnerFirstPlayerImageView=0x7f0a0002;
+        public static final int winnerSecondPlayerImageView=0x7f0a0004;
+    }
+    public static final class integer {
+        public static final int distance_between_cells=0x7f060000;
     }
     public static final class layout {
         public static final int cell_image_view=0x7f030000;
         public static final int tic_tac_toe_activity=0x7f030001;
     }
     public static final class menu {
-        public static final int tic_tac_toe=0x7f080000;
+        public static final int tic_tac_toe=0x7f090000;
     }
     public static final class string {
-        public static final int action_settings=0x7f060000;
-        public static final int app_name=0x7f060001;
-        public static final int hello_world=0x7f060002;
+        public static final int action_settings=0x7f070000;
+        public static final int app_name=0x7f070001;
+        public static final int hello_world=0x7f070002;
     }
     public static final class style {
         /** 
@@ -95,9 +97,9 @@ public final class R {
  API 11 theme customizations can go here. 
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
 }
